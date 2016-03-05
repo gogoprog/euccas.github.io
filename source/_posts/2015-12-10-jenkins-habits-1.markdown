@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "高效Jenkins用户的第1个习惯"
-date: 2016-03-04 19:32:57 -0800
+date: 2015-12-10 19:32:57 -0800
 comments: true
 categories: 
 ---
