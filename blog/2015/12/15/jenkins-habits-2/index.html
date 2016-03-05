@@ -1,4 +1,3 @@
-
 <!doctype html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
@@ -13,7 +12,7 @@
        More info: h5bp.com/b/378 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title> euccas</title>
+  <title>高效Jenkins用户的第2个习惯 |  euccas</title>
   <meta name="author" content="euccas">
   
 
@@ -37,82 +36,85 @@
   <script src="/javascripts/libs/modernizr-2.0.6.min.js"></script>
 </head>
 
-<body>
-    <div id="container">
-        <header>
-            <span id='name-helper'>euccas</span>
-            <canvas   id="myCanvas" width="700" ></canvas>
-            
-                <br><br>
-                <h1>why we write</h1>
-                <br>
-                
-        </header>
-        
-        <div id="main" role="main">
-            <nav role="navigation" ><ul class="main-navigation">
-  <li style='float:left;margin-right:7px'><a class='nav' href="/">Blog</a></li>
-  <li style='float:left;margin-right:7px'><a class='nav' href="/archives">Archives</a></li>
-  <li ><a class='nav' href="/about">About</a></li>
+<body id="post">
+
+  <div id="container">
+    <nav role="navigation" ><ul class="main-navigation">
+  <li style='float:left;margin-right:5px'><a class='nav' href="/">Home</a></li>
 </ul><br><br>
 </nav>
-            
-
-
-  <article>
     <article>
 
 
-  <div class="article-read-more">
-    <p class="meta">
-      
+  <h1 class="article-title">高效Jenkins用户的第2个习惯</h1>
+  <div class="article-content"><p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
+
+<h3>习惯 2: 大而化小</h3>
+
+<ol>
+<li><p>使用多个Masters</p>
+
+<pre><code> - 在存在多个project与team的情况下，多个master可以使jenkins jobs的管理更加敏捷和可控
+ - 建议根据team, function, access(访问权限) 来划分master
+ - 多个master使安装和升级plugin时需要的重启过程变得容易——不需要重启的master不会受到影响
+ - 提高系统的稳定性：多个master, 每个master上分配较少数量的jobs，可以使整个系统更为稳定，减少遇到边界情况bug的几率
+</code></pre></li>
+<li><p>分解jobs</p>
+
+<pre><code> - 建议在Jenkins中使用模块化和重用，这一点的好处类似于在编程中使用模块化和重用
+ - 多job的Build可以方便地在不同的project, release等等中重用
+ - 分解job可以避免长时间运行的job在最后阶段出错，导致整个job需要被重新运行：多job的Build可以实现从其中任何一个子job处重新执行
+</code></pre></li>
+<li><p>利用工具帮助分解jobs</p>
+
+<pre><code> - 混合使用Parameterized trigger, Conditional Build Step, Copy Artifact, Promoted Builds：有效，但是配置困难
+ - Build Pipeline plugin：可以把workflow可视化，集成手工步骤
+ - Workflow plugin: 用DSL定义build steps之间的关系
+ - Jenkins中有许多plugin和有关工具可以实现job分解
+</code></pre></li>
+</ol>
 
 
+<h3>有关Job分解的Jenkins Plugins</h3>
 
-2015 12-15
-      <a rel="full-article" href="/blog/2015/12/15/jenkins-habits-2/">高效Jenkins用户的第2个习惯</a>
-    </p>
-  </div>
+<h4><a href="https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin">Build Pipeline Plugin</a></h4>
+
+<blockquote><p>This plugin provides a Build Pipeline View of upstream and downstream connected jobs that typically form a build pipeline.  In addition, it offers the ability to define manual triggers for jobs that require intervention prior to execution, e.g. an approval process outside of Jenkins.</p></blockquote>
+
+<h4><a href="https://github.com/jenkinsci/workflow-plugin/blob/master/README.md#introduction">Workflow plugin</a></h4>
+
+<blockquote><p>Building continuous delivery pipelines and similarly complex tasks in Jenkins using freestyle projects and traditional plugins can be awkward. You need to mix Parameterized Trigger, Copy Artifact, Promoted Builds, Conditional Build Step, and more just to express what should be a simple script. The Workflow plugin suite attempts to make it possible to directly write that script, what people often call a workflow (sometimes abbreviated flow), while integrating with Jenkins features like slaves and publishers.</p></blockquote>
+
+<h4><a href="https://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Trigger+Plugin">Parameterized Trigger plugin</a></h4>
+
+<blockquote><p>This plugin lets you trigger new builds when your build has completed, with various ways of specifying parameters for the new build.
+You can add multiple configurations: each has a list of projects to trigger, a condition for when to trigger them (based on the result of the current build), and a parameters section.</p></blockquote>
+
+<h4><a href="https://wiki.jenkins-ci.org/display/JENKINS/Conditional+BuildStep+Plugin">Conditional Build Step plugin</a></h4>
+
+<blockquote><p>A buildstep wrapping any number of other buildsteps, controlling their execution based on a defined condition.</p></blockquote>
+
+<h4><a href="https://wiki.jenkins-ci.org/display/JENKINS/Copy+Artifact+Plugin">Copy Artifact plugin</a></h4>
+
+<blockquote><p>Adds a build step to copy artifacts from another project. The plugin lets you specify which build to copy artifacts from (e.g. the last successful/stable build, by build number, or by a build parameter). You can also control the copying process by filtering the files being copied, specifying a destination directory within the target project, etc. Click the help icon on each field to learn the details, such as selecting Maven or multiconfiguration projects or using build parameters. You can also copy from the workspace of the latest completed build of the source project, instead of its artifacts. All artifacts copied are automatically fingerprinted for you.</p></blockquote>
+
+<h4><a href="https://wiki.jenkins-ci.org/display/JENKINS/Promoted+Builds+Plugin">Promoted Builds plugin</a></h4>
+
+<blockquote><p>This plugin allows you to distinguish good builds from bad builds by introducing the notion of &lsquo;promotion&rsquo;.Put simply, a promoted build is a successful build that passed additional criteria (such as more comprehensive tests that are set up as downstream jobs.) The typical situation in which you use promotion is where you have multiple &lsquo;test&rsquo; jobs hooked up as downstream jobs of a &lsquo;build&rsquo; job. You&rsquo;ll then configure the build job so that the build gets promoted when all the test jobs passed successfully. This allows you to keep the build job run fast (so that developers get faster feedback when a build fails), and you can still distinguish builds that are good from builds that compiled but had runtime problems.</p></blockquote>
+</div>
+  
 
 </article>
 
 
-  </article>
-
-
-  <article>
-    <article>
-
-
-  <div class="article-read-more">
-    <p class="meta">
+      <p class="meta">
       
-
-
-
-2015 12-10
-      <a rel="full-article" href="/blog/2015/12/10/jenkins-habits-1/">高效Jenkins用户的第1个习惯</a>
+        <a class="basic-alignment left nav" href="/blog/2015/12/10/jenkins-habits-1/" title="Previous Post: 高效Jenkins用户的第1个习惯">&laquo; 高效Jenkins用户的第1个习惯</a>
+      
+      
     </p>
   </div>
-
-</article>
-
-
-  </article>
-
-
-        </div>
-           <footer role="contentinfo" >
-    	<p>
-		Copyright &copy; 2016 - euccas -
-		 <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> |
-		 <span class="credit">Themed with <a href="https://github.com/rwwaskk/linkedlist">LinkedList</a></span>
-	</p>
-    </footer>
-
-
-    </div> <!--! end of #container -->
-      <script>
+    <script>
       var name = document.getElementById('name-helper').innerHTML;
 
       var canvas = document.getElementById('myCanvas');
@@ -254,3 +256,5 @@
 
 
 </body>
+</html>
+
