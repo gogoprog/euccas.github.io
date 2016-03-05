@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-03-04T21:17:31-08:00</updated>
+  <updated>2016-03-04T21:19:07-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,7 +15,7 @@
   
   <entry>
     <title type="html"><![CDATA[Use Trello for Managing My Projects]]></title>
-    <link href="http://euccas.github.io/blog/20160304/use-trello-for-managing-my-projects.html/"/>
+    <link href="http://euccas.github.io/blog/20160304/use-trello-for-managing-my-projects.html"/>
     <updated>2016-03-04T21:09:07-08:00</updated>
     <id>http://euccas.github.io/blog/20160304/use-trello-for-managing-my-projects</id>
     <content type="html"><![CDATA[<p>大概从18个月前开始，我开始习惯使用<a href="https://trello.com" target="_blank">Trello</a>作为project management and tracking的主要工具，也逐渐体会到Trello的特点和便利之处。总结起来，“不得不使用Trello”的理由有下面一些：</p>
@@ -32,7 +32,7 @@
   
   <entry>
     <title type="html"><![CDATA[高效Jenkins用户的第2个习惯]]></title>
-    <link href="http://euccas.github.io/blog/20151215/jenkins-habits-2.html/"/>
+    <link href="http://euccas.github.io/blog/20151215/jenkins-habits-2.html"/>
     <updated>2015-12-15T20:15:38-08:00</updated>
     <id>http://euccas.github.io/blog/20151215/jenkins-habits-2</id>
     <content type="html"><![CDATA[<p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
@@ -100,7 +100,7 @@ You can add multiple configurations: each has a list of projects to trigger, a c
   
   <entry>
     <title type="html"><![CDATA[高效Jenkins用户的第1个习惯]]></title>
-    <link href="http://euccas.github.io/blog/20151210/jenkins-habits-1.html/"/>
+    <link href="http://euccas.github.io/blog/20151210/jenkins-habits-1.html"/>
     <updated>2015-12-10T19:32:57-08:00</updated>
     <id>http://euccas.github.io/blog/20151210/jenkins-habits-1</id>
     <content type="html"><![CDATA[<p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
