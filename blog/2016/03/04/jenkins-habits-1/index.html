@@ -1,4 +1,3 @@
-
 <!doctype html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
@@ -13,7 +12,7 @@
        More info: h5bp.com/b/378 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>Blog Archive |  euccas</title>
+  <title>高效Jenkins用户的第1个习惯 |  euccas</title>
   <meta name="author" content="euccas">
   
 
@@ -37,71 +36,78 @@
   <script src="/javascripts/libs/modernizr-2.0.6.min.js"></script>
 </head>
 
-<body>
-    <div id="container">
-        <header>
-            <span id='name-helper'>euccas</span>
-            <canvas   id="myCanvas" width="700" ></canvas>
-            
-                <br><br>
-                <h1>is writing on github ...</h1>
-                <br>
-                
-        </header>
-        
-        <div id="main" role="main">
-            <nav role="navigation" ><ul class="main-navigation">
-  <li style='float:left;margin-right:7px'><a class='nav' href="/">Blog</a></li>
-  <li style='float:left;margin-right:7px'><a class='nav' href="/archives">Archives</a></li>
-  <li ><a class='nav' href="/about">About</a></li>
+<body id="post">
+
+  <div id="container">
+    <nav role="navigation" ><ul class="main-navigation">
+  <li style='float:left;margin-right:5px'><a class='nav' href="/">Home</a></li>
 </ul><br><br>
 </nav>
-            <header>
-	<h2>Blog Archive</h2>
-</header>
-<div id="blog-archives">
+    <article>
 
 
+  <h1 class="article-title">高效Jenkins用户的第1个习惯</h1>
+  <div class="article-content"><p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
+
+<h3>习惯 1: 保持Jenkins Master的稳定与可恢复</h3>
+
+<ol>
+<li><p>使用LTS Release</p>
+
+<pre><code> - LTS release每12周发布一个新版本
+ - LTS release版本发布都会保证通过自动化的acceptance testing和手工testing matrix
+</code></pre></li>
+<li><p>不要急于升级plugins，保持谨慎</p>
+
+<pre><code> - plugin的升级可能包含非常多的变化
+ - 不是所有的升级都会保证向前兼容。比如最近Extended Email Plugin的升级，就造成之前的recipient/trigger配置不可用
+ - 新功能也许不稳定
+</code></pre></li>
+<li><p>对升级进行测试</p>
+
+<pre><code> - 建议在测试环境中对升级和新的plugin进行测试，之后再进行production环境的升级
+ - 建立针对plugin功能的测试
+ - 在更大的规模进行测试
+ - 大的改变需要至少经过几天的测试
+</code></pre></li>
+<li><p>备份Jenkins Configuration</p>
+
+<pre><code> - 建议使用[thinBackup plugin](https://wiki.jenkins-ci.org/display/JENKINS/thinBackup)
+ - 可以通过对$JENKINS_HOME做整体备份实现有效的备份，缺点是速度慢和占用较多的存储空间
+ - Jenkins支持仅仅备份config files，而不需要备份所有的builds。参考[这个gist](https://gist.github.com/abayer/527063a4519f205efc74)中的代码实现这一功能。
+</code></pre></li>
+<li><p>避免使用Maven job类型</p>
+
+<pre><code> - Maven plugin中的Mavin job type可能存在一些问题，包括plugin support, lazy loading等等
+ - 在大规模应用中可能会引起一些意外的问题，不建议使用
+</code></pre></li>
+</ol>
 
 
+<h3>什么是LTS Release?</h3>
+
+<p>Jenkins LTS Release: Jenkins Long-Term Support release. 类似于Ubuntu的LTS版本。</p>
+
+<p>具体说明<a href="https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line">在这里</a>。</p>
+
+<h3>关于Jenkins Maven Jobs</h3>
+
+<p>在Jenkins中可以通过两种方式build Maven project
+1. 使用一个 free-style project 和 Maven build step
+2. 使用一个 Maven-style project (配置job type为Mavin job type)
+推荐使用第一种方法，因为第二种方式可能会出现问题</p>
+</div>
   
-  <h2>2016</h2>
 
-<article>
-  <article>
+</article>
 
 
-  <div class="article-read-more">
-    <p class="meta">
+      <p class="meta">
       
-
-
-
-2016 03-04
-      <a rel="full-article" href="/blog/2016/03/04/jenkins-habits-1/">高效Jenkins用户的第1个习惯</a>
+      
     </p>
   </div>
-
-</article>
-
-
-</article>
-
-</div>
-
-
-        </div>
-           <footer role="contentinfo" >
-    	<p>
-		Copyright &copy; 2016 - euccas -
-		 <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> |
-		 <span class="credit">Themed with <a href="https://github.com/rwwaskk/linkedlist">LinkedList</a></span>
-	</p>
-    </footer>
-
-
-    </div> <!--! end of #container -->
-      <script>
+    <script>
       var name = document.getElementById('name-helper').innerHTML;
 
       var canvas = document.getElementById('myCanvas');
@@ -243,3 +249,5 @@
 
 
 </body>
+</html>
+
