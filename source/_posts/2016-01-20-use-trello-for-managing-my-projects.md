@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Use Trello for Managing My Projects"
+title: "用Trello做项目管理初体验"
 date: 2016-03-04 21:09:07 -0800
 comments: true
 categories: 

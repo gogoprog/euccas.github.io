@@ -12,6 +12,7 @@ When I realize the fact that I have had experiences on almost every part of buil
 Business requirements
 Technical challenges
 Pain points of existing solutions
+
 - Slow?
 - Human efforts?
 - Unstable?
@@ -36,6 +37,7 @@ This is supposed to be provide the unique value or functions
 
 # Core Design Architecture
 Architecture for improving the efficiency and performance of the system
+
 - Messaging queue
 - Micro-service
 - Async
@@ -45,36 +47,43 @@ Architecture for improving the efficiency and performance of the system
 Need a server with database
 
 ## Server
+
 - AWS
 - Heroku
 
 ## Framework/Programming Languages:
+
 - Ruby on Rails
 - Java
 - Python
 - PHP
 
 ## Database
+
 - PostgreSQL
 - MongoDB
 
 ## Backend - Frontend interface
+
 - database access (ruby on rails)
-- REST api
+- http RESTful api
 - Other methods? Nodejs?
 
 # Front End
 ## Web/Web apps
 
 ### Basics
+
 - HTML5
 - CSS
 - SASS
 
 ### Responsive
+
 - Bootstrap
 
 ### Javascript
+
 - jQuery
 - Angular
 - Meteor
@@ -83,6 +92,7 @@ Need a server with database
 - Iconic
 
 ### Data Visualization
+
 - D3
 - C3
 - HiChart
@@ -90,10 +100,12 @@ Need a server with database
 
 ## Native Mobile App
 ### iOS
+
 - Swift
 - ObjectiveC
 
 ### Android
+
 - Java for Android
 
 # Scheduler
@@ -103,12 +115,18 @@ Jenkins
 ??
 
 # Development with Continuous Delivery
+
 ## Version control
+
 - git (github, bitbucket)
 - perforce
+
 ## Testing system (CI)
+
 - ??
+
 ## Configuration management, DevOps
+
 - Chef
 - Puppet
 
