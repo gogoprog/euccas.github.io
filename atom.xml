@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-03-18T22:39:43-07:00</updated>
+  <updated>2016-03-18T22:42:53-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -50,22 +50,27 @@ From the perspective of improving the efficiency and performance of the system, 
 This is supposed to be provide the unique value or functions</p>
 
 <h1 id="core-design-architecture">Core Design Architecture</h1>
-<p>Architecture for improving the efficiency and performance of the system
-- Messaging queue
-- Micro-service
-- Async
-- ??</p>
+<p>Architecture for improving the efficiency and performance of the system</p>
+
+<ul>
+  <li>Messaging queue</li>
+  <li>Micro-service</li>
+  <li>Async</li>
+  <li>??</li>
+</ul>
 
 <h1 id="back-end">Back End</h1>
 <p>Need a server with database</p>
 
 <h2 id="server">Server</h2>
+
 <ul>
   <li>AWS</li>
   <li>Heroku</li>
 </ul>
 
 <h2 id="frameworkprogramming-languages">Framework/Programming Languages:</h2>
+
 <ul>
   <li>Ruby on Rails</li>
   <li>Java</li>
@@ -74,15 +79,17 @@ This is supposed to be provide the unique value or functions</p>
 </ul>
 
 <h2 id="database">Database</h2>
+
 <ul>
   <li>PostgreSQL</li>
   <li>MongoDB</li>
 </ul>
 
 <h2 id="backend---frontend-interface">Backend - Frontend interface</h2>
+
 <ul>
   <li>database access (ruby on rails)</li>
-  <li>REST api</li>
+  <li>http RESTful api</li>
   <li>Other methods? Nodejs?</li>
 </ul>
 
@@ -90,6 +97,7 @@ This is supposed to be provide the unique value or functions</p>
 <p>## Web/Web apps</p>
 
 <h3 id="basics">Basics</h3>
+
 <ul>
   <li>HTML5</li>
   <li>CSS</li>
@@ -97,11 +105,13 @@ This is supposed to be provide the unique value or functions</p>
 </ul>
 
 <h3 id="responsive">Responsive</h3>
+
 <ul>
   <li>Bootstrap</li>
 </ul>
 
 <h3 id="javascript">Javascript</h3>
+
 <ul>
   <li>jQuery</li>
   <li>Angular</li>
@@ -112,6 +122,7 @@ This is supposed to be provide the unique value or functions</p>
 </ul>
 
 <h3 id="data-visualization">Data Visualization</h3>
+
 <ul>
   <li>D3</li>
   <li>C3</li>
@@ -120,11 +131,15 @@ This is supposed to be provide the unique value or functions</p>
 </ul>
 
 <h2 id="native-mobile-app">Native Mobile App</h2>
-<p>### iOS
-- Swift
-- ObjectiveC</p>
+<p>### iOS</p>
+
+<ul>
+  <li>Swift</li>
+  <li>ObjectiveC</li>
+</ul>
 
 <h3 id="android">Android</h3>
+
 <ul>
   <li>Java for Android</li>
 </ul>
@@ -136,20 +151,32 @@ This is supposed to be provide the unique value or functions</p>
 <p>??</p>
 
 <h1 id="development-with-continuous-delivery">Development with Continuous Delivery</h1>
-<p>## Version control
-- git (github, bitbucket)
-- perforce
-## Testing system (CI)
-- ??
-## Configuration management, DevOps
-- Chef
-- Puppet</p>
+
+<h2 id="version-control">Version control</h2>
+
+<ul>
+  <li>git (github, bitbucket)</li>
+  <li>perforce</li>
+</ul>
+
+<h2 id="testing-system-ci">Testing system (CI)</h2>
+
+<ul>
+  <li>??</li>
+</ul>
+
+<h2 id="configuration-management-devops">Configuration management, DevOps</h2>
+
+<ul>
+  <li>Chef</li>
+  <li>Puppet</li>
+</ul>
 
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Use Trello for Managing My Projects]]></title>
+    <title type="html"><![CDATA[用Trello做项目管理初体验]]></title>
     <link href="http://euccas.github.io/blog/20160304/use-trello-for-managing-my-projects.html"/>
     <updated>2016-03-04T21:09:07-08:00</updated>
     <id>http://euccas.github.io/blog/20160304/use-trello-for-managing-my-projects</id>
