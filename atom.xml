@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-03-18T22:38:01-07:00</updated>
+  <updated>2016-03-18T22:39:43-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -23,13 +23,16 @@
 <h1 id="what-problems-need-solve">What problems need solve?</h1>
 <p>Business requirements
 Technical challenges
-Pain points of existing solutions
-- Slow?
-- Human efforts?
-- Unstable?
-- Tedious?
-- Workloads hard to be handled?
-- Repeated work?</p>
+Pain points of existing solutions</p>
+
+<ul>
+  <li>Slow?</li>
+  <li>Human efforts?</li>
+  <li>Unstable?</li>
+  <li>Tedious?</li>
+  <li>Workloads hard to be handled?</li>
+  <li>Repeated work?</li>
+</ul>
 
 <h1 id="solution">Solution</h1>
 <p>Address the requirements, challenges, and pain points
