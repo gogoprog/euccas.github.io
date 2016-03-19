@@ -12,12 +12,12 @@ When I realize the fact that I have had experiences on almost every part of buil
 Business requirements
 Technical challenges
 Pain points of existing solutions
-* Slow?
-* Human efforts?
-* Unstable?
-* Tedious?
-* Workloads hard to be handled?
-* Repeated work?
+- Slow?
+- Human efforts?
+- Unstable?
+- Tedious?
+- Workloads hard to be handled?
+- Repeated work?
 
 # Solution
 Address the requirements, challenges, and pain points
@@ -36,55 +36,65 @@ This is supposed to be provide the unique value or functions
 
 # Core Design Architecture
 Architecture for improving the efficiency and performance of the system
-* Messaging queue
-* Micro-service
-* Async
-* ??
+- Messaging queue
+- Micro-service
+- Async
+- ??
 
 # Back End
 Need a server with database
+
 ## Server
-* AWS
-* Heroku
+- AWS
+- Heroku
+
 ## Framework/Programming Languages:
-* Ruby on Rails
-* Java
-* Python
-* PHP
+- Ruby on Rails
+- Java
+- Python
+- PHP
+
 ## Database
-* PostgreSQL
-* MongoDB
+- PostgreSQL
+- MongoDB
+
 ## Backend - Frontend interface
-* database access (ruby on rails)
-* REST api
-* Other methods? Nodejs?
+- database access (ruby on rails)
+- REST api
+- Other methods? Nodejs?
 
 # Front End
 ## Web/Web apps
+
 ### Basics
-* HTML5
-* CSS
-* SASS
+- HTML5
+- CSS
+- SASS
+
 ### Responsive
-* Bootstrap
+- Bootstrap
+
 ### Javascript
-* jQuery
-* Angular
-* Meteor
-* React
-* Node.js
-* Iconic
+- jQuery
+- Angular
+- Meteor
+- React
+- Node.js
+- Iconic
+
 ### Data Visualization
-* D3
-* C3
-* HiChart
-* GoogleCharts
+- D3
+- C3
+- HiChart
+- GoogleCharts
+
 ## Native Mobile App
 ### iOS
-* Swift
-* ObjectiveC
+- Swift
+- ObjectiveC
+
 ### Android
-* Java for Android
+- Java for Android
 
 # Scheduler
 Jenkins
@@ -94,11 +104,11 @@ Jenkins
 
 # Development with Continuous Delivery
 ## Version control
-* git (github, bitbucket)
-* perforce
+- git (github, bitbucket)
+- perforce
 ## Testing system (CI)
-* ??
+- ??
 ## Configuration management, DevOps
-* Chef
-* Puppet
+- Chef
+- Puppet
 
