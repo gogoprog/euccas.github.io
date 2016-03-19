@@ -8,7 +8,7 @@ categories:
 
 When I realize the fact that I have had experiences on almost every part of building a software system, I decide to take a notes about the important things I can think of about building a software system.
 
-# What problems need solve?
+# What problems need to be solved?
 Business requirements
 Technical challenges
 Pain points of existing solutions
@@ -26,16 +26,16 @@ Are they any similar solutions, why they are not good enough?
 What are the good things of the existing work? Can your solution reuse?
 Unique value that your solution provides
 
-# Core Design Workflow
+# Design Workflow
 Like user story, from a user’s point of view, how does the system work
 According to this flow, abstract the system workflow (architecture)
 From the perspective of improving the efficiency and performance of the system, what’s the architecture should look like?
 
-# Core Design Algorithms
+# Design Algorithms
 The most important and complicated part of computation or process
 This is supposed to be provide the unique value or functions
 
-# Core Design Architecture
+# Design Architecture
 Architecture for improving the efficiency and performance of the system
 
 - Messaging queue
@@ -70,6 +70,7 @@ Need a server with database
 - Other methods? Nodejs?
 
 # Front End
+
 ## Web/Web apps
 
 ### Basics
@@ -99,6 +100,7 @@ Need a server with database
 - GoogleCharts
 
 ## Native Mobile App
+
 ### iOS
 
 - Swift
