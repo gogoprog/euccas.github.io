@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-03-18T22:55:34-07:00</updated>
+  <updated>2016-03-19T01:04:31-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -20,7 +20,7 @@
     <id>http://euccas.github.io/blog/20160318/what-we-talk-about-when-talking-about-building-a-software-system</id>
     <content type="html"><![CDATA[<p>When I realize the fact that I have had experiences on almost every part of building a software system, I decide to take a notes about the important things I can think of about building a software system.</p>
 
-<h1 id="what-problems-need-solve">What problems need solve?</h1>
+<h1 id="what-problems-need-to-be-solved">What problems need to be solved?</h1>
 <p>Business requirements
 Technical challenges
 Pain points of existing solutions</p>
@@ -40,16 +40,16 @@ Are they any similar solutions, why they are not good enough?
 What are the good things of the existing work? Can your solution reuse?
 Unique value that your solution provides</p>
 
-<h1 id="core-design-workflow">Core Design Workflow</h1>
+<h1 id="design-workflow">Design Workflow</h1>
 <p>Like user story, from a user’s point of view, how does the system work
 According to this flow, abstract the system workflow (architecture)
 From the perspective of improving the efficiency and performance of the system, what’s the architecture should look like?</p>
 
-<h1 id="core-design-algorithms">Core Design Algorithms</h1>
+<h1 id="design-algorithms">Design Algorithms</h1>
 <p>The most important and complicated part of computation or process
 This is supposed to be provide the unique value or functions</p>
 
-<h1 id="core-design-architecture">Core Design Architecture</h1>
+<h1 id="design-architecture">Design Architecture</h1>
 <p>Architecture for improving the efficiency and performance of the system</p>
 
 <ul>
@@ -94,7 +94,8 @@ This is supposed to be provide the unique value or functions</p>
 </ul>
 
 <h1 id="front-end">Front End</h1>
-<p>## Web/Web apps</p>
+
+<h2 id="webweb-apps">Web/Web apps</h2>
 
 <h3 id="basics">Basics</h3>
 
@@ -131,7 +132,8 @@ This is supposed to be provide the unique value or functions</p>
 </ul>
 
 <h2 id="native-mobile-app">Native Mobile App</h2>
-<p>### iOS</p>
+
+<h3 id="ios">iOS</h3>
 
 <ul>
   <li>Swift</li>
