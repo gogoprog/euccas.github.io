@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://euccas.github.io/blog/20160318/what-we-talk-about-when-talking-about-building-a-software-system.html</loc>
+    <lastmod>2016-03-18T20:29:40-07:00</lastmod>
+  </url>
+  <url>
     <loc>http://euccas.github.io/blog/20160304/use-trello-for-managing-my-projects.html</loc>
     <lastmod>2016-03-04T21:09:07-08:00</lastmod>
   </url>
