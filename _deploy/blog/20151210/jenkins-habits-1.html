@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>高效Jenkins用户的第1个习惯 - euccas.github.io</title>
+  <meta name="author" content="euccas">
+
+  
+  <meta name="description" content="本文内容部分来源于Andrew Bayer发布在SlideShare上的 7 habits of highly productive Jenkins Users (2014 Edition). 习惯 1: 保持Jenkins Master的稳定与可恢复 使用LTS Release - LTS &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://euccas.github.io/blog/20151210/jenkins-habits-1.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="euccas.github.io" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">euccas.github.io</a></h1>
+  
+    <h2>why a developer writes</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="euccas.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">高效Jenkins用户的第1个习惯</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-12-10T19:32:57-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>7:32 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
+
+<h3 id="jenkins-master">习惯 1: 保持Jenkins Master的稳定与可恢复</h3>
+
+<ol>
+  <li>
+    <p>使用LTS Release
+     - LTS release每12周发布一个新版本
+     - LTS release版本发布都会保证通过自动化的acceptance testing和手工testing matrix</p>
+  </li>
+  <li>
+    <p>不要急于升级plugins，保持谨慎
+     - plugin的升级可能包含非常多的变化
+     - 不是所有的升级都会保证向前兼容。比如最近Extended Email Plugin的升级，就造成之前的recipient/trigger配置不可用
+     - 新功能也许不稳定</p>
+  </li>
+  <li>
+    <p>对升级进行测试
+     - 建议在测试环境中对升级和新的plugin进行测试，之后再进行production环境的升级
+     - 建立针对plugin功能的测试
+     - 在更大的规模进行测试
+     - 大的改变需要至少经过几天的测试</p>
+  </li>
+  <li>
+    <p>备份Jenkins Configuration
+     - 建议使用<a href="https://wiki.jenkins-ci.org/display/JENKINS/thinBackup">thinBackup plugin</a>
+     - 可以通过对$JENKINS_HOME做整体备份实现有效的备份，缺点是速度慢和占用较多的存储空间
+     - Jenkins支持仅仅备份config files，而不需要备份所有的builds。参考<a href="https://gist.github.com/abayer/527063a4519f205efc74">这个gist</a>中的代码实现这一功能。</p>
+  </li>
+  <li>
+    <p>避免使用Maven job类型
+     - Maven plugin中的Mavin job type可能存在一些问题，包括plugin support, lazy loading等等
+     - 在大规模应用中可能会引起一些意外的问题，不建议使用</p>
+  </li>
+</ol>
+
+<h3 id="lts-release">什么是LTS Release?</h3>
+<p>Jenkins LTS Release: Jenkins Long-Term Support release. 类似于Ubuntu的LTS版本。</p>
+
+<p>具体说明<a href="https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line">在这里</a>。</p>
+
+<h3 id="jenkins-maven-jobs">关于Jenkins Maven Jobs</h3>
+<p>在Jenkins中可以通过两种方式build Maven project
+1. 使用一个 free-style project 和 Maven build step
+2. 使用一个 Maven-style project (配置job type为Mavin job type)
+推荐使用第一种方法，因为第二种方式可能会出现问题</p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">euccas</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-12-10T19:32:57-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>7:32 pm</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://euccas.github.io/blog/20151210/jenkins-habits-1.html" data-via="" data-counturl="http://euccas.github.io/blog/20151210/jenkins-habits-1.html" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/20151215/jenkins-habits-2.html" title="Next Post: 高效Jenkins用户的第2个习惯">高效Jenkins用户的第2个习惯 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/20160304/use-trello-for-managing-my-projects.html">用Trello做项目管理初体验</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/20151215/jenkins-habits-2.html">高效Jenkins用户的第2个习惯</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/20151210/jenkins-habits-1.html">高效Jenkins用户的第1个习惯</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - euccas -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
