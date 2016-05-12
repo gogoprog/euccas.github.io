@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="本文内容部分来源于Andrew Bayer发布在SlideShare上的 7 habits of highly productive Jenkins Users (2014 Edition). 习惯 1: 保持Jenkins Master的稳定与可恢复 使用LTS Release - LTS &hellip;">
+  <meta name="description" content="本文内容部分来源于Andrew Bayer发布在SlideShare上的 7 habits of highly productive Jenkins Users (2014 Edition). 习惯 1: 保持Jenkins Master的稳定与可恢复 1. 使用LTS Release LTS &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,50 +87,67 @@
 
 <div class="entry-content"><p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
 
-<h3 id="jenkins-master">习惯 1: 保持Jenkins Master的稳定与可恢复</h3>
+<h1 id="jenkins-master">习惯 1: 保持Jenkins Master的稳定与可恢复</h1>
 
-<ol>
-  <li>
-    <p>使用LTS Release
-     - LTS release每12周发布一个新版本
-     - LTS release版本发布都会保证通过自动化的acceptance testing和手工testing matrix</p>
-  </li>
-  <li>
-    <p>不要急于升级plugins，保持谨慎
-     - plugin的升级可能包含非常多的变化
-     - 不是所有的升级都会保证向前兼容。比如最近Extended Email Plugin的升级，就造成之前的recipient/trigger配置不可用
-     - 新功能也许不稳定</p>
-  </li>
-  <li>
-    <p>对升级进行测试
-     - 建议在测试环境中对升级和新的plugin进行测试，之后再进行production环境的升级
-     - 建立针对plugin功能的测试
-     - 在更大的规模进行测试
-     - 大的改变需要至少经过几天的测试</p>
-  </li>
-  <li>
-    <p>备份Jenkins Configuration
-     - 建议使用<a href="https://wiki.jenkins-ci.org/display/JENKINS/thinBackup">thinBackup plugin</a>
-     - 可以通过对$JENKINS_HOME做整体备份实现有效的备份，缺点是速度慢和占用较多的存储空间
-     - Jenkins支持仅仅备份config files，而不需要备份所有的builds。参考<a href="https://gist.github.com/abayer/527063a4519f205efc74">这个gist</a>中的代码实现这一功能。</p>
-  </li>
-  <li>
-    <p>避免使用Maven job类型
-     - Maven plugin中的Mavin job type可能存在一些问题，包括plugin support, lazy loading等等
-     - 在大规模应用中可能会引起一些意外的问题，不建议使用</p>
-  </li>
-</ol>
+<h2 id="lts-release">1. 使用LTS Release</h2>
 
-<h3 id="lts-release">什么是LTS Release?</h3>
+<p>LTS release每12周发布一个新版本</p>
+
+<p>LTS release版本发布都会保证通过自动化的acceptance testing和手工testing matrix</p>
+
+<h2 id="plugins">2.不要急于升级plugins，保持谨慎</h2>
+
+<p>plugin的升级可能包含非常多的变化</p>
+
+<p>不是所有的升级都会保证向前兼容。比如最近Extended Email Plugin的升级，就造成之前的recipient/trigger配置不可用</p>
+
+<p>新功能也许不稳定</p>
+
+<h2 id="section">3. 对升级进行测试</h2>
+
+<p>建议在测试环境中对升级和新的plugin进行测试，之后再进行production环境的升级</p>
+
+<p>建立针对plugin功能的测试</p>
+
+<p>在更大的规模进行测试</p>
+
+<p>大的改变需要至少经过几天的测试</p>
+
+<h2 id="jenkins-configuration">4. 备份Jenkins Configuration</h2>
+
+<p>建议使用<a href="https://wiki.jenkins-ci.org/display/JENKINS/thinBackup">thinBackup plugin</a></p>
+
+<p>可以通过对$JENKINS_HOME做整体备份实现有效的备份，缺点是速度慢和占用较多的存储空间</p>
+
+<p>Jenkins支持仅仅备份config files，而不需要备份所有的builds。参考<a href="https://gist.github.com/abayer/527063a4519f205efc74">这个gist</a>中的代码实现这一功能。</p>
+
+<h2 id="maven-job">5. 避免使用Maven job类型</h2>
+
+<p>Maven plugin中的Mavin job type可能存在一些问题，包括plugin support, lazy loading等等</p>
+
+<p>在大规模应用中可能会引起一些意外的问题，不建议使用</p>
+
+<h2 id="section-1">一些解释</h2>
+
+<h3 id="lts-release-1">什么是LTS Release?</h3>
+
 <p>Jenkins LTS Release: Jenkins Long-Term Support release. 类似于Ubuntu的LTS版本。</p>
 
 <p>具体说明<a href="https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line">在这里</a>。</p>
 
 <h3 id="jenkins-maven-jobs">关于Jenkins Maven Jobs</h3>
-<p>在Jenkins中可以通过两种方式build Maven project
-1. 使用一个 free-style project 和 Maven build step
-2. 使用一个 Maven-style project (配置job type为Mavin job type)
+
+<p>在Jenkins中可以通过两种方式build Maven project</p>
+
+<ol>
+  <li>
+    <p>使用一个 free-style project 和 Maven build step</p>
+  </li>
+  <li>
+    <p>使用一个 Maven-style project (配置job type为Mavin job type)
 推荐使用第一种方法，因为第二种方式可能会出现问题</p>
+  </li>
+</ol>
 
 </div>
 
@@ -149,6 +166,12 @@
 
 <time class='entry-date' datetime='2015-12-10T19:32:57-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>7:32 pm</span></time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/jenkins/'>jenkins</a>
+  
+</span>
 
 
     </p>
