@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="本文内容部分来源于Andrew Bayer发布在SlideShare上的 7 habits of highly productive Jenkins Users (2014 Edition). 习惯 2: 大而化小 使用多个Masters - 在存在多个project与team的情况下， &hellip;">
+  <meta name="description" content="本文内容部分来源于Andrew Bayer发布在SlideShare上的 7 habits of highly productive Jenkins Users (2014 Edition). 习惯 2: 大而化小 1. 使用多个Masters 在存在多个project与team的情况下， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,30 +87,35 @@
 
 <div class="entry-content"><p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
 
-<h3 id="section">习惯 2: 大而化小</h3>
+<h1 id="section">习惯 2: 大而化小</h1>
 
-<ol>
-  <li>
-    <p>使用多个Masters
-     - 在存在多个project与team的情况下，多个master可以使jenkins jobs的管理更加敏捷和可控
-     - 建议根据team, function, access(访问权限) 来划分master
-     - 多个master使安装和升级plugin时需要的重启过程变得容易——不需要重启的master不会受到影响
-     - 提高系统的稳定性：多个master, 每个master上分配较少数量的jobs，可以使整个系统更为稳定，减少遇到边界情况bug的几率</p>
-  </li>
-  <li>
-    <p>分解jobs
-     - 建议在Jenkins中使用模块化和重用，这一点的好处类似于在编程中使用模块化和重用
-     - 多job的Build可以方便地在不同的project, release等等中重用
-     - 分解job可以避免长时间运行的job在最后阶段出错，导致整个job需要被重新运行：多job的Build可以实现从其中任何一个子job处重新执行</p>
-  </li>
-  <li>
-    <p>利用工具帮助分解jobs
-     - 混合使用Parameterized trigger, Conditional Build Step, Copy Artifact, Promoted Builds：有效，但是配置困难
-     - Build Pipeline plugin：可以把workflow可视化，集成手工步骤
-     - Workflow plugin: 用DSL定义build steps之间的关系
-     - Jenkins中有许多plugin和有关工具可以实现job分解</p>
-  </li>
-</ol>
+<h2 id="masters">1. 使用多个Masters</h2>
+
+<p>在存在多个project与team的情况下，多个master可以使jenkins jobs的管理更加敏捷和可控</p>
+
+<p>建议根据team, function, access(访问权限) 来划分master</p>
+
+<p>多个master使安装和升级plugin时需要的重启过程变得容易——不需要重启的master不会受到影响</p>
+
+<p>提高系统的稳定性：多个master, 每个master上分配较少数量的jobs，可以使整个系统更为稳定，减少遇到边界情况bug的几率</p>
+
+<h2 id="jobs">2. 分解jobs</h2>
+
+<p>建议在Jenkins中使用模块化和重用，这一点的好处类似于在编程中使用模块化和重用</p>
+
+<p>多job的Build可以方便地在不同的project, release等等中重用</p>
+
+<p>分解job可以避免长时间运行的job在最后阶段出错，导致整个job需要被重新运行：多job的Build可以实现从其中任何一个子job处重新执行</p>
+
+<h2 id="jobs-1">3. 利用工具帮助分解jobs</h2>
+
+<p>混合使用Parameterized trigger, Conditional Build Step, Copy Artifact, Promoted Builds：有效，但是配置困难</p>
+
+<p>Build Pipeline plugin：可以把workflow可视化，集成手工步骤</p>
+
+<p>Workflow plugin: 用DSL定义build steps之间的关系</p>
+
+<p>Jenkins中有许多plugin和有关工具可以实现job分解</p>
 
 <h3 id="jobjenkins-plugins">有关Job分解的Jenkins Plugins</h3>
 
@@ -144,7 +149,6 @@ You can add multiple configurations: each has a list of projects to trigger, a c
 <blockquote>
   <p>This plugin allows you to distinguish good builds from bad builds by introducing the notion of ‘promotion’.Put simply, a promoted build is a successful build that passed additional criteria (such as more comprehensive tests that are set up as downstream jobs.) The typical situation in which you use promotion is where you have multiple ‘test’ jobs hooked up as downstream jobs of a ‘build’ job. You’ll then configure the build job so that the build gets promoted when all the test jobs passed successfully. This allows you to keep the build job run fast (so that developers get faster feedback when a build fails), and you can still distinguish builds that are good from builds that compiled but had runtime problems.</p>
 </blockquote>
-
 </div>
 
 
@@ -162,6 +166,12 @@ You can add multiple configurations: each has a list of projects to trigger, a c
 
 <time class='entry-date' datetime='2015-12-15T20:15:38-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:15 pm</span></time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/jenkins/'>jenkins</a>
+  
+</span>
 
 
     </p>
