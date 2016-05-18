@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-05-11T18:27:11-07:00</updated>
+  <updated>2016-05-18T16:25:39-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,187 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Make Logging Easy in Ruby With Log4r]]></title>
+    <link href="http://euccas.github.io/blog/20160518/make-logging-easy-in-ruby-with-log4r.html"/>
+    <updated>2016-05-18T16:18:07-07:00</updated>
+    <id>http://euccas.github.io/blog/20160518/make-logging-easy-in-ruby-with-log4r</id>
+    <content type="html"><![CDATA[<p>Log4r is a Ruby gem that features a heirachical logging system of any number of levels, custom level names, multiple output destinations per log event, custom formatting, and more. The Log4r gem is open sourced on <a href="https://github.com/colbygk/log4r">GitHub</a>, and with comphrehensive documentations available on <a href="https://github.com/colbygk/log4r">Rubyforge</a>.</p>
+
+<p>I have been using log4r at work in most of the applications and systems written in Ruby. It’s easy to use, and provide the features that an application would need:
+- Support multiple message levels such as Fatal, Error, Warn and Msg.<br />
+- Customizable log file format
+- Multiple output destinations, like print out on the screen, and store in a log file</p>
+
+<p>Here in this post, I’ll show you how to use log4r in your Ruby project.</p>
+
+<h2 id="step-1-install-gem-log4r">Step 1. Install Gem log4r</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">gem install log4r</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="step-2-include-log4r-in-your-project">Step 2: Include log4r in your project</h2>
+
+<p>One thing to note is the log4r supports configurations through YAML file, and you can define the configuration file when including the log4r.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">require 'log4r'
+</span><span class="line">require 'log4r/yamlconfigurator'
+</span><span class="line">require 'log4r/outputter/datefileoutputter'
+</span><span class="line">require 'log4r/outputter/emailoutputter'
+</span><span class="line">include Log4r
+</span><span class="line">ycfg = YamlConfigurator    # handy shorthand
+</span><span class="line">ycfg.load_yaml_file(File.dirname(__FILE__)+'/l4r.yml')</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="step-3-configure-log4r-with-a-config-file">Step 3: Configure log4r with a config file</h2>
+
+<p>You can define the logging levels, logger names, output destinations, etc. The following code shows an example of the configurations that I use.</p>
+
+<p>File name: log4r.yml</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">description: config file for log4r
+</span><span class="line">
+</span><span class="line">---
+</span><span class="line"># *** YAML2LOG4R ***
+</span><span class="line">log4r_config:
+</span><span class="line">  # define all pre config ...
+</span><span class="line">  pre_config:
+</span><span class="line">    global:
+</span><span class="line">      level: DEBUG
+</span><span class="line">    root  :
+</span><span class="line">      level: DEBUG
+</span><span class="line">
+</span><span class="line">  # define all loggers ...
+</span><span class="line">  loggers:
+</span><span class="line">    - name      : myproject 
+</span><span class="line">      level     : DEBUG
+</span><span class="line">      additive  : 'false'
+</span><span class="line">      trace     : 'false'
+</span><span class="line">      outputters:
+</span><span class="line">        - stderr
+</span><span class="line">        - logfile
+</span><span class="line">        - email
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">  # define all outputters (incl. formatters)
+</span><span class="line">  outputters:
+</span><span class="line">    - type     : StderrOutputter
+</span><span class="line">      name     : stderr 
+</span><span class="line">      level    : INFO
+</span><span class="line">      formatter:
+</span><span class="line">        date_pattern: #'%y%m%d %H:%M:%S'
+</span><span class="line">        pattern     : '[%c] %l: %m'
+</span><span class="line">        type        : PatternFormatter
+</span><span class="line">
+</span><span class="line">    - type        : DateFileOutputter
+</span><span class="line">      name        : logfile
+</span><span class="line">      level       : DEBUG
+</span><span class="line">      date_pattern: #'%Y%m%d'
+</span><span class="line">      trunc       : 'false'
+</span><span class="line">      dirname     : "."
+</span><span class="line">      formatter   :
+</span><span class="line">        date_pattern: '%H:%M:%S'
+</span><span class="line">        pattern     : '[%c] %d %l: %m'
+</span><span class="line">        type        : PatternFormatter
+</span><span class="line">  
+</span><span class="line">    - type        : EmailOutputter
+</span><span class="line">      name        : email
+</span><span class="line">      level       : FATAL 
+</span><span class="line">      server      : &lt;server domain&gt;
+</span><span class="line">      subject     : 'Message myproject:'
+</span><span class="line">      from        : &lt;email address&gt;
+</span><span class="line">      to          : &lt;email address&gt;
+</span><span class="line">      formatter   :
+</span><span class="line">        date_pattern: #'%y%m%d %H:%M:%S'
+</span><span class="line">        pattern     : '%d %l: %m'
+</span><span class="line">        type        : PatternFormatter
+</span><span class="line">---</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="step-4-initialize-a-logger">Step 4: Initialize a logger</h2>
+
+<p>You need initialize a logger in your project first.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">logger = Log4r::Logger['myproject']</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="step-5-use-your-logger">Step 5: Use your logger</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">logger.info 'My Project Starts!'
+</span><span class="line">logger.warn 'Here is a warning'
+</span><span class="line">logger.error 'Here is an error'
+</span><span class="line">logger.fatal 'Fatal error happens. Program will exit'</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用Trello做项目管理初体验]]></title>

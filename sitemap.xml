@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://euccas.github.io/blog/20160518/make-logging-easy-in-ruby-with-log4r.html</loc>
+<lastmod>2016-05-18T16:18:07-07:00</lastmod>
+</url>
+<url>
 <loc>http://euccas.github.io/blog/20160304/use-trello-for-managing-my-projects.html</loc>
 <lastmod>2016-03-04T21:09:07-08:00</lastmod>
 </url>
@@ -30,5 +34,8 @@
 </url>
 <url>
 <loc>http://euccas.github.io/blog/categories/agile/</loc>
+</url>
+<url>
+<loc>http://euccas.github.io/blog/categories/ruby/</loc>
 </url>
 </urlset>

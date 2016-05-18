@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | euccas.github.io]]></title>
+  <link href="http://euccas.github.io/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://euccas.github.io/"/>
+  <updated>2016-05-18T16:25:39-07:00</updated>
+  <id>http://euccas.github.io/</id>
+  <author>
+    <name><![CDATA[euccas]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Make Logging Easy in Ruby With Log4r]]></title>
+    <link href="http://euccas.github.io/blog/20160518/make-logging-easy-in-ruby-with-log4r.html"/>
+    <updated>2016-05-18T16:18:07-07:00</updated>
+    <id>http://euccas.github.io/blog/20160518/make-logging-easy-in-ruby-with-log4r</id>
+    <content type="html"><![CDATA[<p>Log4r is a Ruby gem that features a heirachical logging system of any number of levels, custom level names, multiple output destinations per log event, custom formatting, and more. The Log4r gem is open sourced on <a href="https://github.com/colbygk/log4r">GitHub</a>, and with comphrehensive documentations available on <a href="https://github.com/colbygk/log4r">Rubyforge</a>.</p>
+
+<p>I have been using log4r at work in most of the applications and systems written in Ruby. It’s easy to use, and provide the features that an application would need:
+- Support multiple message levels such as Fatal, Error, Warn and Msg.<br />
+- Customizable log file format
+- Multiple output destinations, like print out on the screen, and store in a log file</p>
+
+<p>Here in this post, I’ll show you how to use log4r in your Ruby project.</p>
+
+<h2 id="step-1-install-gem-log4r">Step 1. Install Gem log4r</h2>
+<p><code>
+gem install log4r
+</code></p>
+
+<h2 id="step-2-include-log4r-in-your-project">Step 2: Include log4r in your project</h2>
+
+<p>One thing to note is the log4r supports configurations through YAML file, and you can define the configuration file when including the log4r.</p>
+
+<p><code>
+require 'log4r'
+require 'log4r/yamlconfigurator'
+require 'log4r/outputter/datefileoutputter'
+require 'log4r/outputter/emailoutputter'
+include Log4r
+ycfg = YamlConfigurator    # handy shorthand
+ycfg.load_yaml_file(File.dirname(__FILE__)+'/l4r.yml')
+</code></p>
+
+<h2 id="step-3-configure-log4r-with-a-config-file">Step 3: Configure log4r with a config file</h2>
+
+<p>You can define the logging levels, logger names, output destinations, etc. The following code shows an example of the configurations that I use.</p>
+
+<p>File name: log4r.yml</p>
+
+<p>```</p>
+
+<p>description: config file for log4r</p>
+
+<hr />
+<p># <em>** YAML2LOG4R **</em>
+log4r_config:
+  # define all pre config …
+  pre_config:
+    global:
+      level: DEBUG
+    root  :
+      level: DEBUG</p>
+
+<p># define all loggers …
+  loggers:
+    - name      : myproject 
+      level     : DEBUG
+      additive  : ‘false’
+      trace     : ‘false’
+      outputters:
+        - stderr
+        - logfile
+        - email</p>
+
+<p># define all outputters (incl. formatters)
+  outputters:
+    - type     : StderrOutputter
+      name     : stderr 
+      level    : INFO
+      formatter:
+        date_pattern: #’%y%m%d %H:%M:%S’
+        pattern     : ‘[%c] %l: %m’
+        type        : PatternFormatter</p>
+
+<pre><code>- type        : DateFileOutputter
+  name        : logfile
+  level       : DEBUG
+  date_pattern: #'%Y%m%d'
+  trunc       : 'false'
+  dirname     : "."
+  formatter   :
+    date_pattern: '%H:%M:%S'
+    pattern     : '[%c] %d %l: %m'
+    type        : PatternFormatter
+  
+- type        : EmailOutputter
+  name        : email
+  level       : FATAL 
+  server      : &lt;server domain&gt;
+  subject     : 'Message myproject:'
+  from        : &lt;email address&gt;
+  to          : &lt;email address&gt;
+  formatter   :
+    date_pattern: #'%y%m%d %H:%M:%S'
+    pattern     : '%d %l: %m'
+    type        : PatternFormatter --- ```
+</code></pre>
+
+<h2 id="step-4-initialize-a-logger">Step 4: Initialize a logger</h2>
+
+<p>You need initialize a logger in your project first.</p>
+
+<p><code>
+logger = Log4r::Logger['myproject']
+</code></p>
+
+<h2 id="step-5-use-your-logger">Step 5: Use your logger</h2>
+
+<p><code>
+logger.info 'My Project Starts!'
+logger.warn 'Here is a warning'
+logger.error 'Here is an error'
+logger.fatal 'Fatal error happens. Program will exit'
+</code></p>
+
+]]></content>
+  </entry>
+  
+</feed>
