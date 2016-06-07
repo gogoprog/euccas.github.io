@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="Log4r is a Ruby gem that features a heirachical logging system of any number of levels, custom level names, multiple output destinations per log &hellip;">
+  <meta name="description" content="If you ever get confused about Class Methods, Instance Methods, Class Variables and Instance Variables in Ruby, read this post and you’ll understand &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,271 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/20160607/ruby-class-and-instance-methods.html">Ruby Class and Instance Methods</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-06-07T11:37:51-07:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:37 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you ever get confused about Class Methods, Instance Methods, Class Variables and Instance Variables in Ruby, read this post and you’ll understand it better :)</p>
+
+<h1 id="class-methods">Class Methods</h1>
+<ul>
+  <li>Class methods belong to a class in Ruby, and it can be used without instance any class object.</li>
+  <li>The definition of class methods has a “self” prefix.</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">def self.show_name
+</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="instance-methods">Instance Methods</h1>
+<ul>
+  <li>Instance methods belong to any instance of a class in Ruby. To use instance methods, you always need to have an existing instance first. Usually this means you have called <code>new()</code> method.</li>
+  <li>Instance methods do not have “self” prefix in their definition.</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">def show_name
+</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="class-variables">Class Variables</h1>
+<ul>
+  <li>Class variables belong to a class in Ruby. In other words, each class in Ruby automatically has an object even without any instances. The class variables are constants of the class object.</li>
+  <li>Class variables are totally separated with instance variables (obvious though). The value of a class variable doesn’t change when the instance variables having the same name change.</li>
+  <li>The name of a class variable has the “@@” prefix.</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class myClass
+</span><span class="line">    @@foo = 0
+</span><span class="line">end  </span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="instance-variables">Instance Variables</h1>
+<ul>
+  <li>Instance variables belong to an instance of a class in Ruby.</li>
+  <li>Different instances have their own set of instance variables.</li>
+  <li>The name of an instance variable has the “@” prefix.</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class myClass
+</span><span class="line">    def initialize()
+</span><span class="line">        @foo = 0
+</span><span class="line">    end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="a-quick-demo">A quick demo</h1>
+
+<p>So now I have a quick demo to show more about the Class/Instance methods and variables.</p>
+
+<p>In this demo, a Fruit class is created. The Fruit class has a <strong><em>class variable</em></strong> <code>@@color</code>, and the Fruit class instances have a <strong><em>instance variables</em></strong> <code>@color</code>.</p>
+
+<p>Fruit class has a class method <code>self.show_color</code>, and an instance method with the same name <code>show_color</code>.</p>
+
+<p>Now check out how these stuff works.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+</pre></td><td class="code"><pre><code class=""><span class="line"># fruit.rb
+</span><span class="line">
+</span><span class="line">class Fruit
+</span><span class="line">    @@color = 'yellow' # class variable
+</span><span class="line">
+</span><span class="line">    def initialize()
+</span><span class="line">        @name = 'apple'
+</span><span class="line">        @color = 'red' # instance variable
+</span><span class="line">    end
+</span><span class="line">
+</span><span class="line">    def self.show_color()
+</span><span class="line">        puts "(class method) color: #{@@color}"
+</span><span class="line">    end
+</span><span class="line">
+</span><span class="line">    def change()
+</span><span class="line">        change_color()
+</span><span class="line">        puts "try calling instance method"
+</span><span class="line">        show_color()
+</span><span class="line">        puts "try calling class method"
+</span><span class="line">        self.show_color()
+</span><span class="line">        puts "change done"
+</span><span class="line">    end
+</span><span class="line">
+</span><span class="line">    def change_color()
+</span><span class="line">        @color = 'green'
+</span><span class="line">    end
+</span><span class="line">
+</span><span class="line">    def show_color()
+</span><span class="line">        puts "(instance method) color: #{@color}"
+</span><span class="line">    end
+</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>The test file:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class=""><span class="line"># test.rb
+</span><span class="line">
+</span><span class="line">$LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__)))
+</span><span class="line">require 'fruit.rb'
+</span><span class="line">
+</span><span class="line">myfruit = Fruit.new
+</span><span class="line">myfruit.show_color
+</span><span class="line">myfruit.change
+</span><span class="line">
+</span><span class="line">Fruit.show_color</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Executing the <code>test.rb</code> file will generate the following result:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">(instance method) color: red
+</span><span class="line">try calling instance method
+</span><span class="line">(instance method) color: green
+</span><span class="line">try calling class method
+</span><span class="line">(instance method) color: green
+</span><span class="line">change done
+</span><span class="line">(class method) color: yellow</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="summary-of-the-demo">Summary of the demo</h2>
+
+<ul>
+  <li>
+    <p><code>&lt;Class&gt;.new</code> instances an object by calling the <code>initialize</code> method. Instance variables are initialized</p>
+  </li>
+  <li>
+    <p>Instance methods only calls the instance methods within itself, even use the <code>self</code> prefix.</p>
+  </li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">show_color()
+</span><span class="line">self.show_color()</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Both call the instance method, and shows the <code>color: green</code></p>
+
+<ul>
+  <li>
+    <p>The change on instance variables doesn’t affect the class variables</p>
+  </li>
+  <li>
+    <p>Class methods can be called without instances</p>
+  </li>
+</ul>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">Fruit.show_color</span></code></pre></td></tr></table></div></figure></notextile></div>
+<ul>
+  <li>Instance methods can’t be called without instances. The following statement will exceptions (NoMethodError).</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">myfruit = Fruit.new
+</span><span class="line">myfruit.add
+</span><span class="line">
+</span><span class="line"># undefined method `add ... (NoMethodError)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/20160523/jenkins-user-habits-3.html">Jenkins User Habits 3</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-05-23T16:34:13-07:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2016</span></span> <span class='time'>4:34 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -616,6 +881,14 @@ Then use <code>C-a tab</code> to move between the horizontally split regions.</p
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/20160607/ruby-class-and-instance-methods.html">Ruby Class and Instance Methods</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/20160523/jenkins-user-habits-3.html">Jenkins User Habits 3</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/20160518/make-logging-easy-in-ruby-with-log4r.html">Make Logging Easy in Ruby With Log4r</a>
       </li>
     
@@ -625,14 +898,6 @@ Then use <code>C-a tab</code> to move between the horizontally split regions.</p
     
       <li class="post">
         <a href="/blog/20151215/jenkins-habits-2.html">高效Jenkins用户的第2个习惯</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/20151210/jenkins-habits-1.html">高效Jenkins用户的第1个习惯</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/20140531/the-elements-of-linux-screen.html">The Elements of Linux Screen</a>
       </li>
     
   </ul>
