@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Jenkins, | euccas.github.io]]></title>
-  <link href="http://euccas.github.io/blog/categories/jenkins/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Chinese | euccas.github.io]]></title>
+  <link href="http://euccas.github.io/blog/categories/chinese/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
   <updated>2016-06-09T11:57:08-07:00</updated>
   <id>http://euccas.github.io/</id>

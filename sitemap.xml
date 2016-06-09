@@ -5,6 +5,10 @@
 <lastmod>2016-06-07T11:37:51-07:00</lastmod>
 </url>
 <url>
+<loc>http://euccas.github.io/blog/20160523/jenkins-habits-3.html</loc>
+<lastmod>2016-05-23T20:54:36-07:00</lastmod>
+</url>
+<url>
 <loc>http://euccas.github.io/blog/20160518/make-logging-easy-in-ruby-with-log4r.html</loc>
 <lastmod>2016-05-18T16:18:07-07:00</lastmod>
 </url>
@@ -41,5 +45,11 @@
 </url>
 <url>
 <loc>http://euccas.github.io/blog/categories/ruby/</loc>
+</url>
+<url>
+<loc>http://euccas.github.io/blog/categories/jenkins/</loc>
+</url>
+<url>
+<loc>http://euccas.github.io/blog/categories/chinese/</loc>
 </url>
 </urlset>
