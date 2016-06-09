@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-09T11:57:08-07:00</updated>
+  <updated>2016-06-09T12:02:19-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -230,7 +230,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Jenkins User Habits 3]]></title>
+    <title type="html"><![CDATA[高效Jenkins用户的第3个习惯]]></title>
     <link href="http://euccas.github.io/blog/20160523/jenkins-habits-3.html"/>
     <updated>2016-05-23T20:54:36-07:00</updated>
     <id>http://euccas.github.io/blog/20160523/jenkins-habits-3</id>
@@ -472,7 +472,7 @@
   <li>作为问题记录：即使数目庞多的问题也能够清晰总览，便于分类，每一个问题同时可以有自己的详细记录</li>
   <li>自带的颜色标签和卡片aging效果非常方便呈现了项目总体和每一个task的状态</li>
   <li>一些插件提供了更强大的项目管理功能，比如burndown，甘特图等等</li>
-  <li>最重要的特点也许是团队协同工作的便利：team members, assign task, comments. 虽然这一部分的功能我目前使用的还不多。</li>
+  <li>最重要的特点也许是团队协同工作的便利：team members, assign task, comments</li>
 </ul>
 ]]></content>
   </entry>
