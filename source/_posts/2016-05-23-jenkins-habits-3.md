@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Jenkins User Habits 3"
+title: "高效Jenkins用户的第3个习惯"
 date: 2016-05-23 20:54:36 -0700
 comments: true
 categories: jenkins, Chinese

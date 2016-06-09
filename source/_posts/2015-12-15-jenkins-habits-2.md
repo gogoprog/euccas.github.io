@@ -3,7 +3,7 @@ layout: post
 title: "高效Jenkins用户的第2个习惯"
 date: 2015-12-15 20:15:38 -0800
 comments: true
-categories: jenkins
+categories: jenkins, Chinese
 ---
 
 本文内容部分来源于**Andrew Bayer**发布在SlideShare上的 [*7 habits of highly productive Jenkins Users (2014 Edition)*](http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition).
@@ -40,21 +40,27 @@ Jenkins中有许多plugin和有关工具可以实现job分解
 
 ### 有关Job分解的Jenkins Plugins ###
 
+
 #### [Build Pipeline Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin) ####
 > This plugin provides a Build Pipeline View of upstream and downstream connected jobs that typically form a build pipeline.  In addition, it offers the ability to define manual triggers for jobs that require intervention prior to execution, e.g. an approval process outside of Jenkins.
 
+
 #### [Workflow plugin](https://github.com/jenkinsci/workflow-plugin/blob/master/README.md#introduction) ####
 > Building continuous delivery pipelines and similarly complex tasks in Jenkins using freestyle projects and traditional plugins can be awkward. You need to mix Parameterized Trigger, Copy Artifact, Promoted Builds, Conditional Build Step, and more just to express what should be a simple script. The Workflow plugin suite attempts to make it possible to directly write that script, what people often call a workflow (sometimes abbreviated flow), while integrating with Jenkins features like slaves and publishers.
+
 
 #### [Parameterized Trigger plugin](https://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Trigger+Plugin) ####
 > This plugin lets you trigger new builds when your build has completed, with various ways of specifying parameters for the new build.
 You can add multiple configurations: each has a list of projects to trigger, a condition for when to trigger them (based on the result of the current build), and a parameters section.
 
+
 #### [Conditional Build Step plugin](https://wiki.jenkins-ci.org/display/JENKINS/Conditional+BuildStep+Plugin) ####
 > A buildstep wrapping any number of other buildsteps, controlling their execution based on a defined condition.
 
+
 #### [Copy Artifact plugin](https://wiki.jenkins-ci.org/display/JENKINS/Copy+Artifact+Plugin) ####
 > Adds a build step to copy artifacts from another project. The plugin lets you specify which build to copy artifacts from (e.g. the last successful/stable build, by build number, or by a build parameter). You can also control the copying process by filtering the files being copied, specifying a destination directory within the target project, etc. Click the help icon on each field to learn the details, such as selecting Maven or multiconfiguration projects or using build parameters. You can also copy from the workspace of the latest completed build of the source project, instead of its artifacts. All artifacts copied are automatically fingerprinted for you.
+
 
 #### [Promoted Builds plugin](https://wiki.jenkins-ci.org/display/JENKINS/Promoted+Builds+Plugin) ####
 > This plugin allows you to distinguish good builds from bad builds by introducing the notion of 'promotion'.Put simply, a promoted build is a successful build that passed additional criteria (such as more comprehensive tests that are set up as downstream jobs.) The typical situation in which you use promotion is where you have multiple 'test' jobs hooked up as downstream jobs of a 'build' job. You'll then configure the build job so that the build gets promoted when all the test jobs passed successfully. This allows you to keep the build job run fast (so that developers get faster feedback when a build fails), and you can still distinguish builds that are good from builds that compiled but had runtime problems.
