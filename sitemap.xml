@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://euccas.github.io/blog/20160610/rails-get-data-without-model.html</loc>
+<lastmod>2016-06-10T18:32:01-07:00</lastmod>
+</url>
+<url>
 <loc>http://euccas.github.io/blog/20160607/ruby-class-and-instance-methods.html</loc>
 <lastmod>2016-06-07T11:37:51-07:00</lastmod>
 </url>
@@ -48,5 +52,8 @@
 </url>
 <url>
 <loc>http://euccas.github.io/blog/categories/ruby/</loc>
+</url>
+<url>
+<loc>http://euccas.github.io/blog/categories/rails/</loc>
 </url>
 </urlset>
