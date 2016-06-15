@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-14T18:07:04-07:00</updated>
+  <updated>2016-06-14T18:07:16-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -47,25 +47,6 @@ rake db:migrate
 </code></p>
 
 <p>In this command, the <strong><em>db</em></strong> is the namespace, and the <strong><em>migrate</em></strong> is the task inside the namespace.</p>
-
-<p>```
-namespace :cleanup do
-    desc ‘Clean up database’
-    task  :dbs =&gt; :environment do
-        Db.cleanup
-    end</p>
-
-<pre><code>desc 'Clean up logs'
-task :logs =&gt; :environment do
-    Log.cleanup
-end
-
-task :all =&gt; [:dbs, :logs] end
-</code></pre>
-
-<p>desc “Cleanup everything”
-task :cleanup =&gt; ‘cleanup:all’
-```</p>
 
 <h1 id="reference">Reference</h1>
 

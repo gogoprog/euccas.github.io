@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-14T18:06:20-07:00</updated>
+  <updated>2016-06-14T18:07:16-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -39,6 +39,15 @@
 </span><span class="line">    sh "scp -r #{html_dir}/* " + "#{user}:#{server_path}"
 </span><span class="line">end
 </span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="namespaces">Namespaces</h1>
+
+<p>Using namespaces is a good way to group similar tasks in Rakefile. You’ll need specify the namespace when calling a task inside it. One example as you can see from Rails is this command</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">rake db:migrate</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>In this command, the <strong><em>db</em></strong> is the namespace, and the <strong><em>migrate</em></strong> is the task inside the namespace.</p>
 
 <h1 id="reference">Reference</h1>
 
