@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-14T18:01:52-07:00</updated>
+  <updated>2016-06-14T18:04:14-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -165,11 +165,11 @@ end
 <p>When <strong><em>abort</em></strong> is used in a rescue block, it terminates the task as well as prints the whole error (even without using –trace).</p>
 
 <h1 id="reference">Reference</h1>
+
 <ul>
   <li><a href="https://www.amazon.com/Ruby-Cookbook-Lucas-Carlson/dp/1449373712">Ruby Cookbook 2nd Edition (L. Carlson)</a></li>
   <li><a href="http://martinfowler.com/articles/rake.html">Using the Rake Build Language (Martin Fowler)</a></li>
 </ul>
-
 ]]></content>
   </entry>
   
