@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-14T18:06:46-07:00</updated>
+  <updated>2016-06-14T18:07:04-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -40,7 +40,13 @@ end</p>
 
 <h1 id="namespaces">Namespaces</h1>
 
-<p>Using namespaces is a good way to group similar tasks in Rakefile. You’ll need specify the namespace when calling a task inside it. One example as you can see from Rails is the <code>rake db:migrate</code> task. In this command, the <code>db</code> is the namespace, and the <code>migrate</code> is the task inside the namespace.</p>
+<p>Using namespaces is a good way to group similar tasks in Rakefile. You’ll need specify the namespace when calling a task inside it. One example as you can see from Rails is this command</p>
+
+<p><code>
+rake db:migrate
+</code></p>
+
+<p>In this command, the <strong><em>db</em></strong> is the namespace, and the <strong><em>migrate</em></strong> is the task inside the namespace.</p>
 
 <p>```
 namespace :cleanup do
