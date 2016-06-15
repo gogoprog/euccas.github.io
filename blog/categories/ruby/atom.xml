@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-14T18:04:14-07:00</updated>
+  <updated>2016-06-14T18:04:41-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -134,15 +134,11 @@ end
 
 <p>In a Ruby function, you can use <code>return</code> in the function when you want to exit (early). But in Rake tasks, the <code>return</code> is an invalid method to use, because each Rake task is actually a <code>Proc</code>. To exit early from a Rake task, you can use one of the following methods:</p>
 
-<ul>
-  <li>next</li>
-</ul>
+<h2 id="next">next</h2>
 
 <p><strong><em>next</em></strong> will discard the following codes in the current rake task, and process the following part of the other tasks if there are any.</p>
 
-<ul>
-  <li>fail/raise</li>
-</ul>
+<h2 id="failraise">fail/raise</h2>
 
 <p><code>
 task :something do
@@ -153,14 +149,9 @@ task :something do
 end
 </code></p>
 
-<ul>
-  <li>
-    <p>exit</p>
-  </li>
-  <li>
-    <p>abort</p>
-  </li>
-</ul>
+<h2 id="exit">exit</h2>
+
+<h2 id="abort">abort</h2>
 
 <p>When <strong><em>abort</em></strong> is used in a rescue block, it terminates the task as well as prints the whole error (even without using –trace).</p>
 
