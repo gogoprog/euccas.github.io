@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-14T18:06:20-07:00</updated>
+  <updated>2016-06-14T18:06:46-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -37,6 +37,29 @@ task ‘upload-docs’ =&gt; [‘rdoc’] do
 end</p>
 
 <p>```</p>
+
+<h1 id="namespaces">Namespaces</h1>
+
+<p>Using namespaces is a good way to group similar tasks in Rakefile. You’ll need specify the namespace when calling a task inside it. One example as you can see from Rails is the <code>rake db:migrate</code> task. In this command, the <code>db</code> is the namespace, and the <code>migrate</code> is the task inside the namespace.</p>
+
+<p>```
+namespace :cleanup do
+    desc ‘Clean up database’
+    task  :dbs =&gt; :environment do
+        Db.cleanup
+    end</p>
+
+<pre><code>desc 'Clean up logs'
+task :logs =&gt; :environment do
+    Log.cleanup
+end
+
+task :all =&gt; [:dbs, :logs] end
+</code></pre>
+
+<p>desc “Cleanup everything”
+task :cleanup =&gt; ‘cleanup:all’
+```</p>
 
 <h1 id="reference">Reference</h1>
 
