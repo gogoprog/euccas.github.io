@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-10T18:34:38-07:00</updated>
+  <updated>2016-06-14T18:06:20-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,42 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rake: Automake Your Tasks in Ruby]]></title>
+    <link href="http://euccas.github.io/blog/20160614/rake-automake-your-tasks-in-ruby.html"/>
+    <updated>2016-06-14T17:59:06-07:00</updated>
+    <id>http://euccas.github.io/blog/20160614/rake-automake-your-tasks-in-ruby</id>
+    <content type="html"><![CDATA[<p>Rake is the build language for Ruby programs, originally developed by <a href="http://onestepback.org/">Jim Weirich</a>. It’s a standard library in Ruby 2.1. You can define tasks with Rake: named code blocks that carry out specific actions, such as running unit tests, deploy your code to github, etc. In this post, I’ll write about the basics of Rake and how to use it to automate the tasks of your Ruby projects.</p>
+
+<h1 id="rakefile">Rakefile</h1>
+
+<p>In order to use Rake to define tasks, first you need a Rakefile. A Rakefile is a Ruby source file that has access to some special methods: <strong>task</strong>, <strong>file</strong>, <strong>directory</strong>, and a few others. A task defined in the Rakefile can be run by the command-line <code>rake</code> program, or be called as a dependency by other tasks.</p>
+
+<h1 id="write-descriptions-for-rake-tasks">Write Descriptions for Rake Tasks</h1>
+
+<p>Writing a description to the defined tasks in Rakefile help you get more details about the task and know better what it does.</p>
+
+<p>Example:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">desc 'Upload documentation to server'
+</span><span class="line">task 'upload-docs' =&gt; ['rdoc'] do
+</span><span class="line">    sh "scp -r #{html_dir}/* " + "#{user}:#{server_path}"
+</span><span class="line">end
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="reference">Reference</h1>
+
+<ul>
+  <li><a href="https://www.amazon.com/Ruby-Cookbook-Lucas-Carlson/dp/1449373712">Ruby Cookbook 2nd Edition (L. Carlson)</a></li>
+  <li><a href="http://martinfowler.com/articles/rake.html">Using the Rake Build Language (Martin Fowler)</a></li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rails: Get Data From PostgreSQL Database Without the Model]]></title>

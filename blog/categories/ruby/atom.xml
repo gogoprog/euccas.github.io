@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-14T18:05:00-07:00</updated>
+  <updated>2016-06-14T18:06:20-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -37,98 +37,6 @@ task ‘upload-docs’ =&gt; [‘rdoc’] do
 end</p>
 
 <p>```</p>
-
-<h1 id="namespaces">Namespaces</h1>
-<p>Using namespaces is a good way to group similar tasks in Rakefile. You’ll need specify the namespace when calling a task inside it. One example as you can see from Rails is the <code>rake db:migrate</code> task. In this command, the <code>db</code> is the namespace, and the <code>migrate</code> is the task inside the namespace.</p>
-
-<p>```
-namespace :cleanup do
-    desc ‘Clean up database’
-    task  :dbs =&gt; :environment do
-        Db.cleanup
-    end</p>
-
-<pre><code>desc 'Clean up logs'
-task :logs =&gt; :environment do
-    Log.cleanup
-end
-
-task :all =&gt; [:dbs, :logs] end
-</code></pre>
-
-<p>desc “Cleanup everything”
-task :cleanup =&gt; ‘cleanup:all’
-```</p>
-
-<h1 id="default-task">Default Task</h1>
-
-<p>The default task is the one gets executed when you run rake without any arguments. You can set the default task in Rakefile by using the <code>:default</code> keyword.</p>
-
-<p><code>
-task :default =&gt; 'cleanup'
-</code></p>
-
-<p><code>
-task :default =&gt; 'logs: cleanup'
-</code></p>
-
-<h1 id="multiple-tasks-running-in-parallel">Multiple Tasks Running in Parallel</h1>
-<p>Rake’s <code>multitask</code> function supports running multiple tasks in parallel. The method is defining a task using the <code>multitask</code> function, and each of this task’s prerequisites will be run in a separate thread.</p>
-
-<p>An example of multiple parallel tasks:</p>
-
-<p>```
-task ‘copy_docs’ do
-    # Simulate a large disk copy
-    sleep 5
-end</p>
-
-<p>task ‘compile_extensions’ do
-    # Simulate a C compiler compiling a bunch of files
-    sleep 10
-end</p>
-
-<p>task ‘build_serial’ =&gt; [‘copy_docs’, ‘compile_extensions]
-multitask ‘build_parallel’ =&gt; [‘copy_docs’, ‘compile_extensions’]
-```</p>
-
-<p>In this example, the <code>build_serial</code> task runs in about 15 seconds, but the <code>build_parallel</code> task runs in about 10 seconds.</p>
-
-<h1 id="invoke-tasks">Invoke tasks</h1>
-
-<p>Rake tasks can be invoked from other tasks using the <code>Rake::Task['&lt;your take&gt;'].invoke</code> method.</p>
-
-<p><code>
-task :cleanup do
-    Rake::Task['logs: cleanup'].invoke
-    puts "logs are cleaned!"
-    Rake::Task['dbs: cleanup'].invoke
-    puts "dbs are cleaned!"
-end
-</code></p>
-
-<h1 id="view-all-the-rake-tasks">View all the Rake tasks</h1>
-
-<p>To get an overview of all the defined Rake tasks, use <code>rake -T</code></p>
-
-<h1 id="include-external-rakefiles">Include external rakefiles</h1>
-
-<p>When your project need include the Rake tasks defined in external directories, you’ll need include the external rakefiles into your project. The way to do it is using the <code>import</code>. Note the <code>require</code> won’t work here, as it looks for the <code>.rb</code> files instead of the <code>.rake</code> files.</p>
-
-<p>Include one rakefile:</p>
-
-<p><code>
-import File.dirname(__FILE__)+"/../../task/common/rakefile"
-</code></p>
-
-<p>Include multiple rakefiles in nested directories:</p>
-
-<p><code>
-Dir.glob("#{File.dirname(__FILE__)}/*").each do |d|
-  next if !File.directory? d
-  import d + "/rakefile"
-end
-</code></p>
 
 <h1 id="reference">Reference</h1>
 
