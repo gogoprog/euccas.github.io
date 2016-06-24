@@ -163,6 +163,39 @@
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">task :default =&gt; 'logs: cleanup'</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<h1 id="multiple-tasks-running-in-parallel">Multiple Tasks Running in Parallel</h1>
+<p>Rake’s <code>multitask</code> function supports running multiple tasks in parallel. The method is defining a task using the <code>multitask</code> function, and each of this task’s prerequisites will be run in a separate thread.</p>
+
+<p>An example of multiple parallel tasks:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">task 'copy_docs' do
+</span><span class="line">    # Simulate a large disk copy
+</span><span class="line">    sleep 5
+</span><span class="line">end
+</span><span class="line">
+</span><span class="line">task 'compile_extensions' do
+</span><span class="line">    # Simulate a C compiler compiling a bunch of files
+</span><span class="line">    sleep 10
+</span><span class="line">end
+</span><span class="line">
+</span><span class="line">task 'build_serial' =&gt; ['copy_docs', 'compile_extensions]
+</span><span class="line">multitask 'build_parallel' =&gt; ['copy_docs', 'compile_extensions']
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>In this example, the <code>build_serial</code> task runs in about 15 seconds, but the <code>build_parallel</code> task runs in about 10 seconds.</p>
+
 <h1 id="reference">Reference</h1>
 
 <ul>
