@@ -37,6 +37,127 @@ rake db:migrate
 
 In this command, the ***db*** is the namespace, and the ***migrate*** is the task inside the namespace.
 
+```
+namespace :cleanup do
+    desc 'Clean up database'
+    task  :dbs => :environment do
+        Db.cleanup
+    end
+
+    desc 'Clean up logs'
+    task :logs => :environment do
+        Log.cleanup
+    end
+
+    task :all => [:dbs, :logs]
+end
+
+desc 'Cleanup everything'
+task :cleanup => "cleanup:all"
+
+```
+
+# Default Task
+
+The default task is the one gets executed when you run rake without any arguments. You can set the default task in Rakefile by using the ```:default``` keyword.
+
+```
+task :default => 'cleanup'
+```
+
+```
+task :default => 'logs: cleanup'
+```
+
+# Multiple Tasks Running in Parallel
+Rake's ```multitask``` function supports running multiple tasks in parallel. The method is defining a task using the ```multitask``` function, and each of this task's prerequisites will be run in a separate thread.
+
+An example of multiple parallel tasks:
+
+```
+task 'copy_docs' do
+    # Simulate a large disk copy
+    sleep 5
+end
+
+task 'compile_extensions' do
+    # Simulate a C compiler compiling a bunch of files
+    sleep 10
+end
+
+task 'build_serial' => ['copy_docs', 'compile_extensions]
+multitask 'build_parallel' => ['copy_docs', 'compile_extensions']
+
+```
+
+In this example, the ```build_serial``` task runs in about 15 seconds, but the ```build_parallel``` task runs in about 10 seconds.
+
+# Invoke tasks
+
+Rake tasks can be invoked from other tasks using the ```Rake::Task['<your take>'].invoke``` method.
+
+```
+
+task :cleanup do
+    Rake::Task['logs: cleanup'].invoke
+    puts "logs are cleaned!"
+    Rake::Task['dbs: cleanup'].invoke
+    puts "dbs are cleaned!"
+end
+
+```
+
+# View all the Rake tasks
+
+To get an overview of all the defined Rake tasks, use ```rake -T```
+
+# Include external rakefiles
+
+When your project need include the Rake tasks defined in external directories, you'll need include the external rakefiles into your project. The way to do it is using the ```import```. Note the ```require``` won't work here, as it looks for the ```.rb``` files instead of the ```.rake``` files.
+
+Include one rakefile:
+
+```
+import File.dirname(__FILE__)+"/../../task/common/rakefile"
+```
+
+Include multiple rakefiles in nested directories:
+
+```
+
+Dir.glob("#{File.dirname(__FILE__)}/*").each do |d|
+  next if !File.directory? d
+  import d + "/rakefile"
+end
+
+```
+
+# Exit from Rake tasks
+
+In a Ruby function, you can use ```return``` in the function when you want to exit (early). But in Rake tasks, the ```return``` is an invalid method to use, because each Rake task is actually a ```Proc```. To exit early from a Rake task, you can use one of the following methods:
+
+- next
+
+***next*** will discard the following codes in the current rake task, and process the following part of the other tasks if there are any.
+
+- fail/raise
+
+```
+
+task :something do
+  [1,2,3].each do |i|
+    ...
+    fail "some error" if ...
+  end
+end
+
+```
+
+- exit
+
+- abort
+
+When ***abort*** is used in a rescue block, it terminates the task as well as prints the whole error (even without using --trace).
 
 
 # Reference
