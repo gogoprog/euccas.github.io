@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-24T10:44:03-07:00</updated>
+  <updated>2016-06-24T13:27:11-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -22,7 +22,7 @@
 
 <h1 id="rakefile">Rakefile</h1>
 
-<p>In order to use Rake to define tasks, first you need a Rakefile. A Rakefile is a Ruby source file that has access to some special methods: <strong>task</strong>, <strong>file</strong>, <strong>directory</strong>, and a few others. A task defined in the Rakefile can be run by the command-line <code>rake</code> program, or be called as a dependency by other tasks.</p>
+<p>In order to use Rake to define tasks, first you need a Rakefile. A Rakefile is a Ruby source file that has access to some special methods: <strong>task</strong>, <strong>file</strong>, <strong>directory</strong>, and a few others. A task defined in the Rakefile can be run by the command-line <code>rake</code> program, or be called as a dependency by other tasks. The name of Rakefile can be <code>Rakefile</code> or <code>rakefile</code>.</p>
 
 <h1 id="write-descriptions-for-rake-tasks">Write Descriptions for Rake Tasks</h1>
 
@@ -138,7 +138,7 @@ import File.dirname(__FILE__)+"/../../task/common/rakefile"
 
 <p>Dir.glob(“#{File.dirname(<strong>FILE</strong>)}/*”).each do |d|
   next if !File.directory? d
-  import d + “/rakefile”
+  import d + “/rakefile” if File.file?(d + “/rakefile”)
 end</p>
 
 <p>```</p>
