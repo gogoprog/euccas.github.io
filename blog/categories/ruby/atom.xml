@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-24T10:40:37-07:00</updated>
+  <updated>2016-06-24T10:41:42-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -79,6 +79,28 @@ task :default =&gt; 'cleanup'
 <p><code>
 task :default =&gt; 'logs: cleanup'
 </code></p>
+
+<h1 id="multiple-tasks-running-in-parallel">Multiple Tasks Running in Parallel</h1>
+<p>Rake’s <code>multitask</code> function supports running multiple tasks in parallel. The method is defining a task using the <code>multitask</code> function, and each of this task’s prerequisites will be run in a separate thread.</p>
+
+<p>An example of multiple parallel tasks:</p>
+
+<p>```
+task ‘copy_docs’ do
+    # Simulate a large disk copy
+    sleep 5
+end</p>
+
+<p>task ‘compile_extensions’ do
+    # Simulate a C compiler compiling a bunch of files
+    sleep 10
+end</p>
+
+<p>task ‘build_serial’ =&gt; [‘copy_docs’, ‘compile_extensions]
+multitask ‘build_parallel’ =&gt; [‘copy_docs’, ‘compile_extensions’]
+```</p>
+
+<p>In this example, the <code>build_serial</code> task runs in about 15 seconds, but the <code>build_parallel</code> task runs in about 10 seconds.</p>
 
 <h1 id="reference">Reference</h1>
 
