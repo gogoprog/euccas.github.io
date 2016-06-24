@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-24T10:42:10-07:00</updated>
+  <updated>2016-06-24T10:44:03-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -125,6 +125,94 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>In this example, the <code>build_serial</code> task runs in about 15 seconds, but the <code>build_parallel</code> task runs in about 10 seconds.</p>
+
+<h1 id="invoke-tasks">Invoke tasks</h1>
+
+<p>Rake tasks can be invoked from other tasks using the <code>Rake::Task['&lt;your take&gt;'].invoke</code> method.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">task :cleanup do
+</span><span class="line">    Rake::Task['logs: cleanup'].invoke
+</span><span class="line">    puts "logs are cleaned!"
+</span><span class="line">    Rake::Task['dbs: cleanup'].invoke
+</span><span class="line">    puts "dbs are cleaned!"
+</span><span class="line">end
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="view-all-the-rake-tasks">View all the Rake tasks</h1>
+
+<p>To get an overview of all the defined Rake tasks, use <code>rake -T</code></p>
+
+<h1 id="include-external-rakefiles">Include external rakefiles</h1>
+
+<p>When your project need include the Rake tasks defined in external directories, you’ll need include the external rakefiles into your project. The way to do it is using the <code>import</code>. Note the <code>require</code> won’t work here, as it looks for the <code>.rb</code> files instead of the <code>.rake</code> files.</p>
+
+<p>Include one rakefile:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">import File.dirname(__FILE__)+"/../../task/common/rakefile"</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Include multiple rakefiles in nested directories:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">Dir.glob("#{File.dirname(__FILE__)}/*").each do |d|
+</span><span class="line">  next if !File.directory? d
+</span><span class="line">  import d + "/rakefile"
+</span><span class="line">end
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="exit-from-rake-tasks">Exit from Rake tasks</h1>
+
+<p>In a Ruby function, you can use <code>return</code> in the function when you want to exit (early). But in Rake tasks, the <code>return</code> is an invalid method to use, because each Rake task is actually a <code>Proc</code>. To exit early from a Rake task, you can use one of the following methods:</p>
+
+<ul>
+  <li>next</li>
+</ul>
+
+<p><strong><em>next</em></strong> will discard the following codes in the current rake task, and process the following part of the other tasks if there are any.</p>
+
+<ul>
+  <li>fail/raise</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">task :something do
+</span><span class="line">  [1,2,3].each do |i|
+</span><span class="line">    ...
+</span><span class="line">    fail "some error" if ...
+</span><span class="line">  end
+</span><span class="line">end
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>
+    <p>exit</p>
+  </li>
+  <li>
+    <p>abort</p>
+  </li>
+</ul>
+
+<p>When <strong><em>abort</em></strong> is used in a rescue block, it terminates the task as well as prints the whole error (even without using –trace).</p>
 
 <h1 id="reference">Reference</h1>
 

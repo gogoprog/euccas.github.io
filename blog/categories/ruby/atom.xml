@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-24T10:43:23-07:00</updated>
+  <updated>2016-06-24T10:44:03-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -151,7 +151,7 @@ end</p>
   <li>next</li>
 </ul>
 
-<p><code>next</code> will discard the following codes in the current rake task, and process the following part of the other tasks if there are any.</p>
+<p><strong><em>next</em></strong> will discard the following codes in the current rake task, and process the following part of the other tasks if there are any.</p>
 
 <ul>
   <li>fail/raise</li>
