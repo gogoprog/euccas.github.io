@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-14T18:07:16-07:00</updated>
+  <updated>2016-06-24T10:37:09-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -48,6 +48,10 @@
 </pre></td><td class="code"><pre><code class=""><span class="line">rake db:migrate</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>In this command, the <strong><em>db</em></strong> is the namespace, and the <strong><em>migrate</em></strong> is the task inside the namespace.</p>
+
+<h1 id="default-task">Default Task</h1>
+
+<p>The default task is the one gets executed when you run rake without any arguments. You can set the default task in Rakefile by using the <code>:default</code> keyword.</p>
 
 <h1 id="reference">Reference</h1>
 
