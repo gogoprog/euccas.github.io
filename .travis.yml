@@ -5,4 +5,4 @@ language: ruby
 rvm:
   - 2.0.0
 script:
-  - postNum = `ls -l blog/*/*html |wc -l`; echo $postNum
+  - postNum=`ls -l blog/*/*html |wc -l`; echo $postNum
