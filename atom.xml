@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-24T10:39:04-07:00</updated>
+  <updated>2016-06-24T10:39:51-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -62,6 +62,9 @@
 <span class="line-number">11</span>
 <span class="line-number">12</span>
 <span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">namespace :cleanup do
 </span><span class="line">    desc 'Clean up database'
 </span><span class="line">    task  :dbs =&gt; :environment do
@@ -75,6 +78,9 @@
 </span><span class="line">
 </span><span class="line">    task :all =&gt; [:dbs, :logs]
 </span><span class="line">end
+</span><span class="line">
+</span><span class="line">desc 'Cleanup everything'
+</span><span class="line">task :cleanup =&gt; "cleanup:all"
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h1 id="default-task">Default Task</h1>
