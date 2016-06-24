@@ -1,0 +1,9 @@
+branches:
+  only:
+    - master
+language: ruby
+rvm:
+  - 2.0.0
+  - 1.9.3
+script:
+  - `ls -l blog/*/*html |wc -l` > 0
