@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-24T10:39:51-07:00</updated>
+  <updated>2016-06-24T10:40:37-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -71,6 +71,14 @@ task :cleanup =&gt; “cleanup:all”</p>
 <h1 id="default-task">Default Task</h1>
 
 <p>The default task is the one gets executed when you run rake without any arguments. You can set the default task in Rakefile by using the <code>:default</code> keyword.</p>
+
+<p><code>
+task :default =&gt; 'cleanup'
+</code></p>
+
+<p><code>
+task :default =&gt; 'logs: cleanup'
+</code></p>
 
 <h1 id="reference">Reference</h1>
 

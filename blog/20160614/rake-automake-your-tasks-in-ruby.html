@@ -154,6 +154,12 @@
 
 <p>The default task is the one gets executed when you run rake without any arguments. You can set the default task in Rakefile by using the <code>:default</code> keyword.</p>
 
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">task :default =&gt; 'cleanup'</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">task :default =&gt; 'logs: cleanup'</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 <h1 id="reference">Reference</h1>
 
 <ul>
