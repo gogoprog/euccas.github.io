@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-24T10:42:10-07:00</updated>
+  <updated>2016-06-24T10:43:23-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -102,6 +102,82 @@ multitask ‘build_parallel’ =&gt; [‘copy_docs’, ‘compile_extensions’]
 <p>```</p>
 
 <p>In this example, the <code>build_serial</code> task runs in about 15 seconds, but the <code>build_parallel</code> task runs in about 10 seconds.</p>
+
+<h1 id="invoke-tasks">Invoke tasks</h1>
+
+<p>Rake tasks can be invoked from other tasks using the <code>Rake::Task['&lt;your take&gt;'].invoke</code> method.</p>
+
+<p>```</p>
+
+<p>task :cleanup do
+    Rake::Task[‘logs: cleanup’].invoke
+    puts “logs are cleaned!”
+    Rake::Task[‘dbs: cleanup’].invoke
+    puts “dbs are cleaned!”
+end</p>
+
+<p>```</p>
+
+<h1 id="view-all-the-rake-tasks">View all the Rake tasks</h1>
+
+<p>To get an overview of all the defined Rake tasks, use <code>rake -T</code></p>
+
+<h1 id="include-external-rakefiles">Include external rakefiles</h1>
+
+<p>When your project need include the Rake tasks defined in external directories, you’ll need include the external rakefiles into your project. The way to do it is using the <code>import</code>. Note the <code>require</code> won’t work here, as it looks for the <code>.rb</code> files instead of the <code>.rake</code> files.</p>
+
+<p>Include one rakefile:</p>
+
+<p><code>
+import File.dirname(__FILE__)+"/../../task/common/rakefile"
+</code></p>
+
+<p>Include multiple rakefiles in nested directories:</p>
+
+<p>```</p>
+
+<p>Dir.glob(“#{File.dirname(<strong>FILE</strong>)}/*”).each do |d|
+  next if !File.directory? d
+  import d + “/rakefile”
+end</p>
+
+<p>```</p>
+
+<h1 id="exit-from-rake-tasks">Exit from Rake tasks</h1>
+
+<p>In a Ruby function, you can use <code>return</code> in the function when you want to exit (early). But in Rake tasks, the <code>return</code> is an invalid method to use, because each Rake task is actually a <code>Proc</code>. To exit early from a Rake task, you can use one of the following methods:</p>
+
+<ul>
+  <li>next</li>
+</ul>
+
+<p><code>next</code> will discard the following codes in the current rake task, and process the following part of the other tasks if there are any.</p>
+
+<ul>
+  <li>fail/raise</li>
+</ul>
+
+<p>```</p>
+
+<p>task :something do
+  [1,2,3].each do |i|
+    …
+    fail “some error” if …
+  end
+end</p>
+
+<p>```</p>
+
+<ul>
+  <li>
+    <p>exit</p>
+  </li>
+  <li>
+    <p>abort</p>
+  </li>
+</ul>
+
+<p>When <strong><em>abort</em></strong> is used in a rescue block, it terminates the task as well as prints the whole error (even without using –trace).</p>
 
 <h1 id="reference">Reference</h1>
 
