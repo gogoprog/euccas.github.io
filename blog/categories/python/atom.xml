@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-07-11T23:32:34-07:00</updated>
+  <updated>2016-07-11T23:33:02-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -183,7 +183,7 @@ Bye Test</p>
 
 <p>```</p>
 
-<p>Behind the tests running, there is the <code>run</code> method provided by <code>TestCase</code> and <code>TestCaseSuite</code> classes. This <code>run</code> method implements the function of running the test, collecting the result into the <code>TestResult</code> object passed as result.</p>
+<p>Behind the tests running, there is the <code>run</code> method provided by <em>TestCase</em> and <em>TestCaseSuite</em> classes. This <code>run</code> method implements the function of running the test, collecting the result into the <code>TestResult</code> object passed as result.</p>
 
 <p>Here you go! Enjoy unit testing in Python!</p>
 ]]></content>
