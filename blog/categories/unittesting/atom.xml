@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Unittesting | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/unittesting/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-07-12T10:29:25-07:00</updated>
+  <updated>2016-07-12T10:33:59-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -76,7 +76,7 @@ demo
 
 <h2 id="include-your-project-modules-in-the-test">3. Include your project modules in the test</h2>
 
-<p>Surely you’ll need include the source files of the modules that you want to test in your test file. If your tests are in the same folder of your module sources, you can simply use <em>import SomeModule</em> to pull the modules in. When your tests stay out of the module sources, you’ll need do a little configurations in your test file.</p>
+<p>Surely you’ll need include the source files of the modules that you want to test in your test file. If your tests are in the same folder of your module sources, you can simply use <code>import SomeModule</code> to pull the modules in. When your tests stay out of the module sources, you’ll need do a little configurations in your test file.</p>
 
 <p>I found the way to import your own modules to your tests can be different depending your development environment. For example, if you run your Python projects within some IDE, like <strong>PyCharm</strong> from JetBrains. The following way always work:</p>
 
@@ -88,9 +88,9 @@ demo
 
 <p>```</p>
 
-<p>However if you run through command line <code>python test/test_demoDev.py</code>, you might see errors complaining no module called <em>dev</em> and thus the import fails.</p>
+<p>However if you run through command line <code>python test/test_demoDev.py</code>, you might see errors complaining no module called <code>dev</code> and thus the import fails.</p>
 
-<p>What you can do to resolve this problem, is adding the path of your Python modules to the <em>sys.path</em>.</p>
+<p>What you can do to resolve this problem, is adding the path of your Python modules to the <code>sys.path</code>.</p>
 
 <p>```</p>
 
@@ -109,7 +109,7 @@ sys.path.insert(0, lib_path)
 
 <h2 id="create-a-test-case">4. Create a test case</h2>
 
-<p>A test case can be created with unittest <em>TestCase</em> class. The <em>setUp()</em> and <em>tearDown()</em> methods can be overridden to provide initialization and cleanup for the fixture. Each instance of the TestCase will only be used to run a single test method. Multiple test methods share the same text fixture, but the test fixture are created for each test method when they are executed.</p>
+<p>A test case can be created with unittest <em>TestCase</em> class. The <code>setUp()</code> and <code>tearDown()</code> methods can be overridden to provide initialization and cleanup for the fixture. Each instance of the TestCase will only be used to run a single test method. Multiple test methods share the same text fixture, but the test fixture are created for each test method when they are executed.</p>
 
 <p>```</p>
 
@@ -141,11 +141,11 @@ def tearDown(self):
 
 <p>```</p>
 
-<p>The <em>TestCase</em> class provides several assert methods to check for and report failures, such as <em>assertEqual</em>, <em>assertNotEqual</em>, <em>assertTrue</em>. <a href="https://docs.python.org/3.4/library/unittest.html#assert-methods">Here is the complete assert list that Python 3 provides.</a></p>
+<p>The <code>TestCase</code> class provides several assert methods to check for and report failures, such as <code>assertEqual</code>, <code>assertNotEqual</code>, <code>assertTrue</code>. <a href="https://docs.python.org/3.4/library/unittest.html#assert-methods">Here is the complete assert list that Python 3 provides.</a></p>
 
 <h2 id="create-more-tests-and-a-test-suites">5. Create more tests and a test suites</h2>
 
-<p><em>TestSuite</em> class represents an aggregation of individual test cases and test suites. The <em>addTest</em> and <em>addTests</em> methods are available to add tests to your TestSuite instances.</p>
+<p><code>TestSuite</code> class represents an aggregation of individual test cases and test suites. The <code>addTest</code> and <code>addTests</code> methods are available to add tests to your TestSuite instances.</p>
 
 <p>```</p>
 
@@ -163,7 +163,7 @@ def tearDown(self):
 
 <h1 id="run-your-unit-tests">6. Run your unit tests!</h1>
 
-<p>The easiest way to run your unit tests is executing the <em>unittest.main()</em> method in the test file.</p>
+<p>The easiest way to run your unit tests is executing the <code>unittest.main()</code> method in the test file.</p>
 
 <p>```</p>
 
@@ -174,7 +174,7 @@ def tearDown(self):
 
 <p>```</p>
 
-<p>Then by running command <em>python test_demoDev.py</em>, the tests defined in <em>test_demoDev.py</em> will start running.</p>
+<p>Then by running command <code>python test_demoDev.py</code>, the tests defined in <code>test_demoDev.py</code> will start running.</p>
 
 <p>Unit tests can run from command line, because <code>unittest</code> module can be used from the command line to run tests from modules, classes or individual test methods.</p>
 
@@ -198,7 +198,7 @@ Bye Test</p>
 
 <p>```</p>
 
-<p>Behind the tests running, there is the <em>run</em> method provided by <em>TestCase</em> and <em>TestCaseSuite</em> classes. This <em>run</em> method implements the function of running the test, collecting the result into the <em>TestResult</em> object passed as result.</p>
+<p>Behind the tests running, there is the <code>run</code> method provided by <code>TestCase</code> and <code>TestCaseSuite</code> classes. This <code>run</code> method implements the function of running the test, collecting the result into the <code>TestResult</code> object passed as result.</p>
 
 <p>Here you go! Enjoy unit testing in Python!</p>
 ]]></content>
