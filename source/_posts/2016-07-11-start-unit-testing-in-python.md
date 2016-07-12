@@ -124,7 +124,7 @@ The ```TestCase``` class provides several assert methods to check for and report
 
 ## 5. Create more tests and a test suites
 
-```TestSuite``` class represents an aggregation of individual test cases and test suites. ```addTest``` and ```addTests``` methods are available to add tests to your TestSuite instances.
+The ```TestSuite``` class represents an aggregation of individual test cases and test suites. ```addTest``` and ```addTests``` methods are available to add tests to your TestSuite instances.
 
 ```
 # This is test_demoDev.py
