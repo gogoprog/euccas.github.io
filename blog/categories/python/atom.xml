@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-07-11T23:40:42-07:00</updated>
+  <updated>2016-07-11T23:41:38-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -88,6 +88,104 @@ demo
 <p>However if you run through command line <code>python test/test_demoDev.py</code>, you might see errors complaining no module called <em>dev</em> and thus the import fails.</p>
 
 <p>What you can do to resolve this problem, is adding the path of your Python modules to the <em>sys.path</em>.</p>
+
+<p>```
+# This is test/test_demoDev.py</p>
+
+<p>import sys, os.path</p>
+
+<p>bin_path = os.path.dirname(os.path.realpath(<strong>file</strong>))
+lib_path = os.path.abspath(os.path.join(bin_path, ‘..’, ‘dev’))
+sys.path.insert(0, lib_path)
+# or sys.path.append(lib_path)</p>
+
+<p>import demoDev</p>
+
+<p>```</p>
+
+<h2 id="create-a-test-case">4. Create a test case</h2>
+
+<p>A test case can be created with unittest <code>TestCase</code> class. The <code>setUp()</code> and <code>tearDown()</code> methods can be overridden to provide initialization and cleanup for the fixture. Each instance of the TestCase will only be used to run a single test method. Multiple test methods share the same text fixture, but the test fixture are created for each test method when they are executed.</p>
+
+<p>```
+# This is test/test_demoDev.py</p>
+
+<p>import sys
+import unittest</p>
+
+<p>bin_path = os.path.dirname(os.path.realpath(<strong>file</strong>))
+lib_path = os.path.abspath(os.path.join(bin_path, ‘..’, ‘dev’))
+sys.path.insert(0, lib_path)</p>
+
+<p>from dev import demoDev</p>
+
+<p>class demoDevTestCase(unittest.TestCase):</p>
+
+<pre><code>def setUp(self):
+    self.checker = eABTCheckerDev.eABTChecker()
+
+def test_checker_app(self):
+    self.assertEqual(self.demo.app, 'Demo App', 'Wrong app')
+
+def tearDown(self):
+    print('Bye Test')
+</code></pre>
+
+<p>if <strong>name</strong> == ‘<strong>main</strong>’:
+    unittest.main()
+```</p>
+
+<p>The <code>TestCase</code> class provides several assert methods to check for and report failures, such as <code>assertEqual</code>, <code>assertNotEqual</code>, <code>assertTrue</code>. <a href="https://docs.python.org/3.4/library/unittest.html#assert-methods">Here is the complete assert list that Python 3 provides.</a></p>
+
+<h2 id="create-more-tests-and-a-test-suites">5. Create more tests and a test suites</h2>
+
+<p><code>TestSuite</code> class represents an aggregation of individual test cases and test suites. <code>addTest</code> and <code>addTests</code> methods are available to add tests to your TestSuite instances.</p>
+
+<p>```
+# This is test_demoDev.py</p>
+
+<p>def suite():
+    suite = unittest.TestSuite();
+    suite.addTest(demoDevTestCase(‘test_checker_app’))
+    suite.addTest(demoDevTestCase(‘test_check_env’))</p>
+
+<pre><code>return suite ```
+</code></pre>
+
+<h1 id="run-your-unit-tests">6. Run your unit tests!</h1>
+
+<p>The easiest way to run your unit tests is executing the <code>unittest.main()</code> method in the test file.</p>
+
+<p>```
+# This is test_demoDev.py</p>
+
+<p>if <strong>name</strong> == ‘<strong>main</strong>’:
+    unittest.main()
+```</p>
+
+<p>Then by running command <code>python test_demoDev.py</code>, the tests defined in <code>test_demoDev.py</code> will start running.</p>
+
+<p>Unit tests can run from command line, because <code>unittest</code> module can be used from the command line to run tests from modules, classes or individual test methods.</p>
+
+<p><code>
+python -m unittest test_demoDev.test_checker_app
+</code></p>
+
+<p>You’ll see the testing result like:</p>
+
+<h2 id="section">```</h2>
+<p>Ran 1 test in 0.000s</p>
+
+<p>OK
+Bye Test</p>
+
+<p>Process finished with exit code 0</p>
+
+<p>```</p>
+
+<p>Behind the tests running, there is the <code>run</code> method provided by <code>TestCase</code> and <code>TestCaseSuite</code> classes. This <code>run</code> method implements the function of running the test, collecting the result into the <code>TestResult</code> object passed as result.</p>
+
+<p>Here you go! Enjoy unit testing in Python!</p>
 ]]></content>
   </entry>
   
