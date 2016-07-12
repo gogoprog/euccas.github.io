@@ -158,15 +158,175 @@
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
+<span class="line-number">5</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">
 </span><span class="line"># This is test/test_demoDev.py
 </span><span class="line">
 </span><span class="line">from dev import demoDev
+</span><span class="line">
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>However if you run through command line <code>python test/test_demoDev.py</code>, you might see errors complaining no module called <em>dev</em> and thus the import fails.</p>
 
 <p>What you can do to resolve this problem, is adding the path of your Python modules to the <em>sys.path</em>.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line"># This is test/test_demoDev.py
+</span><span class="line">
+</span><span class="line">import sys, os.path
+</span><span class="line">
+</span><span class="line">bin_path = os.path.dirname(os.path.realpath(__file__))
+</span><span class="line">lib_path = os.path.abspath(os.path.join(bin_path, '..', 'dev'))
+</span><span class="line">sys.path.insert(0, lib_path)
+</span><span class="line"># or sys.path.append(lib_path)
+</span><span class="line">
+</span><span class="line">import demoDev
+</span><span class="line">
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="create-a-test-case">4. Create a test case</h2>
+
+<p>A test case can be created with unittest <em>TestCase</em> class. The <em>setUp()</em> and <em>tearDown()</em> methods can be overridden to provide initialization and cleanup for the fixture. Each instance of the TestCase will only be used to run a single test method. Multiple test methods share the same text fixture, but the test fixture are created for each test method when they are executed.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line"># This is test/test_demoDev.py
+</span><span class="line">
+</span><span class="line">import sys
+</span><span class="line">import unittest
+</span><span class="line">
+</span><span class="line">bin_path = os.path.dirname(os.path.realpath(__file__))
+</span><span class="line">lib_path = os.path.abspath(os.path.join(bin_path, '..', 'dev'))
+</span><span class="line">sys.path.insert(0, lib_path)
+</span><span class="line">
+</span><span class="line">from dev import demoDev
+</span><span class="line">
+</span><span class="line">class demoDevTestCase(unittest.TestCase):
+</span><span class="line">
+</span><span class="line">    def setUp(self):
+</span><span class="line">        self.checker = eABTCheckerDev.eABTChecker()
+</span><span class="line">
+</span><span class="line">    def test_checker_app(self):
+</span><span class="line">        self.assertEqual(self.demo.app, 'Demo App', 'Wrong app')
+</span><span class="line">
+</span><span class="line">    def tearDown(self):
+</span><span class="line">        print('Bye Test')
+</span><span class="line">
+</span><span class="line">if __name__ == '__main__':
+</span><span class="line">    unittest.main()
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>The <em>TestCase</em> class provides several assert methods to check for and report failures, such as <em>assertEqual</em>, <em>assertNotEqual</em>, <em>assertTrue</em>. <a href="https://docs.python.org/3.4/library/unittest.html#assert-methods">Here is the complete assert list that Python 3 provides.</a></p>
+
+<h2 id="create-more-tests-and-a-test-suites">5. Create more tests and a test suites</h2>
+
+<p><em>TestSuite</em> class represents an aggregation of individual test cases and test suites. The <em>addTest</em> and <em>addTests</em> methods are available to add tests to your TestSuite instances.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line"># This is test_demoDev.py
+</span><span class="line">
+</span><span class="line">def suite():
+</span><span class="line">    suite = unittest.TestSuite();
+</span><span class="line">    suite.addTest(demoDevTestCase('test_checker_app'))
+</span><span class="line">    suite.addTest(demoDevTestCase('test_check_env'))
+</span><span class="line">    
+</span><span class="line">    return suite
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="run-your-unit-tests">6. Run your unit tests!</h1>
+
+<p>The easiest way to run your unit tests is executing the <em>unittest.main()</em> method in the test file.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line"># This is test_demoDev.py
+</span><span class="line">
+</span><span class="line">if __name__ == '__main__':
+</span><span class="line">    unittest.main()
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Then by running command <em>python test_demoDev.py</em>, the tests defined in <em>test_demoDev.py</em> will start running.</p>
+
+<p>Unit tests can run from command line, because <code>unittest</code> module can be used from the command line to run tests from modules, classes or individual test methods.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">python -m unittest test_demoDev.test_checker_app
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>You’ll see the testing result like:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">----------------------------------------------------------------------
+</span><span class="line">Ran 1 test in 0.000s
+</span><span class="line">
+</span><span class="line">OK
+</span><span class="line">Bye Test
+</span><span class="line">
+</span><span class="line">Process finished with exit code 0
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Behind the tests running, there is the <em>run</em> method provided by <em>TestCase</em> and <em>TestCaseSuite</em> classes. This <em>run</em> method implements the function of running the test, collecting the result into the <em>TestResult</em> object passed as result.</p>
+
+<p>Here you go! Enjoy unit testing in Python!</p>
 </div>
   
   
