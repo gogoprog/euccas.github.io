@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-07-11T23:37:30-07:00</updated>
+  <updated>2016-07-11T23:37:44-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -137,7 +137,6 @@ def tearDown(self):
 
 <p>The <em>TestCase</em> class provides several assert methods to check for and report failures, such as <code>assertEqual</code>, <code>assertNotEqual</code>, <code>assertTrue</code>. <a href="https://docs.python.org/3.4/library/unittest.html#assert-methods">Here is the complete assert list that Python 3 provides.</a></p>
 
-<h2 id="create-more-tests-and-a-test-suites">5. Create more tests and a test suites</h2>
 ]]></content>
   </entry>
   
