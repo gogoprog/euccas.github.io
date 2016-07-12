@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-07-11T23:38:49-07:00</updated>
+  <updated>2016-07-11T23:39:03-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -71,21 +71,6 @@ demo
 <p>import unittest
 ```</p>
 
-<h2 id="include-your-project-modules-in-the-test">3. Include your project modules in the test</h2>
-
-<p>Surely you’ll need include the source files of the modules that you want to test in your test file. If your tests are in the same folder of your module sources, you can simply use <code>import SomeModule</code> to pull the modules in. When your tests stay out of the module sources, you’ll need do a little configurations in your test file.</p>
-
-<p>I found the way to import your own modules to your tests can be different depending your development environment. For example, if you run your Python projects within some IDE, like <strong>PyCharm</strong>* from JetBrains. The following way always work:</p>
-
-<p>```
-# This is test/test_demoDev.py</p>
-
-<p>from dev import demoDev
-```</p>
-
-<p>However if you run through command line <code>python test/test_demoDev.py</code>, you might see errors complaining no module called <code>dev</code> and thus the import fails.</p>
-
-<p>What you can do to resolve this problem, is adding the path of your Python modules to the <code>sys.path</code>.</p>
 ]]></content>
   </entry>
   
