@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-07-11T23:35:39-07:00</updated>
+  <updated>2016-07-11T23:35:55-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -141,18 +141,6 @@ def tearDown(self):
 
 <p><em>TestSuite</em> class represents an aggregation of individual test cases and test suites. The <em>addTest</em> and <em>addTests</em> methods are available to add tests to your TestSuite instances.</p>
 
-<p>```
-# This is test_demoDev.py</p>
-
-<p>def suite():
-    suite = unittest.TestSuite();
-    suite.addTest(demoDevTestCase(‘test_checker_app’))
-    suite.addTest(demoDevTestCase(‘test_check_env’))</p>
-
-<pre><code>return suite
-</code></pre>
-
-<p>```</p>
 ]]></content>
   </entry>
   
