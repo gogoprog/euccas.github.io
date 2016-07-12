@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-06-24T13:27:11-07:00</updated>
+  <updated>2016-07-11T23:26:41-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,74 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Start Unit Testing in Python]]></title>
+    <link href="http://euccas.github.io/blog/20160711/start-unit-testing-in-python.html"/>
+    <updated>2016-07-11T22:58:39-07:00</updated>
+    <id>http://euccas.github.io/blog/20160711/start-unit-testing-in-python</id>
+    <content type="html"><![CDATA[<p>When is the best time to start unit testing in your Python project? My answer is before you writing the first line of code of this project. Unit testing is the fundamental of Test-driven development, which specifically improves the quality and design of your project.</p>
+
+<p>In this post, I’m writing about how could you do unit testing in Python with the <code>unittest</code> module.</p>
+
+<p>Python 2 (starting on version 2.1) and Python 3 now both have <code>unittest</code> in the standard library. The <code>unittest</code> module provides the unit testing framework, and it’s based on <code>JUnit</code>, which is a unit testing framework for Java.</p>
+
+<h1 id="what-unittest-can-do">What unittest can do</h1>
+
+<p>A few main features that <code>unittest</code> can do are:
+- Automatically run the tests (by <code>test runner</code>)
+- Create test cases (by <code>test case</code>)
+- Sharing of setup and shutdown code for tests (by <code>test fixture</code>)
+- Aggrate tests into collections (by <code>test suite</code>)
+- Independence of the tests from the reporting framework</p>
+
+<h1 id="how-does-unittest-work">How does unittest work</h1>
+
+<p>Suppose I’m working on a project called <code>demo</code>, and it has a file structure as:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">demo
+</span><span class="line">-- dev
+</span><span class="line">   -- __init__.py
+</span><span class="line">   -- demoDev.py</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Note the <code>___init___.py</code> file can be empty. The purpose of having this file is for other files outside this directory can easily import the module <code>demoDev.py</code>.</p>
+
+<p>To create unit tests for this project, I’ll need continue the following steps.</p>
+
+<h2 id="create-the-test-file">1. Create the test file</h2>
+
+<p>There is no particular required folder structure that you need to keep your test files. The way I usually do is separating the tests from the project source files. So, I create a <code>test</code> folder in the same level as <code>dev</code>. All my tests will be put into this folder. Now the project’s structure looks like:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">demo
+</span><span class="line">-- dev
+</span><span class="line">   -- __init__.py
+</span><span class="line">   -- demoDev.py
+</span><span class="line">-- test
+</span><span class="line">   -- test_demoDev.py</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="use-unittest-module-in-your-project">2. Use unittest module in your project</h2>
+
+<p>The test file need import the <code>unittest</code> module.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line"># This is test/test_demoDev.py
+</span><span class="line">
+</span><span class="line">import unittest</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rake: Automake Your Tasks in Ruby]]></title>

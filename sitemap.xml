@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://euccas.github.io/blog/20160711/start-unit-testing-in-python.html</loc>
+<lastmod>2016-07-11T22:58:39-07:00</lastmod>
+</url>
+<url>
 <loc>http://euccas.github.io/blog/20160614/rake-automake-your-tasks-in-ruby.html</loc>
 <lastmod>2016-06-14T17:59:06-07:00</lastmod>
 </url>
@@ -37,10 +41,10 @@
 <lastmod>2014-05-31T14:51:54-07:00</lastmod>
 </url>
 <url>
-<loc>http://euccas.github.io/</loc>
+<loc>http://euccas.github.io/blog/archives/</loc>
 </url>
 <url>
-<loc>http://euccas.github.io/blog/archives/</loc>
+<loc>http://euccas.github.io/</loc>
 </url>
 <url>
 <loc>http://euccas.github.io/blog/categories/linux/</loc>
@@ -59,5 +63,11 @@
 </url>
 <url>
 <loc>http://euccas.github.io/blog/categories/rails/</loc>
+</url>
+<url>
+<loc>http://euccas.github.io/blog/categories/python/</loc>
+</url>
+<url>
+<loc>http://euccas.github.io/blog/categories/unittesting/</loc>
 </url>
 </urlset>
