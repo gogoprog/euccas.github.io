@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-07-11T23:33:02-07:00</updated>
+  <updated>2016-07-11T23:33:21-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -151,41 +151,6 @@ def tearDown(self):
 
 <pre><code>return suite ```
 </code></pre>
-
-<h1 id="run-your-unit-tests">6. Run your unit tests!</h1>
-
-<p>The easiest way to run your unit tests is executing the <code>unittest.main()</code> method in the test file.</p>
-
-<p>```
-# This is test_demoDev.py</p>
-
-<p>if <strong>name</strong> == ‘<strong>main</strong>’:
-    unittest.main()
-```</p>
-
-<p>Then by running command <code>python test_demoDev.py</code>, the tests defined in <code>test_demoDev.py</code> will start running.</p>
-
-<p>Unit tests can run from command line, because <code>unittest</code> module can be used from the command line to run tests from modules, classes or individual test methods.</p>
-
-<p><code>
-python -m unittest test_demoDev.test_checker_app
-</code></p>
-
-<p>You’ll see the testing result like:</p>
-
-<h2 id="section">```</h2>
-<p>Ran 1 test in 0.000s</p>
-
-<p>OK
-Bye Test</p>
-
-<p>Process finished with exit code 0</p>
-
-<p>```</p>
-
-<p>Behind the tests running, there is the <code>run</code> method provided by <em>TestCase</em> and <em>TestCaseSuite</em> classes. This <code>run</code> method implements the function of running the test, collecting the result into the <code>TestResult</code> object passed as result.</p>
-
-<p>Here you go! Enjoy unit testing in Python!</p>
 ]]></content>
   </entry>
   
