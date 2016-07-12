@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Unittesting | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/unittesting/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-07-11T23:29:03-07:00</updated>
+  <updated>2016-07-11T23:29:51-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -70,6 +70,70 @@ demo
 
 <p>import unittest
 ```</p>
+
+<h2 id="include-your-project-modules-in-the-test">3. Include your project modules in the test</h2>
+
+<p>Surely you’ll need include the source files of the modules that you want to test in your test file. If your tests are in the same folder of your module sources, you can simply use <code>import SomeModule</code> to pull the modules in. When your tests stay out of the module sources, you’ll need do a little configurations in your test file.</p>
+
+<p>I found the way to import your own modules to your tests can be different depending your development environment. For example, if you run your Python projects within some IDE, like <strong>PyCharm</strong>* from JetBrains. The following way always work:</p>
+
+<p>```
+# This is test/test_demoDev.py</p>
+
+<p>from dev import demoDev
+```</p>
+
+<p>However if you run through command line <code>python test/test_demoDev.py</code>, you might see errors complaining no module called <code>dev</code> and thus the import fails.</p>
+
+<p>What you can do to resolve this problem, is adding the path of your Python modules to the <code>sys.path</code>.</p>
+
+<p>```
+# This is test/test_demoDev.py</p>
+
+<p>import sys, os.path</p>
+
+<p>bin_path = os.path.dirname(os.path.realpath(<strong>file</strong>))
+lib_path = os.path.abspath(os.path.join(bin_path, ‘..’, ‘dev’))
+sys.path.insert(0, lib_path)
+# or sys.path.append(lib_path)</p>
+
+<p>import demoDev</p>
+
+<p>```</p>
+
+<h2 id="create-a-test-case">4. Create a test case</h2>
+
+<p>A test case can be created with unittest <code>TestCase</code> class. The <code>setUp()</code> and <code>tearDown()</code> methods can be overridden to provide initialization and cleanup for the fixture. Each instance of the TestCase will only be used to run a single test method. Multiple test methods share the same text fixture, but the test fixture are created for each test method when they are executed.</p>
+
+<p>```
+# This is test/test_demoDev.py</p>
+
+<p>import sys
+import unittest</p>
+
+<p>bin_path = os.path.dirname(os.path.realpath(<strong>file</strong>))
+lib_path = os.path.abspath(os.path.join(bin_path, ‘..’, ‘dev’))
+sys.path.insert(0, lib_path)</p>
+
+<p>from dev import demoDev</p>
+
+<p>class demoDevTestCase(unittest.TestCase):</p>
+
+<pre><code>def setUp(self):
+    self.checker = eABTCheckerDev.eABTChecker()
+
+def test_checker_app(self):
+    self.assertEqual(self.demo.app, 'Demo App', 'Wrong app')
+
+def tearDown(self):
+    print('Bye Test')
+</code></pre>
+
+<p>if <strong>name</strong> == ‘<strong>main</strong>’:
+    unittest.main()
+```</p>
+
+<p>The <code>TestCase</code> class provides several assert methods to check for and report failures, such as <code>assertEqual</code>, <code>assertNotEqual</code>, <code>assertTrue</code>. <a href="https://docs.python.org/3.4/library/unittest.html#assert-methods">Here is the complete assert list that Python 3 provides.</a></p>
 
 ]]></content>
   </entry>
