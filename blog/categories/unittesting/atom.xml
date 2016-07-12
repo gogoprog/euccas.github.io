@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Unittesting | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/unittesting/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-07-11T23:38:15-07:00</updated>
+  <updated>2016-07-11T23:38:30-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -100,10 +100,6 @@ sys.path.insert(0, lib_path)
 <p>import demoDev</p>
 
 <p>```</p>
-
-<h2 id="create-a-test-case">4. Create a test case</h2>
-
-<p>A test case can be created with unittest <code>TestCase</code> class. The <code>setUp()</code> and <code>tearDown()</code> methods can be overridden to provide initialization and cleanup for the fixture. Each instance of the TestCase will only be used to run a single test method. Multiple test methods share the same text fixture, but the test fixture are created for each test method when they are executed.</p>
 
 ]]></content>
   </entry>
