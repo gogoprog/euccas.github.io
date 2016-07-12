@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-07-11T23:29:51-07:00</updated>
+  <updated>2016-07-11T23:30:45-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -105,8 +105,9 @@ sys.path.insert(0, lib_path)
 
 <p>A test case can be created with unittest <code>TestCase</code> class. The <code>setUp()</code> and <code>tearDown()</code> methods can be overridden to provide initialization and cleanup for the fixture. Each instance of the TestCase will only be used to run a single test method. Multiple test methods share the same text fixture, but the test fixture are created for each test method when they are executed.</p>
 
-<p>```
-# This is test/test_demoDev.py</p>
+<p>```</p>
+
+<h1 id="this-is-testtestdemodevpy">This is test/test_demoDev.py</h1>
 
 <p>import sys
 import unittest</p>
@@ -130,10 +131,11 @@ def tearDown(self):
 </code></pre>
 
 <p>if <strong>name</strong> == ‘<strong>main</strong>’:
-    unittest.main()
-```</p>
+    unittest.main()</p>
 
-<p>The <code>TestCase</code> class provides several assert methods to check for and report failures, such as <code>assertEqual</code>, <code>assertNotEqual</code>, <code>assertTrue</code>. <a href="https://docs.python.org/3.4/library/unittest.html#assert-methods">Here is the complete assert list that Python 3 provides.</a></p>
+<p>```</p>
+
+<p>The <em>TestCase</em> class provides several assert methods to check for and report failures, such as <code>assertEqual</code>, <code>assertNotEqual</code>, <code>assertTrue</code>. <a href="https://docs.python.org/3.4/library/unittest.html#assert-methods">Here is the complete assert list that Python 3 provides.</a></p>
 
 ]]></content>
   </entry>
