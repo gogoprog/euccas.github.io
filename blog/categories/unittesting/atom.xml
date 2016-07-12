@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Unittesting | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/unittesting/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-07-11T23:38:30-07:00</updated>
+  <updated>2016-07-11T23:38:49-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -86,21 +86,6 @@ demo
 <p>However if you run through command line <code>python test/test_demoDev.py</code>, you might see errors complaining no module called <code>dev</code> and thus the import fails.</p>
 
 <p>What you can do to resolve this problem, is adding the path of your Python modules to the <code>sys.path</code>.</p>
-
-<p>```
-# This is test/test_demoDev.py</p>
-
-<p>import sys, os.path</p>
-
-<p>bin_path = os.path.dirname(os.path.realpath(<strong>file</strong>))
-lib_path = os.path.abspath(os.path.join(bin_path, ‘..’, ‘dev’))
-sys.path.insert(0, lib_path)
-# or sys.path.append(lib_path)</p>
-
-<p>import demoDev</p>
-
-<p>```</p>
-
 ]]></content>
   </entry>
   
