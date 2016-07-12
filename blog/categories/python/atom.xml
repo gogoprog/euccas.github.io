@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-07-11T23:41:38-07:00</updated>
+  <updated>2016-07-11T23:42:05-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -139,7 +139,7 @@ def tearDown(self):
 
 <h2 id="create-more-tests-and-a-test-suites">5. Create more tests and a test suites</h2>
 
-<p><code>TestSuite</code> class represents an aggregation of individual test cases and test suites. <code>addTest</code> and <code>addTests</code> methods are available to add tests to your TestSuite instances.</p>
+<p><em>TestSuite</em> class represents an aggregation of individual test cases and test suites. <code>addTest</code> and <code>addTests</code> methods are available to add tests to your TestSuite instances.</p>
 
 <p>```
 # This is test_demoDev.py</p>
