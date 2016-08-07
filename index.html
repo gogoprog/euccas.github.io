@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="When is the best time to start unit testing in your Python project? My answer is before you writing the first line of code of this project. Unit &hellip;">
+  <meta name="description" content="In the previous post about Python Unittest, I wrote about the basic steps needed for setting up unit testing for your Python program with the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,217 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/20160807/python-unittest-handle-command-line-arguments.html">Python Unittest: Handle the Command Line Arguments That Your Program Need</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-08-07T11:57:32-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:57 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In the previous post about <a href="http://euccas.github.io/blog/20160711/start-unit-testing-in-python.html">Python Unittest</a>, I wrote about the basic steps needed for setting up unit testing for your Python program with the <code>unittest</code> module. In this post, I’ll discuss about handling the command line parameters that your program need while you’re using Python <code>unittest</code>.</p>
+
+<p>Unit testing is meant for testing basic functionality of the application. The target of <a href="https://en.wikipedia.org/wiki/Unit_testing">Unit testing</a> is expected to be each function of your program. When your program has command line arguments, ideally the unit tests should not accept arguments from the command line because unit tests are supposed to be very specific and not testing on the <a href="https://en.wikipedia.org/wiki/Integration_testing">Integration level</a> (i.e. across multiple functions in your program).</p>
+
+<p>So the way I use to handle the command line arguments can be summarized as:
+- Refactor your program to have the arguments parsing as a function
+- Refactor your program to handle the arguments parsing differently when doing unit testing
+- In the unit tests, set the arguments and pass them directly to the functions under test</p>
+
+<p>The following is a demo Python project I built to demonstrate handling command line arguments when using <code>unittest</code>.</p>
+
+<h2 id="myapppy">myapp.py</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">#!/usr/bin/env python
+</span><span class="line">
+</span><span class="line">import sys, os.path, re
+</span><span class="line">import argparse
+</span><span class="line">
+</span><span class="line">class myApp():
+</span><span class="line">
+</span><span class="line">    EXIT_PASS, EXIT_FAIL = 0, 1
+</span><span class="line">
+</span><span class="line">    def __init__(self, mode = 'normal', test_param = None):
+</span><span class="line">        # Validate and process argument options
+</span><span class="line">        self.parse_args(mode, test_param)
+</span><span class="line">
+</span><span class="line">        # Initialize database connection
+</span><span class="line">        self.app_name = self.get_app_name(self.name)
+</span><span class="line">
+</span><span class="line">    def parse_args(self, mode, test_param):
+</span><span class="line">        if mode == 'unittest':
+</span><span class="line">            if test_param is None:
+</span><span class="line">                print("Missing test param")
+</span><span class="line">                self.app_exit('fail')
+</span><span class="line">
+</span><span class="line">            self.name = test_param['app_name']
+</span><span class="line">            self.verbose = test_param['verbose']
+</span><span class="line">        else:
+</span><span class="line">            parser = argparse.ArgumentParser(description='myApp: A demo project')
+</span><span class="line">            parser.add_argument('-n', '--name', help='Name of myApp', required=True)
+</span><span class="line">            parser.add_argument('--verbose', action='store_true', help='Verbose mode with more information printed')
+</span><span class="line">
+</span><span class="line">            args = parser.parse_args()
+</span><span class="line">
+</span><span class="line">            self.name = args.name
+</span><span class="line">            self.verbose = args.verbose
+</span><span class="line">
+</span><span class="line">    def app_exit(self, status):
+</span><span class="line">        if status.lower() == 'pass':
+</span><span class="line">            print("** App Exit Status: PASS \n")
+</span><span class="line">            exit(self.EXIT_PASS)
+</span><span class="line">        elif status.lower() == 'skip':
+</span><span class="line">            print("** App Exit Status: SKIP \n")
+</span><span class="line">            exit(self.EXIT_PASS)
+</span><span class="line">        else:
+</span><span class="line">            print("** App Exit Status: FAIL \n")
+</span><span class="line">            exit(self.EXIT_FAIL)
+</span><span class="line">
+</span><span class="line">    def get_app_name(self):
+</span><span class="line">        app_name = self.name
+</span><span class="line">
+</span><span class="line">        return app_name
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">if __name__ == '__main__':
+</span><span class="line">    app = myApp()
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="testmyapppy">test_myapp.py</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">#!/usr/bin/env python
+</span><span class="line">
+</span><span class="line">import sys, os.path, re
+</span><span class="line">import argparse
+</span><span class="line">import unittest
+</span><span class="line">
+</span><span class="line">bin_path = os.path.dirname(os.path.realpath(__file__))
+</span><span class="line">lib_path = os.path.abspath(bin_path)
+</span><span class="line">sys.path.insert(0, lib_path)
+</span><span class="line">
+</span><span class="line">import myApp
+</span><span class="line">
+</span><span class="line">class myAppTestCase(unittest.TestCase):
+</span><span class="line">
+</span><span class="line">    def setUp(self):
+</span><span class="line">        mode = 'unittest'
+</span><span class="line">        test_param = {
+</span><span class="line">            'name': 'Test App',
+</span><span class="line">            'verbose': True
+</span><span class="line">        }
+</span><span class="line">        self.app = myapp.myApp(mode, test_param)
+</span><span class="line">
+</span><span class="line">    def test_app_name(self):
+</span><span class="line">        self.assertEqual(self.app.get_app_name, 'Test App', 'Wrong App Name')
+</span><span class="line">
+</span><span class="line">    def tearDown(self):
+</span><span class="line">        print('Bye Test')
+</span><span class="line">
+</span><span class="line">if __name__ == '__main__':
+</span><span class="line">    unittest.main()</span></code></pre></td></tr></table></div></figure></notextile></div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1406,121 +1617,9 @@ You can add multiple configurations: each has a list of projects to trigger, a c
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20140531/the-elements-of-linux-screen.html">The Elements of Linux Screen</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-05-31T14:51:54-07:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>2:51 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The Element of Linux Screen</p>
-
-<p><a href="http://aperiodic.net/screen/start">Linux Screen</a> is a tool installed in Linux system with which you can manage multiple interactive shell processes. With Screen, you can have multiple shells in the same window. You can detach shell processes and attach them when you log into the system from other sessions. With Screen, you don’t need worry about losing your half-way tasks when the terminal exit. I use the Screen on a daily basis, and here I write down the commands and usages that are most commonly used in my everyday work.</p>
-
-<h1 id="start-screen">Start Screen</h1>
-
-<p>In a system where screen is installed, type “screen” in a terminal will invoke it.</p>
-
-<p>If screen isn’t installed in your system, Google “install screen in Linux” to find the solution.</p>
-
-<p>Screen can also has a <strong>session name</strong> when get started:</p>
-
-<p><code>screen -S</code></p>
-
-<p>If no session name is specified, screen will use the default Shell name as the session name.</p>
-
-<p>Example:</p>
-
-<pre><code>Num  Name
-0	bash
-1	bash
-</code></pre>
-
-<h1 id="do-some-configurations">Do some configurations</h1>
-<p>Screen uses a configuration file “~/.screenrc”. It could be empty if there is no customized configurations.</p>
-
-<p>You can skip this .screenrc config and use everything set as default by Screen. It will be fine most of the time. However if you use <strong>Emacs</strong>, you might need <strong>change the default command key</strong> used by Screen in the .screenrc file. Here is the why and how.</p>
-
-<p>Command key in Screen means the key input that issues the commands to Screen instead of to Linux shell.
-By default, the Screen command key is <code>Ctrl+A</code> (C-A).</p>
-
-<pre><code>C-A ? : show the key binning used by Screen
-</code></pre>
-
-<p>Emacs also uses C-A as the command key, so you may face the command key conflict when using Emacs in Screen. To make sure the command key work properly when use Screen and Emacs together, change the command key of Screen in .screenrc to be a command that not used by Emacs.</p>
-
-<p>Some examples:</p>
-
-<pre><code>~/.screenrc$
-
-escape ^L^L   #use Ctrl+L
-escape ^^^^   #use Ctrl+^
-escape ^]^]   #use Ctrl+]
-</code></pre>
-
-<p>Note the first “^” means command key, the second “^” means literal insert key.</p>
-
-<p>You can also set the default caption names when you have multiple shells in one screen</p>
-
-<pre><code>~/.screenrc$
-
-caption always "%{= kw}%-w%{= BW}%n %t%{-}%+w %-= @%H - %LD %d %LM - %c"
-</code></pre>
-
-<h1 id="common-screen-commands">Common Screen Commands</h1>
-
-<h2 id="from-linux-shell">From Linux Shell</h2>
-
-<pre><code>screen  	# start a screen
-screen -S   # start a screen with a session name
-screen -ls  # list current screens
-screen -d  	# detach the current screen
-screen -r  	# re-attach the screen that was attached
-</code></pre>
-
-<h2 id="from-screen">From Screen</h2>
-
-<pre><code>C-a " 		# list all interactive shells
-C-a c  		# create a new interactive shell (window)
-C-a k  		# kill the current window
-C-a n (or ) # switch to the next shell window
-C-a p (or )	# switch to the previous shell window
-C-a shift-A  # rename current window
-C-a S  		# split display horizontally
-C-a V  		# split display vertically
-C-a tab		# jump to the next display region
-C-a X  		# remove current region
-C-a Q  		# remove all regions but the current one 
-</code></pre>
-
-<p>When split the windows horizontally, use <code>C-a S</code>.
-Then use <code>C-a tab</code> to move between the horizontally split regions.</p>
-
-<p><code>screen -S SESSIONNAME</code> is good for starting a session with a name, but if you start a session and later decide to name it or rename it, you’ll need enter command mode <code>(C-a :) </code>and then enter the command <code>sessionname SESSIONNAME</code>.</p>
-
-<p>These are all my notes for using Linux Screen. Hopefully it could help you use it better!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/posts/2">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -1531,6 +1630,10 @@ Then use <code>C-a tab</code> to move between the horizontally split regions.</p
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/20160807/python-unittest-handle-command-line-arguments.html">Python Unittest: Handle the Command Line Arguments That Your Program Need</a>
+      </li>
     
       <li class="post">
         <a href="/blog/20160711/start-unit-testing-in-python.html">Start Unit Testing in Python</a>
@@ -1546,10 +1649,6 @@ Then use <code>C-a tab</code> to move between the horizontally split regions.</p
     
       <li class="post">
         <a href="/blog/20160607/ruby-class-and-instance-methods.html">Ruby Class and Instance Methods</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/20160523/jenkins-habits-3.html">高效Jenkins用户的第3个习惯</a>
       </li>
     
   </ul>

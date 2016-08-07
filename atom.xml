@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-07-12T10:33:59-07:00</updated>
+  <updated>2016-08-07T13:11:15-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,197 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Python Unittest: Handle the Command Line Arguments That Your Program Need]]></title>
+    <link href="http://euccas.github.io/blog/20160807/python-unittest-handle-command-line-arguments.html"/>
+    <updated>2016-08-07T11:57:32-07:00</updated>
+    <id>http://euccas.github.io/blog/20160807/python-unittest-handle-command-line-arguments</id>
+    <content type="html"><![CDATA[<p>In the previous post about <a href="http://euccas.github.io/blog/20160711/start-unit-testing-in-python.html">Python Unittest</a>, I wrote about the basic steps needed for setting up unit testing for your Python program with the <code>unittest</code> module. In this post, I’ll discuss about handling the command line parameters that your program need while you’re using Python <code>unittest</code>.</p>
+
+<p>Unit testing is meant for testing basic functionality of the application. The target of <a href="https://en.wikipedia.org/wiki/Unit_testing">Unit testing</a> is expected to be each function of your program. When your program has command line arguments, ideally the unit tests should not accept arguments from the command line because unit tests are supposed to be very specific and not testing on the <a href="https://en.wikipedia.org/wiki/Integration_testing">Integration level</a> (i.e. across multiple functions in your program).</p>
+
+<p>So the way I use to handle the command line arguments can be summarized as:
+- Refactor your program to have the arguments parsing as a function
+- Refactor your program to handle the arguments parsing differently when doing unit testing
+- In the unit tests, set the arguments and pass them directly to the functions under test</p>
+
+<p>The following is a demo Python project I built to demonstrate handling command line arguments when using <code>unittest</code>.</p>
+
+<h2 id="myapppy">myapp.py</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">#!/usr/bin/env python
+</span><span class="line">
+</span><span class="line">import sys, os.path, re
+</span><span class="line">import argparse
+</span><span class="line">
+</span><span class="line">class myApp():
+</span><span class="line">
+</span><span class="line">    EXIT_PASS, EXIT_FAIL = 0, 1
+</span><span class="line">
+</span><span class="line">    def __init__(self, mode = 'normal', test_param = None):
+</span><span class="line">        # Validate and process argument options
+</span><span class="line">        self.parse_args(mode, test_param)
+</span><span class="line">
+</span><span class="line">        # Initialize database connection
+</span><span class="line">        self.app_name = self.get_app_name(self.name)
+</span><span class="line">
+</span><span class="line">    def parse_args(self, mode, test_param):
+</span><span class="line">        if mode == 'unittest':
+</span><span class="line">            if test_param is None:
+</span><span class="line">                print("Missing test param")
+</span><span class="line">                self.app_exit('fail')
+</span><span class="line">
+</span><span class="line">            self.name = test_param['app_name']
+</span><span class="line">            self.verbose = test_param['verbose']
+</span><span class="line">        else:
+</span><span class="line">            parser = argparse.ArgumentParser(description='myApp: A demo project')
+</span><span class="line">            parser.add_argument('-n', '--name', help='Name of myApp', required=True)
+</span><span class="line">            parser.add_argument('--verbose', action='store_true', help='Verbose mode with more information printed')
+</span><span class="line">
+</span><span class="line">            args = parser.parse_args()
+</span><span class="line">
+</span><span class="line">            self.name = args.name
+</span><span class="line">            self.verbose = args.verbose
+</span><span class="line">
+</span><span class="line">    def app_exit(self, status):
+</span><span class="line">        if status.lower() == 'pass':
+</span><span class="line">            print("** App Exit Status: PASS \n")
+</span><span class="line">            exit(self.EXIT_PASS)
+</span><span class="line">        elif status.lower() == 'skip':
+</span><span class="line">            print("** App Exit Status: SKIP \n")
+</span><span class="line">            exit(self.EXIT_PASS)
+</span><span class="line">        else:
+</span><span class="line">            print("** App Exit Status: FAIL \n")
+</span><span class="line">            exit(self.EXIT_FAIL)
+</span><span class="line">
+</span><span class="line">    def get_app_name(self):
+</span><span class="line">        app_name = self.name
+</span><span class="line">
+</span><span class="line">        return app_name
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">if __name__ == '__main__':
+</span><span class="line">    app = myApp()
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="testmyapppy">test_myapp.py</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">#!/usr/bin/env python
+</span><span class="line">
+</span><span class="line">import sys, os.path, re
+</span><span class="line">import argparse
+</span><span class="line">import unittest
+</span><span class="line">
+</span><span class="line">bin_path = os.path.dirname(os.path.realpath(__file__))
+</span><span class="line">lib_path = os.path.abspath(bin_path)
+</span><span class="line">sys.path.insert(0, lib_path)
+</span><span class="line">
+</span><span class="line">import myApp
+</span><span class="line">
+</span><span class="line">class myAppTestCase(unittest.TestCase):
+</span><span class="line">
+</span><span class="line">    def setUp(self):
+</span><span class="line">        mode = 'unittest'
+</span><span class="line">        test_param = {
+</span><span class="line">            'name': 'Test App',
+</span><span class="line">            'verbose': True
+</span><span class="line">        }
+</span><span class="line">        self.app = myapp.myApp(mode, test_param)
+</span><span class="line">
+</span><span class="line">    def test_app_name(self):
+</span><span class="line">        self.assertEqual(self.app.get_app_name, 'Test App', 'Wrong App Name')
+</span><span class="line">
+</span><span class="line">    def tearDown(self):
+</span><span class="line">        print('Bye Test')
+</span><span class="line">
+</span><span class="line">if __name__ == '__main__':
+</span><span class="line">    unittest.main()</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Start Unit Testing in Python]]></title>
