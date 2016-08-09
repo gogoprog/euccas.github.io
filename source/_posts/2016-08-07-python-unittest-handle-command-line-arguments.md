@@ -6,22 +6,21 @@ comments: true
 categories: python unittesting
 ---
 
-In the previous post about [Python Unittest](http://euccas.github.io/blog/20160711/start-unit-testing-in-python.html), I wrote about the basic steps needed for setting up unit testing for your Python program with the ```unittest``` module. In this post, I'll discuss about handling the command line parameters that your program need while you're using Python ```unittest```.
+In the previous post about [Python Unittest](http://euccas.github.io/blog/20160711/start-unit-testing-in-python.html), I wrote about the basic steps needed for setting up unit testing for your Python program with the <code>unittest</code> module. In this post, I'll discuss about handling the command line parameters that your program need while you're using Python <code>unittest</code>.
 
 Unit testing is meant for testing basic functionality of the application. The target of [Unit testing](https://en.wikipedia.org/wiki/Unit_testing) is expected to be each function of your program. When your program has command line arguments, ideally the unit tests should not accept arguments from the command line because unit tests are supposed to be very specific and not testing on the [Integration level](https://en.wikipedia.org/wiki/Integration_testing) (i.e. across multiple functions in your program).
 
-So the way I use to handle the command line arguments can be summarized as:
+So the way I use to handle the command line arguments can be summarized as: 
 
 - Refactor your program to have the arguments parsing as a function
 - Refactor your program to handle the arguments parsing differently when doing unit testing
 - In the unit tests, set the arguments and pass them directly to the functions under test
 
-The following is a demo Python project I built to demonstrate handling command line arguments when using ```unittest```.
-
+The following is a demo Python project I built to demonstrate handling command line arguments when using <code>unittest</code>.
 
 ## myapp.py
 
-```
+<code>
 #!/usr/bin/env python
 
 import sys, os.path, re
@@ -76,11 +75,11 @@ class myApp():
 if __name__ == '__main__':
     app = myApp()
 
-```
+</code>
 
 ## test_myapp.py
 
-```
+<code>
 #!/usr/bin/env python
 
 import sys, os.path, re
@@ -111,4 +110,4 @@ class myAppTestCase(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-```    
+</code>
