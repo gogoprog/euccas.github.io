@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-08-08T20:08:13-07:00</updated>
+  <updated>2016-08-08T20:09:08-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -22,10 +22,13 @@
 
 <p>Unit testing is meant for testing basic functionality of the application. The target of <a href="https://en.wikipedia.org/wiki/Unit_testing">Unit testing</a> is expected to be each function of your program. When your program has command line arguments, ideally the unit tests should not accept arguments from the command line because unit tests are supposed to be very specific and not testing on the <a href="https://en.wikipedia.org/wiki/Integration_testing">Integration level</a> (i.e. across multiple functions in your program).</p>
 
-<p>So the way I use to handle the command line arguments can be summarized as: 
-- Refactor your program to have the arguments parsing as a function
-- Refactor your program to handle the arguments parsing differently when doing unit testing
-- In the unit tests, set the arguments and pass them directly to the functions under test</p>
+<p>So the way I use to handle the command line arguments can be summarized as:</p>
+
+<ul>
+  <li>Refactor your program to have the arguments parsing as a function</li>
+  <li>Refactor your program to handle the arguments parsing differently when doing unit testing</li>
+  <li>In the unit tests, set the arguments and pass them directly to the functions under test</li>
+</ul>
 
 <p>The following is a demo Python project I built to demonstrate handling command line arguments when using <code>unittest</code>.</p>
 
