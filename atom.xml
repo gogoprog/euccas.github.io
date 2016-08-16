@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-08-15T21:31:05-07:00</updated>
+  <updated>2016-08-15T23:11:37-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Case Study - Check on a Commit According to Its Included Files]]></title>
+    <title type="html"><![CDATA[Case Study: Check on a Commit According to Its Included Files]]></title>
     <link href="http://euccas.github.io/blog/20160815/case-study-check-on-a-commit-according-to-the-included-files.html"/>
     <updated>2016-08-15T19:43:21-07:00</updated>
     <id>http://euccas.github.io/blog/20160815/case-study-check-on-a-commit-according-to-the-included-files</id>
