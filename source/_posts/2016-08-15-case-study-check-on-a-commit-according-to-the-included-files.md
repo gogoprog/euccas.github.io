@@ -20,9 +20,9 @@ There are multiple ways to design the configurations, such as:
 
 1. Only list the files or paths requiring the check
 
-* Only list the files or paths do not require the check
+2. Only list the files or paths do not require the check
 
-* List the files or paths requiring the check, and also list the subset files or paths that do not require the check
+3. List the files or paths requiring the check, and also list the subset files or paths that do not require the check
 
 The 3rd way probably is the optimal one because it provides the flexibility for you to put a large scope path as the files need check, and then exclude a subset from the large scope path. For example:
 
