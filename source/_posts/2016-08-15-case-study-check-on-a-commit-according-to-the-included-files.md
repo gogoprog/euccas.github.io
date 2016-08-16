@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Case Study - Check on a commit according to the included files"
+title: "Case Study - Check on a commit according to its included files"
 date: 2016-08-15 19:43:21 -0700
 comments: true
 categories: casestudy
@@ -8,7 +8,7 @@ categories: casestudy
 
 # Problem Description
 
-Suppose one task in your Continuous Integration (CI) pipeline is triggered on every commits to the project repository. Some the files in the repository require passing the check of the CI task, while some other files do not require passing the check. What should the CI task do to perform the needed checking and report the results as pass, fail, or skip?
+Suppose one task in your Continuous Integration (CI) pipeline is triggered on every commit to the project repository. Some the files in the repository require passing the check of the CI task, while some other files do not require passing the check. What should the CI task do to decide if it is needed to perform the needed checking on the commit?
 
 # Design the CI task
 
