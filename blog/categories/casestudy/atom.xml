@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Casestudy | euccas.github.io]]></title>
+  <link href="http://euccas.github.io/blog/categories/casestudy/atom.xml" rel="self"/>
+  <link href="http://euccas.github.io/"/>
+  <updated>2016-08-15T19:45:22-07:00</updated>
+  <id>http://euccas.github.io/</id>
+  <author>
+    <name><![CDATA[euccas]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Case Study - Check on a Commit According to the Included Files]]></title>
+    <link href="http://euccas.github.io/blog/20160815/case-study-check-on-a-commit-according-to-the-included-files.html"/>
+    <updated>2016-08-15T19:43:21-07:00</updated>
+    <id>http://euccas.github.io/blog/20160815/case-study-check-on-a-commit-according-to-the-included-files</id>
+    <content type="html"><![CDATA[<h1 id="problem-description">Problem Description</h1>
+
+<p>Suppose one task in your Continuous Integration (CI) pipeline is triggered on every commits to the project repository. Some the files in the repository require passing the check of the CI task, while some other files do not require passing the check. What should the CI task do to perform the needed checking and report the results as pass, fail, or skip?</p>
+
+<h1 id="design-the-ci-task">Design the CI task</h1>
+
+<p>The CI task need have the ability to analyze the files included in the commit, and decide whether the commit requires passing a check, or not. We need tell the CI task which files require passing a check through configurations.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>There are multiple ways to design the configurations, such as:</p>
+
+<ol>
+  <li>Only list the files or paths requiring the check</li>
+</ol>
+
+<ul>
+  <li>
+    <p>Only list the files or paths do not require the check</p>
+  </li>
+  <li>
+    <p>List the files or paths requiring the check, and also list the subset files or paths that do not require the check</p>
+  </li>
+</ul>
+
+<p>The 3rd way probably is the optimal one because it provides the flexibility for you to put a large scope path as the files need check, and then exclude a subset from the large scope path. For example:</p>
+
+<p>```</p>
+
+<p>check: my_project/dev/</p>
+
+<p>skip: my_project/dev/test/</p>
+
+<p>```</p>
+
+<p>To apply the 3rd method, the configuration of the CI task will include two types: inclusion, and exclusion.</p>
+
+<h2 id="analyze-files-in-the-commit">Analyze files in the commit</h2>
+
+<p>The needed analysis process of the CI task is:</p>
+
+<ul>
+  <li>
+    <p>If none of the files in the commit matches the inclusion in configuration, skip the check</p>
+  </li>
+  <li>
+    <p>If all the files in the commit matching the inclusion in configuration also matching the exclusion in configuration, skip the check</p>
+  </li>
+  <li>
+    <p>In other cases, the check for this commit is needed</p>
+  </li>
+</ul>
+
+<p>The complexity of the given process is <em>O(n<sup>2</sup>)</em>.</p>
+
+<p>A mistake that could happen in the analysis process is when you analyze the exclusion cases, you should do the analysis only on the files that match inclusion configuration, which is a subset of files in the commit.</p>
+
+<h1 id="example-with-the-python">Example with the Python</h1>
+
+<p>Here is the code written in Python for demonstrating the case discussed above.</p>
+
+<ul>
+  <li>
+    <p><code>commit_files</code>: a list containing all the files in the commit</p>
+  </li>
+  <li>
+    <p><code>config</code>: a dictionary containing inclusion and exclusion configurations</p>
+  </li>
+  <li>
+    <p><code>config['include']</code>: a list containing all the files or paths need check</p>
+  </li>
+  <li>
+    <p><code>config['exclude']</code>: a list containing the files or paths do not need check</p>
+  </li>
+</ul>
+
+<p>```</p>
+
+<p>def analyze_commit_files(commit_files, config):</p>
+
+<pre><code>need_check = False    
+
+
+
+# commit need_check is False if:    
+
+# - No files in this commit    
+
+# - Config does not have any 'include' defined    
+
+if commit_files is None or len(commit_files) == 0:
+
+    return need_check
+
+if not 'include' in config or config['include'] is None or len(config['include']) == 0:
+
+    return need_check
+
+# commit need_check is False if:    
+
+# - All file in the commit matches the configured inclusion, OR    
+
+# - All files in the commit that matches the inclusion, also match the configured exclusion    
+
+# First check inclusion    
+
+files_need_check = list()
+
+for cf in commit_files:
+
+    for check_file in config['include']:            
+
+        if re.search(check_file, cf):                            
+
+            files_need_check.append(cf)
+
+
+
+if len(files_need_check) &gt; 0:
+
+    # Check skip_path
+
+    if not 'exclude' in config or config['exclude'] is None or len(config['exclude']) == 0:
+
+        need_check = True
+
+     else:
+
+         for cf in files_need_check:
+
+             for skip_file in config['exclude']:                         
+
+                if not re.search(skip_file, cf):                       
+
+                    need_check = True
+
+                    break
+
+return need_check
+</code></pre>
+
+<p>```</p>
+
+]]></content>
+  </entry>
+  
+</feed>

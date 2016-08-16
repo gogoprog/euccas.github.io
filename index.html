@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="In the previous post about Python Unittest, I wrote about the basic steps needed for setting up unit testing for your Python program with the &hellip;">
+  <meta name="description" content="Problem Description Suppose one task in your Continuous Integration (CI) pipeline is triggered on every commits to the project repository. Some the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,238 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/20160815/case-study-check-on-a-commit-according-to-the-included-files.html">Case Study - Check on a Commit According to the Included Files</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-08-15T19:43:21-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>7:43 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1 id="problem-description">Problem Description</h1>
+
+<p>Suppose one task in your Continuous Integration (CI) pipeline is triggered on every commits to the project repository. Some the files in the repository require passing the check of the CI task, while some other files do not require passing the check. What should the CI task do to perform the needed checking and report the results as pass, fail, or skip?</p>
+
+<h1 id="design-the-ci-task">Design the CI task</h1>
+
+<p>The CI task need have the ability to analyze the files included in the commit, and decide whether the commit requires passing a check, or not. We need tell the CI task which files require passing a check through configurations.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>There are multiple ways to design the configurations, such as:</p>
+
+<ol>
+  <li>Only list the files or paths requiring the check</li>
+</ol>
+
+<ul>
+  <li>
+    <p>Only list the files or paths do not require the check</p>
+  </li>
+  <li>
+    <p>List the files or paths requiring the check, and also list the subset files or paths that do not require the check</p>
+  </li>
+</ul>
+
+<p>The 3rd way probably is the optimal one because it provides the flexibility for you to put a large scope path as the files need check, and then exclude a subset from the large scope path. For example:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">check: my_project/dev/
+</span><span class="line">
+</span><span class="line">skip: my_project/dev/test/
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>To apply the 3rd method, the configuration of the CI task will include two types: inclusion, and exclusion.</p>
+
+<h2 id="analyze-files-in-the-commit">Analyze files in the commit</h2>
+
+<p>The needed analysis process of the CI task is:</p>
+
+<ul>
+  <li>
+    <p>If none of the files in the commit matches the inclusion in configuration, skip the check</p>
+  </li>
+  <li>
+    <p>If all the files in the commit matching the inclusion in configuration also matching the exclusion in configuration, skip the check</p>
+  </li>
+  <li>
+    <p>In other cases, the check for this commit is needed</p>
+  </li>
+</ul>
+
+<p>The complexity of the given process is <em>O(n<sup>2</sup>)</em>.</p>
+
+<p>A mistake that could happen in the analysis process is when you analyze the exclusion cases, you should do the analysis only on the files that match inclusion configuration, which is a subset of files in the commit.</p>
+
+<h1 id="example-with-the-python">Example with the Python</h1>
+
+<p>Here is the code written in Python for demonstrating the case discussed above.</p>
+
+<ul>
+  <li>
+    <p><code>commit_files</code>: a list containing all the files in the commit</p>
+  </li>
+  <li>
+    <p><code>config</code>: a dictionary containing inclusion and exclusion configurations</p>
+  </li>
+  <li>
+    <p><code>config['include']</code>: a list containing all the files or paths need check</p>
+  </li>
+  <li>
+    <p><code>config['exclude']</code>: a list containing the files or paths do not need check</p>
+  </li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">def analyze_commit_files(commit_files, config):
+</span><span class="line">
+</span><span class="line">    need_check = False    
+</span><span class="line">
+</span><span class="line">    
+</span><span class="line">
+</span><span class="line">    # commit need_check is False if:    
+</span><span class="line">
+</span><span class="line">    # - No files in this commit    
+</span><span class="line">
+</span><span class="line">    # - Config does not have any 'include' defined    
+</span><span class="line">
+</span><span class="line">    if commit_files is None or len(commit_files) == 0:
+</span><span class="line">
+</span><span class="line">        return need_check
+</span><span class="line">
+</span><span class="line">    if not 'include' in config or config['include'] is None or len(config['include']) == 0:
+</span><span class="line">
+</span><span class="line">        return need_check
+</span><span class="line">
+</span><span class="line">    # commit need_check is False if:    
+</span><span class="line">
+</span><span class="line">    # - All file in the commit matches the configured inclusion, OR    
+</span><span class="line">
+</span><span class="line">    # - All files in the commit that matches the inclusion, also match the configured exclusion    
+</span><span class="line">
+</span><span class="line">    # First check inclusion    
+</span><span class="line">
+</span><span class="line">    files_need_check = list()
+</span><span class="line">
+</span><span class="line">    for cf in commit_files:
+</span><span class="line">
+</span><span class="line">        for check_file in config['include']:            
+</span><span class="line">
+</span><span class="line">            if re.search(check_file, cf):                            
+</span><span class="line">
+</span><span class="line">                files_need_check.append(cf)
+</span><span class="line">
+</span><span class="line">    
+</span><span class="line">
+</span><span class="line">    if len(files_need_check) &gt; 0:
+</span><span class="line">
+</span><span class="line">        # Check skip_path
+</span><span class="line">
+</span><span class="line">        if not 'exclude' in config or config['exclude'] is None or len(config['exclude']) == 0:
+</span><span class="line">
+</span><span class="line">            need_check = True
+</span><span class="line">
+</span><span class="line">         else:
+</span><span class="line">
+</span><span class="line">             for cf in files_need_check:
+</span><span class="line">
+</span><span class="line">                 for skip_file in config['exclude']:                         
+</span><span class="line">
+</span><span class="line">                    if not re.search(skip_file, cf):                       
+</span><span class="line">
+</span><span class="line">                        need_check = True
+</span><span class="line">
+</span><span class="line">                        break
+</span><span class="line">
+</span><span class="line">    return need_check
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1450,98 +1682,6 @@ You can add multiple configurations: each has a list of projects to trigger, a c
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20151210/jenkins-habits-1.html">高效Jenkins用户的第1个习惯</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-12-10T19:32:57-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>7:32 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
-
-<h1 id="jenkins-master">习惯 1: 保持Jenkins Master的稳定与可恢复</h1>
-
-<h2 id="lts-release">1. 使用LTS Release</h2>
-
-<p>LTS release每12周发布一个新版本</p>
-
-<p>LTS release版本发布都会保证通过自动化的acceptance testing和手工testing matrix</p>
-
-<h2 id="plugins">2.不要急于升级plugins，保持谨慎</h2>
-
-<p>plugin的升级可能包含非常多的变化</p>
-
-<p>不是所有的升级都会保证向前兼容。比如最近Extended Email Plugin的升级，就造成之前的recipient/trigger配置不可用</p>
-
-<p>新功能也许不稳定</p>
-
-<h2 id="section">3. 对升级进行测试</h2>
-
-<p>建议在测试环境中对升级和新的plugin进行测试，之后再进行production环境的升级</p>
-
-<p>建立针对plugin功能的测试</p>
-
-<p>在更大的规模进行测试</p>
-
-<p>大的改变需要至少经过几天的测试</p>
-
-<h2 id="jenkins-configuration">4. 备份Jenkins Configuration</h2>
-
-<p>建议使用<a href="https://wiki.jenkins-ci.org/display/JENKINS/thinBackup">thinBackup plugin</a></p>
-
-<p>可以通过对$JENKINS_HOME做整体备份实现有效的备份，缺点是速度慢和占用较多的存储空间</p>
-
-<p>Jenkins支持仅仅备份config files，而不需要备份所有的builds。参考<a href="https://gist.github.com/abayer/527063a4519f205efc74">这个gist</a>中的代码实现这一功能。</p>
-
-<h2 id="maven-job">5. 避免使用Maven job类型</h2>
-
-<p>Maven plugin中的Mavin job type可能存在一些问题，包括plugin support, lazy loading等等</p>
-
-<p>在大规模应用中可能会引起一些意外的问题，不建议使用</p>
-
-<h2 id="section-1">一些解释</h2>
-
-<h3 id="lts-release-1">什么是LTS Release?</h3>
-
-<p>Jenkins LTS Release: Jenkins Long-Term Support release. 类似于Ubuntu的LTS版本。</p>
-
-<p>具体说明<a href="https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line">在这里</a>。</p>
-
-<h3 id="jenkins-maven-jobs">关于Jenkins Maven Jobs</h3>
-
-<p>在Jenkins中可以通过两种方式build Maven project</p>
-
-<ol>
-  <li>
-    <p>使用一个 free-style project 和 Maven build step</p>
-  </li>
-  <li>
-    <p>使用一个 Maven-style project (配置job type为Mavin job type)
-推荐使用第一种方法，因为第二种方式可能会出现问题</p>
-  </li>
-</ol>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1557,6 +1697,10 @@ You can add multiple configurations: each has a list of projects to trigger, a c
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/20160815/case-study-check-on-a-commit-according-to-the-included-files.html">Case Study - Check on a Commit According to the Included Files</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/20160807/python-unittest-handle-command-line-arguments.html">Python Unittest: Handle the Command Line Arguments</a>
       </li>
     
@@ -1570,10 +1714,6 @@ You can add multiple configurations: each has a list of projects to trigger, a c
     
       <li class="post">
         <a href="/blog/20160610/rails-get-data-without-model.html">Rails: Get Data From PostgreSQL Database Without the Model</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/20160607/ruby-class-and-instance-methods.html">Ruby Class and Instance Methods</a>
       </li>
     
   </ul>
