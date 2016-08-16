@@ -20,8 +20,6 @@ The following is a demo Python project I built to demonstrate handling command l
 
 ## myapp.py
 
-<code>
-
     #!/usr/bin/env python
 
     import sys, os.path, re
@@ -74,11 +72,7 @@ The following is a demo Python project I built to demonstrate handling command l
     if __name__ == '__main__':
         app = myApp()
 
-</code>
-
 ## test_myapp.py
-
-<code>
 
     #!/usr/bin/env python
 
@@ -111,4 +105,3 @@ The following is a demo Python project I built to demonstrate handling command l
     if __name__ == '__main__':
         unittest.main()
 
-</code>
