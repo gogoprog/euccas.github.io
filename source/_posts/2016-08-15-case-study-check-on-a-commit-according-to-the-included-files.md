@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Case Study - Check on a commit according to its included files"
+title: "Case Study: Check on a commit according to its included files"
 date: 2016-08-15 19:43:21 -0700
 comments: true
 categories: casestudy

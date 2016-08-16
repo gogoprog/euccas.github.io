@@ -21,93 +21,94 @@ The following is a demo Python project I built to demonstrate handling command l
 ## myapp.py
 
 <code>
-#!/usr/bin/env python
 
-import sys, os.path, re
-import argparse
+    #!/usr/bin/env python
 
-class myApp():
+    import sys, os.path, re
+    import argparse
 
-    EXIT_PASS, EXIT_FAIL = 0, 1
+    class myApp():
+    
+        EXIT_PASS, EXIT_FAIL = 0, 1
+    
+        def __init__(self, mode = 'normal', test_param = None):
+            # Validate and process argument options
+            self.parse_args(mode, test_param)
+            # Initialize database connection
+            self.app_name = self.get_app_name(self.name)
 
-    def __init__(self, mode = 'normal', test_param = None):
-        # Validate and process argument options
-        self.parse_args(mode, test_param)
+        def parse_args(self, mode, test_param):
+            if mode == 'unittest':
+                if test_param is None:
+                    print("Missing test param")
+                    self.app_exit('fail')
 
-        # Initialize database connection
-        self.app_name = self.get_app_name(self.name)
+                self.name = test_param['app_name']
+                self.verbose = test_param['verbose']
+            else:
+                parser = argparse.ArgumentParser(description='myApp: A demo project')
+                parser.add_argument('-n', '--name', help='Name of myApp', required=True)
+                parser.add_argument('--verbose', action='store_true', help='Verbose mode with more information printed')
 
-    def parse_args(self, mode, test_param):
-        if mode == 'unittest':
-            if test_param is None:
-                print("Missing test param")
-                self.app_exit('fail')
+                args = parser.parse_args()
 
-            self.name = test_param['app_name']
-            self.verbose = test_param['verbose']
-        else:
-            parser = argparse.ArgumentParser(description='myApp: A demo project')
-            parser.add_argument('-n', '--name', help='Name of myApp', required=True)
-            parser.add_argument('--verbose', action='store_true', help='Verbose mode with more information printed')
+                self.name = args.name
+                self.verbose = args.verbose
 
-            args = parser.parse_args()
+        def app_exit(self, status):
+            if status.lower() == 'pass':
+                print("** App Exit Status: PASS \n")
+                exit(self.EXIT_PASS)
+            elif status.lower() == 'skip':
+                print("** App Exit Status: SKIP \n")
+                exit(self.EXIT_PASS)
+            else:
+                print("** App Exit Status: FAIL \n")
+                exit(self.EXIT_FAIL)
 
-            self.name = args.name
-            self.verbose = args.verbose
+        def get_app_name(self):
+            app_name = self.name
 
-    def app_exit(self, status):
-        if status.lower() == 'pass':
-            print("** App Exit Status: PASS \n")
-            exit(self.EXIT_PASS)
-        elif status.lower() == 'skip':
-            print("** App Exit Status: SKIP \n")
-            exit(self.EXIT_PASS)
-        else:
-            print("** App Exit Status: FAIL \n")
-            exit(self.EXIT_FAIL)
+            return app_name
 
-    def get_app_name(self):
-        app_name = self.name
-
-        return app_name
-
-
-if __name__ == '__main__':
-    app = myApp()
+    if __name__ == '__main__':
+        app = myApp()
 
 </code>
 
 ## test_myapp.py
 
 <code>
-#!/usr/bin/env python
 
-import sys, os.path, re
-import argparse
-import unittest
+    #!/usr/bin/env python
 
-bin_path = os.path.dirname(os.path.realpath(__file__))
-lib_path = os.path.abspath(bin_path)
-sys.path.insert(0, lib_path)
+    import sys, os.path, re
+    import argparse
+    import unittest
 
-import myApp
+    bin_path = os.path.dirname(os.path.realpath(__file__))
+    lib_path = os.path.abspath(bin_path)
+    sys.path.insert(0, lib_path)
 
-class myAppTestCase(unittest.TestCase):
+    import myApp
 
-    def setUp(self):
-        mode = 'unittest'
-        test_param = {
-            'name': 'Test App',
-            'verbose': True
-        }
-        self.app = myapp.myApp(mode, test_param)
+    class myAppTestCase(unittest.TestCase):
 
-    def test_app_name(self):
-        self.assertEqual(self.app.get_app_name, 'Test App', 'Wrong App Name')
+        def setUp(self):
+            mode = 'unittest'
+            test_param = {
+                'name': 'Test App',
+                'verbose': True
+            }
+            self.app = myapp.myApp(mode, test_param)
 
-    def tearDown(self):
-        print('Bye Test')
+        def test_app_name(self):
+            self.assertEqual(self.app.get_app_name, 'Test App', 'Wrong App Name')
 
-if __name__ == '__main__':
-    unittest.main()
+        def tearDown(self):
+            print('Bye Test')
+
+    if __name__ == '__main__':
+        unittest.main()
+
 </code>
