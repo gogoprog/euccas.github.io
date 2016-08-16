@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-08-15T19:47:36-07:00</updated>
+  <updated>2016-08-15T21:31:05-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -31,17 +31,16 @@
 <p>There are multiple ways to design the configurations, such as:</p>
 
 <ol>
-  <li>Only list the files or paths requiring the check</li>
-</ol>
-
-<ul>
+  <li>
+    <p>Only list the files or paths requiring the check</p>
+  </li>
   <li>
     <p>Only list the files or paths do not require the check</p>
   </li>
   <li>
     <p>List the files or paths requiring the check, and also list the subset files or paths that do not require the check</p>
   </li>
-</ul>
+</ol>
 
 <p>The 3rd way probably is the optimal one because it provides the flexibility for you to put a large scope path as the files need check, and then exclude a subset from the large scope path. For example:</p>
 
