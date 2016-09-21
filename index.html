@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="In Python, we sometimes see method names with __ around, such as the __init__ method that every Class has. These methods are “dunder” methods which &hellip;">
+  <meta name="description" content="In Python, we sometimes see method names with __ around, such as the __init__ method that every Class has. These methods are “dunder” methods (“ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -88,7 +88,7 @@
   </header>
 
 
-  <div class="entry-content"><p>In Python, we sometimes see method names with <code>__</code> around, such as the <code>__init__</code> method that every Class has. These methods are “dunder” methods which stands for “double under” or “double underscore”. Dunder methods in Python are used for operator overloading and customizing behavior of other functions.</p>
+  <div class="entry-content"><p>In Python, we sometimes see method names with <code>__</code> around, such as the <code>__init__</code> method that every Class has. These methods are “dunder” methods (“dunder” stands for “double under” or “double underscore”). Dunder methods in Python are used for operator overloading and customizing behavior of other functions.</p>
 
 <p>Sometimes dunder methods are also called “magic methods” because they are usually called by Python under the hood. But they are not really magical, you can define dunder methods to customize the behavior of your own classes.</p>
 
@@ -102,20 +102,24 @@
   <li><code>__repr__</code> method: is called when converting the object to a developer-readable string</li>
 </ul>
 
-<p><code></code></p>
-
-<pre><code>class Flower:
-    def __init__(self, color='red'):
-	    self.color = color
-
-	def __str__(self):
-		return "Flower in color {color}".format(color=self.color)
-
-	def __repr__(self):
-	return "Flower(color={})".format(self.color)
-</code></pre>
-
-<p>&lt;/code&gt;</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class Flower:
+</span><span class="line">    def __init__(self, color='red'):
+</span><span class="line">	    self.color = color
+</span><span class="line">
+</span><span class="line">	def __str__(self):
+</span><span class="line">		return "Flower in color {color}".format(color=self.color)
+</span><span class="line">
+</span><span class="line">	def __repr__(self):
+</span><span class="line">	return "Flower(color={})".format(self.color)</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>In Python, many dunder methods are implemented and used for operations such as arithmetic operators, comparison operators, truthiness, etc. The following are a few examples:</p>
 
@@ -157,35 +161,41 @@
 
 <p>Example:</p>
 
-<p><code></code></p>
-
-<pre><code>&gt;&gt;&gt; is_callable(sorted)
-True
-&gt;&gt;&gt; is_callable(str)
-True
-&gt;&gt;&gt; is_callable(4)
-False
-</code></pre>
-
-<p>&lt;/code&gt;</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">&gt;&gt;&gt; is_callable(sorted)
+</span><span class="line">True
+</span><span class="line">&gt;&gt;&gt; is_callable(str)
+</span><span class="line">True
+</span><span class="line">&gt;&gt;&gt; is_callable(4)
+</span><span class="line">False</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Source Code:</p>
 
-<p><code></code></p>
-
-<pre><code>def is_callable(obj):
-
-try:
-	obj.__call__
-	# hasattr(str, '__call__')
-	# getattr(str, '__call__')
-except AttributeError:
-	return False
-else:
-	return True
-</code></pre>
-
-<p>&lt;/code&gt;</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">def is_callable(obj):
+</span><span class="line">
+</span><span class="line">try:
+</span><span class="line">	obj.__call__
+</span><span class="line">	# hasattr(str, '__call__')
+</span><span class="line">	# getattr(str, '__call__')
+</span><span class="line">except AttributeError:
+</span><span class="line">	return False
+</span><span class="line">else:
+</span><span class="line">	return True</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h2 id="example-2-class-easydict">Example 2: Class EasyDict</h2>
 
@@ -193,38 +203,46 @@ else:
 
 <p>Example:</p>
 
-<p><code></code></p>
-
-<pre><code>&gt;&gt;&gt; a = EasyDict()
-&gt;&gt;&gt; a['shoe'] = "blue"
-&gt;&gt;&gt; a.shoe
-"blue"
-&gt;&gt;&gt; a['shoe']
-"blue"
-&gt;&gt;&gt; a.car = "green"
-&gt;&gt;&gt; a['car']
-"green"
-</code></pre>
-
-<p>&lt;/code&gt;</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">&gt;&gt;&gt; a = EasyDict()
+</span><span class="line">&gt;&gt;&gt; a['shoe'] = "blue"
+</span><span class="line">&gt;&gt;&gt; a.shoe
+</span><span class="line">"blue"
+</span><span class="line">&gt;&gt;&gt; a['shoe']
+</span><span class="line">"blue"
+</span><span class="line">&gt;&gt;&gt; a.car = "green"
+</span><span class="line">&gt;&gt;&gt; a['car']
+</span><span class="line">"green"</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Source Code:</p>
 
-<p><code></code></p>
-
-<pre><code>class EasyDict:
-	def __init__(self):
-    	pass
-</code></pre>
-
-   		def <strong>getitem</strong>(self, item):
-<pre><code>    	return self.__dict__[item]
-
-	def __setitem__(self, key, value):
-    	self.__dict__[key] = value
-</code></pre>
-
-<p>&lt;/code&gt;</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class EasyDict:
+</span><span class="line">	def __init__(self):
+</span><span class="line">    	pass
+</span><span class="line">
+</span><span class="line">   		def __getitem__(self, item):
+</span><span class="line">    	return self.__dict__[item]
+</span><span class="line">
+</span><span class="line">	def __setitem__(self, key, value):
+</span><span class="line">    	self.__dict__[key] = value
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 </div>
   

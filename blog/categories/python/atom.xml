@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-09-20T20:57:10-07:00</updated>
+  <updated>2016-09-20T21:00:57-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -18,7 +18,7 @@
     <link href="http://euccas.github.io/blog/20160920/python-dunder-methods.html"/>
     <updated>2016-09-20T21:28:51-07:00</updated>
     <id>http://euccas.github.io/blog/20160920/python-dunder-methods</id>
-    <content type="html"><![CDATA[<p>In Python, we sometimes see method names with <code>__</code> around, such as the <code>__init__</code> method that every Class has. These methods are “dunder” methods which stands for “double under” or “double underscore”. Dunder methods in Python are used for operator overloading and customizing behavior of other functions.</p>
+    <content type="html"><![CDATA[<p>In Python, we sometimes see method names with <code>__</code> around, such as the <code>__init__</code> method that every Class has. These methods are “dunder” methods (“dunder” stands for “double under” or “double underscore”). Dunder methods in Python are used for operator overloading and customizing behavior of other functions.</p>
 
 <p>Sometimes dunder methods are also called “magic methods” because they are usually called by Python under the hood. But they are not really magical, you can define dunder methods to customize the behavior of your own classes.</p>
 
@@ -32,20 +32,17 @@
   <li><code>__repr__</code> method: is called when converting the object to a developer-readable string</li>
 </ul>
 
-<p><code></code></p>
+<p>```
+    class Flower:
+	    def <strong>init</strong>(self, color=’red’):
+		    self.color = color</p>
 
-<pre><code>class Flower:
-    def __init__(self, color='red'):
-	    self.color = color
-
-	def __str__(self):
+<pre><code>	def __str__(self):
 		return "Flower in color {color}".format(color=self.color)
 
 	def __repr__(self):
-	return "Flower(color={})".format(self.color)
+	return "Flower(color={})".format(self.color) ```
 </code></pre>
-
-<p>&lt;/code&gt;</p>
 
 <p>In Python, many dunder methods are implemented and used for operations such as arithmetic operators, comparison operators, truthiness, etc. The following are a few examples:</p>
 
@@ -87,35 +84,29 @@
 
 <p>Example:</p>
 
-<p><code></code></p>
-
-<pre><code>&gt;&gt;&gt; is_callable(sorted)
-True
-&gt;&gt;&gt; is_callable(str)
-True
-&gt;&gt;&gt; is_callable(4)
-False
-</code></pre>
-
-<p>&lt;/code&gt;</p>
+<p><code>
+    &gt;&gt;&gt; is_callable(sorted)
+    True
+    &gt;&gt;&gt; is_callable(str)
+    True
+    &gt;&gt;&gt; is_callable(4)
+    False
+</code></p>
 
 <p>Source Code:</p>
 
-<p><code></code></p>
+<p>```
+    def is_callable(obj):</p>
 
-<pre><code>def is_callable(obj):
-
-try:
+<pre><code>try:
 	obj.__call__
 	# hasattr(str, '__call__')
 	# getattr(str, '__call__')
 except AttributeError:
 	return False
 else:
-	return True
+	return True ```
 </code></pre>
-
-<p>&lt;/code&gt;</p>
 
 <h2 id="example-2-class-easydict">Example 2: Class EasyDict</h2>
 
@@ -123,29 +114,24 @@ else:
 
 <p>Example:</p>
 
-<p><code></code></p>
-
-<pre><code>&gt;&gt;&gt; a = EasyDict()
-&gt;&gt;&gt; a['shoe'] = "blue"
-&gt;&gt;&gt; a.shoe
-"blue"
-&gt;&gt;&gt; a['shoe']
-"blue"
-&gt;&gt;&gt; a.car = "green"
-&gt;&gt;&gt; a['car']
-"green"
-</code></pre>
-
-<p>&lt;/code&gt;</p>
+<p><code>
+	&gt;&gt;&gt; a = EasyDict()
+	&gt;&gt;&gt; a['shoe'] = "blue"
+	&gt;&gt;&gt; a.shoe
+	"blue"
+	&gt;&gt;&gt; a['shoe']
+	"blue"
+	&gt;&gt;&gt; a.car = "green"
+	&gt;&gt;&gt; a['car']
+	"green"
+</code></p>
 
 <p>Source Code:</p>
 
-<p><code></code></p>
-
-<pre><code>class EasyDict:
-	def __init__(self):
-    	pass
-</code></pre>
+<p>```
+	class EasyDict:
+    	def <strong>init</strong>(self):
+        	pass</p>
 
    		def <strong>getitem</strong>(self, item):
 <pre><code>    	return self.__dict__[item]
@@ -154,7 +140,7 @@ else:
     	self.__dict__[key] = value
 </code></pre>
 
-<p>&lt;/code&gt;</p>
+<p>```</p>
 
 ]]></content>
   </entry>
