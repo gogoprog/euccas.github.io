@@ -6,7 +6,7 @@ comments: true
 categories: python
 ---
 
-In Python, we sometimes see method names with ```__``` around, such as the ```__init__``` method that every Class has. These methods are "dunder" methods which stands for "double under" or "double underscore". Dunder methods in Python are used for operator overloading and customizing behavior of other functions.
+In Python, we sometimes see method names with ```__``` around, such as the ```__init__``` method that every Class has. These methods are "dunder" methods ("dunder" stands for "double under" or "double underscore"). Dunder methods in Python are used for operator overloading and customizing behavior of other functions.
 
 Sometimes dunder methods are also called "magic methods" because they are usually called by Python under the hood. But they are not really magical, you can define dunder methods to customize the behavior of your own classes.
 
@@ -18,9 +18,7 @@ In the following example, we can see three dunder methods:
 - ```__str__``` method: is called when converting the object to a human-readable string
 - ```__repr__``` method: is called when converting the object to a developer-readable string
 
-
-<code>
-
+```
     class Flower:
 	    def __init__(self, color='red'):
 		    self.color = color
@@ -30,9 +28,7 @@ In the following example, we can see three dunder methods:
 
 		def __repr__(self):
 		return "Flower(color={})".format(self.color)
-
-</code>
-
+```
 
 In Python, many dunder methods are implemented and used for operations such as arithmetic operators, comparison operators, truthiness, etc. The following are a few examples:
 
@@ -68,21 +64,18 @@ Make an ```is_callable``` function to check if an object type is callable.
 
 Example:
 
-<code>
-
+```
     >>> is_callable(sorted)
     True
     >>> is_callable(str)
     True
     >>> is_callable(4)
     False
-
-</code>
+```
 
 Source Code:
 
-<code>
-
+```
     def is_callable(obj):
     
     try:
@@ -93,8 +86,7 @@ Source Code:
     	return False
     else:
     	return True
-
-</code>
+```
 
 ## Example 2: Class EasyDict
 
@@ -102,8 +94,7 @@ Make an ```EasyDict``` class that can be used with both attribute and item synta
 
 Example:
 
-<code>
-
+```
 	>>> a = EasyDict()
 	>>> a['shoe'] = "blue"
 	>>> a.shoe
@@ -113,13 +104,11 @@ Example:
 	>>> a.car = "green"
 	>>> a['car']
 	"green"
-
-</code>
+```
 
 Source Code:
 
-<code>
-
+```
 	class EasyDict:
     	def __init__(self):
         	pass
@@ -130,7 +119,7 @@ Source Code:
     	def __setitem__(self, key, value):
         	self.__dict__[key] = value
 
-</code>
+```
 
 
 
