@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="Problem Description Suppose one task in your Continuous Integration (CI) pipeline is triggered on every commit to the project repository. Some the &hellip;">
+  <meta name="description" content="In Python, we sometimes see method names with __ around, such as the __init__ method that every Class has. These methods are “dunder” methods which &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,264 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/20160920/python-dunder-methods.html">Dunder Methods in Python</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-09-20T21:28:51-07:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:28 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In Python, we sometimes see method names with <code>__</code> around, such as the <code>__init__</code> method that every Class has. These methods are “dunder” methods which stands for “double under” or “double underscore”. Dunder methods in Python are used for operator overloading and customizing behavior of other functions.</p>
+
+<p>Sometimes dunder methods are also called “magic methods” because they are usually called by Python under the hood. But they are not really magical, you can define dunder methods to customize the behavior of your own classes.</p>
+
+<h1 id="examples-of-dunder-methods">Examples of Dunder Methods</h1>
+
+<p>In the following example, we can see three dunder methods:</p>
+
+<ul>
+  <li><code>__init__</code> method: is called to initialize the class</li>
+  <li><code>__str__</code> method: is called when converting the object to a human-readable string</li>
+  <li><code>__repr__</code> method: is called when converting the object to a developer-readable string</li>
+</ul>
+
+<p><code></code></p>
+
+<pre><code>class Flower:
+    def __init__(self, color='red'):
+	    self.color = color
+
+	def __str__(self):
+		return "Flower in color {color}".format(color=self.color)
+
+	def __repr__(self):
+	return "Flower(color={})".format(self.color)
+</code></pre>
+
+<p>&lt;/code&gt;</p>
+
+<p>In Python, many dunder methods are implemented and used for operations such as arithmetic operators, comparison operators, truthiness, etc. The following are a few examples:</p>
+
+<p><strong>Arithmetic Operators</strong></p>
+
+<ul>
+  <li><code>+</code> : <code>__add__</code></li>
+  <li><code>-</code> : <code>__sub__</code></li>
+  <li><code>*</code> : <code>__mul__</code></li>
+  <li><code>/</code> : <code>__div__</code></li>
+</ul>
+
+<p><strong>Comparison Operators</strong></p>
+
+<ul>
+  <li><code>x &lt; y</code> : <code>x.__lt__(y)</code></li>
+  <li><code>x &lt;= y</code> : <code>x.__le__(y)</code></li>
+  <li><code>x &gt; y</code> : <code>x.__gt__(y)</code></li>
+  <li><code>x &gt;= y</code> : <code>x.__ge__(y)</code></li>
+  <li><code>x == y</code> : <code>x.__eq__(y)</code></li>
+  <li><code>x != y</code> : <code>x.__ge__(y)</code></li>
+</ul>
+
+<p>If you know about Bash shell, you may notice the name of these dunder methods are very similar to the operators in Bash.</p>
+
+<p><strong>Truthiness</strong></p>
+
+<ul>
+  <li><code>bool(x)</code> : <code>x.__bool__()</code></li>
+</ul>
+
+<h1 id="use-dunder-methods-to-customize-class-behaviors">Use Dunder Methods to Customize Class Behaviors</h1>
+
+<p>Dunder methods provide a way for our class to customize operators and other built-in Python behavior for our objects. In the following two examples, I’ll use dunder methods to overload arithmetic operators, and implement a dictionary that can be used with both attribute and item syntax.</p>
+
+<h2 id="example-1-overload-arithmetic-operators">Example 1: Overload Arithmetic Operators</h2>
+
+<p>Make an <code>is_callable</code> function to check if an object type is callable.</p>
+
+<p>Example:</p>
+
+<p><code></code></p>
+
+<pre><code>&gt;&gt;&gt; is_callable(sorted)
+True
+&gt;&gt;&gt; is_callable(str)
+True
+&gt;&gt;&gt; is_callable(4)
+False
+</code></pre>
+
+<p>&lt;/code&gt;</p>
+
+<p>Source Code:</p>
+
+<p><code></code></p>
+
+<pre><code>def is_callable(obj):
+
+try:
+	obj.__call__
+	# hasattr(str, '__call__')
+	# getattr(str, '__call__')
+except AttributeError:
+	return False
+else:
+	return True
+</code></pre>
+
+<p>&lt;/code&gt;</p>
+
+<h2 id="example-2-class-easydict">Example 2: Class EasyDict</h2>
+
+<p>Make an <code>EasyDict</code> class that can be used with both attribute and item syntax.</p>
+
+<p>Example:</p>
+
+<p><code></code></p>
+
+<pre><code>&gt;&gt;&gt; a = EasyDict()
+&gt;&gt;&gt; a['shoe'] = "blue"
+&gt;&gt;&gt; a.shoe
+"blue"
+&gt;&gt;&gt; a['shoe']
+"blue"
+&gt;&gt;&gt; a.car = "green"
+&gt;&gt;&gt; a['car']
+"green"
+</code></pre>
+
+<p>&lt;/code&gt;</p>
+
+<p>Source Code:</p>
+
+<p><code></code></p>
+
+<pre><code>class EasyDict:
+	def __init__(self):
+    	pass
+</code></pre>
+
+   		def <strong>getitem</strong>(self, item):
+<pre><code>    	return self.__dict__[item]
+
+	def __setitem__(self, key, value):
+    	self.__dict__[key] = value
+</code></pre>
+
+<p>&lt;/code&gt;</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/20160831/jenkins-user-habits-4.html">高效Jenkins用户的第4个习惯</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-08-31T21:15:38-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2016</span></span> <span class='time'>9:15 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
+
+<h1 id="section">习惯 2: 大而化小</h1>
+
+<h2 id="masters">1. 使用多个Masters</h2>
+
+<p>在存在多个project与team的情况下，多个master可以使jenkins jobs的管理更加敏捷和可控</p>
+
+<p>建议根据team, function, access(访问权限) 来划分master</p>
+
+<p>多个master使安装和升级plugin时需要的重启过程变得容易——不需要重启的master不会受到影响</p>
+
+<p>提高系统的稳定性：多个master, 每个master上分配较少数量的jobs，可以使整个系统更为稳定，减少遇到边界情况bug的几率</p>
+
+<h2 id="jobs">2. 分解jobs</h2>
+
+<p>建议在Jenkins中使用模块化和重用，这一点的好处类似于在编程中使用模块化和重用</p>
+
+<p>多job的Build可以方便地在不同的project, release等等中重用</p>
+
+<p>分解job可以避免长时间运行的job在最后阶段出错，导致整个job需要被重新运行：多job的Build可以实现从其中任何一个子job处重新执行</p>
+
+<h2 id="jobs-1">3. 利用工具帮助分解jobs</h2>
+
+<p>混合使用Parameterized trigger, Conditional Build Step, Copy Artifact, Promoted Builds：有效，但是配置困难</p>
+
+<p>Build Pipeline plugin：可以把workflow可视化，集成手工步骤</p>
+
+<p>Workflow plugin: 用DSL定义build steps之间的关系</p>
+
+<p>Jenkins中有许多plugin和有关工具可以实现job分解</p>
+
+<h3 id="jobjenkins-plugins">有关Job分解的Jenkins Plugins</h3>
+
+<h4 id="build-pipeline-pluginhttpswikijenkins-ciorgdisplayjenkinsbuildpipelineplugin"><a href="https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin">Build Pipeline Plugin</a></h4>
+<blockquote>
+  <p>This plugin provides a Build Pipeline View of upstream and downstream connected jobs that typically form a build pipeline.  In addition, it offers the ability to define manual triggers for jobs that require intervention prior to execution, e.g. an approval process outside of Jenkins.</p>
+</blockquote>
+
+<h4 id="workflow-pluginhttpsgithubcomjenkinsciworkflow-pluginblobmasterreadmemdintroduction"><a href="https://github.com/jenkinsci/workflow-plugin/blob/master/README.md#introduction">Workflow plugin</a></h4>
+<blockquote>
+  <p>Building continuous delivery pipelines and similarly complex tasks in Jenkins using freestyle projects and traditional plugins can be awkward. You need to mix Parameterized Trigger, Copy Artifact, Promoted Builds, Conditional Build Step, and more just to express what should be a simple script. The Workflow plugin suite attempts to make it possible to directly write that script, what people often call a workflow (sometimes abbreviated flow), while integrating with Jenkins features like slaves and publishers.</p>
+</blockquote>
+
+<h4 id="parameterized-trigger-pluginhttpswikijenkins-ciorgdisplayjenkinsparameterizedtriggerplugin"><a href="https://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Trigger+Plugin">Parameterized Trigger plugin</a></h4>
+<blockquote>
+  <p>This plugin lets you trigger new builds when your build has completed, with various ways of specifying parameters for the new build.
+You can add multiple configurations: each has a list of projects to trigger, a condition for when to trigger them (based on the result of the current build), and a parameters section.</p>
+</blockquote>
+
+<h4 id="conditional-build-step-pluginhttpswikijenkins-ciorgdisplayjenkinsconditionalbuildstepplugin"><a href="https://wiki.jenkins-ci.org/display/JENKINS/Conditional+BuildStep+Plugin">Conditional Build Step plugin</a></h4>
+<blockquote>
+  <p>A buildstep wrapping any number of other buildsteps, controlling their execution based on a defined condition.</p>
+</blockquote>
+
+<h4 id="copy-artifact-pluginhttpswikijenkins-ciorgdisplayjenkinscopyartifactplugin"><a href="https://wiki.jenkins-ci.org/display/JENKINS/Copy+Artifact+Plugin">Copy Artifact plugin</a></h4>
+<blockquote>
+  <p>Adds a build step to copy artifacts from another project. The plugin lets you specify which build to copy artifacts from (e.g. the last successful/stable build, by build number, or by a build parameter). You can also control the copying process by filtering the files being copied, specifying a destination directory within the target project, etc. Click the help icon on each field to learn the details, such as selecting Maven or multiconfiguration projects or using build parameters. You can also copy from the workspace of the latest completed build of the source project, instead of its artifacts. All artifacts copied are automatically fingerprinted for you.</p>
+</blockquote>
+
+<h4 id="promoted-builds-pluginhttpswikijenkins-ciorgdisplayjenkinspromotedbuildsplugin"><a href="https://wiki.jenkins-ci.org/display/JENKINS/Promoted+Builds+Plugin">Promoted Builds plugin</a></h4>
+<blockquote>
+  <p>This plugin allows you to distinguish good builds from bad builds by introducing the notion of ‘promotion’.Put simply, a promoted build is a successful build that passed additional criteria (such as more comprehensive tests that are set up as downstream jobs.) The typical situation in which you use promotion is where you have multiple ‘test’ jobs hooked up as downstream jobs of a ‘build’ job. You’ll then configure the build job so that the build gets promoted when all the test jobs passed successfully. This allows you to keep the build job run fast (so that developers get faster feedback when a build fails), and you can still distinguish builds that are good from builds that compiled but had runtime problems.</p>
+</blockquote>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1281,7 +1539,7 @@ if __name__ == '__main__':
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/20160523/jenkins-habits-3.html">高效Jenkins用户的第3个习惯</a></h1>
+      <h1 class="entry-title"><a href="/blog/20160523/jenkins-user-habits-3.html">高效Jenkins用户的第3个习惯</a></h1>
     
     
       <p class="meta">
@@ -1547,135 +1805,6 @@ if __name__ == '__main__':
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20160304/use-trello-for-managing-my-projects.html">用Trello做项目管理初体验</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-03-04T21:09:07-08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:09 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>大概从18个月前开始，我开始习惯使用<a href="https://trello.com" target="_blank">Trello</a>作为project management and tracking的主要工具，也逐渐体会到Trello的特点和便利之处。总结起来，“不得不使用Trello”的理由有下面一些：</p>
-
-<ul>
-  <li>作为项目管理：无形之中的敏捷化</li>
-  <li>作为问题记录：即使数目庞多的问题也能够清晰总览，便于分类，每一个问题同时可以有自己的详细记录</li>
-  <li>自带的颜色标签和卡片aging效果非常方便呈现了项目总体和每一个task的状态</li>
-  <li>一些插件提供了更强大的项目管理功能，比如burndown，甘特图等等</li>
-  <li>最重要的特点也许是团队协同工作的便利：team members, assign task, comments</li>
-</ul>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20151215/jenkins-habits-2.html">高效Jenkins用户的第2个习惯</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-12-15T20:15:38-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:15 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
-
-<h1 id="section">习惯 2: 大而化小</h1>
-
-<h2 id="masters">1. 使用多个Masters</h2>
-
-<p>在存在多个project与team的情况下，多个master可以使jenkins jobs的管理更加敏捷和可控</p>
-
-<p>建议根据team, function, access(访问权限) 来划分master</p>
-
-<p>多个master使安装和升级plugin时需要的重启过程变得容易——不需要重启的master不会受到影响</p>
-
-<p>提高系统的稳定性：多个master, 每个master上分配较少数量的jobs，可以使整个系统更为稳定，减少遇到边界情况bug的几率</p>
-
-<h2 id="jobs">2. 分解jobs</h2>
-
-<p>建议在Jenkins中使用模块化和重用，这一点的好处类似于在编程中使用模块化和重用</p>
-
-<p>多job的Build可以方便地在不同的project, release等等中重用</p>
-
-<p>分解job可以避免长时间运行的job在最后阶段出错，导致整个job需要被重新运行：多job的Build可以实现从其中任何一个子job处重新执行</p>
-
-<h2 id="jobs-1">3. 利用工具帮助分解jobs</h2>
-
-<p>混合使用Parameterized trigger, Conditional Build Step, Copy Artifact, Promoted Builds：有效，但是配置困难</p>
-
-<p>Build Pipeline plugin：可以把workflow可视化，集成手工步骤</p>
-
-<p>Workflow plugin: 用DSL定义build steps之间的关系</p>
-
-<p>Jenkins中有许多plugin和有关工具可以实现job分解</p>
-
-<h3 id="jobjenkins-plugins">有关Job分解的Jenkins Plugins</h3>
-
-<h4 id="build-pipeline-pluginhttpswikijenkins-ciorgdisplayjenkinsbuildpipelineplugin"><a href="https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin">Build Pipeline Plugin</a></h4>
-<blockquote>
-  <p>This plugin provides a Build Pipeline View of upstream and downstream connected jobs that typically form a build pipeline.  In addition, it offers the ability to define manual triggers for jobs that require intervention prior to execution, e.g. an approval process outside of Jenkins.</p>
-</blockquote>
-
-<h4 id="workflow-pluginhttpsgithubcomjenkinsciworkflow-pluginblobmasterreadmemdintroduction"><a href="https://github.com/jenkinsci/workflow-plugin/blob/master/README.md#introduction">Workflow plugin</a></h4>
-<blockquote>
-  <p>Building continuous delivery pipelines and similarly complex tasks in Jenkins using freestyle projects and traditional plugins can be awkward. You need to mix Parameterized Trigger, Copy Artifact, Promoted Builds, Conditional Build Step, and more just to express what should be a simple script. The Workflow plugin suite attempts to make it possible to directly write that script, what people often call a workflow (sometimes abbreviated flow), while integrating with Jenkins features like slaves and publishers.</p>
-</blockquote>
-
-<h4 id="parameterized-trigger-pluginhttpswikijenkins-ciorgdisplayjenkinsparameterizedtriggerplugin"><a href="https://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Trigger+Plugin">Parameterized Trigger plugin</a></h4>
-<blockquote>
-  <p>This plugin lets you trigger new builds when your build has completed, with various ways of specifying parameters for the new build.
-You can add multiple configurations: each has a list of projects to trigger, a condition for when to trigger them (based on the result of the current build), and a parameters section.</p>
-</blockquote>
-
-<h4 id="conditional-build-step-pluginhttpswikijenkins-ciorgdisplayjenkinsconditionalbuildstepplugin"><a href="https://wiki.jenkins-ci.org/display/JENKINS/Conditional+BuildStep+Plugin">Conditional Build Step plugin</a></h4>
-<blockquote>
-  <p>A buildstep wrapping any number of other buildsteps, controlling their execution based on a defined condition.</p>
-</blockquote>
-
-<h4 id="copy-artifact-pluginhttpswikijenkins-ciorgdisplayjenkinscopyartifactplugin"><a href="https://wiki.jenkins-ci.org/display/JENKINS/Copy+Artifact+Plugin">Copy Artifact plugin</a></h4>
-<blockquote>
-  <p>Adds a build step to copy artifacts from another project. The plugin lets you specify which build to copy artifacts from (e.g. the last successful/stable build, by build number, or by a build parameter). You can also control the copying process by filtering the files being copied, specifying a destination directory within the target project, etc. Click the help icon on each field to learn the details, such as selecting Maven or multiconfiguration projects or using build parameters. You can also copy from the workspace of the latest completed build of the source project, instead of its artifacts. All artifacts copied are automatically fingerprinted for you.</p>
-</blockquote>
-
-<h4 id="promoted-builds-pluginhttpswikijenkins-ciorgdisplayjenkinspromotedbuildsplugin"><a href="https://wiki.jenkins-ci.org/display/JENKINS/Promoted+Builds+Plugin">Promoted Builds plugin</a></h4>
-<blockquote>
-  <p>This plugin allows you to distinguish good builds from bad builds by introducing the notion of ‘promotion’.Put simply, a promoted build is a successful build that passed additional criteria (such as more comprehensive tests that are set up as downstream jobs.) The typical situation in which you use promotion is where you have multiple ‘test’ jobs hooked up as downstream jobs of a ‘build’ job. You’ll then configure the build job so that the build gets promoted when all the test jobs passed successfully. This allows you to keep the build job run fast (so that developers get faster feedback when a build fails), and you can still distinguish builds that are good from builds that compiled but had runtime problems.</p>
-</blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1691,6 +1820,14 @@ You can add multiple configurations: each has a list of projects to trigger, a c
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/20160920/python-dunder-methods.html">Dunder Methods in Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/20160831/jenkins-user-habits-4.html">高效Jenkins用户的第4个习惯</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/20160815/case-study-check-on-a-commit-according-to-the-included-files.html">Case Study: Check on a Commit According to Its Included Files</a>
       </li>
     
@@ -1700,14 +1837,6 @@ You can add multiple configurations: each has a list of projects to trigger, a c
     
       <li class="post">
         <a href="/blog/20160711/start-unit-testing-in-python.html">Start Unit Testing in Python</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/20160614/rake-automake-your-tasks-in-ruby.html">Rake: Automake Your Tasks in Ruby</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/20160610/rails-get-data-without-model.html">Rails: Get Data From PostgreSQL Database Without the Model</a>
       </li>
     
   </ul>

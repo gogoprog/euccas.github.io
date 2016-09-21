@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://euccas.github.io/blog/20160920/python-dunder-methods.html</loc>
+<lastmod>2016-09-20T21:28:51-07:00</lastmod>
+</url>
+<url>
+<loc>http://euccas.github.io/blog/20160831/jenkins-user-habits-4.html</loc>
+<lastmod>2016-08-31T21:15:38-07:00</lastmod>
+</url>
+<url>
 <loc>http://euccas.github.io/blog/20160815/case-study-check-on-a-commit-according-to-the-included-files.html</loc>
 <lastmod>2016-08-15T19:43:21-07:00</lastmod>
 </url>
@@ -25,7 +33,7 @@
 <lastmod>2016-06-07T11:37:51-07:00</lastmod>
 </url>
 <url>
-<loc>http://euccas.github.io/blog/20160523/jenkins-habits-3.html</loc>
+<loc>http://euccas.github.io/blog/20160523/jenkins-user-habits-3.html</loc>
 <lastmod>2016-05-23T20:54:36-07:00</lastmod>
 </url>
 <url>
@@ -37,11 +45,11 @@
 <lastmod>2016-03-04T21:09:07-08:00</lastmod>
 </url>
 <url>
-<loc>http://euccas.github.io/blog/20151215/jenkins-habits-2.html</loc>
+<loc>http://euccas.github.io/blog/20151215/jenkins-user-habits-2.html</loc>
 <lastmod>2015-12-15T20:15:38-08:00</lastmod>
 </url>
 <url>
-<loc>http://euccas.github.io/blog/20151210/jenkins-habits-1.html</loc>
+<loc>http://euccas.github.io/blog/20151210/jenkins-user-habits-1.html</loc>
 <lastmod>2015-12-10T19:32:57-08:00</lastmod>
 </url>
 <url>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-08-15T23:25:03-07:00</updated>
+  <updated>2016-09-20T20:57:10-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,152 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Dunder Methods in Python]]></title>
+    <link href="http://euccas.github.io/blog/20160920/python-dunder-methods.html"/>
+    <updated>2016-09-20T21:28:51-07:00</updated>
+    <id>http://euccas.github.io/blog/20160920/python-dunder-methods</id>
+    <content type="html"><![CDATA[<p>In Python, we sometimes see method names with <code>__</code> around, such as the <code>__init__</code> method that every Class has. These methods are “dunder” methods which stands for “double under” or “double underscore”. Dunder methods in Python are used for operator overloading and customizing behavior of other functions.</p>
+
+<p>Sometimes dunder methods are also called “magic methods” because they are usually called by Python under the hood. But they are not really magical, you can define dunder methods to customize the behavior of your own classes.</p>
+
+<h1 id="examples-of-dunder-methods">Examples of Dunder Methods</h1>
+
+<p>In the following example, we can see three dunder methods:</p>
+
+<ul>
+  <li><code>__init__</code> method: is called to initialize the class</li>
+  <li><code>__str__</code> method: is called when converting the object to a human-readable string</li>
+  <li><code>__repr__</code> method: is called when converting the object to a developer-readable string</li>
+</ul>
+
+<p><code></code></p>
+
+<pre><code>class Flower:
+    def __init__(self, color='red'):
+	    self.color = color
+
+	def __str__(self):
+		return "Flower in color {color}".format(color=self.color)
+
+	def __repr__(self):
+	return "Flower(color={})".format(self.color)
+</code></pre>
+
+<p>&lt;/code&gt;</p>
+
+<p>In Python, many dunder methods are implemented and used for operations such as arithmetic operators, comparison operators, truthiness, etc. The following are a few examples:</p>
+
+<p><strong>Arithmetic Operators</strong></p>
+
+<ul>
+  <li><code>+</code> : <code>__add__</code></li>
+  <li><code>-</code> : <code>__sub__</code></li>
+  <li><code>*</code> : <code>__mul__</code></li>
+  <li><code>/</code> : <code>__div__</code></li>
+</ul>
+
+<p><strong>Comparison Operators</strong></p>
+
+<ul>
+  <li><code>x &lt; y</code> : <code>x.__lt__(y)</code></li>
+  <li><code>x &lt;= y</code> : <code>x.__le__(y)</code></li>
+  <li><code>x &gt; y</code> : <code>x.__gt__(y)</code></li>
+  <li><code>x &gt;= y</code> : <code>x.__ge__(y)</code></li>
+  <li><code>x == y</code> : <code>x.__eq__(y)</code></li>
+  <li><code>x != y</code> : <code>x.__ge__(y)</code></li>
+</ul>
+
+<p>If you know about Bash shell, you may notice the name of these dunder methods are very similar to the operators in Bash.</p>
+
+<p><strong>Truthiness</strong></p>
+
+<ul>
+  <li><code>bool(x)</code> : <code>x.__bool__()</code></li>
+</ul>
+
+<h1 id="use-dunder-methods-to-customize-class-behaviors">Use Dunder Methods to Customize Class Behaviors</h1>
+
+<p>Dunder methods provide a way for our class to customize operators and other built-in Python behavior for our objects. In the following two examples, I’ll use dunder methods to overload arithmetic operators, and implement a dictionary that can be used with both attribute and item syntax.</p>
+
+<h2 id="example-1-overload-arithmetic-operators">Example 1: Overload Arithmetic Operators</h2>
+
+<p>Make an <code>is_callable</code> function to check if an object type is callable.</p>
+
+<p>Example:</p>
+
+<p><code></code></p>
+
+<pre><code>&gt;&gt;&gt; is_callable(sorted)
+True
+&gt;&gt;&gt; is_callable(str)
+True
+&gt;&gt;&gt; is_callable(4)
+False
+</code></pre>
+
+<p>&lt;/code&gt;</p>
+
+<p>Source Code:</p>
+
+<p><code></code></p>
+
+<pre><code>def is_callable(obj):
+
+try:
+	obj.__call__
+	# hasattr(str, '__call__')
+	# getattr(str, '__call__')
+except AttributeError:
+	return False
+else:
+	return True
+</code></pre>
+
+<p>&lt;/code&gt;</p>
+
+<h2 id="example-2-class-easydict">Example 2: Class EasyDict</h2>
+
+<p>Make an <code>EasyDict</code> class that can be used with both attribute and item syntax.</p>
+
+<p>Example:</p>
+
+<p><code></code></p>
+
+<pre><code>&gt;&gt;&gt; a = EasyDict()
+&gt;&gt;&gt; a['shoe'] = "blue"
+&gt;&gt;&gt; a.shoe
+"blue"
+&gt;&gt;&gt; a['shoe']
+"blue"
+&gt;&gt;&gt; a.car = "green"
+&gt;&gt;&gt; a['car']
+"green"
+</code></pre>
+
+<p>&lt;/code&gt;</p>
+
+<p>Source Code:</p>
+
+<p><code></code></p>
+
+<pre><code>class EasyDict:
+	def __init__(self):
+    	pass
+</code></pre>
+
+   		def <strong>getitem</strong>(self, item):
+<pre><code>    	return self.__dict__[item]
+
+	def __setitem__(self, key, value):
+    	self.__dict__[key] = value
+</code></pre>
+
+<p>&lt;/code&gt;</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Python Unittest: Handle the Command Line Arguments]]></title>
