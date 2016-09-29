@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Testing | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-09-28T23:43:14-07:00</updated>
+  <updated>2016-09-28T23:54:16-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -40,6 +40,10 @@
       <li>This solution can be adopted for any tests that require coordination/communication across different apps or devices</li>
     </ul>
   </li>
+  <li>What makes testing Uber’s mobile apps significantly different from testing Google Maps?</li>
+  <li>Why Octopus? Unified. Extensible. Parallelized. Signaling.</li>
+  <li>What does Octopus do? Prepare test targets. Run tests (handles signaling). Create test results reports. Pull test artifacts. Perform clean ups.</li>
+  <li>Signaling between driver test and rider test: Conducted with Test Host. API readSignal (blocking), writeSignal (nonblocking)</li>
 </ul>
 
 ]]></content>
