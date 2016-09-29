@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Testing | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-09-29T00:13:35-07:00</updated>
+  <updated>2016-09-29T11:03:01-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -18,7 +18,7 @@
     <link href="http://euccas.github.io/blog/20160928/the-uber-challenge-of-cross-application-testinng.html"/>
     <updated>2016-09-28T23:17:30-07:00</updated>
     <id>http://euccas.github.io/blog/20160928/the-uber-challenge-of-cross-application-testinng</id>
-    <content type="html"><![CDATA[<p>Inspired by Matt Cutts’ TED talk: <a href="https://www.ted.com/talks/matt_cutts_try_something_new_for_30_days?language=en">Try something new for 30 days</a>, I’m starting a 30-day-GTAC-revisit project. Google’s Test Automation Conference <a href="https://developers.google.com/google-test-automation-conference/">GTAC</a> is an annual test automation conference which brings together engineers from industry and academia to discuss advances in test automation and related engineering tools. In my 30-day-GTAC-revisit project, I’ll review the topics presented on GTAC. My goal of the 30-day-GTAC-revisit project is having a better and deeper understanding in modern testing technologies, methodologies, strategies, and practices.</p>
+    <content type="html"><![CDATA[<p>Inspired by Matt Cutts’ TED talk: <a href="https://www.ted.com/talks/matt_cutts_try_something_new_for_30_days?language=en">Try something new for 30 days</a>, I’m starting a “30 Days of GTAC” project. Google’s Test Automation Conference <a href="https://developers.google.com/google-test-automation-conference/">GTAC</a> is an annual test automation conference which brings together engineers from industry and academia to discuss advances in test automation and related engineering tools. In my “30 Days of GTAC” project, I’ll review the topics presented on GTAC. My goal is having a better and deeper understanding in modern testing technologies, methodologies, strategies, and practices.</p>
 
 <p>Get it started! Day#1 topic is:</p>
 
