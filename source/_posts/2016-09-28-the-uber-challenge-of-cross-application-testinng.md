@@ -23,9 +23,9 @@ Get it started! Day#1 topic is:
 	- Octopus coordinates communication across different apps running on different devices
 	- This solution can be adopted for any tests that require coordination/communication across different apps or devices
 - What makes testing Uber's mobile apps significantly different from testing Google Maps?
-- Why Octopus? Unified. Extensible. Parallelized. Signaling.
-- What does Octopus do? Prepare test targets. Run tests (handles signaling). Create test results reports. Pull test artifacts. Perform clean ups.
-- Signaling between driver test and rider test: Conducted with Test Host. API readSignal (blocking), writeSignal (nonblocking)
+- Why (built) Octopus? Unified (iOS and Android). Extensible (Integrate with different UI testing frameworks). Parallelized. Signaling (enabling cross-app and cross-device testing).
+- What does Octopus do? Prepare test targets. Run tests (handles signaling). Create test results reports. Pull test artifacts. Perform clean ups. All from simple command line.
+- Signaling between driver test and rider test: Conducted with Test Host to improve the consistency. API readSignal (blocking), writeSignal (nonblocking). Test hosts and test targets are connected via USB (reliable).
 - Apple Chow wrote about Octopus on [Uber Engineering](http://eng.uber.com/rescued-by-octopus/)
 
 
