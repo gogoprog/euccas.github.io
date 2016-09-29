@@ -26,7 +26,7 @@ Get it started! Day#1 topic is:
 - Why Octopus? Unified. Extensible. Parallelized. Signaling.
 - What does Octopus do? Prepare test targets. Run tests (handles signaling). Create test results reports. Pull test artifacts. Perform clean ups.
 - Signaling between driver test and rider test: Conducted with Test Host. API readSignal (blocking), writeSignal (nonblocking)
-
+- Apple Chow wrote about Octopus on [Uber Engineering](http://eng.uber.com/rescued-by-octopus/)
 
 
 
