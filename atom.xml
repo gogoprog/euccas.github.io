@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-09-28T23:55:09-07:00</updated>
+  <updated>2016-09-28T23:58:06-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -44,6 +44,7 @@
   <li>Why Octopus? Unified. Extensible. Parallelized. Signaling.</li>
   <li>What does Octopus do? Prepare test targets. Run tests (handles signaling). Create test results reports. Pull test artifacts. Perform clean ups.</li>
   <li>Signaling between driver test and rider test: Conducted with Test Host. API readSignal (blocking), writeSignal (nonblocking)</li>
+  <li>Apple Chow wrote about Octopus on <a href="http://eng.uber.com/rescued-by-octopus/">Uber Engineering</a></li>
 </ul>
 
 ]]></content>
