@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-09-28T23:54:16-07:00</updated>
+  <updated>2016-09-28T23:55:09-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[GTAC: The Uber Challenge of Cross-Application Testinng]]></title>
+    <title type="html"><![CDATA[GTAC: The Uber Challenge of Cross-Application Testing]]></title>
     <link href="http://euccas.github.io/blog/20160928/the-uber-challenge-of-cross-application-testinng.html"/>
     <updated>2016-09-28T23:17:30-07:00</updated>
     <id>http://euccas.github.io/blog/20160928/the-uber-challenge-of-cross-application-testinng</id>
