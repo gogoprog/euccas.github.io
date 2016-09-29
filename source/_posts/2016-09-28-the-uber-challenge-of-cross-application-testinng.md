@@ -6,7 +6,7 @@ comments: true
 categories: GTAC infrastructure testing
 ---
 
-Inspired by Matt Cutts' TED talk: [Try something new for 30 days](https://www.ted.com/talks/matt_cutts_try_something_new_for_30_days?language=en), I'm starting a 30-day-GTAC-revisit project. Google's Test Automation Conference [GTAC](https://developers.google.com/google-test-automation-conference/) is an annual test automation conference which brings together engineers from industry and academia to discuss advances in test automation and related engineering tools. In my 30-day-GTAC-revisit project, I'll review the topics presented on GTAC. My goal of the 30-day-GTAC-revisit project is having a better and deeper understanding in modern testing technologies, methodologies, strategies, and practices.
+Inspired by Matt Cutts' TED talk: [Try something new for 30 days](https://www.ted.com/talks/matt_cutts_try_something_new_for_30_days?language=en), I'm starting a "30 Days of GTAC" project. Google's Test Automation Conference [GTAC](https://developers.google.com/google-test-automation-conference/) is an annual test automation conference which brings together engineers from industry and academia to discuss advances in test automation and related engineering tools. In my "30 Days of GTAC" project, I'll review the topics presented on GTAC. My goal is having a better and deeper understanding in modern testing technologies, methodologies, strategies, and practices.
 
 Get it started! Day#1 topic is:
 
