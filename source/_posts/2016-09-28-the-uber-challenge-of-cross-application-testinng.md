@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "GTAC: The Uber Challenge of Cross-Application Testinng"
+title: "GTAC: The Uber Challenge of Cross-Application Testing"
 date: 2016-09-28 23:17:30 -0700
 comments: true
 categories: GTAC infrastructure testing
