@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Gtac | euccas.github.io]]></title>
+  <link href="http://euccas.github.io/blog/categories/gtac/atom.xml" rel="self"/>
+  <link href="http://euccas.github.io/"/>
+  <updated>2016-09-28T23:43:14-07:00</updated>
+  <id>http://euccas.github.io/</id>
+  <author>
+    <name><![CDATA[euccas]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[GTAC: The Uber Challenge of Cross-Application Testinng]]></title>
+    <link href="http://euccas.github.io/blog/20160928/the-uber-challenge-of-cross-application-testinng.html"/>
+    <updated>2016-09-28T23:17:30-07:00</updated>
+    <id>http://euccas.github.io/blog/20160928/the-uber-challenge-of-cross-application-testinng</id>
+    <content type="html"><![CDATA[<p>Inspired by Matt Cutts’ TED talk: <a href="https://www.ted.com/talks/matt_cutts_try_something_new_for_30_days?language=en">Try something new for 30 days</a>, I’m starting a 30-day-GTAC-revisit project. Google’s Test Automation Conference <a href="https://developers.google.com/google-test-automation-conference/">GTAC</a> is an annual test automation conference which brings together engineers from industry and academia to discuss advances in test automation and related engineering tools. In my 30-day-GTAC-revisit project, I’ll review the topics presented on GTAC. My goal of the 30-day-GTAC-revisit project is having a better and deeper understanding in modern testing technologies, methodologies, strategies, and practices.</p>
+
+<p>Get it started! Day#1 topic is:</p>
+
+<p><strong>The Uber Challenge of Cross-Application/Cross-Device Testing</strong></p>
+
+<ul>
+  <li>Presenter: Apple Chow (Uber), Bian Jiang (Uber)</li>
+  <li><a href="https://www.youtube.com/watch?v=p6gsssppeT0&amp;list=PLSIUOFhnxEiCWGsN9t5A-XOhRbmz54IS1&amp;index=3">Video</a></li>
+  <li><a href="https://docs.google.com/presentation/d/1vYXhkvgLKun72Ix91LQDDWZQdcY5VOBqKVvI1Y6riYo/pub">Slides</a></li>
+</ul>
+
+<p><strong>My takeaways</strong></p>
+
+<ul>
+  <li>The challenge: End-to-end tests require cross application communication (between rider app and driver app)</li>
+  <li>Uber’s solution: Octopus
+    <ul>
+      <li>Octopus coordinates communication across different apps running on different devices</li>
+      <li>This solution can be adopted for any tests that require coordination/communication across different apps or devices</li>
+    </ul>
+  </li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

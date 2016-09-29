@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://euccas.github.io/blog/20160928/the-uber-challenge-of-cross-application-testinng.html</loc>
+<lastmod>2016-09-28T23:17:30-07:00</lastmod>
+</url>
+<url>
 <loc>http://euccas.github.io/blog/20160920/python-dunder-methods.html</loc>
 <lastmod>2016-09-20T21:28:51-07:00</lastmod>
 </url>
@@ -86,6 +90,12 @@
 <loc>http://euccas.github.io/blog/categories/casestudy/</loc>
 </url>
 <url>
-<loc>http://euccas.github.io/posts/2/</loc>
+<loc>http://euccas.github.io/blog/categories/gtac/</loc>
+</url>
+<url>
+<loc>http://euccas.github.io/blog/categories/infrastructure/</loc>
+</url>
+<url>
+<loc>http://euccas.github.io/blog/categories/testing/</loc>
 </url>
 </urlset>
