@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: 
+Disallow:
 
-Sitemap: http://euccas.github.io/sitemap.xml 
+Sitemap: http://euccas.github.io/sitemap.xml
