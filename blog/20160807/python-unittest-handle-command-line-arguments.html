@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Python Unittest: Handle the Command Line Arguments - euccas.github.io</title>
+  <meta name="author" content="euccas">
+
+  
+  <meta name="description" content="In the previous post about Python Unittest, I wrote about the basic steps needed for setting up unit testing for your Python program with the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://euccas.github.io/blog/20160807/python-unittest-handle-command-line-arguments.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="euccas.github.io" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">euccas.github.io</a></h1>
+  
+    <h2>why a developer writes</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscribe" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS" target="_blank"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewbox="0 0 100 100"><path class="social" d="M 13.310204,73.332654 C 5.967347,73.332654 0,79.322448 0,86.621428 c 0,7.338776 5.967347,13.262246 13.310204,13.262246 7.370408,0 13.328572,-5.92245 13.328572,-13.262246 0,-7.29898 -5.958164,-13.288774 -13.328572,-13.288774 z M 0.01530612,33.978572 V 53.143878 C 12.493878,53.143878 24.229592,58.02347 33.068368,66.865306 41.894898,75.685714 46.767346,87.47449 46.767346,100 h 19.25 C 66.017346,63.592858 36.4,33.979592 0.01530612,33.978572 l 0,0 z M 0.03877552,0 V 19.17449 C 44.54796,19.17551 80.77551,55.437756 80.77551,100 H 100 C 100,44.87653 55.15102,0 0.03877552,0 z"></path></svg></a></li>
+  
+</ul>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+      <form action="https://www.google.com/search" method="get">
+        <fieldset role="search">
+          <input type="hidden" name="sitesearch" value="euccas.github.io" />
+    
+          <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+        </fieldset>
+      </form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Python Unittest: Handle the Command Line Arguments</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-08-07T11:57:32-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:57 am</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>In the previous post about <a href="http://euccas.github.io/blog/20160711/start-unit-testing-in-python.html">Python Unittest</a>, I wrote about the basic steps needed for setting up unit testing for your Python program with the <code>unittest</code> module. In this post, I’ll discuss about handling the command line parameters that your program need while you’re using Python <code>unittest</code>.</p>
+
+<p>Unit testing is meant for testing basic functionality of the application. The target of <a href="https://en.wikipedia.org/wiki/Unit_testing">Unit testing</a> is expected to be each function of your program. When your program has command line arguments, ideally the unit tests should not accept arguments from the command line because unit tests are supposed to be very specific and not testing on the <a href="https://en.wikipedia.org/wiki/Integration_testing">Integration level</a> (i.e. across multiple functions in your program).</p>
+
+<p>So the way I use to handle the command line arguments can be summarized as:</p>
+
+<ul>
+  <li>Refactor your program to have the arguments parsing as a function</li>
+  <li>Refactor your program to handle the arguments parsing differently when doing unit testing</li>
+  <li>In the unit tests, set the arguments and pass them directly to the functions under test</li>
+</ul>
+
+<p>The following is a demo Python project I built to demonstrate handling command line arguments when using <code>unittest</code>.</p>
+
+<h2 id="myapppy">myapp.py</h2>
+
+<pre><code>#!/usr/bin/env python
+
+import sys, os.path, re
+import argparse
+
+class myApp():
+
+    EXIT_PASS, EXIT_FAIL = 0, 1
+
+    def __init__(self, mode = 'normal', test_param = None):
+        # Validate and process argument options
+        self.parse_args(mode, test_param)
+        # Initialize database connection
+        self.app_name = self.get_app_name(self.name)
+
+    def parse_args(self, mode, test_param):
+        if mode == 'unittest':
+            if test_param is None:
+                print("Missing test param")
+                self.app_exit('fail')
+
+            self.name = test_param['app_name']
+            self.verbose = test_param['verbose']
+        else:
+            parser = argparse.ArgumentParser(description='myApp: A demo project')
+            parser.add_argument('-n', '--name', help='Name of myApp', required=True)
+            parser.add_argument('--verbose', action='store_true', help='Verbose mode with more information printed')
+
+            args = parser.parse_args()
+
+            self.name = args.name
+            self.verbose = args.verbose
+
+    def app_exit(self, status):
+        if status.lower() == 'pass':
+            print("** App Exit Status: PASS \n")
+            exit(self.EXIT_PASS)
+        elif status.lower() == 'skip':
+            print("** App Exit Status: SKIP \n")
+            exit(self.EXIT_PASS)
+        else:
+            print("** App Exit Status: FAIL \n")
+            exit(self.EXIT_FAIL)
+
+    def get_app_name(self):
+        app_name = self.name
+
+        return app_name
+
+if __name__ == '__main__':
+    app = myApp()
+</code></pre>
+
+<h2 id="testmyapppy">test_myapp.py</h2>
+
+<pre><code>#!/usr/bin/env python
+
+import sys, os.path, re
+import argparse
+import unittest
+
+bin_path = os.path.dirname(os.path.realpath(__file__))
+lib_path = os.path.abspath(bin_path)
+sys.path.insert(0, lib_path)
+
+import myApp
+
+class myAppTestCase(unittest.TestCase):
+
+    def setUp(self):
+        mode = 'unittest'
+        test_param = {
+            'name': 'Test App',
+            'verbose': True
+        }
+        self.app = myapp.myApp(mode, test_param)
+
+    def test_app_name(self):
+        self.assertEqual(self.app.get_app_name, 'Test App', 'Wrong App Name')
+
+    def tearDown(self):
+        print('Bye Test')
+
+if __name__ == '__main__':
+    unittest.main()
+</code></pre>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    euccas
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2016-08-07T11:57:32-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:57 am</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/unittesting/'>unittesting</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://euccas.github.io/blog/20160807/python-unittest-handle-command-line-arguments.html" data-via="" data-counturl="http://euccas.github.io/blog/20160807/python-unittest-handle-command-line-arguments.html" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/20160711/start-unit-testing-in-python.html" title="Previous Post: Start Unit Testing in Python">&laquo; Start Unit Testing in Python</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/20160815/case-study-check-on-a-commit-according-to-the-included-files.html" title="Next Post: Case Study: Check on a commit according to its included files">Case Study: Check on a commit according to its included files &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - euccas -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

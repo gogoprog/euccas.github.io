@@ -4,7 +4,11 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
+<<<<<<< HEAD
   <updated>2016-10-11T17:39:16-07:00</updated>
+=======
+  <updated>2016-09-30T11:50:48-07:00</updated>
+>>>>>>> parent of e4c822a... Site updated at 2016-10-12 00:37:24 UTC
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,58 +16,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Install Additional Packages in WinPython]]></title>
-    <link href="http://euccas.github.io/blog/20161011/install-additional-packages-in-winpython.html"/>
-    <updated>2016-10-11T17:11:51-07:00</updated>
-    <id>http://euccas.github.io/blog/20161011/install-additional-packages-in-winpython</id>
-    <content type="html"><![CDATA[<p>For people who need use portable Python on Windows, <a href="https://winpython.github.io/">WinPython</a> is a good choice. WinPython is a free open-source portable distribution of Python. The project is hosted on <a href="https://github.com/winpython">github</a>. It is also a good alternative to <a href="http://portablepython.com/">Portable Python</a>, which is not being developed anymore.</p>
-
-<p>In this post I’ll show you how could you install additional packages to WinPython.</p>
-
-<h1 id="install-winpython">Install WinPython</h1>
-
-<p>WinPython is portable. It means that you can download WinPython from the <a href="http://winpython.sourceforge.net/">WinPython download page</a>, add it to your system PATH, and start using it without any installation.</p>
-
-<ul>
-  <li>Unzip the downloaded WinPython Package to a local directory, eg. <code>C:\WinPython</code>.</li>
-  <li>Add the local directory path to your system’s <code>PATH</code> variable. You can use Windows command <code>set</code> or <code>setx</code>.</li>
-</ul>
-
-<p><code>
-   set PATH=C:\WinPython\;%PATH%
-</code></p>
-
-<p>Now you can open a Windows cmd prompt, and test your installed python version.</p>
-
-<p><code>
-    where python
-	&gt;&gt;&gt; C:\WinPython\python.exe
-</code></p>
-
-<h1 id="install-a-package">Install a package</h1>
-
-<p>You can install a Python Package to WinPython using <code>pip</code>. If you have other versions of Python installed on your computer, you’ll need make sure the <code>pip</code> you use actually is the one WinPython provides.</p>
-
-<p>Where is the <code>pip</code>?</p>
-
-<p>It’s in the <code>Scripts</code> directory of the WinPython path.</p>
-
-<p><code>C:\WinPython\Scripts</code></p>
-
-<p>Now you can use the WinPython <code>pip</code> to install additional Python packages.</p>
-
-<p><code>&lt;WinPython Path&gt;\Scripts\pip install &lt;package name&gt;</code></p>
-
-<p>If the installation successfully done, you will find the installed packages in WinPython’s library path.</p>
-
-<p><code>&lt;WinPython Path&gt;\Lib\site-packages</code></p>
-
-<p>That’s it! Your Python package is ready to use!</p>
-
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Dunder Methods in Python]]></title>
