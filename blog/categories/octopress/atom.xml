@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress, | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-10-11T23:28:20-07:00</updated>
+  <updated>2016-10-11T23:30:33-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -24,7 +24,7 @@
 
 <p>如果需要重新复制一份已经存在的blog repo，在重新复制的blog repo上继续发布更新blog，那么需要注意：</p>
 
-<p>首先复制的repo需要是source branch.</p>
+<p>首先需要复制的repo是source branch.</p>
 
 <p>如果repo的默认branch已经设定为source branch:</p>
 
