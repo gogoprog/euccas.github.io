@@ -12,7 +12,7 @@ categories: octopress, chinese
 
 如果需要重新复制一份已经存在的blog repo，在重新复制的blog repo上继续发布更新blog，那么需要注意：
 
-首先复制的repo需要是source branch. 
+首先需要复制的repo是source branch. 
 
 如果repo的默认branch已经设定为source branch:
 
