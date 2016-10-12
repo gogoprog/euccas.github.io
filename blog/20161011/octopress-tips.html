@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="使用Octopress搭建这个blog已经有一段时间了，记录几个使用中需要注意的Tips. Tip 1: Clone Repo 如果需要重新复制一份已经存在的blog repo，在重新复制的blog repo上继续发布更新blog，那么需要注意： 1. 首先复制的repo需要是source &hellip;">
+  <meta name="description" content="使用Octopress搭建这个blog已经有一段时间了，记录几个使用中需要注意的Tips. Tip 1: Clone Repo 如果需要重新复制一份已经存在的blog repo，在重新复制的blog repo上继续发布更新blog，那么需要注意： 首先复制的repo需要是source branch &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,14 +104,14 @@
 
 <h1 id="tip-1-clone-repo">Tip 1: Clone Repo</h1>
 
-<p>如果需要重新复制一份已经存在的blog repo，在重新复制的blog repo上继续发布更新blog，那么需要注意：
-	1. 首先复制的repo需要是source branch.</p>
+<p>如果需要重新复制一份已经存在的blog repo，在重新复制的blog repo上继续发布更新blog，那么需要注意：</p>
+
+<p>首先复制的repo需要是source branch.</p>
 
 <p>如果repo的默认branch已经设定为source branch:</p>
 
-<p>｀｀｀
-git clone <repo url="">
-｀｀｀</repo></p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git clone &lt;repo url&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>如果repo的默认branch设定为master branch:</p>
 
@@ -120,9 +120,7 @@ git clone <repo url="">
 </pre></td><td class="code"><pre><code class=""><span class="line">git clone &lt;repo url&gt;
 </span><span class="line">git pull origin source</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<ol>
-  <li>然后需要把master branch复制到<code>_deploy</code>目录。注意<code>_deploy</code>目录是在Octopress生成post的过程中必须存在的。</li>
-</ol>
+<p>然后需要把master branch复制到<code>_deploy</code>目录。注意<code>_deploy</code>目录是在Octopress生成post的过程中必须存在的。</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
