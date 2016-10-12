@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Chinese | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/chinese/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-10-11T17:57:27-07:00</updated>
+  <updated>2016-10-11T23:24:08-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,66 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress Tips]]></title>
+    <link href="http://euccas.github.io/blog/20161011/octopress-tips.html"/>
+    <updated>2016-10-11T22:36:44-07:00</updated>
+    <id>http://euccas.github.io/blog/20161011/octopress-tips</id>
+    <content type="html"><![CDATA[<p>使用Octopress搭建这个blog已经有一段时间了，记录几个使用中需要注意的Tips.</p>
+
+<h1 id="tip-1-clone-repo">Tip 1: Clone Repo</h1>
+
+<p>如果需要重新复制一份已经存在的blog repo，在重新复制的blog repo上继续发布更新blog，那么需要注意：
+	1. 首先复制的repo需要是source branch.</p>
+
+<p>如果repo的默认branch已经设定为source branch:</p>
+
+<p>｀｀｀
+git clone <repo url="">
+｀｀｀</repo></p>
+
+<p>如果repo的默认branch设定为master branch:</p>
+
+<p><code>
+git clone &lt;repo url&gt;
+git pull origin source
+</code></p>
+
+<ol>
+  <li>然后需要把master branch复制到<code>_deploy</code>目录。注意<code>_deploy</code>目录是在Octopress生成post的过程中必须存在的。</li>
+</ol>
+
+<p><code>
+git clone &lt;repo url&gt; _deploy
+cd _deploy
+git pull origin master
+</code></p>
+
+<h1 id="tip-2-push-changes-to-source">Tip 2: Push Changes to Source</h1>
+
+<p>使用<code>rake gen_deploy</code>将改动发布到<code>master branch</code>之后，还需要把source的改动也提交到<code>source branch</code>。</p>
+
+<p><code>
+git push origin source
+</code></p>
+
+<h1 id="tip-3-execute-rake-commands">Tip 3: Execute Rake Commands</h1>
+
+<p>如果因为<code>rake</code>版本问题造成<code>rake</code> command不能够在repo中执行，就需要使用<code>bundle exec rake</code>执行。</p>
+
+<p><code>
+bundle exec rake new_post
+bundle exec rake generate
+bundle exec rake preview
+bundle exec rake deploy
+</code></p>
+
+<h1 id="tip-4-errors-in-gendeploy">Tip 4: Errors in gen_deploy</h1>
+
+<p><code>rake gen_deploy</code>的过程中，如果在<code>generate</code>步骤中出现错误（比如部分post的文本不符合markdown语法），一些情况下可能会造成generate目录中的文件被删除。而<code>gen_deploy</code>过程此时并不会结束，<code>deploy</code>会继续进行，这样最终的commit就会把原来已经发布的blog内容删除。防止出现这种问题的安全做法是分步执行<code>rake generate</code>和<code>rake deploy</code>。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[高效Jenkins用户的第4个习惯]]></title>
@@ -269,78 +329,6 @@ You can add multiple configurations: each has a list of projects to trigger, a c
 <blockquote>
   <p>This plugin allows you to distinguish good builds from bad builds by introducing the notion of ‘promotion’.Put simply, a promoted build is a successful build that passed additional criteria (such as more comprehensive tests that are set up as downstream jobs.) The typical situation in which you use promotion is where you have multiple ‘test’ jobs hooked up as downstream jobs of a ‘build’ job. You’ll then configure the build job so that the build gets promoted when all the test jobs passed successfully. This allows you to keep the build job run fast (so that developers get faster feedback when a build fails), and you can still distinguish builds that are good from builds that compiled but had runtime problems.</p>
 </blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[高效Jenkins用户的第1个习惯]]></title>
-    <link href="http://euccas.github.io/blog/20151210/jenkins-user-habits-1.html"/>
-    <updated>2015-12-10T19:32:57-08:00</updated>
-    <id>http://euccas.github.io/blog/20151210/jenkins-user-habits-1</id>
-    <content type="html"><![CDATA[<p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
-
-<h1 id="jenkins-master">习惯 1: 保持Jenkins Master的稳定与可恢复</h1>
-
-<h2 id="lts-release">1. 使用LTS Release</h2>
-
-<p>LTS release每12周发布一个新版本</p>
-
-<p>LTS release版本发布都会保证通过自动化的acceptance testing和手工testing matrix</p>
-
-<h2 id="plugins">2.不要急于升级plugins，保持谨慎</h2>
-
-<p>plugin的升级可能包含非常多的变化</p>
-
-<p>不是所有的升级都会保证向前兼容。比如最近Extended Email Plugin的升级，就造成之前的recipient/trigger配置不可用</p>
-
-<p>新功能也许不稳定</p>
-
-<h2 id="section">3. 对升级进行测试</h2>
-
-<p>建议在测试环境中对升级和新的plugin进行测试，之后再进行production环境的升级</p>
-
-<p>建立针对plugin功能的测试</p>
-
-<p>在更大的规模进行测试</p>
-
-<p>大的改变需要至少经过几天的测试</p>
-
-<h2 id="jenkins-configuration">4. 备份Jenkins Configuration</h2>
-
-<p>建议使用<a href="https://wiki.jenkins-ci.org/display/JENKINS/thinBackup">thinBackup plugin</a></p>
-
-<p>可以通过对$JENKINS_HOME做整体备份实现有效的备份，缺点是速度慢和占用较多的存储空间</p>
-
-<p>Jenkins支持仅仅备份config files，而不需要备份所有的builds。参考<a href="https://gist.github.com/abayer/527063a4519f205efc74">这个gist</a>中的代码实现这一功能。</p>
-
-<h2 id="maven-job">5. 避免使用Maven job类型</h2>
-
-<p>Maven plugin中的Mavin job type可能存在一些问题，包括plugin support, lazy loading等等</p>
-
-<p>在大规模应用中可能会引起一些意外的问题，不建议使用</p>
-
-<h2 id="section-1">一些解释</h2>
-
-<h3 id="lts-release-1">什么是LTS Release?</h3>
-
-<p>Jenkins LTS Release: Jenkins Long-Term Support release. 类似于Ubuntu的LTS版本。</p>
-
-<p>具体说明<a href="https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line">在这里</a>。</p>
-
-<h3 id="jenkins-maven-jobs">关于Jenkins Maven Jobs</h3>
-
-<p>在Jenkins中可以通过两种方式build Maven project</p>
-
-<ol>
-  <li>
-    <p>使用一个 free-style project 和 Maven build step</p>
-  </li>
-  <li>
-    <p>使用一个 Maven-style project (配置job type为Mavin job type)
-推荐使用第一种方法，因为第二种方式可能会出现问题</p>
-  </li>
-</ol>
-
 ]]></content>
   </entry>
   

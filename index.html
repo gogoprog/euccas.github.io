@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="For people who need use portable Python on Windows, WinPython is a good choice. WinPython is a free open-source portable distribution of Python. The &hellip;">
+  <meta name="description" content="使用Octopress搭建这个blog已经有一段时间了，记录几个使用中需要注意的Tips. Tip 1: Clone Repo 如果需要重新复制一份已经存在的blog repo，在重新复制的blog repo上继续发布更新blog，那么需要注意： 1. 首先复制的repo需要是source &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,89 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/20161011/octopress-tips.html">Octopress Tips</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-10-11T22:36:44-07:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>10:36 pm</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>使用Octopress搭建这个blog已经有一段时间了，记录几个使用中需要注意的Tips.</p>
+
+<h1 id="tip-1-clone-repo">Tip 1: Clone Repo</h1>
+
+<p>如果需要重新复制一份已经存在的blog repo，在重新复制的blog repo上继续发布更新blog，那么需要注意：
+	1. 首先复制的repo需要是source branch.</p>
+
+<p>如果repo的默认branch已经设定为source branch:</p>
+
+<p>｀｀｀
+git clone <repo url="">
+｀｀｀</repo></p>
+
+<p>如果repo的默认branch设定为master branch:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git clone &lt;repo url&gt;
+</span><span class="line">git pull origin source</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ol>
+  <li>然后需要把master branch复制到<code>_deploy</code>目录。注意<code>_deploy</code>目录是在Octopress生成post的过程中必须存在的。</li>
+</ol>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git clone &lt;repo url&gt; _deploy
+</span><span class="line">cd _deploy
+</span><span class="line">git pull origin master</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="tip-2-push-changes-to-source">Tip 2: Push Changes to Source</h1>
+
+<p>使用<code>rake gen_deploy</code>将改动发布到<code>master branch</code>之后，还需要把source的改动也提交到<code>source branch</code>。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git push origin source</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="tip-3-execute-rake-commands">Tip 3: Execute Rake Commands</h1>
+
+<p>如果因为<code>rake</code>版本问题造成<code>rake</code> command不能够在repo中执行，就需要使用<code>bundle exec rake</code>执行。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">bundle exec rake new_post
+</span><span class="line">bundle exec rake generate
+</span><span class="line">bundle exec rake preview
+</span><span class="line">bundle exec rake deploy</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="tip-4-errors-in-gendeploy">Tip 4: Errors in gen_deploy</h1>
+
+<p><code>rake gen_deploy</code>的过程中，如果在<code>generate</code>步骤中出现错误（比如部分post的文本不符合markdown语法），一些情况下可能会造成generate目录中的文件被删除。而<code>gen_deploy</code>过程此时并不会结束，<code>deploy</code>会继续进行，这样最终的commit就会把原来已经发布的blog内容删除。防止出现这种问题的安全做法是分步执行<code>rake generate</code>和<code>rake deploy</code>。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1509,243 +1592,6 @@ if __name__ == '__main__':
   <li>When your table name doesn’t match Rails convention, set the table name with <code>self.table_name = '&lt;your table name&gt;'</code></li>
   <li>Create methods in the Model to fetch the data you need</li>
 </ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20160607/ruby-class-and-instance-methods.html">Ruby Class and Instance Methods</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-06-07T11:37:51-07:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:37 am</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you ever get confused about Class Methods, Instance Methods, Class Variables and Instance Variables in Ruby, read this post and you’ll understand it better :)</p>
-
-<h1 id="class-methods">Class Methods</h1>
-<ul>
-  <li>Class methods belong to a class in Ruby, and it can be used without instance any class object.</li>
-  <li>The definition of class methods has a “self” prefix.</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">def self.show_name
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="instance-methods">Instance Methods</h1>
-<ul>
-  <li>Instance methods belong to any instance of a class in Ruby. To use instance methods, you always need to have an existing instance first. Usually this means you have called <code>new()</code> method.</li>
-  <li>Instance methods do not have “self” prefix in their definition.</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">def show_name
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="class-variables">Class Variables</h1>
-<ul>
-  <li>Class variables belong to a class in Ruby. In other words, each class in Ruby automatically has an object even without any instances. The class variables are constants of the class object.</li>
-  <li>Class variables are totally separated with instance variables (obvious though). The value of a class variable doesn’t change when the instance variables having the same name change.</li>
-  <li>The name of a class variable has the “@@” prefix.</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">class myClass
-</span><span class="line">    @@foo = 0
-</span><span class="line">end  </span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="instance-variables">Instance Variables</h1>
-<ul>
-  <li>Instance variables belong to an instance of a class in Ruby.</li>
-  <li>Different instances have their own set of instance variables.</li>
-  <li>The name of an instance variable has the “@” prefix.</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">class myClass
-</span><span class="line">    def initialize()
-</span><span class="line">        @foo = 0
-</span><span class="line">    end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="a-quick-demo">A quick demo</h1>
-
-<p>So now I have a quick demo to show more about the Class/Instance methods and variables.</p>
-
-<p>In this demo, a Fruit class is created. The Fruit class has a <strong><em>class variable</em></strong> <code>@@color</code>, and the Fruit class instances have a <strong><em>instance variables</em></strong> <code>@color</code>.</p>
-
-<p>Fruit class has a class method <code>self.show_color</code>, and an instance method with the same name <code>show_color</code>.</p>
-
-<p>Now check out how these stuff works.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># fruit.rb
-</span><span class="line">
-</span><span class="line">class Fruit
-</span><span class="line">    @@color = 'yellow' # class variable
-</span><span class="line">
-</span><span class="line">    def initialize()
-</span><span class="line">        @name = 'apple'
-</span><span class="line">        @color = 'red' # instance variable
-</span><span class="line">    end
-</span><span class="line">
-</span><span class="line">    def self.show_color()
-</span><span class="line">        puts "(class method) color: #{@@color}"
-</span><span class="line">    end
-</span><span class="line">
-</span><span class="line">    def change()
-</span><span class="line">        change_color()
-</span><span class="line">        puts "try calling instance method"
-</span><span class="line">        show_color()
-</span><span class="line">        puts "try calling class method"
-</span><span class="line">        self.show_color()
-</span><span class="line">        puts "change done"
-</span><span class="line">    end
-</span><span class="line">
-</span><span class="line">    def change_color()
-</span><span class="line">        @color = 'green'
-</span><span class="line">    end
-</span><span class="line">
-</span><span class="line">    def show_color()
-</span><span class="line">        puts "(instance method) color: #{@color}"
-</span><span class="line">    end
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>The test file:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># test.rb
-</span><span class="line">
-</span><span class="line">$LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__)))
-</span><span class="line">require 'fruit.rb'
-</span><span class="line">
-</span><span class="line">myfruit = Fruit.new
-</span><span class="line">myfruit.show_color
-</span><span class="line">myfruit.change
-</span><span class="line">
-</span><span class="line">Fruit.show_color</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Executing the <code>test.rb</code> file will generate the following result:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">(instance method) color: red
-</span><span class="line">try calling instance method
-</span><span class="line">(instance method) color: green
-</span><span class="line">try calling class method
-</span><span class="line">(instance method) color: green
-</span><span class="line">change done
-</span><span class="line">(class method) color: yellow</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="summary-of-the-demo">Summary of the demo</h2>
-
-<ul>
-  <li>
-    <p><code>&lt;Class&gt;.new</code> instances an object by calling the <code>initialize</code> method. Instance variables are initialized</p>
-  </li>
-  <li>
-    <p>Instance methods only calls the instance methods within itself, even use the <code>self</code> prefix.</p>
-  </li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">show_color()
-</span><span class="line">self.show_color()</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Both call the instance method, and shows the <code>color: green</code></p>
-
-<ul>
-  <li>
-    <p>The change on instance variables doesn’t affect the class variables</p>
-  </li>
-  <li>
-    <p>Class methods can be called without instances</p>
-  </li>
-</ul>
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">Fruit.show_color</span></code></pre></td></tr></table></div></figure></notextile></div>
-<ul>
-  <li>Instance methods can’t be called without instances. The following statement will exceptions (NoMethodError).</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">myfruit = Fruit.new
-</span><span class="line">myfruit.add
-</span><span class="line">
-</span><span class="line"># undefined method `add ... (NoMethodError)</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 </div>
   
