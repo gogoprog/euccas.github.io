@@ -11,13 +11,14 @@ categories: octopress, chinese
 # Tip 1: Clone Repo
 
 如果需要重新复制一份已经存在的blog repo，在重新复制的blog repo上继续发布更新blog，那么需要注意：
-	1. 首先复制的repo需要是source branch. 
+
+首先复制的repo需要是source branch. 
 
 如果repo的默认branch已经设定为source branch:
 
-｀｀｀
+```
 git clone <repo url>
-｀｀｀
+```
 
 如果repo的默认branch设定为master branch:
 
@@ -26,7 +27,7 @@ git clone <repo url>
 git pull origin source
 ```
 
-  2. 然后需要把master branch复制到```_deploy```目录。注意```_deploy```目录是在Octopress生成post的过程中必须存在的。
+然后需要把master branch复制到```_deploy```目录。注意```_deploy```目录是在Octopress生成post的过程中必须存在的。
 
 ```
 git clone <repo url> _deploy
