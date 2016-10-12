@@ -35,6 +35,7 @@ You can install a Python Package to WinPython using ```pip```. If you have other
 Where is the ```pip```? 
 
 It's in the ```Scripts``` directory of the WinPython path.
+For example:
 
 ```
 C:\WinPython\Scripts
@@ -50,11 +51,10 @@ Now you can use the WinPython ```pip``` to install additional Python packages.
 If the installation successfully done, you will find the installed packages in WinPython's library path.
 
 ```
-<WinPython Path>\Lib\site-packages
+<WinPython Path>\Lib\site-packages\<package name>
 ```
 
 That's it! Your Python package is ready to use!
-
 
 
 
