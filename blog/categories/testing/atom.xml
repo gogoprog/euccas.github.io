@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Testing | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-12-05T13:58:19-08:00</updated>
+  <updated>2016-12-05T14:01:20-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,41 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[GTAC]]></title>
-    <link href="http://euccas.github.io/blog/20161103/gtac.html"/>
-    <updated>2016-11-03T10:12:58-07:00</updated>
-    <id>http://euccas.github.io/blog/20161103/gtac</id>
-    <content type="html"><![CDATA[<p>GTAC (Google Test Automation Conference) 2016 is right around the corner. I’m resuming my “30 Days of GTAC” project! Today’s topic is from GTAC 2015:</p>
-
-<p><strong>The Uber Challenge of Cross-Application/Cross-Device Testing</strong></p>
-
-<ul>
-  <li>Presenter: Apple Chow (Uber), Bian Jiang (Uber)</li>
-  <li><a href="https://www.youtube.com/watch?v=p6gsssppeT0&amp;list=PLSIUOFhnxEiCWGsN9t5A-XOhRbmz54IS1&amp;index=3">Video</a></li>
-  <li><a href="https://docs.google.com/presentation/d/1vYXhkvgLKun72Ix91LQDDWZQdcY5VOBqKVvI1Y6riYo/pub">Slides</a></li>
-</ul>
-
-<p><strong>My takeaways</strong></p>
-
-<ul>
-  <li>The challenge: End-to-end tests require cross application communication (between rider app and driver app)</li>
-  <li>Uber’s solution: Octopus
-    <ul>
-      <li>Octopus coordinates communication across different apps running on different devices</li>
-      <li>This solution can be adopted for any tests that require coordination/communication across different apps or devices</li>
-    </ul>
-  </li>
-  <li>What makes testing Uber’s mobile apps significantly different from testing Google Maps?</li>
-  <li>Why (built) Octopus? Unified (iOS and Android). Extensible (Integrate with different UI testing frameworks). Parallelized. Signaling (enabling cross-app and cross-device testing).</li>
-  <li>What does Octopus do? Prepare test targets. Run tests (handles signaling). Create test results reports. Pull test artifacts. Perform clean ups. All from simple command line.</li>
-  <li>Signaling between driver test and rider test: Conducted with Test Host to improve the consistency. API readSignal (blocking), writeSignal (nonblocking). Test hosts and test targets are connected via USB (reliable).</li>
-  <li>Apple Chow wrote about Octopus on <a href="http://eng.uber.com/rescued-by-octopus/">Uber Engineering</a></li>
-</ul>
-
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[GTAC: The Uber Challenge of Cross-Application Testing]]></title>
