@@ -6,7 +6,7 @@ comments: true
 categories: database mongodb
 ---
 
-昨晚提交了MongoDB University的培训课程 [M101P: MongoDB for Developers (Python)](https://university.mongodb.com/courses/M101P/about) 的最后一次测试，这历时七周的课程告一段落。这个课程虽然是属于入门级，但是它覆盖了对MongoDB各个方面，有不错的课程结构。短时间内，可以让开发者掌握和MongoDB有关的日常开发中所需要掌握的大部分知识和技能。
+昨晚提交了MongoDB University的培训课程 [M101P: MongoDB for Developers (Python)](https://university.mongodb.com/courses/M101P/about) 的最后一次测试，这历时七周的课程告一段落。这个课程虽然是属于入门级，但是它覆盖了MongoDB各个方面，有不错的课程结构。短时间内，可以让开发者掌握和MongoDB有关的日常开发中所需要掌握的大部分知识和技能。
 
 在学习其他数据库时，也不妨参照这个结构来全面掌握。
 
