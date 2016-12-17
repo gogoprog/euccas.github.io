@@ -121,11 +121,10 @@
 
 <p>The error message looks like:</p>
 
-<p><code>
-server closed the connection unexpectedly (PG::UnableToSend)
-      This probably means the server terminated abnormally
-      before or while processing the request.
-</code></p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">server closed the connection unexpectedly (PG::UnableToSend)
+</span><span class="line">This probably means the server terminated abnormally before or while processing the request.</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>The PG::UnabletoSend error usually means a connection timeout or network issue. It could be a temporary issue though. You can check if the other connections to the database server work well or not.</p>
 </div>
