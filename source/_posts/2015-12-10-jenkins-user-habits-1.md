@@ -65,3 +65,10 @@ Jenkins LTS Release: Jenkins Long-Term Support release. 类似于Ubuntu的LTS版
 2. 使用一个 Maven-style project (配置job type为Mavin job type)
 推荐使用第一种方法，因为第二种方式可能会出现问题
 
+**阅读同主题内容**
+
+- [高效Jenkins用户的第1个习惯](http://euccas.github.io/blog/20151210/jenkins-user-habits-1.html)
+- [高效Jenkins用户的第2个习惯](http://euccas.github.io/blog/20151215/jenkins-user-habits-2.html)
+- [高效Jenkins用户的第3个习惯](http://euccas.github.io/blog/20160523/jenkins-user-habits-3.html)
+- [高效Jenkins用户的第4个习惯](http://euccas.github.io/blog/20161010/jenkins-user-habits-4.html)
+- [高效Jenkins用户的第5个习惯](http://euccas.github.io/blog/20161216/jenkins-user-habits-5.html)

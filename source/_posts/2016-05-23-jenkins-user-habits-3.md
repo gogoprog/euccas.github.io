@@ -40,3 +40,11 @@ categories: jenkins Chinese
 * [Job DSL plugin](https://wiki.jenkins-ci.org/display/JENKINS/Job+DSL+Plugin)
 * [DotCI plugin](https://wiki.jenkins-ci.org/display/JENKINS/DotCi+Plugin)
 * [Workflow plugin (Pipeline plugin)](https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Plugin)
+
+**阅读同主题内容**
+
+- [高效Jenkins用户的第1个习惯](http://euccas.github.io/blog/20151210/jenkins-user-habits-1.html)
+- [高效Jenkins用户的第2个习惯](http://euccas.github.io/blog/20151215/jenkins-user-habits-2.html)
+- [高效Jenkins用户的第3个习惯](http://euccas.github.io/blog/20160523/jenkins-user-habits-3.html)
+- [高效Jenkins用户的第4个习惯](http://euccas.github.io/blog/20161010/jenkins-user-habits-4.html)
+- [高效Jenkins用户的第5个习惯](http://euccas.github.io/blog/20161216/jenkins-user-habits-5.html)
