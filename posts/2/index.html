@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="In Ruby on Rails, Active Record is the M in MVC - the model. Model is the layer of the system which represents business data and logic. Active Record &hellip;">
+  <meta name="description" content="If you ever get confused about Class Methods, Instance Methods, Class Variables and Instance Variables in Ruby, read this post and you’ll understand &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,120 +78,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20160610/rails-get-data-without-model.html">Rails: Get Data From PostgreSQL Database Without the Model</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-06-10T18:32:01-07:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>6:32 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In Ruby on Rails, Active Record is the M in MVC - the model. Model is the layer of the system which represents business data and logic. Active Record facilitates the creation and the use of business objects whose data requires persistent storage to a database. In some cases, however, you may want to use databases in Rails applications without the Model. What you can do is using the <code>pg</code> gem to directly manipulate the data you need.</p>
-
-<h1 id="create-a-database-connection">Create a database connection</h1>
-
-<p>If the database is not declared in Rails app’s <code>config/database.yml</code> file, you won’t be able to use the <code>establish_connection</code> method in ActiveRecord. But you can still use the <code>pg</code> gem to directly connect to the database.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># page_controller.rb
-</span><span class="line">
-</span><span class="line">conn = PGconn.connect('&lt;server&gt;', &lt;port&gt;, "", "", '&lt;database&gt;', "&lt;user&gt;", "&lt;password&gt;")
-</span><span class="line">render :plain =&gt; "Oops, database currently not accessible" unless conn
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="query-data-with-raw-sql">Query data with RAW SQL</h1>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># page_controller.rb
-</span><span class="line">
-</span><span class="line">@page_records = []
-</span><span class="line">result = conn.exec('SELECT * FROM &lt;table&gt; ORDER BY id DESC')
-</span><span class="line">
-</span><span class="line">@page_records = result
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>The result is an array of Hash. For example:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">[
-</span><span class="line">  { "title" =&gt; "my page 1", "author" =&gt; "Tom", "created_at" =&gt; "2016-06-08" }
-</span><span class="line">  { "title" =&gt; "my page 2", "author" =&gt; "Nancy", "created_at" =&gt; "2016-06-09" }
-</span><span class="line">]</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="use-the-data-in-view">Use the data in View</h1>
-
-<p>When using the queried data in Rails View, need to note you need use <code>record['title']</code> instead of <code>record.title</code>, which is different from using the data generated from a Rails Model.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># page.erb
-</span><span class="line">
-</span><span class="line">&lt;div&gt;
-</span><span class="line">    &lt;% @page_records.each do |record| %&gt;
-</span><span class="line">        &lt;p&gt; &lt;%= record['title'] %&gt; &lt;/p&gt;
-</span><span class="line">        &lt;p&gt; &lt;%= record['author'] %&gt; &lt;/p&gt;
-</span><span class="line">    &lt;% end %&gt;
-</span><span class="line">&lt;/div&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="as-a-note-in-the-end">As a note in the end</h1>
-
-<p>Although the above approach works in Rails, I’d say a more decent way to handle the need of getting data from multiple databases, is creating a crafted Model. The process will need:</p>
-
-<ul>
-  <li>Add the configurations of all your external databases in Rails app</li>
-  <li>Create a Model file</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">class Pages &lt; ActiveRecord::Base
-</span><span class="line">
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-<ul>
-  <li>Use <code>establish_connection</code> in the Model</li>
-  <li>When your table name doesn’t match Rails convention, set the table name with <code>self.table_name = '&lt;your table name&gt;'</code></li>
-  <li>Create methods in the Model to fetch the data you need</li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>

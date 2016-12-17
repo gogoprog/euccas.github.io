@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://euccas.github.io/blog/20161205/mongodb-training-mongodb-for-developers-python.html</loc>
-<lastmod>2016-12-05T13:56:45-08:00</lastmod>
-</url>
-<url>
 <loc>http://euccas.github.io/blog/20161011/octopress-tips.html</loc>
 <lastmod>2016-10-11T22:36:44-07:00</lastmod>
 </url>
@@ -115,15 +111,6 @@
 <loc>http://euccas.github.io/blog/categories/testing/</loc>
 </url>
 <url>
-<loc>http://euccas.github.io/blog/categories/google/</loc>
-</url>
-<url>
 <loc>http://euccas.github.io/blog/categories/octopress/</loc>
-</url>
-<url>
-<loc>http://euccas.github.io/blog/categories/database/</loc>
-</url>
-<url>
-<loc>http://euccas.github.io/blog/categories/mongodb/</loc>
 </url>
 </urlset>

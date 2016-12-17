@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="昨晚提交了MongoDB University的培训课程 M101P: MongoDB for Developers (Python) 的最后一次测试，这历时七周的课程告一段落。这个课程虽然是属于入门级，但是它覆盖了MongoDB各个方面，有不错的课程结构。短时间内， &hellip;">
+  <meta name="description" content="使用Octopress搭建这个blog已经有一段时间了，记录几个使用中需要注意的Tips. Tip 1: Clone Repo 如果需要重新复制一份已经存在的blog repo，在重新复制的blog repo上继续发布更新blog，那么需要注意： 首先需要复制的repo是source branch &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,89 +78,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20161205/mongodb-training-mongodb-for-developers-python.html">MongoDB Training: MongoDB for Developers (Python)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-12-05T13:56:45-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>1:56 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>昨晚提交了MongoDB University的培训课程 <a href="https://university.mongodb.com/courses/M101P/about">M101P: MongoDB for Developers (Python)</a> 的最后一次测试，这历时七周的课程告一段落。这个课程虽然是属于入门级，但是它覆盖了MongoDB各个方面，有不错的课程结构。短时间内，可以让开发者掌握和MongoDB有关的日常开发中所需要掌握的大部分知识和技能。</p>
-
-<p>在学习其他数据库时，也不妨参照这个结构来全面掌握。</p>
-
-<ul>
-  <li>
-    <p><strong>Introduction and Overview</strong></p>
-  </li>
-  <li><strong>CRUD: Creating, Reading and Updating Data</strong>
-    <ul>
-      <li>Mongo shell</li>
-      <li>Find, Insert, Update, Delete</li>
-      <li>Query operators, update operators</li>
-    </ul>
-  </li>
-  <li><strong>Schema Design</strong>
-    <ul>
-      <li>Live without constraints or transactions</li>
-      <li>One to one relations, one to many relations, many to many relations</li>
-      <li>Embedding, handle blobs</li>
-    </ul>
-  </li>
-  <li><strong>Performance</strong>
-    <ul>
-      <li>Indexes</li>
-      <li>Explain and profiling</li>
-    </ul>
-  </li>
-  <li><strong>Aggregation Framework</strong>
-    <ul>
-      <li>Aggregation pipeline</li>
-      <li>Aggregation expressions: sum, avg, addToSet, push, max, min, group,  project, match, text, sort, limit, skip, unwind, etc.</li>
-    </ul>
-  </li>
-  <li><strong>Application Engineering</strong>
-    <ul>
-      <li>Write consistency</li>
-      <li>Replication, create a replica set</li>
-      <li>Failover and rollback</li>
-      <li>Sharding</li>
-    </ul>
-  </li>
-  <li><strong>Case Studies</strong>
-    <ul>
-      <li>Interview with MongoDB users from Facebook and Codecademy</li>
-      <li>Discuss MongoDB usages in real life projects</li>
-    </ul>
-  </li>
-</ul>
-
-<p>我在课程期间的笔记和练习都保存在GitHub Repository - <a href="https://github.com/euccas/mongodb-for-developers-M101P">euccas/MongoDB-for-Developers-M101P</a></p>
-
-<p>如果是偏重于Web开发，可以参加另一个培训课程:  <a href="https://university.mongodb.com/courses/M101JS/about">M101JS: MongoDB for Node.js Developers</a>. M101JS课程和M101P有类似的结构，区别在于开发语言从Python变为Node.js.</p>
-
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -1560,6 +1477,120 @@ if __name__ == '__main__':
   <li><a href="https://www.amazon.com/Ruby-Cookbook-Lucas-Carlson/dp/1449373712">Ruby Cookbook 2nd Edition (L. Carlson)</a></li>
   <li><a href="http://martinfowler.com/articles/rake.html">Using the Rake Build Language (Martin Fowler)</a></li>
 </ul>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/20160610/rails-get-data-without-model.html">Rails: Get Data From PostgreSQL Database Without the Model</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-06-10T18:32:01-07:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>6:32 pm</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In Ruby on Rails, Active Record is the M in MVC - the model. Model is the layer of the system which represents business data and logic. Active Record facilitates the creation and the use of business objects whose data requires persistent storage to a database. In some cases, however, you may want to use databases in Rails applications without the Model. What you can do is using the <code>pg</code> gem to directly manipulate the data you need.</p>
+
+<h1 id="create-a-database-connection">Create a database connection</h1>
+
+<p>If the database is not declared in Rails app’s <code>config/database.yml</code> file, you won’t be able to use the <code>establish_connection</code> method in ActiveRecord. But you can still use the <code>pg</code> gem to directly connect to the database.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line"># page_controller.rb
+</span><span class="line">
+</span><span class="line">conn = PGconn.connect('&lt;server&gt;', &lt;port&gt;, "", "", '&lt;database&gt;', "&lt;user&gt;", "&lt;password&gt;")
+</span><span class="line">render :plain =&gt; "Oops, database currently not accessible" unless conn
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="query-data-with-raw-sql">Query data with RAW SQL</h1>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class=""><span class="line"># page_controller.rb
+</span><span class="line">
+</span><span class="line">@page_records = []
+</span><span class="line">result = conn.exec('SELECT * FROM &lt;table&gt; ORDER BY id DESC')
+</span><span class="line">
+</span><span class="line">@page_records = result
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>The result is an array of Hash. For example:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[
+</span><span class="line">  { "title" =&gt; "my page 1", "author" =&gt; "Tom", "created_at" =&gt; "2016-06-08" }
+</span><span class="line">  { "title" =&gt; "my page 2", "author" =&gt; "Nancy", "created_at" =&gt; "2016-06-09" }
+</span><span class="line">]</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="use-the-data-in-view">Use the data in View</h1>
+
+<p>When using the queried data in Rails View, need to note you need use <code>record['title']</code> instead of <code>record.title</code>, which is different from using the data generated from a Rails Model.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class=""><span class="line"># page.erb
+</span><span class="line">
+</span><span class="line">&lt;div&gt;
+</span><span class="line">    &lt;% @page_records.each do |record| %&gt;
+</span><span class="line">        &lt;p&gt; &lt;%= record['title'] %&gt; &lt;/p&gt;
+</span><span class="line">        &lt;p&gt; &lt;%= record['author'] %&gt; &lt;/p&gt;
+</span><span class="line">    &lt;% end %&gt;
+</span><span class="line">&lt;/div&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="as-a-note-in-the-end">As a note in the end</h1>
+
+<p>Although the above approach works in Rails, I’d say a more decent way to handle the need of getting data from multiple databases, is creating a crafted Model. The process will need:</p>
+
+<ul>
+  <li>Add the configurations of all your external databases in Rails app</li>
+  <li>Create a Model file</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class Pages &lt; ActiveRecord::Base
+</span><span class="line">
+</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+<ul>
+  <li>Use <code>establish_connection</code> in the Model</li>
+  <li>When your table name doesn’t match Rails convention, set the table name with <code>self.table_name = '&lt;your table name&gt;'</code></li>
+  <li>Create methods in the Model to fetch the data you need</li>
+</ul>
+
 </div>
   
   
