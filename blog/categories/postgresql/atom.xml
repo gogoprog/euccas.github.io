@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Postgresql | euccas.github.io]]></title>
+  <link href="http://euccas.github.io/blog/categories/postgresql/atom.xml" rel="self"/>
+  <link href="http://euccas.github.io/"/>
+  <updated>2016-12-17T09:18:59-08:00</updated>
+  <id>http://euccas.github.io/</id>
+  <author>
+    <name><![CDATA[euccas]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[PostgreSQL: Understand PG Errors]]></title>
+    <link href="http://euccas.github.io/blog/20161217/postgresql-understand-pg-errors.html"/>
+    <updated>2016-12-17T09:06:21-08:00</updated>
+    <id>http://euccas.github.io/blog/20161217/postgresql-understand-pg-errors</id>
+    <content type="html"><![CDATA[<p>When using Ruby Gem <code>pg</code> and establish database connections to a PostgreSQL database, you’ll see PG errors when the database connection becomes problematic. In my experience, two typical PG errors are <code>PG::AdminShutdown</code> and <code>PG::UnableToSend</code>.</p>
+
+<h1 id="error-pgadminshutdown">Error PG::AdminShutdown</h1>
+
+<p>The error message contains the following information:</p>
+
+<p><code>
+FATAL:  terminating connection due to administrator command (PG::AdminShutdown) server closed the connection unexpectedly
+      This probably means the server terminated abnormally
+      before or while processing the request.
+</code>
+The PG::AdminShutdown error could be caused by database server receiving SIGTERM/SIGINT/SIGQUIT or kill command on the connection process. Each system signal shut down server processes in different manners, see the <a href="https://www.pgadmin.org/docs/1.4/pg/postmaster-shutdown.html">pgadmin document</a> to know the details.</p>
+
+<p>When you hit the PG::AdminShutdown error, you’ll like to check if the database server gets restarted and if the server resumes to the normal state.</p>
+
+<h1 id="error-pgunabletosend">Error PG::UnabletoSend</h1>
+
+<p>The error message looks like:</p>
+
+<p><code>
+server closed the connection unexpectedly (PG::UnableToSend)
+      This probably means the server terminated abnormally
+      before or while processing the request.
+</code></p>
+
+<p>The PG::UnabletoSend error usually means a connection timeout or network issue. It could be a temporary issue though. You can check if the other connections to the database server work well or not.</p>
+]]></content>
+  </entry>
+  
+</feed>

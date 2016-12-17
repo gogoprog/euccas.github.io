@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="本文内容部分来源于Andrew Bayer发布在SlideShare上的 7 habits of highly productive Jenkins Users (2014 Edition). 习惯 5: 集成第三方工具和服务 Jenkin可以和许多第三方工具和服务集成，实现强大又实用的功能。 &hellip;">
+  <meta name="description" content="When using Ruby Gem pg and establish database connections to a PostgreSQL database, you’ll see PG errors when the database connection becomes &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,62 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/20161217/postgresql-understand-pg-errors.html">PostgreSQL: Understand PG Errors</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-12-17T09:06:21-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:06 am</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When using Ruby Gem <code>pg</code> and establish database connections to a PostgreSQL database, you’ll see PG errors when the database connection becomes problematic. In my experience, two typical PG errors are <code>PG::AdminShutdown</code> and <code>PG::UnableToSend</code>.</p>
+
+<h1 id="error-pgadminshutdown">Error PG::AdminShutdown</h1>
+
+<p>The error message contains the following information:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">FATAL:  terminating connection due to administrator command (PG::AdminShutdown) server closed the connection unexpectedly
+</span><span class="line">      This probably means the server terminated abnormally
+</span><span class="line">      before or while processing the request.</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>The PG::AdminShutdown error could be caused by database server receiving SIGTERM/SIGINT/SIGQUIT or kill command on the connection process. Each system signal shut down server processes in different manners, see the <a href="https://www.pgadmin.org/docs/1.4/pg/postmaster-shutdown.html">pgadmin document</a> to know the details.</p>
+
+<p>When you hit the PG::AdminShutdown error, you’ll like to check if the database server gets restarted and if the server resumes to the normal state.</p>
+
+<h1 id="error-pgunabletosend">Error PG::UnabletoSend</h1>
+
+<p>The error message looks like:</p>
+
+<p><code>
+server closed the connection unexpectedly (PG::UnableToSend)
+      This probably means the server terminated abnormally
+      before or while processing the request.
+</code></p>
+
+<p>The PG::UnabletoSend error usually means a connection timeout or network issue. It could be a temporary issue though. You can check if the other connections to the database server work well or not.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1139,275 +1195,6 @@ if __name__ == '__main__':
     unittest.main()
 </code></pre>
 
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20160711/start-unit-testing-in-python.html">Start Unit Testing in Python</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-07-11T22:58:39-07:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>10:58 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When is the best time to start unit testing in your Python project? My answer is before you writing the first line of code of this project. Unit testing is the fundamental of Test-driven development, which specifically improves the quality and design of your project.</p>
-
-<p>In this post, I’m writing about how could you do unit testing in Python with the <code>unittest</code> module.</p>
-
-<p>Python 2 (starting on version 2.1) and Python 3 now both have <code>unittest</code> in the standard library. The <code>unittest</code> module provides the unit testing framework, and it’s based on <code>JUnit</code>, which is a unit testing framework for Java.</p>
-
-<h1 id="what-unittest-can-do">What unittest can do</h1>
-
-<p>A few main features that <code>unittest</code> can do are:</p>
-
-<ul>
-  <li>Automatically run the tests (by <code>test runner</code>)</li>
-  <li>Create test cases (by <code>test case</code>)</li>
-  <li>Sharing of setup and shutdown code for tests (by <code>test fixture</code>)</li>
-  <li>Aggrate tests into collections (by <code>test suite</code>)</li>
-  <li>Independence of the tests from the reporting framework</li>
-</ul>
-
-<h1 id="how-does-unittest-work">How does unittest work</h1>
-
-<p>Suppose I’m working on a project called <code>demo</code>, and it has a file structure as:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">demo
-</span><span class="line">-- dev
-</span><span class="line">   -- __init__.py
-</span><span class="line">   -- demoDev.py</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Note the <code>___init___.py</code> file can be empty. The purpose of having this file is for other files outside this directory can easily import the module <code>demoDev.py</code>.</p>
-
-<p>To create unit tests for this project, I’ll need continue the following steps.</p>
-
-<h2 id="create-the-test-file">1. Create the test file</h2>
-
-<p>There is no particular required folder structure that you need to keep your test files. The way I usually do is separating the tests from the project source files. So, I create a <code>test</code> folder in the same level as <code>dev</code>. All my tests will be put into this folder. Now the project’s structure looks like:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">demo
-</span><span class="line">-- dev
-</span><span class="line">   -- __init__.py
-</span><span class="line">   -- demoDev.py
-</span><span class="line">-- test
-</span><span class="line">   -- test_demoDev.py</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="use-unittest-module-in-your-project">2. Use unittest module in your project</h2>
-
-<p>The test file need import the <code>unittest</code> module.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># This is test/test_demoDev.py
-</span><span class="line">
-</span><span class="line">import unittest</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="include-your-project-modules-in-the-test">3. Include your project modules in the test</h2>
-
-<p>Surely you’ll need include the source files of the modules that you want to test in your test file. If your tests are in the same folder of your module sources, you can simply use <code>import SomeModule</code> to pull the modules in. When your tests stay out of the module sources, you’ll need do a little configurations in your test file.</p>
-
-<p>I found the way to import your own modules to your tests can be different depending your development environment. For example, if you run your Python projects within some IDE, like <strong>PyCharm</strong> from JetBrains. The following way always work:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line"># This is test/test_demoDev.py
-</span><span class="line">
-</span><span class="line">from dev import demoDev
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>However if you run through command line <code>python test/test_demoDev.py</code>, you might see errors complaining no module called <code>dev</code> and thus the import fails.</p>
-
-<p>What you can do to resolve this problem, is adding the path of your Python modules to the <code>sys.path</code>.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line"># This is test/test_demoDev.py
-</span><span class="line">
-</span><span class="line">import sys, os.path
-</span><span class="line">
-</span><span class="line">bin_path = os.path.dirname(os.path.realpath(__file__))
-</span><span class="line">lib_path = os.path.abspath(os.path.join(bin_path, '..', 'dev'))
-</span><span class="line">sys.path.insert(0, lib_path)
-</span><span class="line"># or sys.path.append(lib_path)
-</span><span class="line">
-</span><span class="line">import demoDev
-</span><span class="line">
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="create-a-test-case">4. Create a test case</h2>
-
-<p>A test case can be created with unittest <em>TestCase</em> class. The <code>setUp()</code> and <code>tearDown()</code> methods can be overridden to provide initialization and cleanup for the fixture. Each instance of the TestCase will only be used to run a single test method. Multiple test methods share the same text fixture, but the test fixture are created for each test method when they are executed.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line"># This is test/test_demoDev.py
-</span><span class="line">
-</span><span class="line">import sys
-</span><span class="line">import unittest
-</span><span class="line">
-</span><span class="line">bin_path = os.path.dirname(os.path.realpath(__file__))
-</span><span class="line">lib_path = os.path.abspath(os.path.join(bin_path, '..', 'dev'))
-</span><span class="line">sys.path.insert(0, lib_path)
-</span><span class="line">
-</span><span class="line">from dev import demoDev
-</span><span class="line">
-</span><span class="line">class demoDevTestCase(unittest.TestCase):
-</span><span class="line">
-</span><span class="line">    def setUp(self):
-</span><span class="line">        self.checker = eABTCheckerDev.eABTChecker()
-</span><span class="line">
-</span><span class="line">    def test_checker_app(self):
-</span><span class="line">        self.assertEqual(self.demo.app, 'Demo App', 'Wrong app')
-</span><span class="line">
-</span><span class="line">    def tearDown(self):
-</span><span class="line">        print('Bye Test')
-</span><span class="line">
-</span><span class="line">if __name__ == '__main__':
-</span><span class="line">    unittest.main()
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>The <code>TestCase</code> class provides several assert methods to check for and report failures, such as <code>assertEqual</code>, <code>assertNotEqual</code>, <code>assertTrue</code>. <a href="https://docs.python.org/3.4/library/unittest.html#assert-methods">Here is the complete assert list that Python 3 provides.</a></p>
-
-<h2 id="create-more-tests-and-a-test-suites">5. Create more tests and a test suites</h2>
-
-<p><code>TestSuite</code> class represents an aggregation of individual test cases and test suites. The <code>addTest</code> and <code>addTests</code> methods are available to add tests to your TestSuite instances.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line"># This is test_demoDev.py
-</span><span class="line">
-</span><span class="line">def suite():
-</span><span class="line">    suite = unittest.TestSuite();
-</span><span class="line">    suite.addTest(demoDevTestCase('test_checker_app'))
-</span><span class="line">    suite.addTest(demoDevTestCase('test_check_env'))
-</span><span class="line">    
-</span><span class="line">    return suite
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="run-your-unit-tests">6. Run your unit tests!</h1>
-
-<p>The easiest way to run your unit tests is executing the <code>unittest.main()</code> method in the test file.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line"># This is test_demoDev.py
-</span><span class="line">
-</span><span class="line">if __name__ == '__main__':
-</span><span class="line">    unittest.main()
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Then by running command <code>python test_demoDev.py</code>, the tests defined in <code>test_demoDev.py</code> will start running.</p>
-
-<p>Unit tests can run from command line, because <code>unittest</code> module can be used from the command line to run tests from modules, classes or individual test methods.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">python -m unittest test_demoDev.test_checker_app
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>You’ll see the testing result like:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">----------------------------------------------------------------------
-</span><span class="line">Ran 1 test in 0.000s
-</span><span class="line">
-</span><span class="line">OK
-</span><span class="line">Bye Test
-</span><span class="line">
-</span><span class="line">Process finished with exit code 0
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Behind the tests running, there is the <code>run</code> method provided by <code>TestCase</code> and <code>TestCaseSuite</code> classes. This <code>run</code> method implements the function of running the test, collecting the result into the <code>TestResult</code> object passed as result.</p>
-
-<p>Here you go! Enjoy unit testing in Python!</p>
 </div>
   
   
