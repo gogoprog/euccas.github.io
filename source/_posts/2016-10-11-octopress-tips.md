@@ -3,7 +3,7 @@ layout: post
 title: "Octopress Tips"
 date: 2016-10-11 22:36:44 -0700
 comments: true
-categories: octopress, chinese
+categories: octopress chinese
 ---
 
 使用Octopress搭建这个blog已经有一段时间了，记录几个使用中需要注意的Tips.
