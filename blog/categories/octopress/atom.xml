@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Octopress, | euccas.github.io]]></title>
+  <title><![CDATA[Category: Octopress | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-12-17T09:22:03-08:00</updated>
+  <updated>2016-12-17T12:01:49-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
