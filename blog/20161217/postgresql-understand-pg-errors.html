@@ -112,6 +112,7 @@
 </pre></td><td class="code"><pre><code class=""><span class="line">FATAL:  terminating connection due to administrator command (PG::AdminShutdown) server closed the connection unexpectedly
 </span><span class="line">      This probably means the server terminated abnormally
 </span><span class="line">      before or while processing the request.</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 <p>The PG::AdminShutdown error could be caused by database server receiving SIGTERM/SIGINT/SIGQUIT or kill command on the connection process. Each system signal shut down server processes in different manners, see the <a href="https://www.pgadmin.org/docs/1.4/pg/postmaster-shutdown.html">pgadmin document</a> to know the details.</p>
 
 <p>When you hit the PG::AdminShutdown error, you’ll like to check if the database server gets restarted and if the server resumes to the normal state.</p>
