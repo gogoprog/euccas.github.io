@@ -84,9 +84,6 @@ categories: jenkins Chinese
 
   - [插件介绍](https://wiki.jenkins-ci.org/display/JENKINS/Build-timeout+Plugin)
   - 功能：设置build的时间限制，当一个build时间超过预设时，会自动被停止。这个插件不能用于Jenkins pipelines.
-  
-
-**阅读同主题内容**
 
 **阅读同主题内容**
 
