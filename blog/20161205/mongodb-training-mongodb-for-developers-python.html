@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>GTAC: The Uber Challenge of Cross-Application Testing - euccas.github.io</title>
+  <title>MongoDB Training: MongoDB for Developers (Python) - euccas.github.io</title>
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="Inspired by Matt Cutts’ TED talk: Try something new for 30 days, I’m starting a “30 Days of GTAC” project. Google’s Test Automation Conference GTAC &hellip;">
+  <meta name="description" content="昨晚提交了MongoDB University的培训课程 M101P: MongoDB for Developers (Python) 的最后一次测试，这历时七周的课程告一段落。这个课程虽然是属于入门级，但是它覆盖了MongoDB各个方面，有不错的课程结构。短时间内， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://euccas.github.io/blog/20160928/the-uber-challenge-of-cross-application-testinng.html">
+  <link rel="canonical" href="http://euccas.github.io/blog/20161205/mongodb-training-mongodb-for-developers-python.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="euccas.github.io" type="application/atom+xml">
@@ -82,7 +82,7 @@
   <header>
     
       
-        <h1 class="entry-title">GTAC: The Uber Challenge of Cross-Application Testing</h1>
+        <h1 class="entry-title">MongoDB Training: MongoDB for Developers (Python)</h1>
       
     
     
@@ -92,7 +92,7 @@
 
 
 
-<time class='entry-date' datetime='2016-09-28T23:17:30-07:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:17 pm</span></time>
+<time class='entry-date' datetime='2016-12-05T13:56:45-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>1:56 pm</span></time>
         
         
       </p>
@@ -100,34 +100,59 @@
   </header>
 
 
-<div class="entry-content"><p>Inspired by Matt Cutts’ TED talk: <a href="https://www.ted.com/talks/matt_cutts_try_something_new_for_30_days?language=en">Try something new for 30 days</a>, I’m starting a “30 Days of GTAC” project. Google’s Test Automation Conference <a href="https://developers.google.com/google-test-automation-conference/">GTAC</a> is an annual test automation conference which brings together engineers from industry and academia to discuss advances in test automation and related engineering tools. In my “30 Days of GTAC” project, I’ll review the topics presented on GTAC. My goal is having a better and deeper understanding in modern testing technologies, methodologies, strategies, and practices.</p>
+<div class="entry-content"><p>昨晚提交了MongoDB University的培训课程 <a href="https://university.mongodb.com/courses/M101P/about">M101P: MongoDB for Developers (Python)</a> 的最后一次测试，这历时七周的课程告一段落。这个课程虽然是属于入门级，但是它覆盖了MongoDB各个方面，有不错的课程结构。短时间内，可以让开发者掌握和MongoDB有关的日常开发中所需要掌握的大部分知识和技能。</p>
 
-<p>Get it started! Day#1 topic is:</p>
-
-<p><strong>The Uber Challenge of Cross-Application/Cross-Device Testing</strong></p>
+<p>在学习其他数据库时，也不妨参照这个结构来全面掌握。</p>
 
 <ul>
-  <li>Presenter: Apple Chow (Uber), Bian Jiang (Uber)</li>
-  <li><a href="https://www.youtube.com/watch?v=p6gsssppeT0&amp;list=PLSIUOFhnxEiCWGsN9t5A-XOhRbmz54IS1&amp;index=3">Video</a></li>
-  <li><a href="https://docs.google.com/presentation/d/1vYXhkvgLKun72Ix91LQDDWZQdcY5VOBqKVvI1Y6riYo/pub">Slides</a></li>
-</ul>
-
-<p><strong>My takeaways</strong></p>
-
-<ul>
-  <li>The challenge: End-to-end tests require cross application communication (between rider app and driver app)</li>
-  <li>Uber’s solution: Octopus
+  <li>
+    <p><strong>Introduction and Overview</strong></p>
+  </li>
+  <li><strong>CRUD: Creating, Reading and Updating Data</strong>
     <ul>
-      <li>Octopus coordinates communication across different apps running on different devices</li>
-      <li>This solution can be adopted for any tests that require coordination/communication across different apps or devices</li>
+      <li>Mongo shell</li>
+      <li>Find, Insert, Update, Delete</li>
+      <li>Query operators, update operators</li>
     </ul>
   </li>
-  <li>What makes testing Uber’s mobile apps significantly different from testing Google Maps?</li>
-  <li>Why (built) Octopus? Unified (iOS and Android). Extensible (Integrate with different UI testing frameworks). Parallelized. Signaling (enabling cross-app and cross-device testing).</li>
-  <li>What does Octopus do? Prepare test targets. Run tests (handles signaling). Create test results reports. Pull test artifacts. Perform clean ups. All from simple command line.</li>
-  <li>Signaling between driver test and rider test: Conducted with Test Host to improve the consistency. API readSignal (blocking), writeSignal (nonblocking). Test hosts and test targets are connected via USB (reliable).</li>
-  <li>Apple Chow wrote about Octopus on <a href="http://eng.uber.com/rescued-by-octopus/">Uber Engineering</a></li>
+  <li><strong>Schema Design</strong>
+    <ul>
+      <li>Live without constraints or transactions</li>
+      <li>One to one relations, one to many relations, many to many relations</li>
+      <li>Embedding, handle blobs</li>
+    </ul>
+  </li>
+  <li><strong>Performance</strong>
+    <ul>
+      <li>Indexes</li>
+      <li>Explain and profiling</li>
+    </ul>
+  </li>
+  <li><strong>Aggregation Framework</strong>
+    <ul>
+      <li>Aggregation pipeline</li>
+      <li>Aggregation expressions: sum, avg, addToSet, push, max, min, group,  project, match, text, sort, limit, skip, unwind, etc.</li>
+    </ul>
+  </li>
+  <li><strong>Application Engineering</strong>
+    <ul>
+      <li>Write consistency</li>
+      <li>Replication, create a replica set</li>
+      <li>Failover and rollback</li>
+      <li>Sharding</li>
+    </ul>
+  </li>
+  <li><strong>Case Studies</strong>
+    <ul>
+      <li>Interview with MongoDB users from Facebook and Codecademy</li>
+      <li>Discuss MongoDB usages in real life projects</li>
+    </ul>
+  </li>
 </ul>
+
+<p>我在课程期间的笔记和练习都保存在GitHub Repository - <a href="https://github.com/euccas/mongodb-for-developers-M101P">euccas/MongoDB-for-Developers-M101P</a></p>
+
+<p>如果是偏重于Web开发，可以参加另一个培训课程:  <a href="https://university.mongodb.com/courses/M101JS/about">M101JS: MongoDB for Node.js Developers</a>. M101JS课程和M101P有类似的结构，区别在于开发语言从Python变为Node.js.</p>
 
 </div>
 
@@ -151,13 +176,13 @@
 
 
 
-<time class='entry-date' datetime='2016-09-28T23:17:30-07:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:17 pm</span></time>
+<time class='entry-date' datetime='2016-12-05T13:56:45-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>1:56 pm</span></time>
       
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/google/'>google</a>, <a class='category' href='/blog/categories/gtac/'>gtac</a>, <a class='category' href='/blog/categories/infrastructure/'>infrastructure</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+    <a class='category' href='/blog/categories/database/'>database</a>, <a class='category' href='/blog/categories/mongodb/'>mongodb</a>
   
 </span>
 
@@ -166,7 +191,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://euccas.github.io/blog/20160928/the-uber-challenge-of-cross-application-testinng.html" data-via="" data-counturl="http://euccas.github.io/blog/20160928/the-uber-challenge-of-cross-application-testinng.html" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://euccas.github.io/blog/20161205/mongodb-training-mongodb-for-developers-python.html" data-via="" data-counturl="http://euccas.github.io/blog/20161205/mongodb-training-mongodb-for-developers-python.html" >Tweet</a>
   
   
   
@@ -175,10 +200,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/20160920/python-dunder-methods.html" title="Previous Post: Dunder Methods in Python">&laquo; Dunder Methods in Python</a>
+        <a class="basic-alignment left" href="/blog/20161011/octopress-tips.html" title="Previous Post: Octopress Tips">&laquo; Octopress Tips</a>
       
       
-        <a class="basic-alignment right" href="/blog/20161010/jenkins-user-habits-4.html" title="Next Post: 高效Jenkins用户的第4个习惯">高效Jenkins用户的第4个习惯 &raquo;</a>
+        <a class="basic-alignment right" href="/blog/20161216/jenkins-user-habits-5.html" title="Next Post: 高效Jenkins用户的第5个习惯">高效Jenkins用户的第5个习惯 &raquo;</a>
       
     </p>
   </footer>

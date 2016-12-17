@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="使用Octopress搭建这个blog已经有一段时间了，记录几个使用中需要注意的Tips. Tip 1: Clone Repo 如果需要重新复制一份已经存在的blog repo，在重新复制的blog repo上继续发布更新blog，那么需要注意： 首先需要复制的repo是source branch &hellip;">
+  <meta name="description" content="本文内容部分来源于Andrew Bayer发布在SlideShare上的 7 habits of highly productive Jenkins Users (2014 Edition). 习惯 5: 集成第三方工具和服务 Jenkin可以和许多第三方工具和服务集成，实现强大又实用的功能。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,164 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/20161216/jenkins-user-habits-5.html">高效Jenkins用户的第5个习惯</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-12-16T15:49:51-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>3:49 pm</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
+
+<h1 id="section">习惯 5: 集成第三方工具和服务</h1>
+
+<p>Jenkin可以和许多第三方工具和服务集成，实现强大又实用的功能。常见的集成方式包括使用REST API和一些Jenkins功能插件。可以实现的功能比如：由GitHub pull requests触发builds，当builds成功或失败时根据结果更新JIRA等等。</p>
+
+<h2 id="gerritgithubpull-requests">Gerrit和Github的pull requests</h2>
+
+<p>一些非常实用的Jenkins builds工具和服务有：</p>
+
+<ul>
+  <li>Gerrit Trigger</li>
+  <li>GitHub Pull Request Builder</li>
+  <li>Jenkins Enterprise’s version of GitHub pull request builder</li>
+</ul>
+
+<p>Build工具和服务可以实现对每一次提交的改动进行build, 并且将结果报告提交代码审查工具。</p>
+
+<p>在这些Build工具的基础之上，你可以实现自动化合并多个提交的改动，进行branch之间的同步等更多功能。</p>
+
+<h2 id="jirahttpswwwatlassiancomsoftwarejira"><a href="https://www.atlassian.com/software/jira">JIRA</a></h2>
+
+<ul>
+  <li>检查每一个commit的描述信息，如果其中包含有JIRA issue信息，就用commit信息（和测试结果）提交相应的JIRA issue更新</li>
+  <li>根据build的过程和步骤，更新所有相关项目的JIRA</li>
+  <li>生成JIRA release notes</li>
+</ul>
+
+<h2 id="artifactory">Artifactory</h2>
+
+<ul>
+  <li>全局性地设定Jenkins jobs用于部署的证书信息 (credentials)</li>
+  <li>覆盖 (override) 每一个job的Maven distributionManagement 配置</li>
+  <li>定义Maven jobs和build步骤从何处获取artifacts</li>
+  <li>在Artifactory中保存build信息和关系</li>
+</ul>
+
+<p><strong>阅读同主题内容</strong></p>
+
+<ul>
+  <li><a href="http://euccas.github.io/blog/20151210/jenkins-user-habits-1.html">高效Jenkins用户的第1个习惯</a></li>
+  <li><a href="http://euccas.github.io/blog/20151215/jenkins-user-habits-2.html">高效Jenkins用户的第2个习惯</a></li>
+  <li><a href="http://euccas.github.io/blog/20160523/jenkins-user-habits-3.html">高效Jenkins用户的第3个习惯</a></li>
+  <li><a href="http://euccas.github.io/blog/20161010/jenkins-user-habits-4.html">高效Jenkins用户的第4个习惯</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/20161205/mongodb-training-mongodb-for-developers-python.html">MongoDB Training: MongoDB for Developers (Python)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-12-05T13:56:45-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>1:56 pm</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>昨晚提交了MongoDB University的培训课程 <a href="https://university.mongodb.com/courses/M101P/about">M101P: MongoDB for Developers (Python)</a> 的最后一次测试，这历时七周的课程告一段落。这个课程虽然是属于入门级，但是它覆盖了MongoDB各个方面，有不错的课程结构。短时间内，可以让开发者掌握和MongoDB有关的日常开发中所需要掌握的大部分知识和技能。</p>
+
+<p>在学习其他数据库时，也不妨参照这个结构来全面掌握。</p>
+
+<ul>
+  <li>
+    <p><strong>Introduction and Overview</strong></p>
+  </li>
+  <li><strong>CRUD: Creating, Reading and Updating Data</strong>
+    <ul>
+      <li>Mongo shell</li>
+      <li>Find, Insert, Update, Delete</li>
+      <li>Query operators, update operators</li>
+    </ul>
+  </li>
+  <li><strong>Schema Design</strong>
+    <ul>
+      <li>Live without constraints or transactions</li>
+      <li>One to one relations, one to many relations, many to many relations</li>
+      <li>Embedding, handle blobs</li>
+    </ul>
+  </li>
+  <li><strong>Performance</strong>
+    <ul>
+      <li>Indexes</li>
+      <li>Explain and profiling</li>
+    </ul>
+  </li>
+  <li><strong>Aggregation Framework</strong>
+    <ul>
+      <li>Aggregation pipeline</li>
+      <li>Aggregation expressions: sum, avg, addToSet, push, max, min, group,  project, match, text, sort, limit, skip, unwind, etc.</li>
+    </ul>
+  </li>
+  <li><strong>Application Engineering</strong>
+    <ul>
+      <li>Write consistency</li>
+      <li>Replication, create a replica set</li>
+      <li>Failover and rollback</li>
+      <li>Sharding</li>
+    </ul>
+  </li>
+  <li><strong>Case Studies</strong>
+    <ul>
+      <li>Interview with MongoDB users from Facebook and Codecademy</li>
+      <li>Discuss MongoDB usages in real life projects</li>
+    </ul>
+  </li>
+</ul>
+
+<p>我在课程期间的笔记和练习都保存在GitHub Repository - <a href="https://github.com/euccas/mongodb-for-developers-M101P">euccas/MongoDB-for-Developers-M101P</a></p>
+
+<p>如果是偏重于Web开发，可以参加另一个培训课程:  <a href="https://university.mongodb.com/courses/M101JS/about">M101JS: MongoDB for Node.js Developers</a>. M101JS课程和M101P有类似的结构，区别在于开发语言从Python变为Node.js.</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1246,351 +1404,6 @@ if __name__ == '__main__':
 <p>Behind the tests running, there is the <code>run</code> method provided by <code>TestCase</code> and <code>TestCaseSuite</code> classes. This <code>run</code> method implements the function of running the test, collecting the result into the <code>TestResult</code> object passed as result.</p>
 
 <p>Here you go! Enjoy unit testing in Python!</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20160614/rake-automake-your-tasks-in-ruby.html">Rake: Automake Your Tasks in Ruby</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-06-14T17:59:06-07:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>5:59 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Rake is the build language for Ruby programs, originally developed by <a href="http://onestepback.org/">Jim Weirich</a>. It’s a standard library in Ruby 2.1. You can define tasks with Rake: named code blocks that carry out specific actions, such as running unit tests, deploy your code to github, etc. In this post, I’ll write about the basics of Rake and how to use it to automate the tasks of your Ruby projects.</p>
-
-<h1 id="rakefile">Rakefile</h1>
-
-<p>In order to use Rake to define tasks, first you need a Rakefile. A Rakefile is a Ruby source file that has access to some special methods: <strong>task</strong>, <strong>file</strong>, <strong>directory</strong>, and a few others. A task defined in the Rakefile can be run by the command-line <code>rake</code> program, or be called as a dependency by other tasks. The name of Rakefile can be <code>Rakefile</code> or <code>rakefile</code>.</p>
-
-<h1 id="write-descriptions-for-rake-tasks">Write Descriptions for Rake Tasks</h1>
-
-<p>Writing a description to the defined tasks in Rakefile help you get more details about the task and know better what it does.</p>
-
-<p>Example:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">desc 'Upload documentation to server'
-</span><span class="line">task 'upload-docs' =&gt; ['rdoc'] do
-</span><span class="line">    sh "scp -r #{html_dir}/* " + "#{user}:#{server_path}"
-</span><span class="line">end
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="namespaces">Namespaces</h1>
-
-<p>Using namespaces is a good way to group similar tasks in Rakefile. You’ll need specify the namespace when calling a task inside it. One example as you can see from Rails is this command</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">rake db:migrate</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>In this command, the <strong><em>db</em></strong> is the namespace, and the <strong><em>migrate</em></strong> is the task inside the namespace.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">namespace :cleanup do
-</span><span class="line">    desc 'Clean up database'
-</span><span class="line">    task  :dbs =&gt; :environment do
-</span><span class="line">        Db.cleanup
-</span><span class="line">    end
-</span><span class="line">
-</span><span class="line">    desc 'Clean up logs'
-</span><span class="line">    task :logs =&gt; :environment do
-</span><span class="line">        Log.cleanup
-</span><span class="line">    end
-</span><span class="line">
-</span><span class="line">    task :all =&gt; [:dbs, :logs]
-</span><span class="line">end
-</span><span class="line">
-</span><span class="line">desc 'Cleanup everything'
-</span><span class="line">task :cleanup =&gt; "cleanup:all"
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="default-task">Default Task</h1>
-
-<p>The default task is the one gets executed when you run rake without any arguments. You can set the default task in Rakefile by using the <code>:default</code> keyword.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">task :default =&gt; 'cleanup'</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">task :default =&gt; 'logs: cleanup'</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="multiple-tasks-running-in-parallel">Multiple Tasks Running in Parallel</h1>
-<p>Rake’s <code>multitask</code> function supports running multiple tasks in parallel. The method is defining a task using the <code>multitask</code> function, and each of this task’s prerequisites will be run in a separate thread.</p>
-
-<p>An example of multiple parallel tasks:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">task 'copy_docs' do
-</span><span class="line">    # Simulate a large disk copy
-</span><span class="line">    sleep 5
-</span><span class="line">end
-</span><span class="line">
-</span><span class="line">task 'compile_extensions' do
-</span><span class="line">    # Simulate a C compiler compiling a bunch of files
-</span><span class="line">    sleep 10
-</span><span class="line">end
-</span><span class="line">
-</span><span class="line">task 'build_serial' =&gt; ['copy_docs', 'compile_extensions]
-</span><span class="line">multitask 'build_parallel' =&gt; ['copy_docs', 'compile_extensions']
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>In this example, the <code>build_serial</code> task runs in about 15 seconds, but the <code>build_parallel</code> task runs in about 10 seconds.</p>
-
-<h1 id="invoke-tasks">Invoke tasks</h1>
-
-<p>Rake tasks can be invoked from other tasks using the <code>Rake::Task['&lt;your take&gt;'].invoke</code> method.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">task :cleanup do
-</span><span class="line">    Rake::Task['logs: cleanup'].invoke
-</span><span class="line">    puts "logs are cleaned!"
-</span><span class="line">    Rake::Task['dbs: cleanup'].invoke
-</span><span class="line">    puts "dbs are cleaned!"
-</span><span class="line">end
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="view-all-the-rake-tasks">View all the Rake tasks</h1>
-
-<p>To get an overview of all the defined Rake tasks, use <code>rake -T</code></p>
-
-<h1 id="include-external-rakefiles">Include external rakefiles</h1>
-
-<p>When your project need include the Rake tasks defined in external directories, you’ll need include the external rakefiles into your project. The way to do it is using the <code>import</code>. Note the <code>require</code> won’t work here, as it looks for the <code>.rb</code> files instead of the <code>.rake</code> files.</p>
-
-<p>Include one rakefile:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">import File.dirname(__FILE__)+"/../../task/common/rakefile"</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Include multiple rakefiles in nested directories:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">Dir.glob("#{File.dirname(__FILE__)}/*").each do |d|
-</span><span class="line">  next if !File.directory? d
-</span><span class="line">  import d + "/rakefile" if File.file?(d + "/rakefile")
-</span><span class="line">end
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="exit-from-rake-tasks">Exit from Rake tasks</h1>
-
-<p>In a Ruby function, you can use <code>return</code> in the function when you want to exit (early). But in Rake tasks, the <code>return</code> is an invalid method to use, because each Rake task is actually a <code>Proc</code>. To exit early from a Rake task, you can use one of the following methods:</p>
-
-<ul>
-  <li>next</li>
-</ul>
-
-<p><strong><em>next</em></strong> will discard the following codes in the current rake task, and process the following part of the other tasks if there are any.</p>
-
-<ul>
-  <li>fail/raise</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">task :something do
-</span><span class="line">  [1,2,3].each do |i|
-</span><span class="line">    ...
-</span><span class="line">    fail "some error" if ...
-</span><span class="line">  end
-</span><span class="line">end
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>
-    <p>exit</p>
-  </li>
-  <li>
-    <p>abort</p>
-  </li>
-</ul>
-
-<p>When <strong><em>abort</em></strong> is used in a rescue block, it terminates the task as well as prints the whole error (even without using –trace).</p>
-
-<h1 id="reference">Reference</h1>
-
-<ul>
-  <li><a href="https://www.amazon.com/Ruby-Cookbook-Lucas-Carlson/dp/1449373712">Ruby Cookbook 2nd Edition (L. Carlson)</a></li>
-  <li><a href="http://martinfowler.com/articles/rake.html">Using the Rake Build Language (Martin Fowler)</a></li>
-</ul>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20160610/rails-get-data-without-model.html">Rails: Get Data From PostgreSQL Database Without the Model</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-06-10T18:32:01-07:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>6:32 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In Ruby on Rails, Active Record is the M in MVC - the model. Model is the layer of the system which represents business data and logic. Active Record facilitates the creation and the use of business objects whose data requires persistent storage to a database. In some cases, however, you may want to use databases in Rails applications without the Model. What you can do is using the <code>pg</code> gem to directly manipulate the data you need.</p>
-
-<h1 id="create-a-database-connection">Create a database connection</h1>
-
-<p>If the database is not declared in Rails app’s <code>config/database.yml</code> file, you won’t be able to use the <code>establish_connection</code> method in ActiveRecord. But you can still use the <code>pg</code> gem to directly connect to the database.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># page_controller.rb
-</span><span class="line">
-</span><span class="line">conn = PGconn.connect('&lt;server&gt;', &lt;port&gt;, "", "", '&lt;database&gt;', "&lt;user&gt;", "&lt;password&gt;")
-</span><span class="line">render :plain =&gt; "Oops, database currently not accessible" unless conn
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="query-data-with-raw-sql">Query data with RAW SQL</h1>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># page_controller.rb
-</span><span class="line">
-</span><span class="line">@page_records = []
-</span><span class="line">result = conn.exec('SELECT * FROM &lt;table&gt; ORDER BY id DESC')
-</span><span class="line">
-</span><span class="line">@page_records = result
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>The result is an array of Hash. For example:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">[
-</span><span class="line">  { "title" =&gt; "my page 1", "author" =&gt; "Tom", "created_at" =&gt; "2016-06-08" }
-</span><span class="line">  { "title" =&gt; "my page 2", "author" =&gt; "Nancy", "created_at" =&gt; "2016-06-09" }
-</span><span class="line">]</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="use-the-data-in-view">Use the data in View</h1>
-
-<p>When using the queried data in Rails View, need to note you need use <code>record['title']</code> instead of <code>record.title</code>, which is different from using the data generated from a Rails Model.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># page.erb
-</span><span class="line">
-</span><span class="line">&lt;div&gt;
-</span><span class="line">    &lt;% @page_records.each do |record| %&gt;
-</span><span class="line">        &lt;p&gt; &lt;%= record['title'] %&gt; &lt;/p&gt;
-</span><span class="line">        &lt;p&gt; &lt;%= record['author'] %&gt; &lt;/p&gt;
-</span><span class="line">    &lt;% end %&gt;
-</span><span class="line">&lt;/div&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="as-a-note-in-the-end">As a note in the end</h1>
-
-<p>Although the above approach works in Rails, I’d say a more decent way to handle the need of getting data from multiple databases, is creating a crafted Model. The process will need:</p>
-
-<ul>
-  <li>Add the configurations of all your external databases in Rails app</li>
-  <li>Create a Model file</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">class Pages &lt; ActiveRecord::Base
-</span><span class="line">
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-<ul>
-  <li>Use <code>establish_connection</code> in the Model</li>
-  <li>When your table name doesn’t match Rails convention, set the table name with <code>self.table_name = '&lt;your table name&gt;'</code></li>
-  <li>Create methods in the Model to fetch the data you need</li>
-</ul>
-
 </div>
   
   
