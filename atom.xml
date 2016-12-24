@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-12-24T05:46:07-08:00</updated>
+  <updated>2016-12-24T05:47:41-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -170,8 +170,6 @@ This probably means the server terminated abnormally before or while processing 
   <li>定义Maven jobs和build步骤从何处获取artifacts</li>
   <li>在Artifactory中保存build信息和关系</li>
 </ul>
-
-<p><strong>阅读同主题内容</strong></p>
 
 <p><strong>阅读同主题内容</strong></p>
 
