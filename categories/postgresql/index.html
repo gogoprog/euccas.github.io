@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>euccas.github.io</title>
+  <title>Category: Postgresql - euccas.github.io</title>
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="本文内容部分来源于Andrew Bayer发布在SlideShare上的 7 habits of highly productive Jenkins Users (2014 Edition). 习惯 1: 保持Jenkins Master的稳定与可恢复 1. 使用LTS Release LTS &hellip;">
+  <meta name="description" content="Category: postgresql">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://euccas.github.io/posts/5/index.html">
+  <link rel="canonical" href="http://euccas.github.io/categories/postgresql/index.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="euccas.github.io" type="application/atom+xml">
@@ -110,239 +110,47 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article role="article">
   
-  
-  
-    <article>
-      
   <header>
-    
-      <h1 class="entry-title"><a href="/20151210/jenkins-user-habits-1.html">高效Jenkins用户的第1个习惯</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-12-10T19:32:57-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>7:32 pm</span></time>
-        
-        
-      </p>
+    <h1 class="entry-title">Category: Postgresql</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-  <div class="entry-content"><p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
 
-<h1 id="jenkins-master">习惯 1: 保持Jenkins Master的稳定与可恢复</h1>
+  
+  <h2>2016</h2>
 
-<h2 id="lts-release">1. 使用LTS Release</h2>
+<article>
+  
+<h1><a href="/20161217/postgresql-understand-pg-errors.html">PostgreSQL: Understand PG Errors</a></h1>
+<time datetime="2016-12-17T09:06:21-08:00" pubdate><span class='month'>Dec</span> <span class='day'>17</span> <span class='year'>2016</span></time>
 
-<p>LTS release每12周发布一个新版本</p>
+<footer>
+  <span class="categories">posted in <a class='category' href='/categories/database/'>database</a>, <a class='category' href='/categories/postgresql/'>postgresql</a>, <a class='category' href='/categories/ruby/'>ruby</a></span>
+</footer>
 
-<p>LTS release版本发布都会保证通过自动化的acceptance testing和手工testing matrix</p>
 
-<h2 id="plugins">2.不要急于升级plugins，保持谨慎</h2>
+</article>
 
-<p>plugin的升级可能包含非常多的变化</p>
-
-<p>不是所有的升级都会保证向前兼容。比如最近Extended Email Plugin的升级，就造成之前的recipient/trigger配置不可用</p>
-
-<p>新功能也许不稳定</p>
-
-<h2 id="section">3. 对升级进行测试</h2>
-
-<p>建议在测试环境中对升级和新的plugin进行测试，之后再进行production环境的升级</p>
-
-<p>建立针对plugin功能的测试</p>
-
-<p>在更大的规模进行测试</p>
-
-<p>大的改变需要至少经过几天的测试</p>
-
-<h2 id="jenkins-configuration">4. 备份Jenkins Configuration</h2>
-
-<p>建议使用<a href="https://wiki.jenkins-ci.org/display/JENKINS/thinBackup">thinBackup plugin</a></p>
-
-<p>可以通过对$JENKINS_HOME做整体备份实现有效的备份，缺点是速度慢和占用较多的存储空间</p>
-
-<p>Jenkins支持仅仅备份config files，而不需要备份所有的builds。参考<a href="https://gist.github.com/abayer/527063a4519f205efc74">这个gist</a>中的代码实现这一功能。</p>
-
-<h2 id="maven-job">5. 避免使用Maven job类型</h2>
-
-<p>Maven plugin中的Mavin job type可能存在一些问题，包括plugin support, lazy loading等等</p>
-
-<p>在大规模应用中可能会引起一些意外的问题，不建议使用</p>
-
-<h2 id="section-1">一些解释</h2>
-
-<h3 id="lts-release-1">什么是LTS Release?</h3>
-
-<p>Jenkins LTS Release: Jenkins Long-Term Support release. 类似于Ubuntu的LTS版本。</p>
-
-<p>具体说明<a href="https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line">在这里</a>。</p>
-
-<h3 id="jenkins-maven-jobs">关于Jenkins Maven Jobs</h3>
-
-<p>在Jenkins中可以通过两种方式build Maven project</p>
-
-<ol>
-  <li>
-    <p>使用一个 free-style project 和 Maven build step</p>
-  </li>
-  <li>
-    <p>使用一个 Maven-style project (配置job type为Mavin job type)
-推荐使用第一种方法，因为第二种方式可能会出现问题</p>
-  </li>
-</ol>
-
-<p><strong>阅读同主题内容</strong></p>
-
-<ul>
-  <li><a href="http://euccas.github.io/blog/20151210/jenkins-user-habits-1.html">高效Jenkins用户的第1个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20151215/jenkins-user-habits-2.html">高效Jenkins用户的第2个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20160523/jenkins-user-habits-3.html">高效Jenkins用户的第3个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20161010/jenkins-user-habits-4.html">高效Jenkins用户的第4个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20161216/jenkins-user-habits-5.html">高效Jenkins用户的第5个习惯</a></li>
-</ul>
 </div>
+
   
-  
+</article>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/20140531/the-elements-of-linux-screen.html">The Elements of Linux Screen</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-05-31T14:51:54-07:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>2:51 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The Element of Linux Screen</p>
-
-<p><a href="http://aperiodic.net/screen/start">Linux Screen</a> is a tool installed in Linux system with which you can manage multiple interactive shell processes. With Screen, you can have multiple shells in the same window. You can detach shell processes and attach them when you log into the system from other sessions. With Screen, you don’t need worry about losing your half-way tasks when the terminal exit. I use the Screen on a daily basis, and here I write down the commands and usages that are most commonly used in my everyday work.</p>
-
-<h1 id="start-screen">Start Screen</h1>
-
-<p>In a system where screen is installed, type “screen” in a terminal will invoke it.</p>
-
-<p>If screen isn’t installed in your system, Google “install screen in Linux” to find the solution.</p>
-
-<p>Screen can also has a <strong>session name</strong> when get started:</p>
-
-<p><code>screen -S</code></p>
-
-<p>If no session name is specified, screen will use the default Shell name as the session name.</p>
-
-<p>Example:</p>
-
-<pre><code>Num  Name
-0	bash
-1	bash
-</code></pre>
-
-<h1 id="do-some-configurations">Do some configurations</h1>
-<p>Screen uses a configuration file “~/.screenrc”. It could be empty if there is no customized configurations.</p>
-
-<p>You can skip this .screenrc config and use everything set as default by Screen. It will be fine most of the time. However if you use <strong>Emacs</strong>, you might need <strong>change the default command key</strong> used by Screen in the .screenrc file. Here is the why and how.</p>
-
-<p>Command key in Screen means the key input that issues the commands to Screen instead of to Linux shell.
-By default, the Screen command key is <code>Ctrl+A</code> (C-A).</p>
-
-<pre><code>C-A ? : show the key binning used by Screen
-</code></pre>
-
-<p>Emacs also uses C-A as the command key, so you may face the command key conflict when using Emacs in Screen. To make sure the command key work properly when use Screen and Emacs together, change the command key of Screen in .screenrc to be a command that not used by Emacs.</p>
-
-<p>Some examples:</p>
-
-<pre><code>~/.screenrc$
-
-escape ^L^L   #use Ctrl+L
-escape ^^^^   #use Ctrl+^
-escape ^]^]   #use Ctrl+]
-</code></pre>
-
-<p>Note the first “^” means command key, the second “^” means literal insert key.</p>
-
-<p>You can also set the default caption names when you have multiple shells in one screen</p>
-
-<pre><code>~/.screenrc$
-
-caption always "%{= kw}%-w%{= BW}%n %t%{-}%+w %-= @%H - %LD %d %LM - %c"
-</code></pre>
-
-<h1 id="common-screen-commands">Common Screen Commands</h1>
-
-<h2 id="from-linux-shell">From Linux Shell</h2>
-
-<pre><code>screen  	# start a screen
-screen -S   # start a screen with a session name
-screen -ls  # list current screens
-screen -d  	# detach the current screen
-screen -r  	# re-attach the screen that was attached
-</code></pre>
-
-<h2 id="from-screen">From Screen</h2>
-
-<pre><code>C-a " 		# list all interactive shells
-C-a c  		# create a new interactive shell (window)
-C-a k  		# kill the current window
-C-a n (or ) # switch to the next shell window
-C-a p (or )	# switch to the previous shell window
-C-a shift-A  # rename current window
-C-a S  		# split display horizontally
-C-a V  		# split display vertically
-C-a tab		# jump to the next display region
-C-a X  		# remove current region
-C-a Q  		# remove all regions but the current one 
-</code></pre>
-
-<p>When split the windows horizontally, use <code>C-a S</code>.
-Then use <code>C-a tab</code> to move between the horizontally split regions.</p>
-
-<p><code>screen -S SESSIONNAME</code> is good for starting a session with a name, but if you start a session and later decide to name it or rename it, you’ll need enter command mode <code>(C-a :) </code>and then enter the command <code>sessionname SESSIONNAME</code>.</p>
-
-<p>These are all my notes for using Linux Screen. Hopefully it could help you use it better!</p>
 </div>
-  
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-    <a class="next" href="/posts/4">Newer &rarr;</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     
   
 </aside>
+
 
     </div>
   </div>
