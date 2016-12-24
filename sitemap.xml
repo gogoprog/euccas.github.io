@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://euccas.github.io/blog/20161223/python-generators.html</loc>
+<lastmod>2016-12-23T08:48:45-08:00</lastmod>
+</url>
+<url>
 <loc>http://euccas.github.io/blog/20161217/postgresql-understand-pg-errors.html</loc>
 <lastmod>2016-12-17T09:06:21-08:00</lastmod>
 </url>
@@ -139,5 +143,17 @@
 </url>
 <url>
 <loc>http://euccas.github.io/blog/categories/postgresql/</loc>
+</url>
+<url>
+<loc>http://euccas.github.io/posts/2/</loc>
+</url>
+<url>
+<loc>http://euccas.github.io/posts/3/</loc>
+</url>
+<url>
+<loc>http://euccas.github.io/posts/4/</loc>
+</url>
+<url>
+<loc>http://euccas.github.io/posts/5/</loc>
 </url>
 </urlset>

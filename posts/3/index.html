@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="When is the best time to start unit testing in your Python project? My answer is before you writing the first line of code of this project. Unit &hellip;">
+  <meta name="description" content="In the previous post about Python Unittest, I wrote about the basic steps needed for setting up unit testing for your Python program with the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +100,138 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/20160807/python-unittest-handle-command-line-arguments.html">Python Unittest: Handle the Command Line Arguments</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-08-07T11:57:32-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:57 am</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In the previous post about <a href="http://euccas.github.io/blog/20160711/start-unit-testing-in-python.html">Python Unittest</a>, I wrote about the basic steps needed for setting up unit testing for your Python program with the <code>unittest</code> module. In this post, I’ll discuss about handling the command line parameters that your program need while you’re using Python <code>unittest</code>.</p>
+
+<p>Unit testing is meant for testing basic functionality of the application. The target of <a href="https://en.wikipedia.org/wiki/Unit_testing">Unit testing</a> is expected to be each function of your program. When your program has command line arguments, ideally the unit tests should not accept arguments from the command line because unit tests are supposed to be very specific and not testing on the <a href="https://en.wikipedia.org/wiki/Integration_testing">Integration level</a> (i.e. across multiple functions in your program).</p>
+
+<p>So the way I use to handle the command line arguments can be summarized as:</p>
+
+<ul>
+  <li>Refactor your program to have the arguments parsing as a function</li>
+  <li>Refactor your program to handle the arguments parsing differently when doing unit testing</li>
+  <li>In the unit tests, set the arguments and pass them directly to the functions under test</li>
+</ul>
+
+<p>The following is a demo Python project I built to demonstrate handling command line arguments when using <code>unittest</code>.</p>
+
+<h2 id="myapppy">myapp.py</h2>
+
+<pre><code>#!/usr/bin/env python
+
+import sys, os.path, re
+import argparse
+
+class myApp():
+
+    EXIT_PASS, EXIT_FAIL = 0, 1
+
+    def __init__(self, mode = 'normal', test_param = None):
+        # Validate and process argument options
+        self.parse_args(mode, test_param)
+        # Initialize database connection
+        self.app_name = self.get_app_name(self.name)
+
+    def parse_args(self, mode, test_param):
+        if mode == 'unittest':
+            if test_param is None:
+                print("Missing test param")
+                self.app_exit('fail')
+
+            self.name = test_param['app_name']
+            self.verbose = test_param['verbose']
+        else:
+            parser = argparse.ArgumentParser(description='myApp: A demo project')
+            parser.add_argument('-n', '--name', help='Name of myApp', required=True)
+            parser.add_argument('--verbose', action='store_true', help='Verbose mode with more information printed')
+
+            args = parser.parse_args()
+
+            self.name = args.name
+            self.verbose = args.verbose
+
+    def app_exit(self, status):
+        if status.lower() == 'pass':
+            print("** App Exit Status: PASS \n")
+            exit(self.EXIT_PASS)
+        elif status.lower() == 'skip':
+            print("** App Exit Status: SKIP \n")
+            exit(self.EXIT_PASS)
+        else:
+            print("** App Exit Status: FAIL \n")
+            exit(self.EXIT_FAIL)
+
+    def get_app_name(self):
+        app_name = self.name
+
+        return app_name
+
+if __name__ == '__main__':
+    app = myApp()
+</code></pre>
+
+<h2 id="testmyapppy">test_myapp.py</h2>
+
+<pre><code>#!/usr/bin/env python
+
+import sys, os.path, re
+import argparse
+import unittest
+
+bin_path = os.path.dirname(os.path.realpath(__file__))
+lib_path = os.path.abspath(bin_path)
+sys.path.insert(0, lib_path)
+
+import myApp
+
+class myAppTestCase(unittest.TestCase):
+
+    def setUp(self):
+        mode = 'unittest'
+        test_param = {
+            'name': 'Test App',
+            'verbose': True
+        }
+        self.app = myapp.myApp(mode, test_param)
+
+    def test_app_name(self):
+        self.assertEqual(self.app.get_app_name, 'Test App', 'Wrong App Name')
+
+    def tearDown(self):
+        print('Bye Test')
+
+if __name__ == '__main__':
+    unittest.main()
+</code></pre>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -945,87 +1077,6 @@
 </span><span class="line">
 </span><span class="line"># undefined method `add ... (NoMethodError)</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20160523/jenkins-user-habits-3.html">高效Jenkins用户的第3个习惯</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-05-23T20:54:36-07:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2016</span></span> <span class='time'>8:54 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
-
-<h1 id="jenkins">习惯 3: 让Jenkins任务自动化</h1>
-
-<h2 id="script-console--scriptler-">1. Script Console 和 Scriptler 插件</h2>
-
-<p>使用(Scriptler插件)[https://wiki.jenkins-ci.org/display/JENKINS/Scriptler+Plugin]，保存和重用Groovy脚本</p>
-
-<h2 id="scriptler">2. 一些Scriptler可以做的事情的例子</h2>
-
-<ul>
-  <li>通过匹配，控制一些job的开关 (enable, disable)</li>
-  <li>清除build queue</li>
-  <li>为所有的jobs设置log rotation/discard old builds等等配置参数：如果采用手工的方法，需要分别对每一个job进行配置，步骤繁琐</li>
-  <li>对所有的jobs设置取消夜晚时间的SCM Polling: 这个功能其实就是批量设置jobs schedule</li>
-  <li>对所有jobs执行log rotator</li>
-</ul>
-
-<p>这只是一些例子。可以看出，使用scriptler可以方便对job的配置进行批量操作</p>
-
-<h2 id="system-groovy-build-steps">3. System Groovy build steps</h2>
-
-<ul>
-  <li>Groovy build steps 是在build中去执行system Groovy的脚本。需要注意的是，要保证Jenkins有权限执行build的全过程。</li>
-  <li>利用Groovy build steps, 可以方便地做一些类似于plugin的功能，或者作为在开发一个plugin之前的测试</li>
-  <li>通过Scriptler scripts, 可以在多个builds中重用系统脚本</li>
-</ul>
-
-<h2 id="jenkins-jobs">4. 自动生成Jenkins jobs</h2>
-
-<ul>
-  <li>使用Jenkins REST API 和 CLI，可以创建新的job或者改变已有的job</li>
-  <li>可以使用DSL来定义job甚至包含多个job的workflow</li>
-</ul>
-
-<h2 id="dslplugin">5. 一些支持DSL的Plugin</h2>
-
-<ul>
-  <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Job+DSL+Plugin">Job DSL plugin</a></li>
-  <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/DotCi+Plugin">DotCI plugin</a></li>
-  <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Plugin">Workflow plugin (Pipeline plugin)</a></li>
-</ul>
-
-<p><strong>阅读同主题内容</strong></p>
-
-<ul>
-  <li><a href="http://euccas.github.io/blog/20151210/jenkins-user-habits-1.html">高效Jenkins用户的第1个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20151215/jenkins-user-habits-2.html">高效Jenkins用户的第2个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20160523/jenkins-user-habits-3.html">高效Jenkins用户的第3个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20161010/jenkins-user-habits-4.html">高效Jenkins用户的第4个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20161216/jenkins-user-habits-5.html">高效Jenkins用户的第5个习惯</a></li>
-</ul>
 </div>
   
   
