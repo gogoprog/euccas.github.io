@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Algorithm | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/algorithm/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-12-24T11:12:57-08:00</updated>
+  <updated>2016-12-24T11:13:41-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -20,7 +20,7 @@
     <id>http://euccas.github.io/blog/20161224/levels-of-design</id>
     <content type="html"><![CDATA[<p>Recently I’m taking a course <a href="https://www.coursera.org/learn/algorithmic-toolbox/home/welcome">“Algorithm Toolbox”</a> on Coursera. This course provides me a good chance to review and enhance my knowledge in the fundamental algorithms, which usually would help on achieving better system design. This morning I came across one slide of this course and thought it could be very useful. Sharing it here.</p>
 
-<p><img class="center" src="/images/post_images/20161224-levels-of-design-1.png" width="80"></p>
+<p><img class="center" src="/images/post_images/20161224-levels-of-design-1.png" width="600"></p>
 
 <p>It’s important to keep the <strong>levels of (algorithm) design</strong> in mind when solving a problem.</p>
 
