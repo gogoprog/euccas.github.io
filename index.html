@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="Generators is a powerful weapon of Python. Generators help you write concise code, give you lazy evaluation, and improve the efficience for &hellip;">
+  <meta name="description" content="I’m taking a course “Algorithm Toolbox” on Coursera recently. This course provides me a good chance to review and enhance my knowledge in the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -100,6 +100,69 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/20161224/levels-of-design.html">Levels of Design</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-12-24T09:52:07-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:52 am</span></time>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I’m taking a course <a href="https://www.coursera.org/learn/algorithmic-toolbox/home/welcome">“Algorithm Toolbox”</a> on Coursera recently. This course provides me a good chance to review and enhance my knowledge in the fundamental algorithms, which usually would help on achieving better system design. This morning I came across one slide of this course and thought it could be very useful. Sharing it here.</p>
+
+<p><img class="center" src="/images/post_images/20161224-levels-of-design-1.png" /></p>
+
+<p>It’s important to keep the levels of (algorithm) design in mind when solving a problem.</p>
+
+<ul>
+  <li>Level 1: Naive Algorithm</li>
+</ul>
+
+<p>This is the solution that you can get just by taking the definition of a problem and turning it into an algorithm. This solution can solve the problem, but it is often very slow and inefficient.</p>
+
+<p>The way I see the naive algorithm is it gives you something that works, and might be used to verify if alternative solutions are correct or not. But it’s important to not stay at the this solution. You should keep looking for better solutions.</p>
+
+<ul>
+  <li>Level 2: Algorithm by way of standard Tools</li>
+</ul>
+
+<p>You can look at the standard techniques and see if any of it applies to solving your problem. On this level, your goal is finding some standard techniques that work, often that don’t involve too much effort on your part, and give you something that work very well (better than the naive algorithm).</p>
+
+<ul>
+  <li>Level 3: Optimized Algorithm</li>
+</ul>
+
+<p>Remember there are always lots of ways to improve an existing solution. If you get a pretty good solution on level 2, why not taking one more step and see what you can do to improve it? Could you reduce the runtime from n-cubed to n-squared or n-squred to n? Could you come up with a shorter solution by rearranging the order or cut out some of the work? Could you use a data structure to speed things up? Think about all these possiblities and see if you can get a even better solution. (Often you will)</p>
+
+<ul>
+  <li>Level 4: Magic Algorithm</li>
+</ul>
+
+<p>When the solutions from the previous three levels are not good enough, you’ll need some magic to get a better one. This can be hard. You will need some clever new ideas and unique insights of the problem you’re trying to solve. Even if you don’t get a magic solution in the end, the thought process will be beneficial.</p>
+
+<p>Sometimes when I finish a project, I do have the feeling that the way I do it is just not good enough, even though the project has been proved to be successful, useful and solved a particular technical challenge we faced. Looking at the “Levels of Design”, I believe what I need to do is spending more efforts on the higher levels. Actually what you really need for getting a really good solution is not magic. What you need is mastering more existing good standard techniques, exploring the possibility for optimization, and a deep understanding of the problem you want to solve.</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -410,87 +473,6 @@ This probably means the server terminated abnormally before or while processing 
 
 <p>如果是偏重于Web开发，可以参加另一个培训课程:  <a href="https://university.mongodb.com/courses/M101JS/about">M101JS: MongoDB for Node.js Developers</a>. M101JS课程和M101P有类似的结构，区别在于开发语言从Python变为Node.js.</p>
 
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20161011/octopress-tips.html">Octopress Tips</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-10-11T22:36:44-07:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>10:36 pm</span></time>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>使用Octopress搭建这个blog已经有一段时间了，记录几个使用中需要注意的Tips.</p>
-
-<h1 id="tip-1-clone-repo">Tip 1: Clone Repo</h1>
-
-<p>如果需要重新复制一份已经存在的blog repo，在重新复制的blog repo上继续发布更新blog，那么需要注意：</p>
-
-<p>首先需要复制的repo是source branch.</p>
-
-<p>如果repo的默认branch已经设定为source branch:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">git clone &lt;repo url&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>如果repo的默认branch设定为master branch:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">git clone &lt;repo url&gt;
-</span><span class="line">git pull origin source</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>然后需要把master branch复制到<code>_deploy</code>目录。注意<code>_deploy</code>目录是在Octopress生成post的过程中必须存在的。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">git clone &lt;repo url&gt; _deploy
-</span><span class="line">cd _deploy
-</span><span class="line">git pull origin master</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="tip-2-push-changes-to-source">Tip 2: Push Changes to Source</h1>
-
-<p>使用<code>rake gen_deploy</code>将改动发布到<code>master branch</code>之后，还需要把source的改动也提交到<code>source branch</code>。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">git push origin source</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="tip-3-execute-rake-commands">Tip 3: Execute Rake Commands</h1>
-
-<p>如果因为<code>rake</code>版本问题造成<code>rake</code> command不能够在repo中执行，就需要使用<code>bundle exec rake</code>执行。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">bundle exec rake new_post
-</span><span class="line">bundle exec rake generate
-</span><span class="line">bundle exec rake preview
-</span><span class="line">bundle exec rake deploy</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="tip-4-errors-in-gendeploy">Tip 4: Errors in gen_deploy</h1>
-
-<p><code>rake gen_deploy</code>的过程中，如果在<code>generate</code>步骤中出现错误（比如部分post的文本不符合markdown语法），一些情况下可能会造成generate目录中的文件被删除。而<code>gen_deploy</code>过程此时并不会结束，<code>deploy</code>会继续进行，这样最终的commit就会把原来已经发布的blog内容删除。防止出现这种问题的安全做法是分步执行<code>rake generate</code>和<code>rake deploy</code>。</p>
 </div>
   
   

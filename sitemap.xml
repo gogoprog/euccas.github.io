@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://euccas.github.io/blog/20161224/levels-of-design.html</loc>
+<lastmod>2016-12-24T09:52:07-08:00</lastmod>
+</url>
+<url>
 <loc>http://euccas.github.io/blog/20161223/python-generators.html</loc>
 <lastmod>2016-12-23T08:48:45-08:00</lastmod>
 </url>
@@ -145,15 +149,9 @@
 <loc>http://euccas.github.io/blog/categories/postgresql/</loc>
 </url>
 <url>
-<loc>http://euccas.github.io/posts/2/</loc>
+<loc>http://euccas.github.io/blog/categories/system-design/</loc>
 </url>
 <url>
-<loc>http://euccas.github.io/posts/3/</loc>
-</url>
-<url>
-<loc>http://euccas.github.io/posts/4/</loc>
-</url>
-<url>
-<loc>http://euccas.github.io/posts/5/</loc>
+<loc>http://euccas.github.io/blog/categories/algorithm/</loc>
 </url>
 </urlset>

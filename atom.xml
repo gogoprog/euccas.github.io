@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-12-24T05:47:41-08:00</updated>
+  <updated>2016-12-24T11:09:24-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Levels of Design]]></title>
+    <link href="http://euccas.github.io/blog/20161224/levels-of-design.html"/>
+    <updated>2016-12-24T09:52:07-08:00</updated>
+    <id>http://euccas.github.io/blog/20161224/levels-of-design</id>
+    <content type="html"><![CDATA[<p>I’m taking a course <a href="https://www.coursera.org/learn/algorithmic-toolbox/home/welcome">“Algorithm Toolbox”</a> on Coursera recently. This course provides me a good chance to review and enhance my knowledge in the fundamental algorithms, which usually would help on achieving better system design. This morning I came across one slide of this course and thought it could be very useful. Sharing it here.</p>
+
+<p><img class="center" src="http://euccas.github.io/images/post_images/20161224-levels-of-design-1.png" /></p>
+
+<p>It’s important to keep the levels of (algorithm) design in mind when solving a problem.</p>
+
+<ul>
+  <li>Level 1: Naive Algorithm</li>
+</ul>
+
+<p>This is the solution that you can get just by taking the definition of a problem and turning it into an algorithm. This solution can solve the problem, but it is often very slow and inefficient.</p>
+
+<p>The way I see the naive algorithm is it gives you something that works, and might be used to verify if alternative solutions are correct or not. But it’s important to not stay at the this solution. You should keep looking for better solutions.</p>
+
+<ul>
+  <li>Level 2: Algorithm by way of standard Tools</li>
+</ul>
+
+<p>You can look at the standard techniques and see if any of it applies to solving your problem. On this level, your goal is finding some standard techniques that work, often that don’t involve too much effort on your part, and give you something that work very well (better than the naive algorithm).</p>
+
+<ul>
+  <li>Level 3: Optimized Algorithm</li>
+</ul>
+
+<p>Remember there are always lots of ways to improve an existing solution. If you get a pretty good solution on level 2, why not taking one more step and see what you can do to improve it? Could you reduce the runtime from n-cubed to n-squared or n-squred to n? Could you come up with a shorter solution by rearranging the order or cut out some of the work? Could you use a data structure to speed things up? Think about all these possiblities and see if you can get a even better solution. (Often you will)</p>
+
+<ul>
+  <li>Level 4: Magic Algorithm</li>
+</ul>
+
+<p>When the solutions from the previous three levels are not good enough, you’ll need some magic to get a better one. This can be hard. You will need some clever new ideas and unique insights of the problem you’re trying to solve. Even if you don’t get a magic solution in the end, the thought process will be beneficial.</p>
+
+<p>Sometimes when I finish a project, I do have the feeling that the way I do it is just not good enough, even though the project has been proved to be successful, useful and solved a particular technical challenge we faced. Looking at the “Levels of Design”, I believe what I need to do is spending more efforts on the higher levels. Actually what you really need for getting a really good solution is not magic. What you need is mastering more existing good standard techniques, exploring the possibility for optimization, and a deep understanding of the problem you want to solve.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Python Generators]]></title>
@@ -2099,87 +2141,6 @@ You can add multiple configurations: each has a list of projects to trigger, a c
 <blockquote>
   <p>This plugin allows you to distinguish good builds from bad builds by introducing the notion of ‘promotion’.Put simply, a promoted build is a successful build that passed additional criteria (such as more comprehensive tests that are set up as downstream jobs.) The typical situation in which you use promotion is where you have multiple ‘test’ jobs hooked up as downstream jobs of a ‘build’ job. You’ll then configure the build job so that the build gets promoted when all the test jobs passed successfully. This allows you to keep the build job run fast (so that developers get faster feedback when a build fails), and you can still distinguish builds that are good from builds that compiled but had runtime problems.</p>
 </blockquote>
-
-<p><strong>阅读同主题内容</strong></p>
-
-<ul>
-  <li><a href="http://euccas.github.io/blog/20151210/jenkins-user-habits-1.html">高效Jenkins用户的第1个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20151215/jenkins-user-habits-2.html">高效Jenkins用户的第2个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20160523/jenkins-user-habits-3.html">高效Jenkins用户的第3个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20161010/jenkins-user-habits-4.html">高效Jenkins用户的第4个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20161216/jenkins-user-habits-5.html">高效Jenkins用户的第5个习惯</a></li>
-</ul>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[高效Jenkins用户的第1个习惯]]></title>
-    <link href="http://euccas.github.io/blog/20151210/jenkins-user-habits-1.html"/>
-    <updated>2015-12-10T19:32:57-08:00</updated>
-    <id>http://euccas.github.io/blog/20151210/jenkins-user-habits-1</id>
-    <content type="html"><![CDATA[<p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
-
-<h1 id="jenkins-master">习惯 1: 保持Jenkins Master的稳定与可恢复</h1>
-
-<h2 id="lts-release">1. 使用LTS Release</h2>
-
-<p>LTS release每12周发布一个新版本</p>
-
-<p>LTS release版本发布都会保证通过自动化的acceptance testing和手工testing matrix</p>
-
-<h2 id="plugins">2.不要急于升级plugins，保持谨慎</h2>
-
-<p>plugin的升级可能包含非常多的变化</p>
-
-<p>不是所有的升级都会保证向前兼容。比如最近Extended Email Plugin的升级，就造成之前的recipient/trigger配置不可用</p>
-
-<p>新功能也许不稳定</p>
-
-<h2 id="section">3. 对升级进行测试</h2>
-
-<p>建议在测试环境中对升级和新的plugin进行测试，之后再进行production环境的升级</p>
-
-<p>建立针对plugin功能的测试</p>
-
-<p>在更大的规模进行测试</p>
-
-<p>大的改变需要至少经过几天的测试</p>
-
-<h2 id="jenkins-configuration">4. 备份Jenkins Configuration</h2>
-
-<p>建议使用<a href="https://wiki.jenkins-ci.org/display/JENKINS/thinBackup">thinBackup plugin</a></p>
-
-<p>可以通过对$JENKINS_HOME做整体备份实现有效的备份，缺点是速度慢和占用较多的存储空间</p>
-
-<p>Jenkins支持仅仅备份config files，而不需要备份所有的builds。参考<a href="https://gist.github.com/abayer/527063a4519f205efc74">这个gist</a>中的代码实现这一功能。</p>
-
-<h2 id="maven-job">5. 避免使用Maven job类型</h2>
-
-<p>Maven plugin中的Mavin job type可能存在一些问题，包括plugin support, lazy loading等等</p>
-
-<p>在大规模应用中可能会引起一些意外的问题，不建议使用</p>
-
-<h2 id="section-1">一些解释</h2>
-
-<h3 id="lts-release-1">什么是LTS Release?</h3>
-
-<p>Jenkins LTS Release: Jenkins Long-Term Support release. 类似于Ubuntu的LTS版本。</p>
-
-<p>具体说明<a href="https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line">在这里</a>。</p>
-
-<h3 id="jenkins-maven-jobs">关于Jenkins Maven Jobs</h3>
-
-<p>在Jenkins中可以通过两种方式build Maven project</p>
-
-<ol>
-  <li>
-    <p>使用一个 free-style project 和 Maven build step</p>
-  </li>
-  <li>
-    <p>使用一个 Maven-style project (配置job type为Mavin job type)
-推荐使用第一种方法，因为第二种方式可能会出现问题</p>
-  </li>
-</ol>
 
 <p><strong>阅读同主题内容</strong></p>
 

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Python Generators - euccas.github.io</title>
+  <title>Levels of Design - euccas.github.io</title>
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="Generators is a powerful weapon of Python. Generators help you write concise code, give you lazy evaluation, and improve the efficience for &hellip;">
+  <meta name="description" content="I’m taking a course “Algorithm Toolbox” on Coursera recently. This course provides me a good chance to review and enhance my knowledge in the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://euccas.github.io/blog/20161223/python-generators.html">
+  <link rel="canonical" href="http://euccas.github.io/blog/20161224/levels-of-design.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="euccas.github.io" type="application/atom+xml">
@@ -104,7 +104,7 @@
   <header>
     
       
-        <h1 class="entry-title">Python Generators</h1>
+        <h1 class="entry-title">Levels of Design</h1>
       
     
     
@@ -114,7 +114,7 @@
 
 
 
-<time class='entry-date' datetime='2016-12-23T08:48:45-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2016</span></span> <span class='time'>8:48 am</span></time>
+<time class='entry-date' datetime='2016-12-24T09:52:07-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:52 am</span></time>
         
         
       </p>
@@ -122,79 +122,39 @@
   </header>
 
 
-<div class="entry-content"><p>Generators is a powerful weapon of Python. Generators help you write concise code, give you lazy evaluation, and improve the efficience for calculating large sets of results. Personally I think it’s a good habit to use generators in Python whenever you can, if you really want your code to be Pythonic.</p>
+<div class="entry-content"><p>I’m taking a course <a href="https://www.coursera.org/learn/algorithmic-toolbox/home/welcome">“Algorithm Toolbox”</a> on Coursera recently. This course provides me a good chance to review and enhance my knowledge in the fundamental algorithms, which usually would help on achieving better system design. This morning I came across one slide of this course and thought it could be very useful. Sharing it here.</p>
 
-<h1 id="how-to-create-a-generator">How to create a generator</h1>
+<p><img class="center" src="/images/post_images/20161224-levels-of-design-1.png" /></p>
 
-<p>There are mainly two ways to create a generator: using the <code>yield</code> keyword in the function, or using the <code>()</code> as a generator expression.</p>
+<p>It’s important to keep the levels of (algorithm) design in mind when solving a problem.</p>
 
 <ul>
-  <li>The <code>yield</code> keyword makes the function yields control back to the calling function on every iteration</li>
-  <li>The <code>()</code> expression returns a generator object</li>
+  <li>Level 1: Naive Algorithm</li>
 </ul>
 
-<h1 id="how-to-refactor-a-function-to-use-a-generator">How to refactor a function to use a generator</h1>
+<p>This is the solution that you can get just by taking the definition of a problem and turning it into an algorithm. This solution can solve the problem, but it is often very slow and inefficient.</p>
 
-<p>Functions that construct a list or another iterable and returns it can be turned into a generator by:</p>
+<p>The way I see the naive algorithm is it gives you something that works, and might be used to verify if alternative solutions are correct or not. But it’s important to not stay at the this solution. You should keep looking for better solutions.</p>
 
-<ol>
-  <li>Converting the list append into a <code>yield</code></li>
-  <li>Removing the empty list creation</li>
-  <li>Removing the return</li>
-</ol>
+<ul>
+  <li>Level 2: Algorithm by way of standard Tools</li>
+</ul>
 
-<h1 id="a-generator-example">A generator example</h1>
-<p>Let’s see an example: implement a function that takes a list and return a list of the current running mean. For example, given the input list <code>[8, 4, 3, 1, 3, 5]</code>, the expected return result is <code>[8.0, 6.0, 5.0, 4.0, 3.8, 4.0]</code>.</p>
+<p>You can look at the standard techniques and see if any of it applies to solving your problem. On this level, your goal is finding some standard techniques that work, often that don’t involve too much effort on your part, and give you something that work very well (better than the naive algorithm).</p>
 
-<p>First we’ll implement it without using generators.</p>
+<ul>
+  <li>Level 3: Optimized Algorithm</li>
+</ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">def running_mean(numbers):
-</span><span class="line">	average = []
-</span><span class="line">	sum = 0
-</span><span class="line">	for i, num in enumerate(numbers):
-</span><span class="line">		sum += num
-</span><span class="line">		average.append(sum/(i*1.0))
-</span><span class="line">	return average
-</span><span class="line">
-</span><span class="line">numbers = [8, 4, 3, 1, 3, 5]
-</span><span class="line">print(running_mean(numbers))
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>Remember there are always lots of ways to improve an existing solution. If you get a pretty good solution on level 2, why not taking one more step and see what you can do to improve it? Could you reduce the runtime from n-cubed to n-squared or n-squred to n? Could you come up with a shorter solution by rearranging the order or cut out some of the work? Could you use a data structure to speed things up? Think about all these possiblities and see if you can get a even better solution. (Often you will)</p>
 
-<p>Now we can refactor the above implementation to use a generator:</p>
+<ul>
+  <li>Level 4: Magic Algorithm</li>
+</ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">def running_mean(numbers):
-</span><span class="line">	sum = 0
-</span><span class="line">	for i, num = enumerate(numbers):
-</span><span class="line">		sum += num
-</span><span class="line">		yield sum/((i+1)*1.0)
-</span><span class="line">
-</span><span class="line">numbers = [8,4,3,1,3,5]
-</span><span class="line">print(list(running_mean(numbers)))
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>When the solutions from the previous three levels are not good enough, you’ll need some magic to get a better one. This can be hard. You will need some clever new ideas and unique insights of the problem you’re trying to solve. Even if you don’t get a magic solution in the end, the thought process will be beneficial.</p>
 
-<p>What we did in the refactoring was: replacing the list appending with a yield (<code>average.append()</code>), removing the empty list creation (<code>average = []</code>), and replacing the return statement with a yield statement.</p>
-
-<p>One important property of Python generator object is it is a single-use object. In other words, a generator keeps yielding answers forever. The looping in a generator only ends when the calling function decides to end it. Meanwhile a generator can only be called once.</p>
-
-<p>A few other generator examples can be found on my <a href="https://github.com/euccas/IntermediatePython/tree/master/iteration/generator">GitHub repo <em>IntermediatePython</em></a></p>
+<p>Sometimes when I finish a project, I do have the feeling that the way I do it is just not good enough, even though the project has been proved to be successful, useful and solved a particular technical challenge we faced. Looking at the “Levels of Design”, I believe what I need to do is spending more efforts on the higher levels. Actually what you really need for getting a really good solution is not magic. What you need is mastering more existing good standard techniques, exploring the possibility for optimization, and a deep understanding of the problem you want to solve.</p>
 
 </div>
 
@@ -218,13 +178,13 @@
 
 
 
-<time class='entry-date' datetime='2016-12-23T08:48:45-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2016</span></span> <span class='time'>8:48 am</span></time>
+<time class='entry-date' datetime='2016-12-24T09:52:07-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:52 am</span></time>
       
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/python/'>python</a>
+    <a class='category' href='/blog/categories/algorithm/'>algorithm</a>, <a class='category' href='/blog/categories/system-design/'>system-design</a>
   
 </span>
 
@@ -233,7 +193,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://euccas.github.io/blog/20161223/python-generators.html" data-via="euccas" data-counturl="http://euccas.github.io/blog/20161223/python-generators.html" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://euccas.github.io/blog/20161224/levels-of-design.html" data-via="euccas" data-counturl="http://euccas.github.io/blog/20161224/levels-of-design.html" >Tweet</a>
   
   
   
@@ -242,10 +202,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/20161217/postgresql-understand-pg-errors.html" title="Previous Post: PostgreSQL: Understand PG Errors">&laquo; PostgreSQL: Understand PG Errors</a>
+        <a class="basic-alignment left" href="/blog/20161223/python-generators.html" title="Previous Post: Python Generators">&laquo; Python Generators</a>
       
-      
-        <a class="basic-alignment right" href="/blog/20161224/levels-of-design.html" title="Next Post: Levels of Design">Levels of Design &raquo;</a>
       
     </p>
   </footer>
