@@ -29,7 +29,6 @@ Let's see an example: implement a function that takes a list and return a list o
 First we'll implement it without using generators.
 
 ```
-
 def running_mean(numbers):
 	average = []
 	sum = 0
@@ -46,7 +45,6 @@ print(running_mean(numbers))
 Now we can refactor the above implementation to use a generator:
 
 ```
-
 def running_mean(numbers):
 	sum = 0
 	for i, num = enumerate(numbers):
@@ -58,10 +56,10 @@ print(list(running_mean(numbers)))
 
 ```
 
-What we did in the refactoring was: replacing the list appending with a yield, removing the empty list creation, and removing the return statement.
+What we did in the refactoring was: replacing the list appending with a yield (```average.append()```), removing the empty list creation (```average = []```), and replacing the return statement with a yield statement.
 
 One important property of Python generator object is it is a single-use object. In other words, a generator keeps yielding answers forever. The looping in a generator only ends when the calling function decides to end it. Meanwhile a generator can only be called once.
 
-A few other generator examples can be found here on my [GitHub repo *IntermediatePython*](https://github.com/euccas/IntermediatePython/tree/master/iteration/generator)
+A few other generator examples can be found on my [GitHub repo *IntermediatePython*](https://github.com/euccas/IntermediatePython/tree/master/iteration/generator)
 
 

@@ -39,8 +39,6 @@ Build工具和服务可以实现对每一次提交的改动进行build, 并且�
 
 **阅读同主题内容**
 
-**阅读同主题内容**
-
 - [高效Jenkins用户的第1个习惯](http://euccas.github.io/blog/20151210/jenkins-user-habits-1.html)
 - [高效Jenkins用户的第2个习惯](http://euccas.github.io/blog/20151215/jenkins-user-habits-2.html)
 - [高效Jenkins用户的第3个习惯](http://euccas.github.io/blog/20160523/jenkins-user-habits-3.html)
