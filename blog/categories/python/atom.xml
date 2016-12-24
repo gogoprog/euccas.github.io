@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-12-24T05:42:31-08:00</updated>
+  <updated>2016-12-24T05:46:07-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -44,9 +44,8 @@
 
 <p>First we’ll implement it without using generators.</p>
 
-<p>```</p>
-
-<p>def running_mean(numbers):
+<p>```
+def running_mean(numbers):
 	average = []
 	sum = 0
 	for i, num in enumerate(numbers):
@@ -61,9 +60,8 @@ print(running_mean(numbers))</p>
 
 <p>Now we can refactor the above implementation to use a generator:</p>
 
-<p>```</p>
-
-<p>def running_mean(numbers):
+<p>```
+def running_mean(numbers):
 	sum = 0
 	for i, num = enumerate(numbers):
 		sum += num
@@ -74,11 +72,11 @@ print(list(running_mean(numbers)))</p>
 
 <p>```</p>
 
-<p>What we did in the refactoring was: replacing the list appending with a yield, removing the empty list creation, and removing the return statement.</p>
+<p>What we did in the refactoring was: replacing the list appending with a yield (<code>average.append()</code>), removing the empty list creation (<code>average = []</code>), and replacing the return statement with a yield statement.</p>
 
 <p>One important property of Python generator object is it is a single-use object. In other words, a generator keeps yielding answers forever. The looping in a generator only ends when the calling function decides to end it. Meanwhile a generator can only be called once.</p>
 
-<p>A few other generator examples can be found here on my <a href="https://github.com/euccas/IntermediatePython/tree/master/iteration/generator">GitHub repo <em>IntermediatePython</em></a></p>
+<p>A few other generator examples can be found on my <a href="https://github.com/euccas/IntermediatePython/tree/master/iteration/generator">GitHub repo <em>IntermediatePython</em></a></p>
 
 ]]></content>
   </entry>

@@ -158,9 +158,7 @@
 <span class="line-number">8</span>
 <span class="line-number">9</span>
 <span class="line-number">10</span>
-<span class="line-number">11</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">def running_mean(numbers):
+</pre></td><td class="code"><pre><code class=""><span class="line">def running_mean(numbers):
 </span><span class="line">	average = []
 </span><span class="line">	sum = 0
 </span><span class="line">	for i, num in enumerate(numbers):
@@ -182,9 +180,7 @@
 <span class="line-number">6</span>
 <span class="line-number">7</span>
 <span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">def running_mean(numbers):
+</pre></td><td class="code"><pre><code class=""><span class="line">def running_mean(numbers):
 </span><span class="line">	sum = 0
 </span><span class="line">	for i, num = enumerate(numbers):
 </span><span class="line">		sum += num
@@ -194,11 +190,11 @@
 </span><span class="line">print(list(running_mean(numbers)))
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>What we did in the refactoring was: replacing the list appending with a yield, removing the empty list creation, and removing the return statement.</p>
+<p>What we did in the refactoring was: replacing the list appending with a yield (<code>average.append()</code>), removing the empty list creation (<code>average = []</code>), and replacing the return statement with a yield statement.</p>
 
 <p>One important property of Python generator object is it is a single-use object. In other words, a generator keeps yielding answers forever. The looping in a generator only ends when the calling function decides to end it. Meanwhile a generator can only be called once.</p>
 
-<p>A few other generator examples can be found here on my <a href="https://github.com/euccas/IntermediatePython/tree/master/iteration/generator">GitHub repo <em>IntermediatePython</em></a></p>
+<p>A few other generator examples can be found on my <a href="https://github.com/euccas/IntermediatePython/tree/master/iteration/generator">GitHub repo <em>IntermediatePython</em></a></p>
 
 </div>
 
