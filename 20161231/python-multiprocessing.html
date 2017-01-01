@@ -134,7 +134,7 @@
   </header>
 
 
-<div class="entry-content"><p>Python’s GIL (Global Interpreter Lock) was designed as a thread-safe mechanism, and it simply prevents conflicts between multiple threads. The existence of GIL makes implementing multi-threading with Python easier. GIL, however, also prevents Python multi-threading from utilizing the multiple cores of a computer to achieve improved execution speed.</p>
+<div class="entry-content"><p>Python’s GIL (Global Interpreter Lock) was designed to be a thread-safe mechanism, and it effectively prevents conflicts between multiple threads. GIL makes it easy to implemente multi-threading with Python. However, it also prevents Python multi-threading from utilizing the multiple cores of a computer to achieve improved execution speed. This is why using the <code>threading</code> module in Python won’t help your program run faster through parallelism.</p>
 
 <p>The good thing is Python provides a <a href="https://docs.python.org/3.4/library/multiprocessing.html"><code>multiprocessing</code> module</a> since Python 2.6. With the <code>multiprocessing</code> module we can spawn subprocesses and effectively avoid some of the limitations that GIL brings, on both Unix and Windows platforms.</p>
 
@@ -216,22 +216,22 @@
 
 <h1 id="three-ways-to-start-a-process">Three ways to start a process</h1>
 
-<p>Depending on the platform, ```multiprocessing` supports three ways to start a process.</p>
+<p>Depending on the platform, <code>multiprocessing</code> supports three ways to start a process.</p>
 
 <ul>
-  <li>spawn</li>
+  <li><em>spawn</em></li>
 </ul>
 
 <p>Available on both Unix and Windows. The default on Windows. The parent process starts a fresh python interpreter process. Slower comparing with <code>fork</code> or <code>forkserver</code>.</p>
 
 <ul>
-  <li>fork</li>
+  <li><em>fork</em></li>
 </ul>
 
 <p>Parent process uses <code>os.fork()</code> to fork the Python interpreter. The child process is identical to the parent process, with inheritating all resources of the parent process. Available on Unix only. The default of Unix.</p>
 
 <ul>
-  <li>forkserver</li>
+  <li><em>forkserver</em></li>
 </ul>
 
 <p>Starts a server process. Whenever a new process is needed, the parent process connects to the server and requests that it fork a new process. Available on Unix.</p>
@@ -249,12 +249,14 @@
 
 <h1 id="two-ways-to-exchange-objects-between-processes">Two ways to exchange objects between processes</h1>
 
-<p>Two types of communication channel between processes are supported in ```multiprocessing`*[]:</p>
+<p>Two types of communication channel between processes are supported in <code>multiprocessing</code>, and they are:</p>
 
 <ul>
   <li>class Queue</li>
   <li>function Pipe()</li>
 </ul>
+
+<p>If you need know more details, the Python document <a href="https://docs.python.org/3.4/library/multiprocessing.html#exchanging-objects-between-processes">here</a> will provide help.</p>
 
 <h1 id="use-a-pool-of-workers">Use a pool of workers</h1>
 
@@ -301,9 +303,7 @@
 
 <p>Another useful method provided by <code>multiprocessing` module is</code>cpu_count()```, which returns the number of CPUs in the current system. You can use this value to decide how many processes to create in a pool.</p>
 
-<p><em>End of 2016</em></p>
-
-<p>This post is my last post in 2016. Happy new year!</p>
+<p><em>This post is my last post in 2016. Happy new year!</em></p>
 
 </div>
 
