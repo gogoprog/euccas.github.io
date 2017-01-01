@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-12-24T11:26:05-08:00</updated>
+  <updated>2016-12-31T22:06:03-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,143 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Python Multiprocessing]]></title>
+    <link href="http://euccas.github.io/20161231/python-multiprocessing.html"/>
+    <updated>2016-12-31T09:37:01-08:00</updated>
+    <id>http://euccas.github.io/20161231/python-multiprocessing</id>
+    <content type="html"><![CDATA[<p>Python’s GIL (Global Interpreter Lock) was designed as a thread-safe mechanism, and it simply prevents conflicts between multiple threads. The existence of GIL makes implementing multi-threading with Python easier. GIL, however, also prevents Python multi-threading from utilizing the multiple cores of a computer to achieve improved execution speed.</p>
+
+<p>The good thing is Python provides a <a href="https://docs.python.org/3.4/library/multiprocessing.html"><code>multiprocessing</code> module</a> since Python 2.6. With the <code>multiprocessing</code> module we can spawn subprocesses and effectively avoid some of the limitations that GIL brings, on both Unix and Windows platforms.</p>
+
+<p>In this post I’ll briefly introduce <code>multiprocess</code> module and show how it can be used for parallel programming.</p>
+
+<h1 id="a-simple-example-of-multiprocessing">A simple example of <em>multiprocessing</em></h1>
+
+<p>In the following example, we use <code>multiprocessing</code> module to spawn a child process from a parent process using a <code>Process</code> object.</p>
+
+<p>```
+from multiprocessing import Process
+import os
+import time</p>
+
+<p>def task(name):
+    print(“Starting child process with id: “.format(os.getpid()))
+    print(“Parent process: “.format(os.getppid()))
+    print(“Task start: just sleeps 5 seconds …”)
+    time.sleep(5)
+    print(“Task done”)</p>
+
+<p>if <strong>name</strong> == “<strong>main</strong>”:
+    print(“In parent process, id: “.format(os.getpid())
+    p = Process(target=task, args=(‘firstone’))
+    p.start()
+    print(“In parent process, after child process start”)
+    print(“parent process about to join child process”)
+    p.join()
+    print(“In parent process, after child process join”)
+    print(“parent process exiting with id “.format(os.getpid()))
+    print(“the parent’s parent process: “.format(os.getppid()))</p>
+
+<p>```</p>
+
+<p>The output of this program will be:</p>
+
+<p><code>
+In parent process, id 5245
+In parent process, after child process start
+parent process about to join child process
+Starting child process with id: 5246
+Parent process: 5245
+Task start: just sleeps 5 seconds ...
+Task done
+In parent process, after child process join
+parent process exiting with id 5245
+the parent's parent process: 5231
+</code></p>
+
+<p>The program starts the subprocess using <code>p.start()</code></p>
+
+<h1 id="three-ways-to-start-a-process">Three ways to start a process</h1>
+
+<p>Depending on the platform, ```multiprocessing` supports three ways to start a process.</p>
+
+<ul>
+  <li>spawn</li>
+</ul>
+
+<p>Available on both Unix and Windows. The default on Windows. The parent process starts a fresh python interpreter process. Slower comparing with <code>fork</code> or <code>forkserver</code>.</p>
+
+<ul>
+  <li>fork</li>
+</ul>
+
+<p>Parent process uses <code>os.fork()</code> to fork the Python interpreter. The child process is identical to the parent process, with inheritating all resources of the parent process. Available on Unix only. The default of Unix.</p>
+
+<ul>
+  <li>forkserver</li>
+</ul>
+
+<p>Starts a server process. Whenever a new process is needed, the parent process connects to the server and requests that it fork a new process. Available on Unix.</p>
+
+<p>To select a start method, you can use <code>set_start_method()</code>. This method should be used only once in the program.</p>
+
+<p><code>
+mp.set_start_method('spawn')
+p = mp.Process(target=foo, args=())
+p.start()
+p.join()
+</code></p>
+
+<h1 id="two-ways-to-exchange-objects-between-processes">Two ways to exchange objects between processes</h1>
+
+<p>Two types of communication channel between processes are supported in ```multiprocessing`*[]:</p>
+
+<ul>
+  <li>class Queue</li>
+  <li>function Pipe()</li>
+</ul>
+
+<h1 id="use-a-pool-of-workers">Use a pool of workers</h1>
+
+<p>The <code>Pool</code> class is a quite useful one in the <code>multiprocessing</code> module, as in real life you’ll often need multiple workers to execute the tasks in your program in parallel. What the <code>Pool</code> class represents is a pool of workers. The following example shows how to create a pool with 4 processes as workers, and assign tasks to the workers.</p>
+
+<p>```
+from multiprocessing import Pool
+from time import sleep</p>
+
+<p>def f(x):
+    return x*x</p>
+
+<p>if <strong>name</strong> == “<strong>main</strong>”:
+    # start 4 worker processes
+    with Pool(processes=4) as pool:
+        res = pool.apply_async(f, [10])
+        print(res.get(timeout=1))</p>
+
+<pre><code>pool.close()
+pool.join()
+</code></pre>
+
+<p>```</p>
+
+<p>The <code>apply_async(f, args, kwargs)</code> method calls a function for many times, or calls a number of different functions asynchronously with arguments arguments. Each process will NOT block other processes. The order of the multiple processes are not guaranteed.</p>
+
+<p>The <code>close()</code> prevents any more tasks from being submitted to the pool. Once all the tasks have been completed, the worker process will exit.</p>
+
+<p>The <code>join()</code> method waits for the worker processes to exit. It is required to call <code>close()</code> or <code>terminate()</code> before using <code>join()</code> method.</p>
+
+<p>Both <code>close()</code> and <code>terminate()</code> will stop all the worker processes. The difference is <code>close()</code> will wait for worker process to finish, and <code>terminate()</code> immediately shut down worker processes without completing outstanding work.</p>
+
+<p>Another useful method provided by <code>multiprocessing` module is</code>cpu_count()```, which returns the number of CPUs in the current system. You can use this value to decide how many processes to create in a pool.</p>
+
+<p><em>End of 2016</em></p>
+
+<p>This post is my last post in 2016. Happy new year!</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Python Generators]]></title>
@@ -133,768 +270,262 @@ C:\WinPython\Scripts
 </span><span class='line'>If the installation successfully done, you will find the installed packages in WinPython's library path.
 </span></code></pre></td></tr></table></div></figure>
 <WinPython Path="">\Lib\site-packages\<package name="">
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-<span class='line-number'>104</span>
-<span class='line-number'>105</span>
-<span class='line-number'>106</span>
-<span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
-<span class='line-number'>110</span>
-<span class='line-number'>111</span>
-<span class='line-number'>112</span>
-<span class='line-number'>113</span>
-<span class='line-number'>114</span>
-<span class='line-number'>115</span>
-<span class='line-number'>116</span>
-<span class='line-number'>117</span>
-<span class='line-number'>118</span>
-<span class='line-number'>119</span>
-<span class='line-number'>120</span>
-<span class='line-number'>121</span>
-<span class='line-number'>122</span>
-<span class='line-number'>123</span>
-<span class='line-number'>124</span>
-<span class='line-number'>125</span>
-<span class='line-number'>126</span>
-<span class='line-number'>127</span>
-<span class='line-number'>128</span>
-<span class='line-number'>129</span>
-<span class='line-number'>130</span>
-<span class='line-number'>131</span>
-<span class='line-number'>132</span>
-<span class='line-number'>133</span>
-<span class='line-number'>134</span>
-<span class='line-number'>135</span>
-<span class='line-number'>136</span>
-<span class='line-number'>137</span>
-<span class='line-number'>138</span>
-<span class='line-number'>139</span>
-<span class='line-number'>140</span>
-<span class='line-number'>141</span>
-<span class='line-number'>142</span>
-<span class='line-number'>143</span>
-<span class='line-number'>144</span>
-<span class='line-number'>145</span>
-<span class='line-number'>146</span>
-<span class='line-number'>147</span>
-<span class='line-number'>148</span>
-<span class='line-number'>149</span>
-<span class='line-number'>150</span>
-<span class='line-number'>151</span>
-<span class='line-number'>152</span>
-<span class='line-number'>153</span>
-<span class='line-number'>154</span>
-<span class='line-number'>155</span>
-<span class='line-number'>156</span>
-<span class='line-number'>157</span>
-<span class='line-number'>158</span>
-<span class='line-number'>159</span>
-<span class='line-number'>160</span>
-<span class='line-number'>161</span>
-<span class='line-number'>162</span>
-<span class='line-number'>163</span>
-<span class='line-number'>164</span>
-<span class='line-number'>165</span>
-<span class='line-number'>166</span>
-<span class='line-number'>167</span>
-<span class='line-number'>168</span>
-<span class='line-number'>169</span>
-<span class='line-number'>170</span>
-<span class='line-number'>171</span>
-<span class='line-number'>172</span>
-<span class='line-number'>173</span>
-<span class='line-number'>174</span>
-<span class='line-number'>175</span>
-<span class='line-number'>176</span>
-<span class='line-number'>177</span>
-<span class='line-number'>178</span>
-<span class='line-number'>179</span>
-<span class='line-number'>180</span>
-<span class='line-number'>181</span>
-<span class='line-number'>182</span>
-<span class='line-number'>183</span>
-<span class='line-number'>184</span>
-<span class='line-number'>185</span>
-<span class='line-number'>186</span>
-<span class='line-number'>187</span>
-<span class='line-number'>188</span>
-<span class='line-number'>189</span>
-<span class='line-number'>190</span>
-<span class='line-number'>191</span>
-<span class='line-number'>192</span>
-<span class='line-number'>193</span>
-<span class='line-number'>194</span>
-<span class='line-number'>195</span>
-<span class='line-number'>196</span>
-<span class='line-number'>197</span>
-<span class='line-number'>198</span>
-<span class='line-number'>199</span>
-<span class='line-number'>200</span>
-<span class='line-number'>201</span>
-<span class='line-number'>202</span>
-<span class='line-number'>203</span>
-<span class='line-number'>204</span>
-<span class='line-number'>205</span>
-<span class='line-number'>206</span>
-<span class='line-number'>207</span>
-<span class='line-number'>208</span>
-<span class='line-number'>209</span>
-<span class='line-number'>210</span>
-<span class='line-number'>211</span>
-<span class='line-number'>212</span>
-<span class='line-number'>213</span>
-<span class='line-number'>214</span>
-<span class='line-number'>215</span>
-<span class='line-number'>216</span>
-<span class='line-number'>217</span>
-<span class='line-number'>218</span>
-<span class='line-number'>219</span>
-<span class='line-number'>220</span>
-<span class='line-number'>221</span>
-<span class='line-number'>222</span>
-<span class='line-number'>223</span>
-<span class='line-number'>224</span>
-<span class='line-number'>225</span>
-<span class='line-number'>226</span>
-<span class='line-number'>227</span>
-<span class='line-number'>228</span>
-<span class='line-number'>229</span>
-<span class='line-number'>230</span>
-<span class='line-number'>231</span>
-<span class='line-number'>232</span>
-<span class='line-number'>233</span>
-<span class='line-number'>234</span>
-<span class='line-number'>235</span>
-<span class='line-number'>236</span>
-<span class='line-number'>237</span>
-<span class='line-number'>238</span>
-<span class='line-number'>239</span>
-<span class='line-number'>240</span>
-<span class='line-number'>241</span>
-<span class='line-number'>242</span>
-<span class='line-number'>243</span>
-<span class='line-number'>244</span>
-<span class='line-number'>245</span>
-<span class='line-number'>246</span>
-<span class='line-number'>247</span>
-<span class='line-number'>248</span>
-<span class='line-number'>249</span>
-<span class='line-number'>250</span>
-<span class='line-number'>251</span>
-<span class='line-number'>252</span>
-<span class='line-number'>253</span>
-<span class='line-number'>254</span>
-<span class='line-number'>255</span>
-<span class='line-number'>256</span>
-<span class='line-number'>257</span>
-<span class='line-number'>258</span>
-<span class='line-number'>259</span>
-<span class='line-number'>260</span>
-<span class='line-number'>261</span>
-<span class='line-number'>262</span>
-<span class='line-number'>263</span>
-<span class='line-number'>264</span>
-<span class='line-number'>265</span>
-<span class='line-number'>266</span>
-<span class='line-number'>267</span>
-<span class='line-number'>268</span>
-<span class='line-number'>269</span>
-<span class='line-number'>270</span>
-<span class='line-number'>271</span>
-<span class='line-number'>272</span>
-<span class='line-number'>273</span>
-<span class='line-number'>274</span>
-<span class='line-number'>275</span>
-<span class='line-number'>276</span>
-<span class='line-number'>277</span>
-<span class='line-number'>278</span>
-<span class='line-number'>279</span>
-<span class='line-number'>280</span>
-<span class='line-number'>281</span>
-<span class='line-number'>282</span>
-<span class='line-number'>283</span>
-<span class='line-number'>284</span>
-<span class='line-number'>285</span>
-<span class='line-number'>286</span>
-<span class='line-number'>287</span>
-<span class='line-number'>288</span>
-<span class='line-number'>289</span>
-<span class='line-number'>290</span>
-<span class='line-number'>291</span>
-<span class='line-number'>292</span>
-<span class='line-number'>293</span>
-<span class='line-number'>294</span>
-<span class='line-number'>295</span>
-<span class='line-number'>296</span>
-<span class='line-number'>297</span>
-<span class='line-number'>298</span>
-<span class='line-number'>299</span>
-<span class='line-number'>300</span>
-<span class='line-number'>301</span>
-<span class='line-number'>302</span>
-<span class='line-number'>303</span>
-<span class='line-number'>304</span>
-<span class='line-number'>305</span>
-<span class='line-number'>306</span>
-<span class='line-number'>307</span>
-<span class='line-number'>308</span>
-<span class='line-number'>309</span>
-<span class='line-number'>310</span>
-<span class='line-number'>311</span>
-<span class='line-number'>312</span>
-<span class='line-number'>313</span>
-<span class='line-number'>314</span>
-<span class='line-number'>315</span>
-<span class='line-number'>316</span>
-<span class='line-number'>317</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>
-</span><span class='line'>That's it! Your Python package is ready to use!
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>&lt;/package&gt;&lt;/WinPython&gt;&lt;/package&gt;&lt;/WinPython&gt;
-</span><span class='line'>]]&gt;&lt;/content&gt;
-</span><span class='line'>  &lt;/entry&gt;
-</span><span class='line'>  
-</span><span class='line'>  &lt;entry&gt;
-</span><span class='line'>    &lt;title type="html"&gt;&lt;![CDATA[Dunder Methods in Python]]&gt;&lt;/title&gt;
-</span><span class='line'>    &lt;link href="http://euccas.github.io/20160920/python-dunder-methods.html"/&gt;
-</span><span class='line'>    &lt;updated&gt;2016-09-20T21:28:51-07:00&lt;/updated&gt;
-</span><span class='line'>    &lt;id&gt;http://euccas.github.io/20160920/python-dunder-methods&lt;/id&gt;
-</span><span class='line'>    &lt;content type="html"&gt;&lt;![CDATA[&lt;p&gt;In Python, we sometimes see method names with &lt;code&gt;__&lt;/code&gt; around, such as the &lt;code&gt;__init__&lt;/code&gt; method that every Class has. These methods are “dunder” methods (“dunder” stands for “double under” or “double underscore”). Dunder methods in Python are used for operator overloading and customizing behavior of other functions.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Sometimes dunder methods are also called “magic methods” because they are usually called by Python under the hood. But they are not really magical, you can define dunder methods to customize the behavior of your own classes.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1 id="examples-of-dunder-methods"&gt;Examples of Dunder Methods&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;In the following example, we can see three dunder methods:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;__init__&lt;/code&gt; method: is called to initialize the class&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;__str__&lt;/code&gt; method: is called when converting the object to a human-readable string&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;__repr__&lt;/code&gt; method: is called when converting the object to a developer-readable string&lt;/li&gt;
-</span><span class='line'>&lt;/ul&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;```
-</span><span class='line'>    class Flower:
-</span><span class='line'>	    def &lt;strong&gt;init&lt;/strong&gt;(self, color=’red’):
-</span><span class='line'>		    self.color = color&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;	def __str__(self):
-</span><span class='line'>		return "Flower in color {color}".format(color=self.color)
-</span><span class='line'>
-</span><span class='line'>	def __repr__(self):
-</span><span class='line'>	return "Flower(color={})".format(self.color) ```
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;In Python, many dunder methods are implemented and used for operations such as arithmetic operators, comparison operators, truthiness, etc. The following are a few examples:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;strong&gt;Arithmetic Operators&lt;/strong&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;+&lt;/code&gt; : &lt;code&gt;__add__&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;-&lt;/code&gt; : &lt;code&gt;__sub__&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;*&lt;/code&gt; : &lt;code&gt;__mul__&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;/&lt;/code&gt; : &lt;code&gt;__div__&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>&lt;/ul&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;strong&gt;Comparison Operators&lt;/strong&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x &lt; y&lt;/code&gt; : &lt;code&gt;x.__lt__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x &lt;= y&lt;/code&gt; : &lt;code&gt;x.__le__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x &gt; y&lt;/code&gt; : &lt;code&gt;x.__gt__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x &gt;= y&lt;/code&gt; : &lt;code&gt;x.__ge__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x == y&lt;/code&gt; : &lt;code&gt;x.__eq__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x != y&lt;/code&gt; : &lt;code&gt;x.__ge__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>&lt;/ul&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;If you know about Bash shell, you may notice the name of these dunder methods are very similar to the operators in Bash.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;strong&gt;Truthiness&lt;/strong&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;bool(x)&lt;/code&gt; : &lt;code&gt;x.__bool__()&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>&lt;/ul&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1 id="use-dunder-methods-to-customize-class-behaviors"&gt;Use Dunder Methods to Customize Class Behaviors&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Dunder methods provide a way for our class to customize operators and other built-in Python behavior for our objects. In the following two examples, I’ll use dunder methods to overload arithmetic operators, and implement a dictionary that can be used with both attribute and item syntax.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h2 id="example-1-overload-arithmetic-operators"&gt;Example 1: Overload Arithmetic Operators&lt;/h2&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Make an &lt;code&gt;is_callable&lt;/code&gt; function to check if an object type is callable.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Example:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;code&gt;
-</span><span class='line'>    &gt;&gt;&gt; is_callable(sorted)
-</span><span class='line'>    True
-</span><span class='line'>    &gt;&gt;&gt; is_callable(str)
-</span><span class='line'>    True
-</span><span class='line'>    &gt;&gt;&gt; is_callable(4)
-</span><span class='line'>    False
-</span><span class='line'>&lt;/code&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Source Code:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;```
-</span><span class='line'>    def is_callable(obj):&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;try:
-</span><span class='line'>	obj.__call__
-</span><span class='line'>	# hasattr(str, '__call__')
-</span><span class='line'>	# getattr(str, '__call__')
-</span><span class='line'>except AttributeError:
-</span><span class='line'>	return False
-</span><span class='line'>else:
-</span><span class='line'>	return True ```
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h2 id="example-2-class-easydict"&gt;Example 2: Class EasyDict&lt;/h2&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Make an &lt;code&gt;EasyDict&lt;/code&gt; class that can be used with both attribute and item syntax.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Example:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;code&gt;
-</span><span class='line'>	&gt;&gt;&gt; a = EasyDict()
-</span><span class='line'>	&gt;&gt;&gt; a['shoe'] = "blue"
-</span><span class='line'>	&gt;&gt;&gt; a.shoe
-</span><span class='line'>	"blue"
-</span><span class='line'>	&gt;&gt;&gt; a['shoe']
-</span><span class='line'>	"blue"
-</span><span class='line'>	&gt;&gt;&gt; a.car = "green"
-</span><span class='line'>	&gt;&gt;&gt; a['car']
-</span><span class='line'>	"green"
-</span><span class='line'>&lt;/code&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Source Code:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;```
-</span><span class='line'>	class EasyDict:
-</span><span class='line'>    	def &lt;strong&gt;init&lt;/strong&gt;(self):
-</span><span class='line'>        	pass&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>   		def &lt;strong&gt;getitem&lt;/strong&gt;(self, item):
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;    	return self.__dict__[item]
-</span><span class='line'>
-</span><span class='line'>	def __setitem__(self, key, value):
-</span><span class='line'>    	self.__dict__[key] = value
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;```&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>]]&gt;&lt;/content&gt;
-</span><span class='line'>  &lt;/entry&gt;
-</span><span class='line'>  
-</span><span class='line'>  &lt;entry&gt;
-</span><span class='line'>    &lt;title type="html"&gt;&lt;![CDATA[Python Unittest: Handle the Command Line Arguments]]&gt;&lt;/title&gt;
-</span><span class='line'>    &lt;link href="http://euccas.github.io/20160807/python-unittest-handle-command-line-arguments.html"/&gt;
-</span><span class='line'>    &lt;updated&gt;2016-08-07T11:57:32-07:00&lt;/updated&gt;
-</span><span class='line'>    &lt;id&gt;http://euccas.github.io/20160807/python-unittest-handle-command-line-arguments&lt;/id&gt;
-</span><span class='line'>    &lt;content type="html"&gt;&lt;![CDATA[&lt;p&gt;In the previous post about &lt;a href="http://euccas.github.io/blog/20160711/start-unit-testing-in-python.html"&gt;Python Unittest&lt;/a&gt;, I wrote about the basic steps needed for setting up unit testing for your Python program with the &lt;code&gt;unittest&lt;/code&gt; module. In this post, I’ll discuss about handling the command line parameters that your program need while you’re using Python &lt;code&gt;unittest&lt;/code&gt;.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Unit testing is meant for testing basic functionality of the application. The target of &lt;a href="https://en.wikipedia.org/wiki/Unit_testing"&gt;Unit testing&lt;/a&gt; is expected to be each function of your program. When your program has command line arguments, ideally the unit tests should not accept arguments from the command line because unit tests are supposed to be very specific and not testing on the &lt;a href="https://en.wikipedia.org/wiki/Integration_testing"&gt;Integration level&lt;/a&gt; (i.e. across multiple functions in your program).&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;So the way I use to handle the command line arguments can be summarized as:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>  &lt;li&gt;Refactor your program to have the arguments parsing as a function&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;Refactor your program to handle the arguments parsing differently when doing unit testing&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;In the unit tests, set the arguments and pass them directly to the functions under test&lt;/li&gt;
-</span><span class='line'>&lt;/ul&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;The following is a demo Python project I built to demonstrate handling command line arguments when using &lt;code&gt;unittest&lt;/code&gt;.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h2 id="myapppy"&gt;myapp.py&lt;/h2&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
-</span><span class='line'>
-</span><span class='line'>import sys, os.path, re
-</span><span class='line'>import argparse
-</span><span class='line'>
-</span><span class='line'>class myApp():
-</span><span class='line'>
-</span><span class='line'>    EXIT_PASS, EXIT_FAIL = 0, 1
-</span><span class='line'>
-</span><span class='line'>    def __init__(self, mode = 'normal', test_param = None):
-</span><span class='line'>        # Validate and process argument options
-</span><span class='line'>        self.parse_args(mode, test_param)
-</span><span class='line'>        # Initialize database connection
-</span><span class='line'>        self.app_name = self.get_app_name(self.name)
-</span><span class='line'>
-</span><span class='line'>    def parse_args(self, mode, test_param):
-</span><span class='line'>        if mode == 'unittest':
-</span><span class='line'>            if test_param is None:
-</span><span class='line'>                print("Missing test param")
-</span><span class='line'>                self.app_exit('fail')
-</span><span class='line'>
-</span><span class='line'>            self.name = test_param['app_name']
-</span><span class='line'>            self.verbose = test_param['verbose']
-</span><span class='line'>        else:
-</span><span class='line'>            parser = argparse.ArgumentParser(description='myApp: A demo project')
-</span><span class='line'>            parser.add_argument('-n', '--name', help='Name of myApp', required=True)
-</span><span class='line'>            parser.add_argument('--verbose', action='store_true', help='Verbose mode with more information printed')
-</span><span class='line'>
-</span><span class='line'>            args = parser.parse_args()
-</span><span class='line'>
-</span><span class='line'>            self.name = args.name
-</span><span class='line'>            self.verbose = args.verbose
-</span><span class='line'>
-</span><span class='line'>    def app_exit(self, status):
-</span><span class='line'>        if status.lower() == 'pass':
-</span><span class='line'>            print("** App Exit Status: PASS \n")
-</span><span class='line'>            exit(self.EXIT_PASS)
-</span><span class='line'>        elif status.lower() == 'skip':
-</span><span class='line'>            print("** App Exit Status: SKIP \n")
-</span><span class='line'>            exit(self.EXIT_PASS)
-</span><span class='line'>        else:
-</span><span class='line'>            print("** App Exit Status: FAIL \n")
-</span><span class='line'>            exit(self.EXIT_FAIL)
-</span><span class='line'>
-</span><span class='line'>    def get_app_name(self):
-</span><span class='line'>        app_name = self.name
-</span><span class='line'>
-</span><span class='line'>        return app_name
-</span><span class='line'>
-</span><span class='line'>if __name__ == '__main__':
-</span><span class='line'>    app = myApp()
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h2 id="testmyapppy"&gt;test_myapp.py&lt;/h2&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;#!/usr/bin/env python
-</span><span class='line'>
-</span><span class='line'>import sys, os.path, re
-</span><span class='line'>import argparse
-</span><span class='line'>import unittest
-</span><span class='line'>
-</span><span class='line'>bin_path = os.path.dirname(os.path.realpath(__file__))
-</span><span class='line'>lib_path = os.path.abspath(bin_path)
-</span><span class='line'>sys.path.insert(0, lib_path)
-</span><span class='line'>
-</span><span class='line'>import myApp
-</span><span class='line'>
-</span><span class='line'>class myAppTestCase(unittest.TestCase):
-</span><span class='line'>
-</span><span class='line'>    def setUp(self):
-</span><span class='line'>        mode = 'unittest'
-</span><span class='line'>        test_param = {
-</span><span class='line'>            'name': 'Test App',
-</span><span class='line'>            'verbose': True
-</span><span class='line'>        }
-</span><span class='line'>        self.app = myapp.myApp(mode, test_param)
-</span><span class='line'>
-</span><span class='line'>    def test_app_name(self):
-</span><span class='line'>        self.assertEqual(self.app.get_app_name, 'Test App', 'Wrong App Name')
-</span><span class='line'>
-</span><span class='line'>    def tearDown(self):
-</span><span class='line'>        print('Bye Test')
-</span><span class='line'>
-</span><span class='line'>if __name__ == '__main__':
-</span><span class='line'>    unittest.main()
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>]]&gt;&lt;/content&gt;
-</span><span class='line'>  &lt;/entry&gt;
-</span><span class='line'>  
-</span><span class='line'>  &lt;entry&gt;
-</span><span class='line'>    &lt;title type="html"&gt;&lt;![CDATA[Start Unit Testing in Python]]&gt;&lt;/title&gt;
-</span><span class='line'>    &lt;link href="http://euccas.github.io/20160711/start-unit-testing-in-python.html"/&gt;
-</span><span class='line'>    &lt;updated&gt;2016-07-11T22:58:39-07:00&lt;/updated&gt;
-</span><span class='line'>    &lt;id&gt;http://euccas.github.io/20160711/start-unit-testing-in-python&lt;/id&gt;
-</span><span class='line'>    &lt;content type="html"&gt;&lt;![CDATA[&lt;p&gt;When is the best time to start unit testing in your Python project? My answer is before you writing the first line of code of this project. Unit testing is the fundamental of Test-driven development, which specifically improves the quality and design of your project.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;In this post, I’m writing about how could you do unit testing in Python with the &lt;code&gt;unittest&lt;/code&gt; module.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Python 2 (starting on version 2.1) and Python 3 now both have &lt;code&gt;unittest&lt;/code&gt; in the standard library. The &lt;code&gt;unittest&lt;/code&gt; module provides the unit testing framework, and it’s based on &lt;code&gt;JUnit&lt;/code&gt;, which is a unit testing framework for Java.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1 id="what-unittest-can-do"&gt;What unittest can do&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;A few main features that &lt;code&gt;unittest&lt;/code&gt; can do are:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>  &lt;li&gt;Automatically run the tests (by &lt;code&gt;test runner&lt;/code&gt;)&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;Create test cases (by &lt;code&gt;test case&lt;/code&gt;)&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;Sharing of setup and shutdown code for tests (by &lt;code&gt;test fixture&lt;/code&gt;)&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;Aggrate tests into collections (by &lt;code&gt;test suite&lt;/code&gt;)&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;Independence of the tests from the reporting framework&lt;/li&gt;
-</span><span class='line'>&lt;/ul&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1 id="how-does-unittest-work"&gt;How does unittest work&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Suppose I’m working on a project called &lt;code&gt;demo&lt;/code&gt;, and it has a file structure as:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;code&gt;
-</span><span class='line'>demo
-</span><span class='line'>-- dev
-</span><span class='line'>   -- __init__.py
-</span><span class='line'>   -- demoDev.py
-</span><span class='line'>&lt;/code&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Note the &lt;code&gt;___init___.py&lt;/code&gt; file can be empty. The purpose of having this file is for other files outside this directory can easily import the module &lt;code&gt;demoDev.py&lt;/code&gt;.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;To create unit tests for this project, I’ll need continue the following steps.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h2 id="create-the-test-file"&gt;1. Create the test file&lt;/h2&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;There is no particular required folder structure that you need to keep your test files. The way I usually do is separating the tests from the project source files. So, I create a &lt;code&gt;test&lt;/code&gt; folder in the same level as &lt;code&gt;dev&lt;/code&gt;. All my tests will be put into this folder. Now the project’s structure looks like:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;code&gt;
-</span><span class='line'>demo
-</span><span class='line'>-- dev
-</span><span class='line'>   -- __init__.py
-</span><span class='line'>   -- demoDev.py
-</span><span class='line'>-- test
-</span><span class='line'>   -- test_demoDev.py
-</span><span class='line'>&lt;/code&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h2 id="use-unittest-module-in-your-project"&gt;2. Use unittest module in your project&lt;/h2&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;The test file need import the &lt;code&gt;unittest&lt;/code&gt; module.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;```
-</span><span class='line'># This is test/test_demoDev.py&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;import unittest</span></code></pre></td></tr></table></div></figure></p>
+```
 
-<h2 id="include-your-project-modules-in-the-test">3. Include your project modules in the test</h2>
+That's it! Your Python package is ready to use!
 
-<p>Surely you’ll need include the source files of the modules that you want to test in your test file. If your tests are in the same folder of your module sources, you can simply use <code>import SomeModule</code> to pull the modules in. When your tests stay out of the module sources, you’ll need do a little configurations in your test file.</p>
 
-<p>I found the way to import your own modules to your tests can be different depending your development environment. For example, if you run your Python projects within some IDE, like <strong>PyCharm</strong> from JetBrains. The following way always work:</p>
+
+
+
+
+
+
+
+</package></WinPython></package></WinPython>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dunder Methods in Python]]></title>
+    <link href="http://euccas.github.io/20160920/python-dunder-methods.html"/>
+    <updated>2016-09-20T21:28:51-07:00</updated>
+    <id>http://euccas.github.io/20160920/python-dunder-methods</id>
+    <content type="html"><![CDATA[<p>In Python, we sometimes see method names with <code>__</code> around, such as the <code>__init__</code> method that every Class has. These methods are “dunder” methods (“dunder” stands for “double under” or “double underscore”). Dunder methods in Python are used for operator overloading and customizing behavior of other functions.</p>
+
+<p>Sometimes dunder methods are also called “magic methods” because they are usually called by Python under the hood. But they are not really magical, you can define dunder methods to customize the behavior of your own classes.</p>
+
+<h1 id="examples-of-dunder-methods">Examples of Dunder Methods</h1>
+
+<p>In the following example, we can see three dunder methods:</p>
+
+<ul>
+  <li><code>__init__</code> method: is called to initialize the class</li>
+  <li><code>__str__</code> method: is called when converting the object to a human-readable string</li>
+  <li><code>__repr__</code> method: is called when converting the object to a developer-readable string</li>
+</ul>
+
+<p>```
+    class Flower:
+	    def <strong>init</strong>(self, color=’red’):
+		    self.color = color</p>
+
+<pre><code>	def __str__(self):
+		return "Flower in color {color}".format(color=self.color)
+
+	def __repr__(self):
+	return "Flower(color={})".format(self.color) ```
+</code></pre>
+
+<p>In Python, many dunder methods are implemented and used for operations such as arithmetic operators, comparison operators, truthiness, etc. The following are a few examples:</p>
+
+<p><strong>Arithmetic Operators</strong></p>
+
+<ul>
+  <li><code>+</code> : <code>__add__</code></li>
+  <li><code>-</code> : <code>__sub__</code></li>
+  <li><code>*</code> : <code>__mul__</code></li>
+  <li><code>/</code> : <code>__div__</code></li>
+</ul>
+
+<p><strong>Comparison Operators</strong></p>
+
+<ul>
+  <li><code>x &lt; y</code> : <code>x.__lt__(y)</code></li>
+  <li><code>x &lt;= y</code> : <code>x.__le__(y)</code></li>
+  <li><code>x &gt; y</code> : <code>x.__gt__(y)</code></li>
+  <li><code>x &gt;= y</code> : <code>x.__ge__(y)</code></li>
+  <li><code>x == y</code> : <code>x.__eq__(y)</code></li>
+  <li><code>x != y</code> : <code>x.__ge__(y)</code></li>
+</ul>
+
+<p>If you know about Bash shell, you may notice the name of these dunder methods are very similar to the operators in Bash.</p>
+
+<p><strong>Truthiness</strong></p>
+
+<ul>
+  <li><code>bool(x)</code> : <code>x.__bool__()</code></li>
+</ul>
+
+<h1 id="use-dunder-methods-to-customize-class-behaviors">Use Dunder Methods to Customize Class Behaviors</h1>
+
+<p>Dunder methods provide a way for our class to customize operators and other built-in Python behavior for our objects. In the following two examples, I’ll use dunder methods to overload arithmetic operators, and implement a dictionary that can be used with both attribute and item syntax.</p>
+
+<h2 id="example-1-overload-arithmetic-operators">Example 1: Overload Arithmetic Operators</h2>
+
+<p>Make an <code>is_callable</code> function to check if an object type is callable.</p>
+
+<p>Example:</p>
+
+<p><code>
+    &gt;&gt;&gt; is_callable(sorted)
+    True
+    &gt;&gt;&gt; is_callable(str)
+    True
+    &gt;&gt;&gt; is_callable(4)
+    False
+</code></p>
+
+<p>Source Code:</p>
+
+<p>```
+    def is_callable(obj):</p>
+
+<pre><code>try:
+	obj.__call__
+	# hasattr(str, '__call__')
+	# getattr(str, '__call__')
+except AttributeError:
+	return False
+else:
+	return True ```
+</code></pre>
+
+<h2 id="example-2-class-easydict">Example 2: Class EasyDict</h2>
+
+<p>Make an <code>EasyDict</code> class that can be used with both attribute and item syntax.</p>
+
+<p>Example:</p>
+
+<p><code>
+	&gt;&gt;&gt; a = EasyDict()
+	&gt;&gt;&gt; a['shoe'] = "blue"
+	&gt;&gt;&gt; a.shoe
+	"blue"
+	&gt;&gt;&gt; a['shoe']
+	"blue"
+	&gt;&gt;&gt; a.car = "green"
+	&gt;&gt;&gt; a['car']
+	"green"
+</code></p>
+
+<p>Source Code:</p>
+
+<p>```
+	class EasyDict:
+    	def <strong>init</strong>(self):
+        	pass</p>
+
+   		def <strong>getitem</strong>(self, item):
+<pre><code>    	return self.__dict__[item]
+
+	def __setitem__(self, key, value):
+    	self.__dict__[key] = value
+</code></pre>
 
 <p>```</p>
 
-<h1 id="this-is-testtestdemodevpy">This is test/test_demoDev.py</h1>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python Unittest: Handle the Command Line Arguments]]></title>
+    <link href="http://euccas.github.io/20160807/python-unittest-handle-command-line-arguments.html"/>
+    <updated>2016-08-07T11:57:32-07:00</updated>
+    <id>http://euccas.github.io/20160807/python-unittest-handle-command-line-arguments</id>
+    <content type="html"><![CDATA[<p>In the previous post about <a href="http://euccas.github.io/blog/20160711/start-unit-testing-in-python.html">Python Unittest</a>, I wrote about the basic steps needed for setting up unit testing for your Python program with the <code>unittest</code> module. In this post, I’ll discuss about handling the command line parameters that your program need while you’re using Python <code>unittest</code>.</p>
 
-<p>from dev import demoDev</p>
+<p>Unit testing is meant for testing basic functionality of the application. The target of <a href="https://en.wikipedia.org/wiki/Unit_testing">Unit testing</a> is expected to be each function of your program. When your program has command line arguments, ideally the unit tests should not accept arguments from the command line because unit tests are supposed to be very specific and not testing on the <a href="https://en.wikipedia.org/wiki/Integration_testing">Integration level</a> (i.e. across multiple functions in your program).</p>
 
-<p>```</p>
+<p>So the way I use to handle the command line arguments can be summarized as:</p>
 
-<p>However if you run through command line <code>python test/test_demoDev.py</code>, you might see errors complaining no module called <code>dev</code> and thus the import fails.</p>
+<ul>
+  <li>Refactor your program to have the arguments parsing as a function</li>
+  <li>Refactor your program to handle the arguments parsing differently when doing unit testing</li>
+  <li>In the unit tests, set the arguments and pass them directly to the functions under test</li>
+</ul>
 
-<p>What you can do to resolve this problem, is adding the path of your Python modules to the <code>sys.path</code>.</p>
+<p>The following is a demo Python project I built to demonstrate handling command line arguments when using <code>unittest</code>.</p>
 
-<p>```</p>
+<h2 id="myapppy">myapp.py</h2>
 
-<h1 id="this-is-testtestdemodevpy-1">This is test/test_demoDev.py</h1>
+<pre><code>#!/usr/bin/env python
 
-<p>import sys, os.path</p>
+import sys, os.path, re
+import argparse
 
-<p>bin_path = os.path.dirname(os.path.realpath(<strong>file</strong>))
-lib_path = os.path.abspath(os.path.join(bin_path, ‘..’, ‘dev’))
+class myApp():
+
+    EXIT_PASS, EXIT_FAIL = 0, 1
+
+    def __init__(self, mode = 'normal', test_param = None):
+        # Validate and process argument options
+        self.parse_args(mode, test_param)
+        # Initialize database connection
+        self.app_name = self.get_app_name(self.name)
+
+    def parse_args(self, mode, test_param):
+        if mode == 'unittest':
+            if test_param is None:
+                print("Missing test param")
+                self.app_exit('fail')
+
+            self.name = test_param['app_name']
+            self.verbose = test_param['verbose']
+        else:
+            parser = argparse.ArgumentParser(description='myApp: A demo project')
+            parser.add_argument('-n', '--name', help='Name of myApp', required=True)
+            parser.add_argument('--verbose', action='store_true', help='Verbose mode with more information printed')
+
+            args = parser.parse_args()
+
+            self.name = args.name
+            self.verbose = args.verbose
+
+    def app_exit(self, status):
+        if status.lower() == 'pass':
+            print("** App Exit Status: PASS \n")
+            exit(self.EXIT_PASS)
+        elif status.lower() == 'skip':
+            print("** App Exit Status: SKIP \n")
+            exit(self.EXIT_PASS)
+        else:
+            print("** App Exit Status: FAIL \n")
+            exit(self.EXIT_FAIL)
+
+    def get_app_name(self):
+        app_name = self.name
+
+        return app_name
+
+if __name__ == '__main__':
+    app = myApp()
+</code></pre>
+
+<h2 id="testmyapppy">test_myapp.py</h2>
+
+<pre><code>#!/usr/bin/env python
+
+import sys, os.path, re
+import argparse
+import unittest
+
+bin_path = os.path.dirname(os.path.realpath(__file__))
+lib_path = os.path.abspath(bin_path)
 sys.path.insert(0, lib_path)
-# or sys.path.append(lib_path)</p>
 
-<p>import demoDev</p>
+import myApp
 
-<p>```</p>
+class myAppTestCase(unittest.TestCase):
 
-<h2 id="create-a-test-case">4. Create a test case</h2>
+    def setUp(self):
+        mode = 'unittest'
+        test_param = {
+            'name': 'Test App',
+            'verbose': True
+        }
+        self.app = myapp.myApp(mode, test_param)
 
-<p>A test case can be created with unittest <em>TestCase</em> class. The <code>setUp()</code> and <code>tearDown()</code> methods can be overridden to provide initialization and cleanup for the fixture. Each instance of the TestCase will only be used to run a single test method. Multiple test methods share the same text fixture, but the test fixture are created for each test method when they are executed.</p>
+    def test_app_name(self):
+        self.assertEqual(self.app.get_app_name, 'Test App', 'Wrong App Name')
 
-<p>```</p>
+    def tearDown(self):
+        print('Bye Test')
 
-<h1 id="this-is-testtestdemodevpy-2">This is test/test_demoDev.py</h1>
-
-<p>import sys
-import unittest</p>
-
-<p>bin_path = os.path.dirname(os.path.realpath(<strong>file</strong>))
-lib_path = os.path.abspath(os.path.join(bin_path, ‘..’, ‘dev’))
-sys.path.insert(0, lib_path)</p>
-
-<p>from dev import demoDev</p>
-
-<p>class demoDevTestCase(unittest.TestCase):</p>
-
-<pre><code>def setUp(self):
-    self.checker = eABTCheckerDev.eABTChecker()
-
-def test_checker_app(self):
-    self.assertEqual(self.demo.app, 'Demo App', 'Wrong app')
-
-def tearDown(self):
-    print('Bye Test')
+if __name__ == '__main__':
+    unittest.main()
 </code></pre>
 
-<p>if <strong>name</strong> == ‘<strong>main</strong>’:
-    unittest.main()</p>
-
-<p>```</p>
-
-<p>The <code>TestCase</code> class provides several assert methods to check for and report failures, such as <code>assertEqual</code>, <code>assertNotEqual</code>, <code>assertTrue</code>. <a href="https://docs.python.org/3.4/library/unittest.html#assert-methods">Here is the complete assert list that Python 3 provides.</a></p>
-
-<h2 id="create-more-tests-and-a-test-suites">5. Create more tests and a test suites</h2>
-
-<p><code>TestSuite</code> class represents an aggregation of individual test cases and test suites. The <code>addTest</code> and <code>addTests</code> methods are available to add tests to your TestSuite instances.</p>
-
-<p>```</p>
-
-<h1 id="this-is-testdemodevpy">This is test_demoDev.py</h1>
-
-<p>def suite():
-    suite = unittest.TestSuite();
-    suite.addTest(demoDevTestCase(‘test_checker_app’))
-    suite.addTest(demoDevTestCase(‘test_check_env’))</p>
-
-<pre><code>return suite
-</code></pre>
-
-<p>```</p>
-
-<h1 id="run-your-unit-tests">6. Run your unit tests!</h1>
-
-<p>The easiest way to run your unit tests is executing the <code>unittest.main()</code> method in the test file.</p>
-
-<p>```</p>
-
-<h1 id="this-is-testdemodevpy-1">This is test_demoDev.py</h1>
-
-<p>if <strong>name</strong> == ‘<strong>main</strong>’:
-    unittest.main()</p>
-
-<p>```</p>
-
-<p>Then by running command <code>python test_demoDev.py</code>, the tests defined in <code>test_demoDev.py</code> will start running.</p>
-
-<p>Unit tests can run from command line, because <code>unittest</code> module can be used from the command line to run tests from modules, classes or individual test methods.</p>
-
-<p>```</p>
-
-<p>python -m unittest test_demoDev.test_checker_app</p>
-
-<p>```</p>
-
-<p>You’ll see the testing result like:</p>
-
-<p>```</p>
-
-<hr />
-<p>Ran 1 test in 0.000s</p>
-
-<p>OK
-Bye Test</p>
-
-<p>Process finished with exit code 0</p>
-
-<p>```</p>
-
-<p>Behind the tests running, there is the <code>run</code> method provided by <code>TestCase</code> and <code>TestCaseSuite</code> classes. This <code>run</code> method implements the function of running the test, collecting the result into the <code>TestResult</code> object passed as result.</p>
-
-<p>Here you go! Enjoy unit testing in Python!</p>
 ]]></content>
   </entry>
   
