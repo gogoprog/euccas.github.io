@@ -219,19 +219,19 @@
 <p>Depending on the platform, <code>multiprocessing</code> supports three ways to start a process.</p>
 
 <ul>
-  <li><em>spawn</em></li>
+  <li><strong>spawn</strong></li>
 </ul>
 
 <p>Available on both Unix and Windows. The default on Windows. The parent process starts a fresh python interpreter process. Slower comparing with <code>fork</code> or <code>forkserver</code>.</p>
 
 <ul>
-  <li><em>fork</em></li>
+  <li><strong>fork</strong></li>
 </ul>
 
 <p>Parent process uses <code>os.fork()</code> to fork the Python interpreter. The child process is identical to the parent process, with inheritating all resources of the parent process. Available on Unix only. The default of Unix.</p>
 
 <ul>
-  <li><em>forkserver</em></li>
+  <li><strong>forkserver</strong></li>
 </ul>
 
 <p>Starts a server process. Whenever a new process is needed, the parent process connects to the server and requests that it fork a new process. Available on Unix.</p>
@@ -301,7 +301,7 @@
 
 <p>Both <code>close()</code> and <code>terminate()</code> will stop all the worker processes. The difference is <code>close()</code> will wait for worker process to finish, and <code>terminate()</code> immediately shut down worker processes without completing outstanding work.</p>
 
-<p>Another useful method provided by <code>multiprocessing` module is</code>cpu_count()```, which returns the number of CPUs in the current system. You can use this value to decide how many processes to create in a pool.</p>
+<p>Another useful method provided by <code>multiprocessing</code> module is <code>cpu_count()</code>, which returns the number of CPUs in the current system. You can use this value to decide how many processes to create in a pool.</p>
 
 <p><em>This post is my last post in 2016. Happy new year!</em></p>
 
