@@ -25,7 +25,7 @@ Tonight I just talked to a former colleague who is working at Nvidia, and he gav
 
 Some people I know might think Machine Learning or AI is sort of irrelevant to what I'm working on. That's not what I think though. Even if it is irrelevant today, it will be relevant sooner than expected. Machine Learning is not a fad. It's the way technology works tomorrow. If you can't master it, at least you need have a good understanding of it.
 
-{% img center /images/post_images/20170107-larrypage.jpeg 640px %}
+{% img center /images/post_images/20170107-larrypage.jpg 640px %}
 
 *Image source: Medium ["20 things I've learned from Larry Page"](https://medium.com/the-mission/20-things-i-ve-learned-from-larry-page-4f83674a1a52#.elpww9snf)*
 
