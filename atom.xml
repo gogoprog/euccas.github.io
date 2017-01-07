@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2016-12-31T22:16:37-08:00</updated>
+  <updated>2017-01-07T00:19:06-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Get Start on Machine Learning]]></title>
+    <link href="http://euccas.github.io/20170106/get-start-on-machine-learning.html"/>
+    <updated>2017-01-06T23:17:40-08:00</updated>
+    <id>http://euccas.github.io/20170106/get-start-on-machine-learning</id>
+    <content type="html"><![CDATA[<p>So here comes 2017, a year when you hear people talk about the words <em>Machine Learning</em>, <em>Reinforcement Learning</em>, and <em>Artificial Intelligence</em> everywhere.</p>
+
+<p>Last year when Mark Zuckberg was working on building Jarvis, I didn’t spend much time on AI or Machine Learning. But I know the efforts I made last year get me ready to start on it right now.</p>
+
+<p>Tonight I just talked to a former colleague who is working at Nvidia, and he gave me a few helpful suggestions about getting started in machine learning according to his own experience. Here are some of his sharing:</p>
+
+<ul>
+  <li>Set a goal: What do you want to achieve with the knowledge of Machine Learning?</li>
+  <li>Learn the fundamentals: <a href="https://www.coursera.org/learn/machine-learning">Andrew Ng’s course</a> on Coursera</li>
+  <li>If you’d like to have more coursers, take <a href="http://cs231n.stanford.edu/">Standford CS231n</a></li>
+  <li>Learn to use the frameworks: <a href="https://www.tensorflow.org/">Tensor Flow</a>, <a href="http://caffe.berkeleyvision.org/">Caffe</a></li>
+  <li>Work on projects with real data (very important): get from <a href="https://www.kaggle.com/">Kaggle.com</a></li>
+  <li>Follow <a href="https://openai.com/">OpenAI</a> and <a href="https://deepmind.com/">DeepMind</a></li>
+  <li>Master Python if you haven’t</li>
+  <li>Make sure your computer has a powerful GPU :)</li>
+</ul>
+
+<p>Some people I know might think Machine Learning or AI is sort of irrelevant to what I’m working on. That’s not what I think though. Even if it is irrelevant today, it will be relevant sooner than expected. Machine Learning is not a fad. It’s the way technology works tomorrow. If you can’t master it, at least you need have a good understanding of it.</p>
+
+<p><img class="center" src="http://euccas.github.io/images/post_images/20170107-larrypage.jpeg" width="640" /></p>
+
+<p><em>Image source: Medium <a href="https://medium.com/the-mission/20-things-i-ve-learned-from-larry-page-4f83674a1a52#.elpww9snf">“20 things I’ve learned from Larry Page”</a></em></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Python Multiprocessing]]></title>
@@ -2223,23 +2254,6 @@ if __name__ == '__main__':
 </span><span class="line">logger.error 'Here is an error'
 </span><span class="line">logger.fatal 'Fatal error happens. Program will exit'</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用Trello做项目管理初体验]]></title>
-    <link href="http://euccas.github.io/20160304/use-trello-for-managing-my-projects.html"/>
-    <updated>2016-03-04T21:09:07-08:00</updated>
-    <id>http://euccas.github.io/20160304/use-trello-for-managing-my-projects</id>
-    <content type="html"><![CDATA[<p>大概从18个月前开始，我开始习惯使用<a href="https://trello.com" target="_blank">Trello</a>作为project management and tracking的主要工具，也逐渐体会到Trello的特点和便利之处。总结起来，“不得不使用Trello”的理由有下面一些：</p>
-
-<ul>
-  <li>作为项目管理：无形之中的敏捷化</li>
-  <li>作为问题记录：即使数目庞多的问题也能够清晰总览，便于分类，每一个问题同时可以有自己的详细记录</li>
-  <li>自带的颜色标签和卡片aging效果非常方便呈现了项目总体和每一个task的状态</li>
-  <li>一些插件提供了更强大的项目管理功能，比如burndown，甘特图等等</li>
-  <li>最重要的特点也许是团队协同工作的便利：team members, assign task, comments</li>
-</ul>
 ]]></content>
   </entry>
   
