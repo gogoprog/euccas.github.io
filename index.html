@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="A functor is a powerful C++ entity that everyone who wants to master C++ needs to know. A functor, which is short for “function object”, is an C++ &hellip;">
+  <meta name="description" content="A functor is a powerful C++ entity that everyone who wants to master C++ needs to know. A functor, which is short for “function object”, is a C++ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -127,7 +127,7 @@
 
 
 
-<time class='entry-date' datetime='2017-01-15T14:37:07-08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>2:37 pm</span></time>
+<time class='entry-date' datetime='2017-01-15T20:20:07-08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>8:20 pm</span></time>
         
         
       </p>
@@ -135,13 +135,13 @@
   </header>
 
 
-  <div class="entry-content"><p>A <strong>functor</strong> is a powerful C++ entity that everyone who wants to master C++ needs to know. A functor, which is short for “<strong>function object</strong>”, is an C++ class that acts like a function. Functors can be called using the familiar function call syntax, and can yield values and accept parameters just like regular functions.</p>
+  <div class="entry-content"><p>A <strong>functor</strong> is a powerful C++ entity that everyone who wants to master C++ needs to know. A functor, which is short for “<strong>function object</strong>”, is a C++ class that acts like a function. Functors can be called using the familiar function call syntax, and can yield values and accept parameters just like regular functions.</p>
 
-<p>To create a functor, we create a class (or a struct) that overloads the function <code>operator()</code>. Note here the function is called <code>operator()</code>, and it’s not the <code>operator</code> function, i.e. <code>()</code>. We then create an object of this class (or struct), and that is a functor.</p>
+<p>To create a functor, we create a class (or a struct) that overloads the function <code>operator()</code>. Note here the function is called <code>operator()</code>, and it’s not the <code>operator</code> function, i.e. <code>()</code>. We then create an instance of this class (or struct) to use the created functor.</p>
 
 <h1 id="create-and-use-functors">Create and use functors</h1>
 
-<p>Let’s look at two examples of creating and using a functor. In the first example, the functor is created with a <code>class</code>, and in the second example we use a <code>struct</code> to create the functor.</p>
+<p>Let’s look at two examples of creating and using a functor. In the first example, a functor is created with a <code>class</code>, and in the second example we use a <code>struct</code> to create the functor.</p>
 
 <h2 id="example-create-a-functor-with-a-class">Example: Create a functor with a Class</h2>
 
@@ -233,7 +233,7 @@
   <li>Its local variables</li>
   <li>Its parameters</li>
   <li>Global variables</li>
-  <li>Class data members</li>
+  <li><strong>Class data members</strong></li>
 </ul>
 
 <p>If a functor’s <code>operator()</code> member function requires access to data beyond what can be communicated by its parameters, we can store that information as a data member inside the functor class. Since <code>operator()</code> is a member of the functor class, it can then access that data freely. The following example shows how a functor’s <code>operator()</code> function access the class’s private member <code>toAppend</code>.</p>
@@ -282,7 +282,7 @@
 
 <h1 id="functors-are-useful-in-stl-algorithms">Functors are useful in STL algorithms</h1>
 
-<p>C++ STL algorithms use functors to increase the flexibility and efficiency. The most common uses for function objects are for generating data, for testing data, and for applying operations to data. here is an example of how STL for_each uses functors.</p>
+<p>C++ STL algorithms use functors to increase the flexibility and efficiency. The most common uses for function objects are for generating data, for testing data, and for applying operations to data. here is an example of how STL <code>for_each</code> uses functors.</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
@@ -324,7 +324,7 @@
 </span><span class="line">}
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p><em>(The course reader of Stanford course CS106l)[http://web.stanford.edu/class/cs106l/course-reader/Ch13_Functors.pdf] explains functors in detail.</em></p>
+<p><em>The reader of <a href="http://web.stanford.edu/class/cs106l/course-reader/Ch13_Functors.pdf">Stanford course CS106l</a> explains functors in detail.</em></p>
 </div>
   
   
