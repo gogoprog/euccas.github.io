@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: C++ | euccas.github.io]]></title>
+  <link href="http://euccas.github.io/categories/c-plus-plus/atom.xml" rel="self"/>
+  <link href="http://euccas.github.io/"/>
+  <updated>2017-01-15T20:11:57-08:00</updated>
+  <id>http://euccas.github.io/</id>
+  <author>
+    <name><![CDATA[euccas]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[C++ Functors]]></title>
+    <link href="http://euccas.github.io/20170115/c-plus-plus-functors.html"/>
+    <updated>2017-01-15T14:37:07-08:00</updated>
+    <id>http://euccas.github.io/20170115/c-plus-plus-functors</id>
+    <content type="html"><![CDATA[<p>A <strong>functor</strong> is a powerful C++ entity that everyone who wants to master C++ needs to know. A functor, which is short for “<strong>function object</strong>”, is an C++ class that acts like a function. Functors can be called using the familiar function call syntax, and can yield values and accept parameters just like regular functions.</p>
+
+<p>To create a functor, we create a class (or a struct) that overloads the function <code>operator()</code>. Note here the function is called <code>operator()</code>, and it’s not the <code>operator</code> function, i.e. <code>()</code>. We then create an object of this class (or struct), and that is a functor.</p>
+
+<h1 id="create-and-use-functors">Create and use Functors</h1>
+
+<p>Let’s look at two examples of creating and using a functor. In the first example, the functor is created with a <code>class</code>, and in the second example we use a <code>struct</code> to create the functor.</p>
+
+<h2 id="example-create-a-functor-with-a-class">Example: Create a functor with a Class</h2>
+
+<p>```</p>
+
+<p>class MyFunctor {
+public:
+    void operator() (const string&amp; str) const {
+        cout « str « endl;
+    }
+}</p>
+
+<p>// Using functor:</p>
+
+<p>MyFunctor functor; // create an instance of the functor class
+functor(“This is a functor!”); // and “call” it</p>
+
+<p>// equivalence:
+cout « functor.operator()(23) « endl;</p>
+
+<p>// You’ll see “This is a functor” printed out.</p>
+
+<p>```</p>
+
+<h2 id="example-create-a-functor-with-a-struct">Example: Create a functor with a Struct</h2>
+
+<p>```</p>
+
+<p>struct add_x {
+  add_x(int x) : x(x) {}
+  int operator()(int y) { return x + y; }
+private:
+  int x;
+};</p>
+
+<p>// Using functor:</p>
+
+<p>add_x add42(42); // create an instance of the functor class
+int i = add42(8); // and “call” it
+assert(i == 50); // and it added 42 to its argument</p>
+
+<p>std::vector<int> in;
+std::vector<int> out;
+// Pass a functor to std::transform, which calls the functor on every element 
+// in the input sequence, and stores the result to the output sequence
+std::transform(in.begin(), in.end(), out.begin(), add_x(1)); 
+assert(out[i] == in[i] + 1); // for all i</int></int></p>
+
+<p>```</p>
+
+<h1 id="functors-access-class-data-members">Functors access class data members</h1>
+
+<p>The key difference between a function and a functor is that a functor’s function call operator is a <em>member function</em> whereas a raw C++ function is a <em>free</em> function. This means that a functor can access the following information when being called:</p>
+
+<ul>
+  <li>Its local variables</li>
+  <li>Its parameters</li>
+  <li>Global variables</li>
+  <li>Class data members</li>
+</ul>
+
+<p>If a functor’s <code>operator()</code> member function requires access to data beyond what can be communicated by its parameters, we can store that information as a data member inside the functor class. Since <code>operator()</code> is a member of the functor class, it can then access that data freely. The following example shows how a functor’s <code>operator()</code> function access the class’s private member <code>toAppend</code>.</p>
+
+<p>```</p>
+
+<p>class StringAppender {
+public:
+    // Constructor takes and stores a string.
+    explicit StringAppender(const string &amp;str) : toAppend(str) {}</p>
+
+<pre><code>// Operator() prints out a string, plus the stored suffix.
+void operator() (const string &amp;str) const {
+    cout &lt;&lt; str &lt;&lt; ' ' &lt;&lt; toAppend &lt;&lt; endl;
+}
+</code></pre>
+
+<p>private:
+    const string toAppend;
+};</p>
+
+<p>// Usage:
+StringAppender myFunctor(“is awesome”);
+myFunctor(“C++”);</p>
+
+<p>// You’ll see “C++ is awesome” is printed out.</p>
+
+<p>```</p>
+
+<h1 id="functors-are-useful-in-stl-algorithms"># Functors are useful in STL algorithms</h1>
+
+<p>C++ STL algorithms use functors to increase the flexibility and efficiency. The most common uses for function objects are for generating data, for testing data, and for applying operations to data. here is an example of how STL for_each uses functors.</p>
+
+<p>```</p>
+
+<p>struct sum
+{
+    sum(int* t):total(t){};
+    int* total;
+    void operator()(int element)
+    {
+       *total += element;
+    }
+};</p>
+
+<p>int main()
+{
+    int total = 0;
+    sum s(&amp;total);
+    int arr[] = {0, 1, 2, 3, 4, 5};
+    std::for_each(arr, arr+6, s);
+    cout « total « endl; // prints total = 15;
+}</p>
+
+<p>```</p>
+
+]]></content>
+  </entry>
+  
+</feed>

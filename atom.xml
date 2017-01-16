@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-01-07T21:51:50-08:00</updated>
+  <updated>2017-01-15T20:11:57-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,203 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[C++ Functors]]></title>
+    <link href="http://euccas.github.io/20170115/c-plus-plus-functors.html"/>
+    <updated>2017-01-15T14:37:07-08:00</updated>
+    <id>http://euccas.github.io/20170115/c-plus-plus-functors</id>
+    <content type="html"><![CDATA[<p>A <strong>functor</strong> is a powerful C++ entity that everyone who wants to master C++ needs to know. A functor, which is short for “<strong>function object</strong>”, is an C++ class that acts like a function. Functors can be called using the familiar function call syntax, and can yield values and accept parameters just like regular functions.</p>
+
+<p>To create a functor, we create a class (or a struct) that overloads the function <code>operator()</code>. Note here the function is called <code>operator()</code>, and it’s not the <code>operator</code> function, i.e. <code>()</code>. We then create an object of this class (or struct), and that is a functor.</p>
+
+<h1 id="create-and-use-functors">Create and use Functors</h1>
+
+<p>Let’s look at two examples of creating and using a functor. In the first example, the functor is created with a <code>class</code>, and in the second example we use a <code>struct</code> to create the functor.</p>
+
+<h2 id="example-create-a-functor-with-a-class">Example: Create a functor with a Class</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">class MyFunctor {
+</span><span class="line">public:
+</span><span class="line">    void operator() (const string&amp; str) const {
+</span><span class="line">        cout &lt;&lt; str &lt;&lt; endl;
+</span><span class="line">    }
+</span><span class="line">}
+</span><span class="line">
+</span><span class="line">// Using functor:
+</span><span class="line">
+</span><span class="line">MyFunctor functor; // create an instance of the functor class
+</span><span class="line">functor("This is a functor!"); // and "call" it
+</span><span class="line">
+</span><span class="line">// equivalence:
+</span><span class="line">cout &lt;&lt; functor.operator()(23) &lt;&lt; endl;
+</span><span class="line">
+</span><span class="line">// You'll see "This is a functor" printed out.
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="example-create-a-functor-with-a-struct">Example: Create a functor with a Struct</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">struct add_x {
+</span><span class="line">  add_x(int x) : x(x) {}
+</span><span class="line">  int operator()(int y) { return x + y; }
+</span><span class="line">private:
+</span><span class="line">  int x;
+</span><span class="line">};
+</span><span class="line">
+</span><span class="line">// Using functor:
+</span><span class="line">
+</span><span class="line">add_x add42(42); // create an instance of the functor class
+</span><span class="line">int i = add42(8); // and "call" it
+</span><span class="line">assert(i == 50); // and it added 42 to its argument
+</span><span class="line">
+</span><span class="line">std::vector&lt;int&gt; in;
+</span><span class="line">std::vector&lt;int&gt; out;
+</span><span class="line">// Pass a functor to std::transform, which calls the functor on every element 
+</span><span class="line">// in the input sequence, and stores the result to the output sequence
+</span><span class="line">std::transform(in.begin(), in.end(), out.begin(), add_x(1)); 
+</span><span class="line">assert(out[i] == in[i] + 1); // for all i
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="functors-access-class-data-members">Functors access class data members</h1>
+
+<p>The key difference between a function and a functor is that a functor’s function call operator is a <em>member function</em> whereas a raw C++ function is a <em>free</em> function. This means that a functor can access the following information when being called:</p>
+
+<ul>
+  <li>Its local variables</li>
+  <li>Its parameters</li>
+  <li>Global variables</li>
+  <li>Class data members</li>
+</ul>
+
+<p>If a functor’s <code>operator()</code> member function requires access to data beyond what can be communicated by its parameters, we can store that information as a data member inside the functor class. Since <code>operator()</code> is a member of the functor class, it can then access that data freely. The following example shows how a functor’s <code>operator()</code> function access the class’s private member <code>toAppend</code>.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">class StringAppender {
+</span><span class="line">public:
+</span><span class="line">    // Constructor takes and stores a string.
+</span><span class="line">    explicit StringAppender(const string &amp;str) : toAppend(str) {}
+</span><span class="line">    
+</span><span class="line">    // Operator() prints out a string, plus the stored suffix.
+</span><span class="line">    void operator() (const string &amp;str) const {
+</span><span class="line">        cout &lt;&lt; str &lt;&lt; ' ' &lt;&lt; toAppend &lt;&lt; endl;
+</span><span class="line">    }
+</span><span class="line">
+</span><span class="line">private:
+</span><span class="line">    const string toAppend;
+</span><span class="line">};
+</span><span class="line">
+</span><span class="line">// Usage:
+</span><span class="line">StringAppender myFunctor("is awesome");
+</span><span class="line">myFunctor("C++");
+</span><span class="line">
+</span><span class="line">// You'll see "C++ is awesome" is printed out.
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="functors-are-useful-in-stl-algorithms"># Functors are useful in STL algorithms</h1>
+
+<p>C++ STL algorithms use functors to increase the flexibility and efficiency. The most common uses for function objects are for generating data, for testing data, and for applying operations to data. here is an example of how STL for_each uses functors.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">struct sum
+</span><span class="line">{
+</span><span class="line">    sum(int* t):total(t){};
+</span><span class="line">    int* total;
+</span><span class="line">    void operator()(int element)
+</span><span class="line">    {
+</span><span class="line">       *total += element;
+</span><span class="line">    }
+</span><span class="line">};
+</span><span class="line">
+</span><span class="line">int main()
+</span><span class="line">{
+</span><span class="line">    int total = 0;
+</span><span class="line">    sum s(&amp;total);
+</span><span class="line">    int arr[] = {0, 1, 2, 3, 4, 5};
+</span><span class="line">    std::for_each(arr, arr+6, s);
+</span><span class="line">    cout &lt;&lt; total &lt;&lt; endl; // prints total = 15;
+</span><span class="line">}
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Get Start on Machine Learning]]></title>
@@ -2073,187 +2270,6 @@ if __name__ == '__main__':
   <li><a href="http://euccas.github.io/blog/20161010/jenkins-user-habits-4.html">高效Jenkins用户的第4个习惯</a></li>
   <li><a href="http://euccas.github.io/blog/20161216/jenkins-user-habits-5.html">高效Jenkins用户的第5个习惯</a></li>
 </ul>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Make Logging Easy in Ruby With Log4r]]></title>
-    <link href="http://euccas.github.io/20160518/make-logging-easy-in-ruby-with-log4r.html"/>
-    <updated>2016-05-18T16:18:07-07:00</updated>
-    <id>http://euccas.github.io/20160518/make-logging-easy-in-ruby-with-log4r</id>
-    <content type="html"><![CDATA[<p>Log4r is a Ruby gem that features a heirachical logging system of any number of levels, custom level names, multiple output destinations per log event, custom formatting, and more. The Log4r gem is open sourced on <a href="https://github.com/colbygk/log4r">GitHub</a>, and with comphrehensive documentations available on <a href="https://github.com/colbygk/log4r">Rubyforge</a>.</p>
-
-<p>I have been using log4r at work in most of the applications and systems written in Ruby. It’s easy to use, and provide the features that an application would need:
-- Support multiple message levels such as Fatal, Error, Warn and Msg.<br />
-- Customizable log file format
-- Multiple output destinations, like print out on the screen, and store in a log file</p>
-
-<p>Here in this post, I’ll show you how to use log4r in your Ruby project.</p>
-
-<h2 id="step-1-install-gem-log4r">Step 1. Install Gem log4r</h2>
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">gem install log4r</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="step-2-include-log4r-in-your-project">Step 2: Include log4r in your project</h2>
-
-<p>One thing to note is the log4r supports configurations through YAML file, and you can define the configuration file when including the log4r.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">require 'log4r'
-</span><span class="line">require 'log4r/yamlconfigurator'
-</span><span class="line">require 'log4r/outputter/datefileoutputter'
-</span><span class="line">require 'log4r/outputter/emailoutputter'
-</span><span class="line">include Log4r
-</span><span class="line">ycfg = YamlConfigurator    # handy shorthand
-</span><span class="line">ycfg.load_yaml_file(File.dirname(__FILE__)+'/l4r.yml')</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="step-3-configure-log4r-with-a-config-file">Step 3: Configure log4r with a config file</h2>
-
-<p>You can define the logging levels, logger names, output destinations, etc. The following code shows an example of the configurations that I use.</p>
-
-<p>File name: log4r.yml</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-<span class="line-number">42</span>
-<span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-<span class="line-number">46</span>
-<span class="line-number">47</span>
-<span class="line-number">48</span>
-<span class="line-number">49</span>
-<span class="line-number">50</span>
-<span class="line-number">51</span>
-<span class="line-number">52</span>
-<span class="line-number">53</span>
-<span class="line-number">54</span>
-<span class="line-number">55</span>
-<span class="line-number">56</span>
-<span class="line-number">57</span>
-<span class="line-number">58</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">description: config file for log4r
-</span><span class="line">
-</span><span class="line">---
-</span><span class="line"># *** YAML2LOG4R ***
-</span><span class="line">log4r_config:
-</span><span class="line">  # define all pre config ...
-</span><span class="line">  pre_config:
-</span><span class="line">    global:
-</span><span class="line">      level: DEBUG
-</span><span class="line">    root  :
-</span><span class="line">      level: DEBUG
-</span><span class="line">
-</span><span class="line">  # define all loggers ...
-</span><span class="line">  loggers:
-</span><span class="line">    - name      : myproject 
-</span><span class="line">      level     : DEBUG
-</span><span class="line">      additive  : 'false'
-</span><span class="line">      trace     : 'false'
-</span><span class="line">      outputters:
-</span><span class="line">        - stderr
-</span><span class="line">        - logfile
-</span><span class="line">        - email
-</span><span class="line">
-</span><span class="line">
-</span><span class="line">  # define all outputters (incl. formatters)
-</span><span class="line">  outputters:
-</span><span class="line">    - type     : StderrOutputter
-</span><span class="line">      name     : stderr 
-</span><span class="line">      level    : INFO
-</span><span class="line">      formatter:
-</span><span class="line">        date_pattern: #'%y%m%d %H:%M:%S'
-</span><span class="line">        pattern     : '[%c] %l: %m'
-</span><span class="line">        type        : PatternFormatter
-</span><span class="line">
-</span><span class="line">    - type        : DateFileOutputter
-</span><span class="line">      name        : logfile
-</span><span class="line">      level       : DEBUG
-</span><span class="line">      date_pattern: #'%Y%m%d'
-</span><span class="line">      trunc       : 'false'
-</span><span class="line">      dirname     : "."
-</span><span class="line">      formatter   :
-</span><span class="line">        date_pattern: '%H:%M:%S'
-</span><span class="line">        pattern     : '[%c] %d %l: %m'
-</span><span class="line">        type        : PatternFormatter
-</span><span class="line">  
-</span><span class="line">    - type        : EmailOutputter
-</span><span class="line">      name        : email
-</span><span class="line">      level       : FATAL 
-</span><span class="line">      server      : &lt;server domain&gt;
-</span><span class="line">      subject     : 'Message myproject:'
-</span><span class="line">      from        : &lt;email address&gt;
-</span><span class="line">      to          : &lt;email address&gt;
-</span><span class="line">      formatter   :
-</span><span class="line">        date_pattern: #'%y%m%d %H:%M:%S'
-</span><span class="line">        pattern     : '%d %l: %m'
-</span><span class="line">        type        : PatternFormatter
-</span><span class="line">---</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="step-4-initialize-a-logger">Step 4: Initialize a logger</h2>
-
-<p>You need initialize a logger in your project first.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">logger = Log4r::Logger['myproject']</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="step-5-use-your-logger">Step 5: Use your logger</h2>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">logger.info 'My Project Starts!'
-</span><span class="line">logger.warn 'Here is a warning'
-</span><span class="line">logger.error 'Here is an error'
-</span><span class="line">logger.fatal 'Fatal error happens. Program will exit'</span></code></pre></td></tr></table></div></figure></notextile></div>
-
 ]]></content>
   </entry>
   
