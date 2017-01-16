@@ -1,20 +1,20 @@
 ---
 layout: post
 title: "C++ Functors"
-date: 2017-01-15 14:37:07 -0800
+date: 2017-01-15 20:20:07 -0800
 comments: true
 categories: C++
 keywords: C++ Functor
 description: Introduce C++ Functor, C++ Functor usage
 ---
 
-A **functor** is a powerful C++ entity that everyone who wants to master C++ needs to know. A functor, which is short for "**function object**", is an C++ class that acts like a function. Functors can be called using the familiar function call syntax, and can yield values and accept parameters just like regular functions. 
+A **functor** is a powerful C++ entity that everyone who wants to master C++ needs to know. A functor, which is short for "**function object**", is a C++ class that acts like a function. Functors can be called using the familiar function call syntax, and can yield values and accept parameters just like regular functions. 
 
-To create a functor, we create a class (or a struct) that overloads the function ```operator()```. Note here the function is called ```operator()```, and it's not the ```operator``` function, i.e. ```()```. We then create an object of this class (or struct), and that is a functor. 
+To create a functor, we create a class (or a struct) that overloads the function ```operator()```. Note here the function is called ```operator()```, and it's not the ```operator``` function, i.e. ```()```. We then create an instance of this class (or struct) to use the created functor. 
  
 # Create and use functors
 
-Let's look at two examples of creating and using a functor. In the first example, the functor is created with a ```class```, and in the second example we use a ```struct``` to create the functor.  
+Let's look at two examples of creating and using a functor. In the first example, a functor is created with a ```class```, and in the second example we use a ```struct``` to create the functor.  
 
 ## Example: Create a functor with a Class
 
@@ -72,7 +72,7 @@ The key difference between a function and a functor is that a functor's function
 * Its local variables
 * Its parameters
 * Global variables
-* Class data members
+* **Class data members**
 
 If a functor's ```operator()``` member function requires access to data beyond what can be communicated by its parameters, we can store that information as a data member inside the functor class. Since ```operator()``` is a member of the functor class, it can then access that data freely. The following example shows how a functor's ```operator()``` function access the class's private member ```toAppend```. 
 
@@ -102,7 +102,7 @@ myFunctor("C++");
 
 # Functors are useful in STL algorithms
 
-C++ STL algorithms use functors to increase the flexibility and efficiency. The most common uses for function objects are for generating data, for testing data, and for applying operations to data. here is an example of how STL for_each uses functors.
+C++ STL algorithms use functors to increase the flexibility and efficiency. The most common uses for function objects are for generating data, for testing data, and for applying operations to data. here is an example of how STL ```for_each``` uses functors.
 
 ```
 
@@ -127,4 +127,4 @@ int main()
 
 ```
 
-*(The course reader of Stanford course CS106l)[http://web.stanford.edu/class/cs106l/course-reader/Ch13_Functors.pdf] explains functors in detail.*
+*The reader of [Stanford course CS106l](http://web.stanford.edu/class/cs106l/course-reader/Ch13_Functors.pdf) explains functors in detail.*
