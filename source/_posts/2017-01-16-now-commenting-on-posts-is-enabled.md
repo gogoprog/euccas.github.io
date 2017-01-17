@@ -9,9 +9,10 @@ description:
 ---
 Hi there,
 
-I just enabled commenting for this blog with [Disqus](https://disqus.com/).
+I just enabled **commenting** on this blog with [Disqus](https://disqus.com/).
 
-Feel free to comment on my posts. I look foward to having conversations with people who spend some time reading my blog.
+Feel free to leave comments on the blog posts you're interested. I look foward to having conversations with people who spend some time reading my blog.
 
 Cheers,
+
 Euccas
