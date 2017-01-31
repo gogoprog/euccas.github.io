@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-01-30T23:07:36-08:00</updated>
+  <updated>2017-01-30T23:15:31-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -26,14 +26,21 @@
 
 <h1 id="cv-qualifiers">CV Qualifiers</h1>
 
-<p>CV qualifiers stands for Const Qualifier (<code>const</code>) and Volatile Qualifier (<code>volatile</code>). There are three types of CV qualifiers:</p>
+<p>CV qualifiers stands for Const and Volatile Qualifier. There are three types of CV qualifiers:</p>
 
 <ul>
-  <li><code>const</code>: marks a variable or function as read-only or immutable. It’s value (or the return value of a function) cannot be changed once it’s been defined.</li>
+  <li>const</li>
+  <li>volatile</li>
+  <li>mutable</li>
 </ul>
 
-<p><code>
-const int weekdays = 7;</code></p>
+<h2 id="const-qualifier">const qualifier</h2>
+
+<p><code>const</code> marks a variable or function as read-only or immutable. It’s value (or the return value of a function) cannot be changed once it’s been defined.</p>
+
+<p>```</p>
+
+<p>const int weekdays = 7;</p>
 
 <p>const int * myptr1; // declares myptr1 is a pointer to a constant integer
 int const * myptr2; // same as above, declares myptr2 is a pointer to a constant integer
@@ -44,30 +51,34 @@ int const * const myptr4; // declares myptr4 is constant pointer to a constant i
 // myptr3 and myptr4 cannot be changed once initialized</p>
 
 <p>const char *Function1()
-{ return “Some text”;}
-&lt;/code&gt;</p>
+{ return “Some text”;}</p>
 
-<ul>
-  <li><code>volatile</code> marks a variable that may be <strong>changed by another process</strong>. This is generally used for threaded code, or externally linked code. Often <code>volatile</code> is used to tell the compiler avoid aggressive optimization involving the qualified object because the value of the object might be changed by means that the compiler is not aware of.</li>
-</ul>
+<p>```</p>
 
-<p><code>
-volatile int maxcnt = 10;
+<h2 id="volatile-qualifier">volatile qualifier</h2>
+
+<p><code>volatile</code> marks a variable that may be <strong>changed by another process</strong>. This is generally used for threaded code, or externally linked code. Often <code>volatile</code> is used to tell the compiler avoid aggressive optimization involving the qualified object because the value of the object might be changed by means that the compiler is not aware of.</p>
+
+<p>```</p>
+
+<p>volatile int maxcnt = 10;
 int cnt = 0;
 while (cnt &lt; maxcnt)
 {
-    // do something ... 
-}
-</code></p>
+    // do something … 
+}</p>
 
-<ul>
-  <li><code>mutable</code> is used on data member to make it writable from a <code>const</code> qualified member function.</li>
-</ul>
+<p>```</p>
 
-<p><code>
-class A {
+<h2 id="mutable-qualifier">mutable qualifier</h2>
+
+<p><code>mutable</code> is used on data member to make it writable from a <code>const</code> qualified member function.</p>
+
+<p>```</p>
+
+<p>class A {
    mutable int x;
-   int y;</code></p>
+   int y;</p>
 
 <p>public:
      void f1() {
@@ -80,24 +91,32 @@ class A {
        x = 1; // okay, because x is mutable qualified
        y = 1; // illegal, because f2 is const
      }
-};
-&lt;/code&gt;</p>
+};</p>
+
+<p>```</p>
 
 <h1 id="storage-qualifiers">Storage Qualifiers</h1>
 
 <p>Storage qualifiers determine the lifetime of the defined variables or functions. By default, a variable defined within a block has automatic lifetime, which is the duration of the block. There are three types of storage qualifiers:</p>
 
 <ul>
-  <li>
-    <p><code>static</code>: marks the variable is alive for the duration of the program. Static variables are commonly used for keeping <strong>state</strong> between instances of a given function or method. Static variables are stored globally, even if they are stored in a class.</p>
-  </li>
-  <li>
-    <p><code>register</code>: marks the variables as register variables, which are stored in processor registers. Register variables are faster and easier to access and operate on. Note using <code>register</code> only suggest the compiler that particular automatic variables should be allocated to CPU registers, if possible. The compiler may or may not actually store the variable in a register. Register variables should only be used if you have a detailed knowledge of the architecture and compiler for the computer you are using.</p>
-  </li>
-  <li>
-    <p><code>extern</code>: defines the variables or functions in a separate translation unit and are linked with the code by the linker step of the compiler. In other words, you can <strong>define</strong> variables or functions in some source files or classes, and use them in other source files/classes by using <code>extern</code> qualifier to <strong>declare</strong> them in other source files or classes.</p>
-  </li>
+  <li>static</li>
+  <li>register</li>
+  <li>extern</li>
 </ul>
+
+<h2 id="static-qualifier">static qualifier</h2>
+
+<p><code>static</code> marks the variable is alive for the duration of the program. Static variables are commonly used for keeping <strong>state</strong> between instances of a given function or method. Static variables are stored globally, even if they are stored in a class.</p>
+
+<h2 id="register-qualifier">register qualifier</h2>
+
+<p><code>register</code> marks the variables as register variables, which are stored in processor registers. Register variables are faster and easier to access and operate on. Note using <code>register</code> only suggest the compiler that particular automatic variables should be allocated to CPU registers, if possible. The compiler may or may not actually store the variable in a register. Register variables should only be used if you have a detailed knowledge of the architecture and compiler for the computer you are using.</p>
+
+<h2 id="extern-qualifier">extern qualifier</h2>
+
+<p><code>extern</code> defines the variables or functions in a separate translation unit and are linked with the code by the linker step of the compiler. In other words, you can <strong>define</strong> variables or functions in some source files or classes, and use them in other source files/classes by using <code>extern</code> qualifier to <strong>declare</strong> them in other source files or classes.</p>
+
 ]]></content>
   </entry>
   
