@@ -3,7 +3,7 @@ layout: post
 title: "Now commenting on posts is enabled"
 date: 2017-01-16 23:39:06 -0800
 comments: true
-categories: 
+categories: octopress
 keywords: 
 description: 
 ---
