@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-01-17T07:52:36-08:00</updated>
+  <updated>2017-01-30T23:07:36-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,94 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Effective Traditional C++ (1): Qualifiers]]></title>
+    <link href="http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers.html"/>
+    <updated>2017-01-30T21:41:11-08:00</updated>
+    <id>http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers</id>
+    <content type="html"><![CDATA[<p>Recently I’m doing a review on C++ programming language. During the process, I found a few topics which are worth paying more attention to. I’ll write several posts about the related C++ tips and tactics. These topics are not specially for C++ 11 or 14, I therefore name this series of posts as “Effective Traditional C++”.</p>
+
+<p>The first topic I’ll write about here is: <strong>Qualifiers</strong></p>
+
+<p>C++ uses Qualifiers to adjust qualities of a variable or an object. In C++, there are two types of qualifiers: CV qualifiers and storage qualifiers.</p>
+
+<h1 id="cv-qualifiers">CV Qualifiers</h1>
+
+<p>CV qualifiers stands for Const Qualifier (<code>const</code>) and Volatile Qualifier (<code>volatile</code>). There are three types of CV qualifiers:</p>
+
+<ul>
+  <li><code>const</code>: marks a variable or function as read-only or immutable. It’s value (or the return value of a function) cannot be changed once it’s been defined.</li>
+</ul>
+
+<p><code>
+const int weekdays = 7;</code></p>
+
+<p>const int * myptr1; // declares myptr1 is a pointer to a constant integer
+int const * myptr2; // same as above, declares myptr2 is a pointer to a constant integer
+// myptr1 and myptr2 can be changed to point to other const integers</p>
+
+<p>int * const  myptr3; // declares myptr3 is constant pointer to a variable integer
+int const * const myptr4; // declares myptr4 is constant pointer to a constant integer
+// myptr3 and myptr4 cannot be changed once initialized</p>
+
+<p>const char *Function1()
+{ return “Some text”;}
+&lt;/code&gt;</p>
+
+<ul>
+  <li><code>volatile</code> marks a variable that may be <strong>changed by another process</strong>. This is generally used for threaded code, or externally linked code. Often <code>volatile</code> is used to tell the compiler avoid aggressive optimization involving the qualified object because the value of the object might be changed by means that the compiler is not aware of.</li>
+</ul>
+
+<p><code>
+volatile int maxcnt = 10;
+int cnt = 0;
+while (cnt &lt; maxcnt)
+{
+    // do something ... 
+}
+</code></p>
+
+<ul>
+  <li><code>mutable</code> is used on data member to make it writable from a <code>const</code> qualified member function.</li>
+</ul>
+
+<p><code>
+class A {
+   mutable int x;
+   int y;</code></p>
+
+<p>public:
+     void f1() {
+       // “this” has type <code>A*</code>
+       x = 1; // okay
+       y = 1; // okay
+     }
+     void f2() const {
+       // “this” has type <code>A const*</code>
+       x = 1; // okay, because x is mutable qualified
+       y = 1; // illegal, because f2 is const
+     }
+};
+&lt;/code&gt;</p>
+
+<h1 id="storage-qualifiers">Storage Qualifiers</h1>
+
+<p>Storage qualifiers determine the lifetime of the defined variables or functions. By default, a variable defined within a block has automatic lifetime, which is the duration of the block. There are three types of storage qualifiers:</p>
+
+<ul>
+  <li>
+    <p><code>static</code>: marks the variable is alive for the duration of the program. Static variables are commonly used for keeping <strong>state</strong> between instances of a given function or method. Static variables are stored globally, even if they are stored in a class.</p>
+  </li>
+  <li>
+    <p><code>register</code>: marks the variables as register variables, which are stored in processor registers. Register variables are faster and easier to access and operate on. Note using <code>register</code> only suggest the compiler that particular automatic variables should be allocated to CPU registers, if possible. The compiler may or may not actually store the variable in a register. Register variables should only be used if you have a detailed knowledge of the architecture and compiler for the computer you are using.</p>
+  </li>
+  <li>
+    <p><code>extern</code>: defines the variables or functions in a separate translation unit and are linked with the code by the linker step of the compiler. In other words, you can <strong>define</strong> variables or functions in some source files or classes, and use them in other source files/classes by using <code>extern</code> qualifier to <strong>declare</strong> them in other source files or classes.</p>
+  </li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Now Commenting on Posts Is Enabled]]></title>
@@ -2011,222 +2099,6 @@ if __name__ == '__main__':
   <li>When your table name doesn’t match Rails convention, set the table name with <code>self.table_name = '&lt;your table name&gt;'</code></li>
   <li>Create methods in the Model to fetch the data you need</li>
 </ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby Class and Instance Methods]]></title>
-    <link href="http://euccas.github.io/20160607/ruby-class-and-instance-methods.html"/>
-    <updated>2016-06-07T11:37:51-07:00</updated>
-    <id>http://euccas.github.io/20160607/ruby-class-and-instance-methods</id>
-    <content type="html"><![CDATA[<p>If you ever get confused about Class Methods, Instance Methods, Class Variables and Instance Variables in Ruby, read this post and you’ll understand it better :)</p>
-
-<h1 id="class-methods">Class Methods</h1>
-<ul>
-  <li>Class methods belong to a class in Ruby, and it can be used without instance any class object.</li>
-  <li>The definition of class methods has a “self” prefix.</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">def self.show_name
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="instance-methods">Instance Methods</h1>
-<ul>
-  <li>Instance methods belong to any instance of a class in Ruby. To use instance methods, you always need to have an existing instance first. Usually this means you have called <code>new()</code> method.</li>
-  <li>Instance methods do not have “self” prefix in their definition.</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">def show_name
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="class-variables">Class Variables</h1>
-<ul>
-  <li>Class variables belong to a class in Ruby. In other words, each class in Ruby automatically has an object even without any instances. The class variables are constants of the class object.</li>
-  <li>Class variables are totally separated with instance variables (obvious though). The value of a class variable doesn’t change when the instance variables having the same name change.</li>
-  <li>The name of a class variable has the “@@” prefix.</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">class myClass
-</span><span class="line">    @@foo = 0
-</span><span class="line">end  </span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="instance-variables">Instance Variables</h1>
-<ul>
-  <li>Instance variables belong to an instance of a class in Ruby.</li>
-  <li>Different instances have their own set of instance variables.</li>
-  <li>The name of an instance variable has the “@” prefix.</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">class myClass
-</span><span class="line">    def initialize()
-</span><span class="line">        @foo = 0
-</span><span class="line">    end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="a-quick-demo">A quick demo</h1>
-
-<p>So now I have a quick demo to show more about the Class/Instance methods and variables.</p>
-
-<p>In this demo, a Fruit class is created. The Fruit class has a <strong><em>class variable</em></strong> <code>@@color</code>, and the Fruit class instances have a <strong><em>instance variables</em></strong> <code>@color</code>.</p>
-
-<p>Fruit class has a class method <code>self.show_color</code>, and an instance method with the same name <code>show_color</code>.</p>
-
-<p>Now check out how these stuff works.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># fruit.rb
-</span><span class="line">
-</span><span class="line">class Fruit
-</span><span class="line">    @@color = 'yellow' # class variable
-</span><span class="line">
-</span><span class="line">    def initialize()
-</span><span class="line">        @name = 'apple'
-</span><span class="line">        @color = 'red' # instance variable
-</span><span class="line">    end
-</span><span class="line">
-</span><span class="line">    def self.show_color()
-</span><span class="line">        puts "(class method) color: #{@@color}"
-</span><span class="line">    end
-</span><span class="line">
-</span><span class="line">    def change()
-</span><span class="line">        change_color()
-</span><span class="line">        puts "try calling instance method"
-</span><span class="line">        show_color()
-</span><span class="line">        puts "try calling class method"
-</span><span class="line">        self.show_color()
-</span><span class="line">        puts "change done"
-</span><span class="line">    end
-</span><span class="line">
-</span><span class="line">    def change_color()
-</span><span class="line">        @color = 'green'
-</span><span class="line">    end
-</span><span class="line">
-</span><span class="line">    def show_color()
-</span><span class="line">        puts "(instance method) color: #{@color}"
-</span><span class="line">    end
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>The test file:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># test.rb
-</span><span class="line">
-</span><span class="line">$LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__)))
-</span><span class="line">require 'fruit.rb'
-</span><span class="line">
-</span><span class="line">myfruit = Fruit.new
-</span><span class="line">myfruit.show_color
-</span><span class="line">myfruit.change
-</span><span class="line">
-</span><span class="line">Fruit.show_color</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Executing the <code>test.rb</code> file will generate the following result:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">(instance method) color: red
-</span><span class="line">try calling instance method
-</span><span class="line">(instance method) color: green
-</span><span class="line">try calling class method
-</span><span class="line">(instance method) color: green
-</span><span class="line">change done
-</span><span class="line">(class method) color: yellow</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="summary-of-the-demo">Summary of the demo</h2>
-
-<ul>
-  <li>
-    <p><code>&lt;Class&gt;.new</code> instances an object by calling the <code>initialize</code> method. Instance variables are initialized</p>
-  </li>
-  <li>
-    <p>Instance methods only calls the instance methods within itself, even use the <code>self</code> prefix.</p>
-  </li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">show_color()
-</span><span class="line">self.show_color()</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Both call the instance method, and shows the <code>color: green</code></p>
-
-<ul>
-  <li>
-    <p>The change on instance variables doesn’t affect the class variables</p>
-  </li>
-  <li>
-    <p>Class methods can be called without instances</p>
-  </li>
-</ul>
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">Fruit.show_color</span></code></pre></td></tr></table></div></figure></notextile></div>
-<ul>
-  <li>Instance methods can’t be called without instances. The following statement will exceptions (NoMethodError).</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">myfruit = Fruit.new
-</span><span class="line">myfruit.add
-</span><span class="line">
-</span><span class="line"># undefined method `add ... (NoMethodError)</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 ]]></content>
   </entry>

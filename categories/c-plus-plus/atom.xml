@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-01-17T07:52:36-08:00</updated>
+  <updated>2017-01-30T23:07:36-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,94 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Effective Traditional C++ (1): Qualifiers]]></title>
+    <link href="http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers.html"/>
+    <updated>2017-01-30T21:41:11-08:00</updated>
+    <id>http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers</id>
+    <content type="html"><![CDATA[<p>Recently I’m doing a review on C++ programming language. During the process, I found a few topics which are worth paying more attention to. I’ll write several posts about the related C++ tips and tactics. These topics are not specially for C++ 11 or 14, I therefore name this series of posts as “Effective Traditional C++”.</p>
+
+<p>The first topic I’ll write about here is: <strong>Qualifiers</strong></p>
+
+<p>C++ uses Qualifiers to adjust qualities of a variable or an object. In C++, there are two types of qualifiers: CV qualifiers and storage qualifiers.</p>
+
+<h1 id="cv-qualifiers">CV Qualifiers</h1>
+
+<p>CV qualifiers stands for Const Qualifier (<code>const</code>) and Volatile Qualifier (<code>volatile</code>). There are three types of CV qualifiers:</p>
+
+<ul>
+  <li><code>const</code>: marks a variable or function as read-only or immutable. It’s value (or the return value of a function) cannot be changed once it’s been defined.</li>
+</ul>
+
+<p><code>
+const int weekdays = 7;</code></p>
+
+<p>const int * myptr1; // declares myptr1 is a pointer to a constant integer
+int const * myptr2; // same as above, declares myptr2 is a pointer to a constant integer
+// myptr1 and myptr2 can be changed to point to other const integers</p>
+
+<p>int * const  myptr3; // declares myptr3 is constant pointer to a variable integer
+int const * const myptr4; // declares myptr4 is constant pointer to a constant integer
+// myptr3 and myptr4 cannot be changed once initialized</p>
+
+<p>const char *Function1()
+{ return “Some text”;}
+&lt;/code&gt;</p>
+
+<ul>
+  <li><code>volatile</code> marks a variable that may be <strong>changed by another process</strong>. This is generally used for threaded code, or externally linked code. Often <code>volatile</code> is used to tell the compiler avoid aggressive optimization involving the qualified object because the value of the object might be changed by means that the compiler is not aware of.</li>
+</ul>
+
+<p><code>
+volatile int maxcnt = 10;
+int cnt = 0;
+while (cnt &lt; maxcnt)
+{
+    // do something ... 
+}
+</code></p>
+
+<ul>
+  <li><code>mutable</code> is used on data member to make it writable from a <code>const</code> qualified member function.</li>
+</ul>
+
+<p><code>
+class A {
+   mutable int x;
+   int y;</code></p>
+
+<p>public:
+     void f1() {
+       // “this” has type <code>A*</code>
+       x = 1; // okay
+       y = 1; // okay
+     }
+     void f2() const {
+       // “this” has type <code>A const*</code>
+       x = 1; // okay, because x is mutable qualified
+       y = 1; // illegal, because f2 is const
+     }
+};
+&lt;/code&gt;</p>
+
+<h1 id="storage-qualifiers">Storage Qualifiers</h1>
+
+<p>Storage qualifiers determine the lifetime of the defined variables or functions. By default, a variable defined within a block has automatic lifetime, which is the duration of the block. There are three types of storage qualifiers:</p>
+
+<ul>
+  <li>
+    <p><code>static</code>: marks the variable is alive for the duration of the program. Static variables are commonly used for keeping <strong>state</strong> between instances of a given function or method. Static variables are stored globally, even if they are stored in a class.</p>
+  </li>
+  <li>
+    <p><code>register</code>: marks the variables as register variables, which are stored in processor registers. Register variables are faster and easier to access and operate on. Note using <code>register</code> only suggest the compiler that particular automatic variables should be allocated to CPU registers, if possible. The compiler may or may not actually store the variable in a register. Register variables should only be used if you have a detailed knowledge of the architecture and compiler for the computer you are using.</p>
+  </li>
+  <li>
+    <p><code>extern</code>: defines the variables or functions in a separate translation unit and are linked with the code by the linker step of the compiler. In other words, you can <strong>define</strong> variables or functions in some source files or classes, and use them in other source files/classes by using <code>extern</code> qualifier to <strong>declare</strong> them in other source files or classes.</p>
+  </li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[C++ Functors]]></title>

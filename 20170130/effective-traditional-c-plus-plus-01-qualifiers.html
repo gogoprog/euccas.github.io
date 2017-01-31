@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: C++ - euccas.github.io</title>
+  <title>Effective Traditional C++ (1): Qualifiers - euccas.github.io</title>
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="Category: c++">
-  
+  <meta name="description" content="Tips and tactics for C++">
+  <meta name="keywords" content="C++">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://euccas.github.io/categories/c-plus-plus/index.html">
+  <link rel="canonical" href="http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="euccas.github.io" type="application/atom+xml">
@@ -111,60 +111,172 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: C++</h1>
+    
+      
+        <h1 class="entry-title">Effective Traditional C++ (1): Qualifiers</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-01-30T21:41:11-08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>9:41 pm</span></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>Recently I’m doing a review on C++ programming language. During the process, I found a few topics which are worth paying more attention to. I’ll write several posts about the related C++ tips and tactics. These topics are not specially for C++ 11 or 14, I therefore name this series of posts as “Effective Traditional C++”.</p>
 
-  
-  <h2>2017</h2>
+<p>The first topic I’ll write about here is: <strong>Qualifiers</strong></p>
 
-<article>
-  
-<h1><a href="/20170130/effective-traditional-c-plus-plus-01-qualifiers.html">Effective Traditional C++ (1): Qualifiers</a></h1>
-<time datetime="2017-01-30T21:41:11-08:00" pubdate><span class='month'>Jan</span> <span class='day'>30</span> <span class='year'>2017</span></time>
+<p>C++ uses Qualifiers to adjust qualities of a variable or an object. In C++, there are two types of qualifiers: CV qualifiers and storage qualifiers.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/categories/c-plus-plus/'>c++</a></span>
-</footer>
+<h1 id="cv-qualifiers">CV Qualifiers</h1>
 
+<p>CV qualifiers stands for Const Qualifier (<code>const</code>) and Volatile Qualifier (<code>volatile</code>). There are three types of CV qualifiers:</p>
 
-</article>
+<ul>
+  <li><code>const</code>: marks a variable or function as read-only or immutable. It’s value (or the return value of a function) cannot be changed once it’s been defined.</li>
+</ul>
 
+<p><code>
+const int weekdays = 7;</code></p>
 
+<p>const int * myptr1; // declares myptr1 is a pointer to a constant integer
+int const * myptr2; // same as above, declares myptr2 is a pointer to a constant integer
+// myptr1 and myptr2 can be changed to point to other const integers</p>
 
-<article>
-  
-<h1><a href="/20170115/c-plus-plus-functors.html">C++ Functors</a></h1>
-<time datetime="2017-01-15T20:20:07-08:00" pubdate><span class='month'>Jan</span> <span class='day'>15</span> <span class='year'>2017</span></time>
+<p>int * const  myptr3; // declares myptr3 is constant pointer to a variable integer
+int const * const myptr4; // declares myptr4 is constant pointer to a constant integer
+// myptr3 and myptr4 cannot be changed once initialized</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/categories/c-plus-plus/'>c++</a></span>
-</footer>
+<p>const char *Function1()
+{ return “Some text”;}
+&lt;/code&gt;</p>
 
+<ul>
+  <li><code>volatile</code> marks a variable that may be <strong>changed by another process</strong>. This is generally used for threaded code, or externally linked code. Often <code>volatile</code> is used to tell the compiler avoid aggressive optimization involving the qualified object because the value of the object might be changed by means that the compiler is not aware of.</li>
+</ul>
 
-</article>
+<p><code>
+volatile int maxcnt = 10;
+int cnt = 0;
+while (cnt &lt; maxcnt)
+{
+    // do something ... 
+}
+</code></p>
 
+<ul>
+  <li><code>mutable</code> is used on data member to make it writable from a <code>const</code> qualified member function.</li>
+</ul>
+
+<p><code>
+class A {
+   mutable int x;
+   int y;</code></p>
+
+<p>public:
+     void f1() {
+       // “this” has type <code>A*</code>
+       x = 1; // okay
+       y = 1; // okay
+     }
+     void f2() const {
+       // “this” has type <code>A const*</code>
+       x = 1; // okay, because x is mutable qualified
+       y = 1; // illegal, because f2 is const
+     }
+};
+&lt;/code&gt;</p>
+
+<h1 id="storage-qualifiers">Storage Qualifiers</h1>
+
+<p>Storage qualifiers determine the lifetime of the defined variables or functions. By default, a variable defined within a block has automatic lifetime, which is the duration of the block. There are three types of storage qualifiers:</p>
+
+<ul>
+  <li>
+    <p><code>static</code>: marks the variable is alive for the duration of the program. Static variables are commonly used for keeping <strong>state</strong> between instances of a given function or method. Static variables are stored globally, even if they are stored in a class.</p>
+  </li>
+  <li>
+    <p><code>register</code>: marks the variables as register variables, which are stored in processor registers. Register variables are faster and easier to access and operate on. Note using <code>register</code> only suggest the compiler that particular automatic variables should be allocated to CPU registers, if possible. The compiler may or may not actually store the variable in a register. Register variables should only be used if you have a detailed knowledge of the architecture and compiler for the computer you are using.</p>
+  </li>
+  <li>
+    <p><code>extern</code>: defines the variables or functions in a separate translation unit and are linked with the code by the linker step of the compiler. In other words, you can <strong>define</strong> variables or functions in some source files or classes, and use them in other source files/classes by using <code>extern</code> qualifier to <strong>declare</strong> them in other source files or classes.</p>
+  </li>
+</ul>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
-</article>
 
 
-</div>
 
-<aside class="sidebar">
+  <span class="byline author vcard">Authored by <span class="fn">
   
+    euccas
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2017-01-30T21:41:11-08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>9:41 pm</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/c-plus-plus/'>c++</a>
+  
+</span>
+
+
+    </p>
     
+      <div class="sharing">
   
-</aside>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers.html" data-via="euccas" data-counturl="http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers.html" >Tweet</a>
+  
+  
+  
+</div>
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/20170116/now-commenting-on-posts-is-enabled.html" title="Previous Post: Now commenting on posts is enabled">&laquo; Now commenting on posts is enabled</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
 
     </div>
   </div>
@@ -180,7 +292,10 @@
       var disqus_shortname = 'euccas-github-io';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers.html';
+        var disqus_url = 'http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers.html';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

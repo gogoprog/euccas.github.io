@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="Hi there, I just enabled commenting on this blog with Disqus. Feel free to leave comments on the blog posts you’re interested. I look foward to &hellip;">
+  <meta name="description" content="Recently I’m doing a review on C++ programming language. During the process, I found a few topics which are worth paying more attention to. I’ll &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,6 +112,117 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/20170130/effective-traditional-c-plus-plus-01-qualifiers.html">Effective Traditional C++ (1): Qualifiers</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-01-30T21:41:11-08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>9:41 pm</span></time>
+        
+         | <a href="/20170130/effective-traditional-c-plus-plus-01-qualifiers.html#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Recently I’m doing a review on C++ programming language. During the process, I found a few topics which are worth paying more attention to. I’ll write several posts about the related C++ tips and tactics. These topics are not specially for C++ 11 or 14, I therefore name this series of posts as “Effective Traditional C++”.</p>
+
+<p>The first topic I’ll write about here is: <strong>Qualifiers</strong></p>
+
+<p>C++ uses Qualifiers to adjust qualities of a variable or an object. In C++, there are two types of qualifiers: CV qualifiers and storage qualifiers.</p>
+
+<h1 id="cv-qualifiers">CV Qualifiers</h1>
+
+<p>CV qualifiers stands for Const Qualifier (<code>const</code>) and Volatile Qualifier (<code>volatile</code>). There are three types of CV qualifiers:</p>
+
+<ul>
+  <li><code>const</code>: marks a variable or function as read-only or immutable. It’s value (or the return value of a function) cannot be changed once it’s been defined.</li>
+</ul>
+
+<p><code>
+const int weekdays = 7;</code></p>
+
+<p>const int * myptr1; // declares myptr1 is a pointer to a constant integer
+int const * myptr2; // same as above, declares myptr2 is a pointer to a constant integer
+// myptr1 and myptr2 can be changed to point to other const integers</p>
+
+<p>int * const  myptr3; // declares myptr3 is constant pointer to a variable integer
+int const * const myptr4; // declares myptr4 is constant pointer to a constant integer
+// myptr3 and myptr4 cannot be changed once initialized</p>
+
+<p>const char *Function1()
+{ return “Some text”;}
+&lt;/code&gt;</p>
+
+<ul>
+  <li><code>volatile</code> marks a variable that may be <strong>changed by another process</strong>. This is generally used for threaded code, or externally linked code. Often <code>volatile</code> is used to tell the compiler avoid aggressive optimization involving the qualified object because the value of the object might be changed by means that the compiler is not aware of.</li>
+</ul>
+
+<p><code>
+volatile int maxcnt = 10;
+int cnt = 0;
+while (cnt &lt; maxcnt)
+{
+    // do something ... 
+}
+</code></p>
+
+<ul>
+  <li><code>mutable</code> is used on data member to make it writable from a <code>const</code> qualified member function.</li>
+</ul>
+
+<p><code>
+class A {
+   mutable int x;
+   int y;</code></p>
+
+<p>public:
+     void f1() {
+       // “this” has type <code>A*</code>
+       x = 1; // okay
+       y = 1; // okay
+     }
+     void f2() const {
+       // “this” has type <code>A const*</code>
+       x = 1; // okay, because x is mutable qualified
+       y = 1; // illegal, because f2 is const
+     }
+};
+&lt;/code&gt;</p>
+
+<h1 id="storage-qualifiers">Storage Qualifiers</h1>
+
+<p>Storage qualifiers determine the lifetime of the defined variables or functions. By default, a variable defined within a block has automatic lifetime, which is the duration of the block. There are three types of storage qualifiers:</p>
+
+<ul>
+  <li>
+    <p><code>static</code>: marks the variable is alive for the duration of the program. Static variables are commonly used for keeping <strong>state</strong> between instances of a given function or method. Static variables are stored globally, even if they are stored in a class.</p>
+  </li>
+  <li>
+    <p><code>register</code>: marks the variables as register variables, which are stored in processor registers. Register variables are faster and easier to access and operate on. Note using <code>register</code> only suggest the compiler that particular automatic variables should be allocated to CPU registers, if possible. The compiler may or may not actually store the variable in a register. Register variables should only be used if you have a detailed knowledge of the architecture and compiler for the computer you are using.</p>
+  </li>
+  <li>
+    <p><code>extern</code>: defines the variables or functions in a separate translation unit and are linked with the code by the linker step of the compiler. In other words, you can <strong>define</strong> variables or functions in some source files or classes, and use them in other source files/classes by using <code>extern</code> qualifier to <strong>declare</strong> them in other source files or classes.</p>
+  </li>
+</ul>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -622,63 +733,6 @@
 <p>Another useful method provided by <code>multiprocessing</code> module is <code>cpu_count()</code>, which returns the number of CPUs in the current system. You can use this value to decide how many processes to create in a pool.</p>
 
 <p><em>This post is my last post in 2016. Happy new year!</em></p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/20161224/levels-of-design.html">Levels of Design</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-12-24T09:52:07-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:52 am</span></time>
-        
-         | <a href="/20161224/levels-of-design.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Recently I’m taking a course <a href="https://www.coursera.org/learn/algorithmic-toolbox/home/welcome">“Algorithm Toolbox”</a> on Coursera. This course provides me a good chance to review and enhance my knowledge in the fundamental algorithms, which usually would help on achieving better system design. This morning I came across one slide of this course and thought it could be very useful. Sharing it here.</p>
-
-<p><img class="center" src="/images/post_images/20161224-levels-of-design-1.png" width="600" /></p>
-
-<p>It’s important to keep the <strong>levels of (algorithm) design</strong> in mind when solving a problem.</p>
-
-<h1 id="level-1-naive-algorithm">Level 1: Naive Algorithm</h1>
-
-<p>This is the solution that you can get just by taking the definition of a problem and turning it into an algorithm. This solution can solve the problem, but it is often very slow and inefficient.</p>
-
-<p>The way I see the naive algorithm is it gives you something that works, and might be used to verify if alternative solutions are correct or not. But it’s important to not stay at the this solution. You should keep looking for better solutions.</p>
-
-<h1 id="level-2-algorithm-by-way-of-standard-tools">Level 2: Algorithm by way of standard Tools</h1>
-
-<p>You can look at the standard techniques and see if any of it applies to solving your problem. On this level, your goal is finding some standard techniques that work, often that don’t involve too much effort on your part, and give you something that work very well (better than the naive algorithm).</p>
-
-<h1 id="level-3-optimized-algorithm">Level 3: Optimized Algorithm</h1>
-
-<p>Remember there are always lots of ways to improve an existing solution. If you get a pretty good solution on level 2, why not taking one more step and see what you can do to improve it? Could you reduce the runtime from n-cubed to n-squared or n-squred to n? Could you come up with a shorter solution by rearranging the order or cut out some of the work? Could you use a data structure to speed things up? Think about all these possiblities and see if you can get a even better solution. (Often you will)</p>
-
-<h1 id="level-4-magic-algorithm">Level 4: Magic Algorithm</h1>
-
-<p>When the solutions from the previous three levels are not good enough, you’ll need some magic to get a better one. This can be hard. You will need some clever new ideas and unique insights of the problem you’re trying to solve. Even if you don’t get a magic solution in the end, the thought process will be beneficial.</p>
-
-<p>Sometimes when I finish a project, I do have the feeling that the way I do it is just not good enough, even though the project has been proved to be successful, useful and solved a particular technical challenge we faced. Looking at the “Levels of Design”, I believe what I need to do is spending more efforts on the higher levels. Actually what you really need for getting a really good solution is not magic. What you need is mastering more existing good standard techniques, exploring the possibility for optimization, and a deep understanding of the problem you want to solve.</p>
 
 </div>
   

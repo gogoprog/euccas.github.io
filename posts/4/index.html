@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="In the previous post about Python Unittest, I wrote about the basic steps needed for setting up unit testing for your Python program with the &hellip;">
+  <meta name="description" content="Problem Description Suppose one task in your Continuous Integration (CI) pipeline is triggered on every commit to the project repository. Some the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,6 +112,240 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/20160815/case-study-check-on-a-commit-according-to-the-included-files.html">Case Study: Check on a Commit According to Its Included Files</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-08-15T19:43:21-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>7:43 pm</span></time>
+        
+         | <a href="/20160815/case-study-check-on-a-commit-according-to-the-included-files.html#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1 id="problem-description">Problem Description</h1>
+
+<p>Suppose one task in your Continuous Integration (CI) pipeline is triggered on every commit to the project repository. Some the files in the repository require passing the check of the CI task, while some other files do not require passing the check. What should the CI task do to decide if it is needed to perform the needed checking on the commit?</p>
+
+<h1 id="design-the-ci-task">Design the CI task</h1>
+
+<p>The CI task need have the ability to analyze the files included in the commit, and decide whether the commit requires passing a check, or not. We need tell the CI task which files require passing a check through configurations.</p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>There are multiple ways to design the configurations, such as:</p>
+
+<ol>
+  <li>
+    <p>Only list the files or paths requiring the check</p>
+  </li>
+  <li>
+    <p>Only list the files or paths do not require the check</p>
+  </li>
+  <li>
+    <p>List the files or paths requiring the check, and also list the subset files or paths that do not require the check</p>
+  </li>
+</ol>
+
+<p>The 3rd way probably is the optimal one because it provides the flexibility for you to put a large scope path as the files need check, and then exclude a subset from the large scope path. For example:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">check: my_project/dev/
+</span><span class="line">
+</span><span class="line">skip: my_project/dev/test/
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>To apply the 3rd method, the configuration of the CI task will include two types: inclusion, and exclusion.</p>
+
+<h2 id="analyze-files-in-the-commit">Analyze files in the commit</h2>
+
+<p>The needed analysis process of the CI task is:</p>
+
+<ul>
+  <li>
+    <p>If none of the files in the commit matches the inclusion in configuration, skip the check</p>
+  </li>
+  <li>
+    <p>If all the files in the commit matching the inclusion in configuration also matching the exclusion in configuration, skip the check</p>
+  </li>
+  <li>
+    <p>In other cases, the check for this commit is needed</p>
+  </li>
+</ul>
+
+<p>The complexity of the given process is <em>O(n<sup>2</sup>)</em>.</p>
+
+<p>A mistake that could happen in the analysis process is when you analyze the exclusion cases, you should do the analysis only on the files that match inclusion configuration, which is a subset of files in the commit.</p>
+
+<h1 id="example-with-the-python">Example with the Python</h1>
+
+<p>Here is the code written in Python for demonstrating the case discussed above.</p>
+
+<ul>
+  <li>
+    <p><code>commit_files</code>: a list containing all the files in the commit</p>
+  </li>
+  <li>
+    <p><code>config</code>: a dictionary containing inclusion and exclusion configurations</p>
+  </li>
+  <li>
+    <p><code>config['include']</code>: a list containing all the files or paths need check</p>
+  </li>
+  <li>
+    <p><code>config['exclude']</code>: a list containing the files or paths do not need check</p>
+  </li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">def analyze_commit_files(commit_files, config):
+</span><span class="line">
+</span><span class="line">    need_check = False    
+</span><span class="line">
+</span><span class="line">    
+</span><span class="line">
+</span><span class="line">    # commit need_check is False if:    
+</span><span class="line">
+</span><span class="line">    # - No files in this commit    
+</span><span class="line">
+</span><span class="line">    # - Config does not have any 'include' defined    
+</span><span class="line">
+</span><span class="line">    if commit_files is None or len(commit_files) == 0:
+</span><span class="line">
+</span><span class="line">        return need_check
+</span><span class="line">
+</span><span class="line">    if not 'include' in config or config['include'] is None or len(config['include']) == 0:
+</span><span class="line">
+</span><span class="line">        return need_check
+</span><span class="line">
+</span><span class="line">    # commit need_check is False if:    
+</span><span class="line">
+</span><span class="line">    # - All file in the commit matches the configured inclusion, OR    
+</span><span class="line">
+</span><span class="line">    # - All files in the commit that matches the inclusion, also match the configured exclusion    
+</span><span class="line">
+</span><span class="line">    # First check inclusion    
+</span><span class="line">
+</span><span class="line">    files_need_check = list()
+</span><span class="line">
+</span><span class="line">    for cf in commit_files:
+</span><span class="line">
+</span><span class="line">        for check_file in config['include']:            
+</span><span class="line">
+</span><span class="line">            if re.search(check_file, cf):                            
+</span><span class="line">
+</span><span class="line">                files_need_check.append(cf)
+</span><span class="line">
+</span><span class="line">    
+</span><span class="line">
+</span><span class="line">    if len(files_need_check) &gt; 0:
+</span><span class="line">
+</span><span class="line">        # Check skip_path
+</span><span class="line">
+</span><span class="line">        if not 'exclude' in config or config['exclude'] is None or len(config['exclude']) == 0:
+</span><span class="line">
+</span><span class="line">            need_check = True
+</span><span class="line">
+</span><span class="line">         else:
+</span><span class="line">
+</span><span class="line">             for cf in files_need_check:
+</span><span class="line">
+</span><span class="line">                 for skip_file in config['exclude']:                         
+</span><span class="line">
+</span><span class="line">                    if not re.search(skip_file, cf):                       
+</span><span class="line">
+</span><span class="line">                        need_check = True
+</span><span class="line">
+</span><span class="line">                        break
+</span><span class="line">
+</span><span class="line">    return need_check
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -859,245 +1093,6 @@ if __name__ == '__main__':
   <li>When your table name doesn’t match Rails convention, set the table name with <code>self.table_name = '&lt;your table name&gt;'</code></li>
   <li>Create methods in the Model to fetch the data you need</li>
 </ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/20160607/ruby-class-and-instance-methods.html">Ruby Class and Instance Methods</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-06-07T11:37:51-07:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:37 am</span></time>
-        
-         | <a href="/20160607/ruby-class-and-instance-methods.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you ever get confused about Class Methods, Instance Methods, Class Variables and Instance Variables in Ruby, read this post and you’ll understand it better :)</p>
-
-<h1 id="class-methods">Class Methods</h1>
-<ul>
-  <li>Class methods belong to a class in Ruby, and it can be used without instance any class object.</li>
-  <li>The definition of class methods has a “self” prefix.</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">def self.show_name
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="instance-methods">Instance Methods</h1>
-<ul>
-  <li>Instance methods belong to any instance of a class in Ruby. To use instance methods, you always need to have an existing instance first. Usually this means you have called <code>new()</code> method.</li>
-  <li>Instance methods do not have “self” prefix in their definition.</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">def show_name
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="class-variables">Class Variables</h1>
-<ul>
-  <li>Class variables belong to a class in Ruby. In other words, each class in Ruby automatically has an object even without any instances. The class variables are constants of the class object.</li>
-  <li>Class variables are totally separated with instance variables (obvious though). The value of a class variable doesn’t change when the instance variables having the same name change.</li>
-  <li>The name of a class variable has the “@@” prefix.</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">class myClass
-</span><span class="line">    @@foo = 0
-</span><span class="line">end  </span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="instance-variables">Instance Variables</h1>
-<ul>
-  <li>Instance variables belong to an instance of a class in Ruby.</li>
-  <li>Different instances have their own set of instance variables.</li>
-  <li>The name of an instance variable has the “@” prefix.</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">class myClass
-</span><span class="line">    def initialize()
-</span><span class="line">        @foo = 0
-</span><span class="line">    end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="a-quick-demo">A quick demo</h1>
-
-<p>So now I have a quick demo to show more about the Class/Instance methods and variables.</p>
-
-<p>In this demo, a Fruit class is created. The Fruit class has a <strong><em>class variable</em></strong> <code>@@color</code>, and the Fruit class instances have a <strong><em>instance variables</em></strong> <code>@color</code>.</p>
-
-<p>Fruit class has a class method <code>self.show_color</code>, and an instance method with the same name <code>show_color</code>.</p>
-
-<p>Now check out how these stuff works.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># fruit.rb
-</span><span class="line">
-</span><span class="line">class Fruit
-</span><span class="line">    @@color = 'yellow' # class variable
-</span><span class="line">
-</span><span class="line">    def initialize()
-</span><span class="line">        @name = 'apple'
-</span><span class="line">        @color = 'red' # instance variable
-</span><span class="line">    end
-</span><span class="line">
-</span><span class="line">    def self.show_color()
-</span><span class="line">        puts "(class method) color: #{@@color}"
-</span><span class="line">    end
-</span><span class="line">
-</span><span class="line">    def change()
-</span><span class="line">        change_color()
-</span><span class="line">        puts "try calling instance method"
-</span><span class="line">        show_color()
-</span><span class="line">        puts "try calling class method"
-</span><span class="line">        self.show_color()
-</span><span class="line">        puts "change done"
-</span><span class="line">    end
-</span><span class="line">
-</span><span class="line">    def change_color()
-</span><span class="line">        @color = 'green'
-</span><span class="line">    end
-</span><span class="line">
-</span><span class="line">    def show_color()
-</span><span class="line">        puts "(instance method) color: #{@color}"
-</span><span class="line">    end
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>The test file:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># test.rb
-</span><span class="line">
-</span><span class="line">$LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__)))
-</span><span class="line">require 'fruit.rb'
-</span><span class="line">
-</span><span class="line">myfruit = Fruit.new
-</span><span class="line">myfruit.show_color
-</span><span class="line">myfruit.change
-</span><span class="line">
-</span><span class="line">Fruit.show_color</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Executing the <code>test.rb</code> file will generate the following result:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">(instance method) color: red
-</span><span class="line">try calling instance method
-</span><span class="line">(instance method) color: green
-</span><span class="line">try calling class method
-</span><span class="line">(instance method) color: green
-</span><span class="line">change done
-</span><span class="line">(class method) color: yellow</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="summary-of-the-demo">Summary of the demo</h2>
-
-<ul>
-  <li>
-    <p><code>&lt;Class&gt;.new</code> instances an object by calling the <code>initialize</code> method. Instance variables are initialized</p>
-  </li>
-  <li>
-    <p>Instance methods only calls the instance methods within itself, even use the <code>self</code> prefix.</p>
-  </li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">show_color()
-</span><span class="line">self.show_color()</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Both call the instance method, and shows the <code>color: green</code></p>
-
-<ul>
-  <li>
-    <p>The change on instance variables doesn’t affect the class variables</p>
-  </li>
-  <li>
-    <p>Class methods can be called without instances</p>
-  </li>
-</ul>
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">Fruit.show_color</span></code></pre></td></tr></table></div></figure></notextile></div>
-<ul>
-  <li>Instance methods can’t be called without instances. The following statement will exceptions (NoMethodError).</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">myfruit = Fruit.new
-</span><span class="line">myfruit.add
-</span><span class="line">
-</span><span class="line"># undefined method `add ... (NoMethodError)</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 </div>
   
