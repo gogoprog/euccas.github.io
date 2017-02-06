@@ -286,21 +286,32 @@
 
 <p>Example of a “call by reference”:</p>
 
-<p>```
- void func(const string &amp; fs)
- {
-    print(“string value is %s\n”, fs.c_str());
- }</p>
-
-<p>int main(int argc, char ** argv)
- {
-    string s = “I’m a string!”;
-    func(s); // Outputs: string value is I’m a string
-    printf(“string is %s\n”, s.c_str()); // Outputs: string is I’m a string
-    return 0;
- }</p>
-
-<p>```</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class=""><span class="line"> void func(const string &amp; fs)
+</span><span class="line"> {
+</span><span class="line">    print("string value is %s\n", fs.c_str());
+</span><span class="line"> }
+</span><span class="line"> 
+</span><span class="line"> int main(int argc, char ** argv)
+</span><span class="line"> {
+</span><span class="line">    string s = "I'm a string!";
+</span><span class="line">    func(s); // Outputs: string value is I'm a string
+</span><span class="line">    printf("string is %s\n", s.c_str()); // Outputs: string is I'm a string
+</span><span class="line">    return 0;
+</span><span class="line"> }
+</span><span class="line"> </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 </div>
 
