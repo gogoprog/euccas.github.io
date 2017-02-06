@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-02-05T22:18:51-08:00</updated>
+  <updated>2017-02-05T22:20:22-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Effective Traditional C++ 02 Pointer and Reference]]></title>
+    <title type="html"><![CDATA[Effective Traditional C++ (2): Pointer and Reference]]></title>
     <link href="http://euccas.github.io/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html"/>
     <updated>2017-02-05T22:18:59-08:00</updated>
     <id>http://euccas.github.io/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference</id>
