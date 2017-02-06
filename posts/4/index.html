@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="Problem Description Suppose one task in your Continuous Integration (CI) pipeline is triggered on every commit to the project repository. Some the &hellip;">
+  <meta name="description" content="In Python, we sometimes see method names with __ around, such as the __init__ method that every Class has. These methods are “dunder” methods (“ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,6 +112,193 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/20160920/python-dunder-methods.html">Dunder Methods in Python</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-09-20T21:28:51-07:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:28 pm</span></time>
+        
+         | <a href="/20160920/python-dunder-methods.html#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In Python, we sometimes see method names with <code>__</code> around, such as the <code>__init__</code> method that every Class has. These methods are “dunder” methods (“dunder” stands for “double under” or “double underscore”). Dunder methods in Python are used for operator overloading and customizing behavior of other functions.</p>
+
+<p>Sometimes dunder methods are also called “magic methods” because they are usually called by Python under the hood. But they are not really magical, you can define dunder methods to customize the behavior of your own classes.</p>
+
+<h1 id="examples-of-dunder-methods">Examples of Dunder Methods</h1>
+
+<p>In the following example, we can see three dunder methods:</p>
+
+<ul>
+  <li><code>__init__</code> method: is called to initialize the class</li>
+  <li><code>__str__</code> method: is called when converting the object to a human-readable string</li>
+  <li><code>__repr__</code> method: is called when converting the object to a developer-readable string</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class Flower:
+</span><span class="line">    def __init__(self, color='red'):
+</span><span class="line">	    self.color = color
+</span><span class="line">
+</span><span class="line">	def __str__(self):
+</span><span class="line">		return "Flower in color {color}".format(color=self.color)
+</span><span class="line">
+</span><span class="line">	def __repr__(self):
+</span><span class="line">	return "Flower(color={})".format(self.color)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>In Python, many dunder methods are implemented and used for operations such as arithmetic operators, comparison operators, truthiness, etc. The following are a few examples:</p>
+
+<p><strong>Arithmetic Operators</strong></p>
+
+<ul>
+  <li><code>+</code> : <code>__add__</code></li>
+  <li><code>-</code> : <code>__sub__</code></li>
+  <li><code>*</code> : <code>__mul__</code></li>
+  <li><code>/</code> : <code>__div__</code></li>
+</ul>
+
+<p><strong>Comparison Operators</strong></p>
+
+<ul>
+  <li><code>x &lt; y</code> : <code>x.__lt__(y)</code></li>
+  <li><code>x &lt;= y</code> : <code>x.__le__(y)</code></li>
+  <li><code>x &gt; y</code> : <code>x.__gt__(y)</code></li>
+  <li><code>x &gt;= y</code> : <code>x.__ge__(y)</code></li>
+  <li><code>x == y</code> : <code>x.__eq__(y)</code></li>
+  <li><code>x != y</code> : <code>x.__ge__(y)</code></li>
+</ul>
+
+<p>If you know about Bash shell, you may notice the name of these dunder methods are very similar to the operators in Bash.</p>
+
+<p><strong>Truthiness</strong></p>
+
+<ul>
+  <li><code>bool(x)</code> : <code>x.__bool__()</code></li>
+</ul>
+
+<h1 id="use-dunder-methods-to-customize-class-behaviors">Use Dunder Methods to Customize Class Behaviors</h1>
+
+<p>Dunder methods provide a way for our class to customize operators and other built-in Python behavior for our objects. In the following two examples, I’ll use dunder methods to overload arithmetic operators, and implement a dictionary that can be used with both attribute and item syntax.</p>
+
+<h2 id="example-1-overload-arithmetic-operators">Example 1: Overload Arithmetic Operators</h2>
+
+<p>Make an <code>is_callable</code> function to check if an object type is callable.</p>
+
+<p>Example:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">&gt;&gt;&gt; is_callable(sorted)
+</span><span class="line">True
+</span><span class="line">&gt;&gt;&gt; is_callable(str)
+</span><span class="line">True
+</span><span class="line">&gt;&gt;&gt; is_callable(4)
+</span><span class="line">False</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Source Code:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">def is_callable(obj):
+</span><span class="line">
+</span><span class="line">try:
+</span><span class="line">	obj.__call__
+</span><span class="line">	# hasattr(str, '__call__')
+</span><span class="line">	# getattr(str, '__call__')
+</span><span class="line">except AttributeError:
+</span><span class="line">	return False
+</span><span class="line">else:
+</span><span class="line">	return True</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="example-2-class-easydict">Example 2: Class EasyDict</h2>
+
+<p>Make an <code>EasyDict</code> class that can be used with both attribute and item syntax.</p>
+
+<p>Example:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">&gt;&gt;&gt; a = EasyDict()
+</span><span class="line">&gt;&gt;&gt; a['shoe'] = "blue"
+</span><span class="line">&gt;&gt;&gt; a.shoe
+</span><span class="line">"blue"
+</span><span class="line">&gt;&gt;&gt; a['shoe']
+</span><span class="line">"blue"
+</span><span class="line">&gt;&gt;&gt; a.car = "green"
+</span><span class="line">&gt;&gt;&gt; a['car']
+</span><span class="line">"green"</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Source Code:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class EasyDict:
+</span><span class="line">	def __init__(self):
+</span><span class="line">    	pass
+</span><span class="line">
+</span><span class="line">   		def __getitem__(self, item):
+</span><span class="line">    	return self.__dict__[item]
+</span><span class="line">
+</span><span class="line">	def __setitem__(self, key, value):
+</span><span class="line">    	self.__dict__[key] = value
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -978,122 +1165,6 @@ if __name__ == '__main__':
   <li><a href="https://www.amazon.com/Ruby-Cookbook-Lucas-Carlson/dp/1449373712">Ruby Cookbook 2nd Edition (L. Carlson)</a></li>
   <li><a href="http://martinfowler.com/articles/rake.html">Using the Rake Build Language (Martin Fowler)</a></li>
 </ul>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/20160610/rails-get-data-without-model.html">Rails: Get Data From PostgreSQL Database Without the Model</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-06-10T18:32:01-07:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>6:32 pm</span></time>
-        
-         | <a href="/20160610/rails-get-data-without-model.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In Ruby on Rails, Active Record is the M in MVC - the model. Model is the layer of the system which represents business data and logic. Active Record facilitates the creation and the use of business objects whose data requires persistent storage to a database. In some cases, however, you may want to use databases in Rails applications without the Model. What you can do is using the <code>pg</code> gem to directly manipulate the data you need.</p>
-
-<h1 id="create-a-database-connection">Create a database connection</h1>
-
-<p>If the database is not declared in Rails app’s <code>config/database.yml</code> file, you won’t be able to use the <code>establish_connection</code> method in ActiveRecord. But you can still use the <code>pg</code> gem to directly connect to the database.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># page_controller.rb
-</span><span class="line">
-</span><span class="line">conn = PGconn.connect('&lt;server&gt;', &lt;port&gt;, "", "", '&lt;database&gt;', "&lt;user&gt;", "&lt;password&gt;")
-</span><span class="line">render :plain =&gt; "Oops, database currently not accessible" unless conn
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="query-data-with-raw-sql">Query data with RAW SQL</h1>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># page_controller.rb
-</span><span class="line">
-</span><span class="line">@page_records = []
-</span><span class="line">result = conn.exec('SELECT * FROM &lt;table&gt; ORDER BY id DESC')
-</span><span class="line">
-</span><span class="line">@page_records = result
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>The result is an array of Hash. For example:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">[
-</span><span class="line">  { "title" =&gt; "my page 1", "author" =&gt; "Tom", "created_at" =&gt; "2016-06-08" }
-</span><span class="line">  { "title" =&gt; "my page 2", "author" =&gt; "Nancy", "created_at" =&gt; "2016-06-09" }
-</span><span class="line">]</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="use-the-data-in-view">Use the data in View</h1>
-
-<p>When using the queried data in Rails View, need to note you need use <code>record['title']</code> instead of <code>record.title</code>, which is different from using the data generated from a Rails Model.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># page.erb
-</span><span class="line">
-</span><span class="line">&lt;div&gt;
-</span><span class="line">    &lt;% @page_records.each do |record| %&gt;
-</span><span class="line">        &lt;p&gt; &lt;%= record['title'] %&gt; &lt;/p&gt;
-</span><span class="line">        &lt;p&gt; &lt;%= record['author'] %&gt; &lt;/p&gt;
-</span><span class="line">    &lt;% end %&gt;
-</span><span class="line">&lt;/div&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="as-a-note-in-the-end">As a note in the end</h1>
-
-<p>Although the above approach works in Rails, I’d say a more decent way to handle the need of getting data from multiple databases, is creating a crafted Model. The process will need:</p>
-
-<ul>
-  <li>Add the configurations of all your external databases in Rails app</li>
-  <li>Create a Model file</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">class Pages &lt; ActiveRecord::Base
-</span><span class="line">
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-<ul>
-  <li>Use <code>establish_connection</code> in the Model</li>
-  <li>When your table name doesn’t match Rails convention, set the table name with <code>self.table_name = '&lt;your table name&gt;'</code></li>
-  <li>Create methods in the Model to fetch the data you need</li>
-</ul>
-
 </div>
   
   

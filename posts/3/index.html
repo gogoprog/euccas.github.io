@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="使用Octopress搭建这个blog已经有一段时间了，记录几个使用中需要注意的Tips. Tip 1: Clone Repo 如果需要重新复制一份已经存在的blog repo，在重新复制的blog repo上继续发布更新blog，那么需要注意： 首先需要复制的repo是source branch &hellip;">
+  <meta name="description" content="昨晚提交了MongoDB University的培训课程 M101P: MongoDB for Developers (Python) 的最后一次测试，这历时七周的课程告一段落。这个课程虽然是属于入门级，但是它覆盖了MongoDB各个方面，有不错的课程结构。短时间内， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,6 +112,91 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/20161205/mongodb-training-mongodb-for-developers-python.html">MongoDB Training: MongoDB for Developers (Python)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-12-05T13:56:45-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>1:56 pm</span></time>
+        
+         | <a href="/20161205/mongodb-training-mongodb-for-developers-python.html#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>昨晚提交了MongoDB University的培训课程 <a href="https://university.mongodb.com/courses/M101P/about">M101P: MongoDB for Developers (Python)</a> 的最后一次测试，这历时七周的课程告一段落。这个课程虽然是属于入门级，但是它覆盖了MongoDB各个方面，有不错的课程结构。短时间内，可以让开发者掌握和MongoDB有关的日常开发中所需要掌握的大部分知识和技能。</p>
+
+<p>在学习其他数据库时，也不妨参照这个结构来全面掌握。</p>
+
+<ul>
+  <li>
+    <p><strong>Introduction and Overview</strong></p>
+  </li>
+  <li><strong>CRUD: Creating, Reading and Updating Data</strong>
+    <ul>
+      <li>Mongo shell</li>
+      <li>Find, Insert, Update, Delete</li>
+      <li>Query operators, update operators</li>
+    </ul>
+  </li>
+  <li><strong>Schema Design</strong>
+    <ul>
+      <li>Live without constraints or transactions</li>
+      <li>One to one relations, one to many relations, many to many relations</li>
+      <li>Embedding, handle blobs</li>
+    </ul>
+  </li>
+  <li><strong>Performance</strong>
+    <ul>
+      <li>Indexes</li>
+      <li>Explain and profiling</li>
+    </ul>
+  </li>
+  <li><strong>Aggregation Framework</strong>
+    <ul>
+      <li>Aggregation pipeline</li>
+      <li>Aggregation expressions: sum, avg, addToSet, push, max, min, group,  project, match, text, sort, limit, skip, unwind, etc.</li>
+    </ul>
+  </li>
+  <li><strong>Application Engineering</strong>
+    <ul>
+      <li>Write consistency</li>
+      <li>Replication, create a replica set</li>
+      <li>Failover and rollback</li>
+      <li>Sharding</li>
+    </ul>
+  </li>
+  <li><strong>Case Studies</strong>
+    <ul>
+      <li>Interview with MongoDB users from Facebook and Codecademy</li>
+      <li>Discuss MongoDB usages in real life projects</li>
+    </ul>
+  </li>
+</ul>
+
+<p>我在课程期间的笔记和练习都保存在GitHub Repository - <a href="https://github.com/euccas/mongodb-for-developers-M101P">euccas/MongoDB-for-Developers-M101P</a></p>
+
+<p>如果是偏重于Web开发，可以参加另一个培训课程:  <a href="https://university.mongodb.com/courses/M101JS/about">M101JS: MongoDB for Node.js Developers</a>. M101JS课程和M101P有类似的结构，区别在于开发语言从Python变为Node.js.</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -471,193 +556,6 @@ For example:</p>
   <li>Signaling between driver test and rider test: Conducted with Test Host to improve the consistency. API readSignal (blocking), writeSignal (nonblocking). Test hosts and test targets are connected via USB (reliable).</li>
   <li>Apple Chow wrote about Octopus on <a href="http://eng.uber.com/rescued-by-octopus/">Uber Engineering</a></li>
 </ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/20160920/python-dunder-methods.html">Dunder Methods in Python</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-09-20T21:28:51-07:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:28 pm</span></time>
-        
-         | <a href="/20160920/python-dunder-methods.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In Python, we sometimes see method names with <code>__</code> around, such as the <code>__init__</code> method that every Class has. These methods are “dunder” methods (“dunder” stands for “double under” or “double underscore”). Dunder methods in Python are used for operator overloading and customizing behavior of other functions.</p>
-
-<p>Sometimes dunder methods are also called “magic methods” because they are usually called by Python under the hood. But they are not really magical, you can define dunder methods to customize the behavior of your own classes.</p>
-
-<h1 id="examples-of-dunder-methods">Examples of Dunder Methods</h1>
-
-<p>In the following example, we can see three dunder methods:</p>
-
-<ul>
-  <li><code>__init__</code> method: is called to initialize the class</li>
-  <li><code>__str__</code> method: is called when converting the object to a human-readable string</li>
-  <li><code>__repr__</code> method: is called when converting the object to a developer-readable string</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">class Flower:
-</span><span class="line">    def __init__(self, color='red'):
-</span><span class="line">	    self.color = color
-</span><span class="line">
-</span><span class="line">	def __str__(self):
-</span><span class="line">		return "Flower in color {color}".format(color=self.color)
-</span><span class="line">
-</span><span class="line">	def __repr__(self):
-</span><span class="line">	return "Flower(color={})".format(self.color)</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>In Python, many dunder methods are implemented and used for operations such as arithmetic operators, comparison operators, truthiness, etc. The following are a few examples:</p>
-
-<p><strong>Arithmetic Operators</strong></p>
-
-<ul>
-  <li><code>+</code> : <code>__add__</code></li>
-  <li><code>-</code> : <code>__sub__</code></li>
-  <li><code>*</code> : <code>__mul__</code></li>
-  <li><code>/</code> : <code>__div__</code></li>
-</ul>
-
-<p><strong>Comparison Operators</strong></p>
-
-<ul>
-  <li><code>x &lt; y</code> : <code>x.__lt__(y)</code></li>
-  <li><code>x &lt;= y</code> : <code>x.__le__(y)</code></li>
-  <li><code>x &gt; y</code> : <code>x.__gt__(y)</code></li>
-  <li><code>x &gt;= y</code> : <code>x.__ge__(y)</code></li>
-  <li><code>x == y</code> : <code>x.__eq__(y)</code></li>
-  <li><code>x != y</code> : <code>x.__ge__(y)</code></li>
-</ul>
-
-<p>If you know about Bash shell, you may notice the name of these dunder methods are very similar to the operators in Bash.</p>
-
-<p><strong>Truthiness</strong></p>
-
-<ul>
-  <li><code>bool(x)</code> : <code>x.__bool__()</code></li>
-</ul>
-
-<h1 id="use-dunder-methods-to-customize-class-behaviors">Use Dunder Methods to Customize Class Behaviors</h1>
-
-<p>Dunder methods provide a way for our class to customize operators and other built-in Python behavior for our objects. In the following two examples, I’ll use dunder methods to overload arithmetic operators, and implement a dictionary that can be used with both attribute and item syntax.</p>
-
-<h2 id="example-1-overload-arithmetic-operators">Example 1: Overload Arithmetic Operators</h2>
-
-<p>Make an <code>is_callable</code> function to check if an object type is callable.</p>
-
-<p>Example:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">&gt;&gt;&gt; is_callable(sorted)
-</span><span class="line">True
-</span><span class="line">&gt;&gt;&gt; is_callable(str)
-</span><span class="line">True
-</span><span class="line">&gt;&gt;&gt; is_callable(4)
-</span><span class="line">False</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Source Code:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">def is_callable(obj):
-</span><span class="line">
-</span><span class="line">try:
-</span><span class="line">	obj.__call__
-</span><span class="line">	# hasattr(str, '__call__')
-</span><span class="line">	# getattr(str, '__call__')
-</span><span class="line">except AttributeError:
-</span><span class="line">	return False
-</span><span class="line">else:
-</span><span class="line">	return True</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="example-2-class-easydict">Example 2: Class EasyDict</h2>
-
-<p>Make an <code>EasyDict</code> class that can be used with both attribute and item syntax.</p>
-
-<p>Example:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">&gt;&gt;&gt; a = EasyDict()
-</span><span class="line">&gt;&gt;&gt; a['shoe'] = "blue"
-</span><span class="line">&gt;&gt;&gt; a.shoe
-</span><span class="line">"blue"
-</span><span class="line">&gt;&gt;&gt; a['shoe']
-</span><span class="line">"blue"
-</span><span class="line">&gt;&gt;&gt; a.car = "green"
-</span><span class="line">&gt;&gt;&gt; a['car']
-</span><span class="line">"green"</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Source Code:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">class EasyDict:
-</span><span class="line">	def __init__(self):
-</span><span class="line">    	pass
-</span><span class="line">
-</span><span class="line">   		def __getitem__(self, item):
-</span><span class="line">    	return self.__dict__[item]
-</span><span class="line">
-</span><span class="line">	def __setitem__(self, key, value):
-</span><span class="line">    	self.__dict__[key] = value
-</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 </div>
   

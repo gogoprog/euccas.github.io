@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-01-30T23:17:01-08:00</updated>
+  <updated>2017-02-05T22:17:35-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,149 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Effective Traditional C++ 02 Pointer and Reference]]></title>
+    <link href="http://euccas.github.io/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html"/>
+    <updated>2017-02-05T22:18:59-08:00</updated>
+    <id>http://euccas.github.io/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference</id>
+    <content type="html"><![CDATA[<p>Pointers and references are two fundamental data types in C++. They are useful, common and somewhat dangerous. Using them correctly, they could greatly improve the efficiency and performance of your program. On the other hand, using them incorrectly could lead to many problems such as memory leaks and buffer overflow.</p>
+
+<h1 id="pointers">Pointers</h1>
+
+<p>A pointer holds the address of a variable and can be used to perform any operation that could be directly done on the variable, such as accessing and modifying it. Here are a few facts of pointers:</p>
+
+<ul>
+  <li>When a pointer is defined, memory is allocated in the size of a pointer.</li>
+  <li>The pointer is strongly typed, meaning the compiler retains an association with a pointer that it points to a type of value.</li>
+  <li>Two pointers can equal to each other, such that changing one’s value also changes the other’s value.</li>
+</ul>
+
+<p><code>
+int * p = new int;
+*p = 1;
+int * q = p;
+*p = 2;
+cout &lt;&lt; *q; // Outputs 2. * is the pointer dereferene operator
+</code></p>
+
+<ul>
+  <li>The size of a pointer varies depending on the architecture: 32 bits on a 32-bit machine and 64 bits on a 64-bit machine.</li>
+  <li>Pointer subtraction is allowed. The result of pointer subtraction is the distance of two pointers.</li>
+</ul>
+
+<p><code>
+int a = 1;
+int b = 2;
+int * pa = &amp;a;
+int * pb = &amp;b;
+int pdis = pa - pb;
+</code></p>
+
+<ul>
+  <li>Adding a pointer and a distance gets another meaningful pointer.</li>
+</ul>
+
+<p><code>
+int * p = new int[2];
+p[0] = 0;
+p[1] = 1;
+p++;
+cout &lt;&lt; *p; // Outputs 1
+</code></p>
+
+<h1 id="references">References</h1>
+
+<p>A reference is another name for a pre-existing object. It does not have memory of its own. In other words, a reference is only an alias. A few facts about references are:</p>
+
+<ul>
+  <li>You cannot create a reference without specifying where in memory it refers to. A reference cannot be null.</li>
+</ul>
+
+<p><code>
+int x = 7;
+int &amp; y = x; // Makes y a reference, initialized with the address of x
+</code></p>
+
+<ul>
+  <li>You can create a free-standing reference as shown below:</li>
+</ul>
+
+<p><code>
+const int &amp; a = 12;
+</code></p>
+
+<ul>
+  <li>
+    <p>A reference is immutable. You cannot reassign a reference to another piece of memory.</p>
+  </li>
+  <li>
+    <p>When you use references in function calls and class method calls, you always want to make them const. This helps to eliminate the side effects of using references (because using reference sometimes is not obvious as using pointers, and people may not notice the unintended side effects could happen). The following example shows the possible side effects when using references:</p>
+  </li>
+</ul>
+
+<p>```
+int &amp; f(int &amp;x) {
+    ++x;
+    return x;
+}</p>
+
+<p>int main(int argc, char** argv)
+{
+    int i = 5;
+    printf(“the value is %d\n”, i); // i is 5
+    printf(“the value is %d\n”, f(i)); // f(i) is 6
+    printf(“the value is %d\n”, i); // i is changed to 6 unindently
+    return 0;
+}</p>
+
+<p>```</p>
+
+<p>The good way is always using <code>const</code> when using references:</p>
+
+<p>```
+const int &amp; f(const int &amp; x) {
+    static int y = x;
+    ++y;
+    return y;
+}</p>
+
+<p>int main(int argc, char** argv)
+{
+    int i = 5;
+    printf(“the value is %d\n”, i); // i is 5
+    printf(“the value is %d\n”, f(i)); // f(i) is 6
+    printf(“the value is %d\n”, i); // i is 5
+    return 0;
+}
+```</p>
+
+<h1 id="functions-call-by-reference">Functions: Call by Reference</h1>
+
+<p>By default, functions in C++ pass variables by value, which means that a copy of the value is made and that copy is used inside the function. This is called <strong>pass by value</strong>. However, passing references or pointers does the same thing and faster as the copying is skipped. Actually this is why references are created for C++, to allow <strong>call by reference</strong> so that you can pass large objects without worrying about stack overflow.</p>
+
+<p>Before references, this can be done with pointers. Pass by pointers can do the same thing but it’s a little bit more complicated than using references.</p>
+
+<p>Example of a “call by reference”:</p>
+
+<p>```
+ void func(const string &amp; fs)
+ {
+    print(“string value is %s\n”, fs.c_str());
+ }</p>
+
+<p>int main(int argc, char ** argv)
+ {
+    string s = “I’m a string!”;
+    func(s); // Outputs: string value is I’m a string
+    printf(“string is %s\n”, s.c_str()); // Outputs: string is I’m a string
+    return 0;
+ }</p>
+
+<p>```</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Effective Traditional C++ (1): Qualifiers]]></title>

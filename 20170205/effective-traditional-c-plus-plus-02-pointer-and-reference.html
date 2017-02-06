@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Effective Traditional C++ (1): Qualifiers - euccas.github.io</title>
+  <title>Effective Traditional C++ 02 Pointer and Reference - euccas.github.io</title>
   <meta name="author" content="euccas">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers.html">
+  <link rel="canonical" href="http://euccas.github.io/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="euccas.github.io" type="application/atom+xml">
@@ -116,7 +116,7 @@
   <header>
     
       
-        <h1 class="entry-title">Effective Traditional C++ (1): Qualifiers</h1>
+        <h1 class="entry-title">Effective Traditional C++ 02 Pointer and Reference</h1>
       
     
     
@@ -126,7 +126,7 @@
 
 
 
-<time class='entry-date' datetime='2017-01-30T21:41:11-08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>9:41 pm</span></time>
+<time class='entry-date' datetime='2017-02-05T22:18:59-08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>10:18 pm</span></time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -136,25 +136,88 @@
   </header>
 
 
-<div class="entry-content"><p>Recently I’m doing a review on C++ programming language. During the process, I found a few topics which are worth paying more attention to. I’ll write several posts about the related C++ tips and tactics. These topics are not specially for C++ 11 or 14, I therefore name this series of posts as “Effective Traditional C++”.</p>
+<div class="entry-content"><p>Pointers and references are two fundamental data types in C++. They are useful, common and somewhat dangerous. Using them correctly, they could greatly improve the efficiency and performance of your program. On the other hand, using them incorrectly could lead to many problems such as memory leaks and buffer overflow.</p>
 
-<p>The first topic I’ll write about here is: <strong>Qualifiers</strong></p>
+<h1 id="pointers">Pointers</h1>
 
-<p>C++ uses Qualifiers to adjust qualities of a variable or an object. In C++, there are two types of qualifiers: CV qualifiers and storage qualifiers.</p>
-
-<h1 id="cv-qualifiers">CV Qualifiers</h1>
-
-<p>CV qualifiers stands for Const and Volatile Qualifier. There are three types of CV qualifiers:</p>
+<p>A pointer holds the address of a variable and can be used to perform any operation that could be directly done on the variable, such as accessing and modifying it. Here are a few facts of pointers:</p>
 
 <ul>
-  <li>const</li>
-  <li>volatile</li>
-  <li>mutable</li>
+  <li>When a pointer is defined, memory is allocated in the size of a pointer.</li>
+  <li>The pointer is strongly typed, meaning the compiler retains an association with a pointer that it points to a type of value.</li>
+  <li>Two pointers can equal to each other, such that changing one’s value also changes the other’s value.</li>
 </ul>
 
-<h2 id="const-qualifier">const qualifier</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">int * p = new int;
+</span><span class="line">*p = 1;
+</span><span class="line">int * q = p;
+</span><span class="line">*p = 2;
+</span><span class="line">cout &lt;&lt; *q; // Outputs 2. * is the pointer dereferene operator</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p><code>const</code> marks a variable or function as read-only or immutable. It’s value (or the return value of a function) cannot be changed once it’s been defined.</p>
+<ul>
+  <li>The size of a pointer varies depending on the architecture: 32 bits on a 32-bit machine and 64 bits on a 64-bit machine.</li>
+  <li>Pointer subtraction is allowed. The result of pointer subtraction is the distance of two pointers.</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">int a = 1;
+</span><span class="line">int b = 2;
+</span><span class="line">int * pa = &a;
+</span><span class="line">int * pb = &b;
+</span><span class="line">int pdis = pa - pb;</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>Adding a pointer and a distance gets another meaningful pointer.</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">int * p = new int[2];
+</span><span class="line">p[0] = 0;
+</span><span class="line">p[1] = 1;
+</span><span class="line">p++;
+</span><span class="line">cout &lt;&lt; *p; // Outputs 1</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="references">References</h1>
+
+<p>A reference is another name for a pre-existing object. It does not have memory of its own. In other words, a reference is only an alias. A few facts about references are:</p>
+
+<ul>
+  <li>You cannot create a reference without specifying where in memory it refers to. A reference cannot be null.</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">int x = 7;
+</span><span class="line">int &amp; y = x; // Makes y a reference, initialized with the address of x</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>You can create a free-standing reference as shown below:</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">const int &amp; a = 12;</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>
+    <p>A reference is immutable. You cannot reassign a reference to another piece of memory.</p>
+  </li>
+  <li>
+    <p>When you use references in function calls and class method calls, you always want to make them const. This helps to eliminate the side effects of using references (because using reference sometimes is not obvious as using pointers, and people may not notice the unintended side effects could happen). The following example shows the possible side effects when using references:</p>
+  </li>
+</ul>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
@@ -169,44 +232,22 @@
 <span class="line-number">11</span>
 <span class="line-number">12</span>
 <span class="line-number">13</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">const int weekdays = 7;
+</pre></td><td class="code"><pre><code class=""><span class="line">int &amp; f(int &amp;x) {
+</span><span class="line">    ++x;
+</span><span class="line">    return x;
+</span><span class="line">}
 </span><span class="line">
-</span><span class="line">const int * myptr1; // declares myptr1 is a pointer to a constant integer
-</span><span class="line">int const * myptr2; // same as above, declares myptr2 is a pointer to a constant integer
-</span><span class="line">// myptr1 and myptr2 can be changed to point to other const integers
-</span><span class="line">
-</span><span class="line">int * const  myptr3; // declares myptr3 is constant pointer to a variable integer
-</span><span class="line">int const * const myptr4; // declares myptr4 is constant pointer to a constant integer
-</span><span class="line">// myptr3 and myptr4 cannot be changed once initialized
-</span><span class="line">
-</span><span class="line">const char *Function1()
-</span><span class="line">{ return "Some text";}
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="volatile-qualifier">volatile qualifier</h2>
-
-<p><code>volatile</code> marks a variable that may be <strong>changed by another process</strong>. This is generally used for threaded code, or externally linked code. Often <code>volatile</code> is used to tell the compiler avoid aggressive optimization involving the qualified object because the value of the object might be changed by means that the compiler is not aware of.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">volatile int maxcnt = 10;
-</span><span class="line">int cnt = 0;
-</span><span class="line">while (cnt &lt; maxcnt)
+</span><span class="line">int main(int argc, char** argv)
 </span><span class="line">{
-</span><span class="line">    // do something ... 
+</span><span class="line">    int i = 5;
+</span><span class="line">    printf("the value is %d\n", i); // i is 5
+</span><span class="line">    printf("the value is %d\n", f(i)); // f(i) is 6
+</span><span class="line">    printf("the value is %d\n", i); // i is changed to 6 unindently
+</span><span class="line">    return 0;
 </span><span class="line">}
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h2 id="mutable-qualifier">mutable qualifier</h2>
-
-<p><code>mutable</code> is used on data member to make it writable from a <code>const</code> qualified member function.</p>
+<p>The good way is always using <code>const</code> when using references:</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
@@ -222,49 +263,44 @@
 <span class="line-number">12</span>
 <span class="line-number">13</span>
 <span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">class A {
-</span><span class="line">   mutable int x;
-</span><span class="line">   int y;
+</pre></td><td class="code"><pre><code class=""><span class="line">const int &amp; f(const int &amp; x) {
+</span><span class="line">    static int y = x;
+</span><span class="line">    ++y;
+</span><span class="line">    return y;
+</span><span class="line">}
 </span><span class="line">
-</span><span class="line">   public:
-</span><span class="line">     void f1() {
-</span><span class="line">       // "this" has type `A*`
-</span><span class="line">       x = 1; // okay
-</span><span class="line">       y = 1; // okay
-</span><span class="line">     }
-</span><span class="line">     void f2() const {
-</span><span class="line">       // "this" has type `A const*`
-</span><span class="line">       x = 1; // okay, because x is mutable qualified
-</span><span class="line">       y = 1; // illegal, because f2 is const
-</span><span class="line">     }
-</span><span class="line">};
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line">int main(int argc, char** argv)
+</span><span class="line">{
+</span><span class="line">    int i = 5;
+</span><span class="line">    printf("the value is %d\n", i); // i is 5
+</span><span class="line">    printf("the value is %d\n", f(i)); // f(i) is 6
+</span><span class="line">    printf("the value is %d\n", i); // i is 5
+</span><span class="line">    return 0;
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h1 id="storage-qualifiers">Storage Qualifiers</h1>
+<h1 id="functions-call-by-reference">Functions: Call by Reference</h1>
 
-<p>Storage qualifiers determine the lifetime of the defined variables or functions. By default, a variable defined within a block has automatic lifetime, which is the duration of the block. There are three types of storage qualifiers:</p>
+<p>By default, functions in C++ pass variables by value, which means that a copy of the value is made and that copy is used inside the function. This is called <strong>pass by value</strong>. However, passing references or pointers does the same thing and faster as the copying is skipped. Actually this is why references are created for C++, to allow <strong>call by reference</strong> so that you can pass large objects without worrying about stack overflow.</p>
 
-<ul>
-  <li>static</li>
-  <li>register</li>
-  <li>extern</li>
-</ul>
+<p>Before references, this can be done with pointers. Pass by pointers can do the same thing but it’s a little bit more complicated than using references.</p>
 
-<h2 id="static-qualifier">static qualifier</h2>
+<p>Example of a “call by reference”:</p>
 
-<p><code>static</code> marks the variable is alive for the duration of the program. Static variables are commonly used for keeping <strong>state</strong> between instances of a given function or method. Static variables are stored globally, even if they are stored in a class.</p>
+<p>```
+ void func(const string &amp; fs)
+ {
+    print(“string value is %s\n”, fs.c_str());
+ }</p>
 
-<h2 id="register-qualifier">register qualifier</h2>
+<p>int main(int argc, char ** argv)
+ {
+    string s = “I’m a string!”;
+    func(s); // Outputs: string value is I’m a string
+    printf(“string is %s\n”, s.c_str()); // Outputs: string is I’m a string
+    return 0;
+ }</p>
 
-<p><code>register</code> marks the variables as register variables, which are stored in processor registers. Register variables are faster and easier to access and operate on. Note using <code>register</code> only suggest the compiler that particular automatic variables should be allocated to CPU registers, if possible. The compiler may or may not actually store the variable in a register. Register variables should only be used if you have a detailed knowledge of the architecture and compiler for the computer you are using.</p>
-
-<h2 id="extern-qualifier">extern qualifier</h2>
-
-<p><code>extern</code> defines the variables or functions in a separate translation unit and are linked with the code by the linker step of the compiler. In other words, you can <strong>define</strong> variables or functions in some source files or classes, and use them in other source files/classes by using <code>extern</code> qualifier to <strong>declare</strong> them in other source files or classes.</p>
+<p>```</p>
 
 </div>
 
@@ -288,7 +324,7 @@
 
 
 
-<time class='entry-date' datetime='2017-01-30T21:41:11-08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>9:41 pm</span></time>
+<time class='entry-date' datetime='2017-02-05T22:18:59-08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>10:18 pm</span></time>
       
       
 
@@ -303,7 +339,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers.html" data-via="euccas" data-counturl="http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers.html" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://euccas.github.io/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html" data-via="euccas" data-counturl="http://euccas.github.io/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html" >Tweet</a>
   
   
   
@@ -312,10 +348,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/20170116/now-commenting-on-posts-is-enabled.html" title="Previous Post: Now commenting on posts is enabled">&laquo; Now commenting on posts is enabled</a>
+        <a class="basic-alignment left" href="/20170130/effective-traditional-c-plus-plus-01-qualifiers.html" title="Previous Post: Effective Traditional C++ (1): Qualifiers">&laquo; Effective Traditional C++ (1): Qualifiers</a>
       
-      
-        <a class="basic-alignment right" href="/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html" title="Next Post: Effective Traditional C++ 02 Pointer and Reference">Effective Traditional C++ 02 Pointer and Reference &raquo;</a>
       
     </p>
   </footer>
@@ -345,8 +379,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers.html';
-        var disqus_url = 'http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers.html';
+        var disqus_identifier = 'http://euccas.github.io/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html';
+        var disqus_url = 'http://euccas.github.io/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html';
         var disqus_script = 'embed.js';
       
     (function () {
