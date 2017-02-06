@@ -15,7 +15,9 @@ Pointers and references are two fundamental data types in C++. They are useful, 
 A pointer holds the address of a variable and can be used to perform any operation that could be directly done on the variable, such as accessing and modifying it. Here are a few facts of pointers:
 
 * When a pointer is defined, memory is allocated in the size of a pointer. 
+
 * The pointer is strongly typed, meaning the compiler retains an association with a pointer that it points to a type of value. 
+
 * Two pointers can equal to each other, such that changing one's value also changes the other's value.
 
 ```
@@ -27,6 +29,7 @@ cout << *q; // Outputs 2. * is the pointer dereferene operator
 ```
 
 * The size of a pointer varies depending on the architecture: 32 bits on a 32-bit machine and 64 bits on a 64-bit machine.
+
 * Pointer subtraction is allowed. The result of pointer subtraction is the distance of two pointers.
 
 ```
@@ -46,6 +49,8 @@ p[1] = 1;
 p++;
 cout << *p; // Outputs 1
 ```
+
+* But adding two pointers won't give you a meaningful pointer. Don't do it.
 
 # References
 
@@ -112,7 +117,7 @@ By default, functions in C++ pass variables by value, which means that a copy of
  
  Example of a "call by reference":
  
- ```
+```
  void func(const string & fs)
  {
     print("string value is %s\n", fs.c_str());
@@ -126,7 +131,7 @@ By default, functions in C++ pass variables by value, which means that a copy of
     return 0;
  }
  
- ```
+```
 
 
 
