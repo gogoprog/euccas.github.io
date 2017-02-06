@@ -144,9 +144,15 @@
 <p>A pointer holds the address of a variable and can be used to perform any operation that could be directly done on the variable, such as accessing and modifying it. Here are a few facts of pointers:</p>
 
 <ul>
-  <li>When a pointer is defined, memory is allocated in the size of a pointer.</li>
-  <li>The pointer is strongly typed, meaning the compiler retains an association with a pointer that it points to a type of value.</li>
-  <li>Two pointers can equal to each other, such that changing one’s value also changes the other’s value.</li>
+  <li>
+    <p>When a pointer is defined, memory is allocated in the size of a pointer.</p>
+  </li>
+  <li>
+    <p>The pointer is strongly typed, meaning the compiler retains an association with a pointer that it points to a type of value.</p>
+  </li>
+  <li>
+    <p>Two pointers can equal to each other, such that changing one’s value also changes the other’s value.</p>
+  </li>
 </ul>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
@@ -161,8 +167,12 @@
 </span><span class="line">cout &lt;&lt; *q; // Outputs 2. * is the pointer dereferene operator</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
-  <li>The size of a pointer varies depending on the architecture: 32 bits on a 32-bit machine and 64 bits on a 64-bit machine.</li>
-  <li>Pointer subtraction is allowed. The result of pointer subtraction is the distance of two pointers.</li>
+  <li>
+    <p>The size of a pointer varies depending on the architecture: 32 bits on a 32-bit machine and 64 bits on a 64-bit machine.</p>
+  </li>
+  <li>
+    <p>Pointer subtraction is allowed. The result of pointer subtraction is the distance of two pointers.</p>
+  </li>
 </ul>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
@@ -190,6 +200,10 @@
 </span><span class="line">p[1] = 1;
 </span><span class="line">p++;
 </span><span class="line">cout &lt;&lt; *p; // Outputs 1</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>But adding two pointers won’t give you a meaningful pointer. Don’t do it.</li>
+</ul>
 
 <h1 id="references">References</h1>
 
