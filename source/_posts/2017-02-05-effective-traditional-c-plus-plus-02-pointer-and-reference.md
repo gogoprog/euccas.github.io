@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Effective Traditional C++ 02 Pointer and Reference"
+title: "Effective Traditional C++ (2): Pointer and Reference"
 date: 2017-02-05 22:18:59 -0800
 comments: true
 categories: C++
