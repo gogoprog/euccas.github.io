@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="Pointers and references are two fundamental data types in C++. They are useful, common and somewhat dangerous. Using them correctly, they could &hellip;">
+  <meta name="description" content="This post was written in 2013, when I thought it was necessary to summarize infrastructure tools and flows needed in SoC design and verification, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,6 +112,198 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/20170212/a-list-of-soc-design-and-verification-infrastructure-needs.html">A List of SoC Design and Verification Infrastructure (Tools/Automation Flows) Needs (2013)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-02-12T15:53:19-08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>3:53 pm</span></time>
+        
+         | <a href="/20170212/a-list-of-soc-design-and-verification-infrastructure-needs.html#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>This post was written in 2013, when I thought it was necessary to summarize infrastructure tools and flows needed in SoC design and verification, according to all my experience. Today when I checked on my old notes I found this one and would like to share it here. Later on I’ll update and expand this list according to my latest experience and knowledge in engineering tools and infrastructure for software and hardware development.</em></p>
+
+<p>System-on-Chip design and verification process is a complicated one. Unlike the world of Web and Internet, the design and development of hardware products have higher risk and lower tolerance to any mistakes. SoC design and verification process requires collaborations from multiple teams and vendors. Lots of hard decisions to make. Lots of trade-offs to consider. Moreover, the nonrecurring-engineering (NRE) charge makes sufficient and solid verification a must with limited time and resource. Tools and automated flows are an essential part of any design house.</p>
+
+<p>Here is a list of areas that need tools and flows for SoC software and hardware design and verification according to my experience.</p>
+
+<table>
+<tr>
+	<th>Usage Area of Tools/Flows</th>
+	<th>Software</th>
+	<th>Hardware</th>
+	<th>Design Usage</th>
+	<th>Verification Usage</th>
+</tr>
+
+<tr>
+	<td>Test Generation</td>
+	<td>x</td>
+	<td>x</td>
+	<td></td>
+	<td>x</td>
+</tr>
+
+<tr>
+	<td>Regression System</td>
+	<td>x</td>
+	<td>x</td>
+	<td></td>
+	<td>x</td>
+</tr>
+
+<tr>
+	<td>Coverage Reporting</td>
+	<td>x</td>
+	<td>x</td>
+	<td></td>
+	<td>x</td>
+</tr>
+
+<tr>
+	<td>Coding Style Check</td>
+	<td>x</td>
+	<td>x</td>
+	<td>x</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>Code Review System</td>
+	<td>x</td>
+	<td>x</td>
+	<td>x</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>Code Quality Analysis</td>
+	<td>x</td>
+	<td>x</td>
+	<td>x</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>Build System</td>
+	<td>x</td>
+	<td>x</td>
+	<td>x</td>
+	<td>x</td>
+</tr>
+
+<tr>
+	<td>Version Control</td>
+	<td>x</td>
+	<td>x</td>
+	<td>x</td>
+	<td>x</td>
+</tr>
+
+<tr>
+	<td>Integration System</td>
+	<td>x</td>
+	<td>x</td>
+	<td>x</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>Spec System</td>
+	<td></td>
+	<td>x</td>
+	<td>x</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>RTL Generation</td>
+	<td></td>
+	<td>x</td>
+	<td>x</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>TestBench Generation</td>
+	<td></td>
+	<td>x</td>
+	<td></td>
+	<td>x</td>
+</tr>
+
+<tr>
+	<td>Synthesis</td>
+	<td></td>
+	<td>x</td>
+	<td>x</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>Netlist Quality Analysis</td>
+	<td></td>
+	<td>x</td>
+	<td>x</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>Power Analysis and Optimization</td>
+	<td></td>
+	<td>x</td>
+	<td>x</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>ECO Flow</td>
+	<td></td>
+	<td>x</td>
+	<td>x</td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>Issue/Bug Tracking System</td>
+	<td>x</td>
+	<td>x</td>
+	<td>x</td>
+	<td>x</td>
+</tr>
+
+<tr>
+	<td>Infrastructure: Linux/Windows machines, LSF</td>
+	<td>x</td>
+	<td>x</td>
+	<td>x</td>
+	<td>x</td>
+</tr>
+
+</table>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -750,60 +942,6 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><em>The reader of <a href="http://web.stanford.edu/class/cs106l/course-reader/Ch13_Functors.pdf">Stanford course CS106l</a> explains functors in detail.</em></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/20170106/get-start-on-machine-learning.html">Get Start on Machine Learning</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-01-06T23:17:40-08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>11:17 pm</span></time>
-        
-         | <a href="/20170106/get-start-on-machine-learning.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>So here comes 2017, a year when you hear people talk about the words <em>Machine Learning</em>, <em>Reinforcement Learning</em>, and <em>Artificial Intelligence</em> everywhere.</p>
-
-<p>Last year when Mark Zuckberg was working on building Jarvis, I didn’t spend much time on AI or Machine Learning. But I know the efforts I made last year get me ready to start on it right now.</p>
-
-<p>Tonight I just talked to a former colleague who is working at Nvidia, and he gave me a few helpful suggestions about getting started on machine learning according to his own experience. Here are some of his advices:</p>
-
-<ul>
-  <li>Set a goal: What do you want to achieve with the knowledge of Machine Learning?</li>
-  <li>Learn the fundamentals: <a href="https://www.coursera.org/learn/machine-learning">Andrew Ng’s course</a> on Coursera</li>
-  <li>If you’d like to have more courses, take <a href="http://cs231n.stanford.edu/">Standford CS231n</a></li>
-  <li>Learn to use the frameworks: <a href="https://www.tensorflow.org/">Tensor Flow</a>, <a href="http://caffe.berkeleyvision.org/">Caffe</a></li>
-  <li>Work on projects with real data (very important): get from <a href="https://www.kaggle.com/">Kaggle.com</a></li>
-  <li>Follow <a href="https://openai.com/">OpenAI</a> and <a href="https://deepmind.com/">DeepMind</a></li>
-  <li>Master Python if you haven’t</li>
-  <li>Make sure your computer has a powerful GPU :)</li>
-</ul>
-
-<p>Some people I know might think Machine Learning or AI is sort of irrelevant to what I’m working on. That’s not what I think though. Even if it is irrelevant today, it will become relevant sooner than expected. Machine Learning is not a fad. It’s the way how technology works tomorrow. If you can’t master it, at least you need have a good understanding of it.</p>
-
-<p><img class="center" src="/images/post_images/20170107-larrypage.jpg" width="640" /></p>
-
-<p><em>Image source: Medium <a href="https://medium.com/the-mission/20-things-i-ve-learned-from-larry-page-4f83674a1a52#.elpww9snf">“20 things I’ve learned from Larry Page”</a></em></p>
-
 </div>
   
   

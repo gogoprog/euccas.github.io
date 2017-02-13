@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://euccas.github.io/20170212/a-list-of-soc-design-and-verification-infrastructure-needs.html</loc>
+<lastmod>2017-02-12T15:53:19-08:00</lastmod>
+</url>
+<url>
 <loc>http://euccas.github.io/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html</loc>
 <lastmod>2017-02-05T22:18:59-08:00</lastmod>
 </url>
@@ -183,5 +187,8 @@
 </url>
 <url>
 <loc>http://euccas.github.io/categories/c-plus-plus/</loc>
+</url>
+<url>
+<loc>http://euccas.github.io/categories/verification/</loc>
 </url>
 </urlset>
