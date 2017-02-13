@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-02-12T16:20:20-08:00</updated>
+  <updated>2017-02-12T16:22:15-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[A List of SoC Design and Verification Infrastructure (Tools/Automation Flows) Needs (2013)]]></title>
+    <title type="html"><![CDATA[A List of SoC Design and Verification Infrastructure Needs - Tools/Automation Flows (2013)]]></title>
     <link href="http://euccas.github.io/20170212/a-list-of-soc-design-and-verification-infrastructure-needs.html"/>
     <updated>2017-02-12T15:53:19-08:00</updated>
     <id>http://euccas.github.io/20170212/a-list-of-soc-design-and-verification-infrastructure-needs</id>
