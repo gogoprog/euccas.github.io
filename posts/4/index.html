@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="Inspired by Matt Cutts’ TED talk: Try something new for 30 days, I’m starting a “30 Days of GTAC” project. Google’s Test Automation Conference GTAC &hellip;">
+  <meta name="description" content="本文内容部分来源于Andrew Bayer发布在SlideShare上的 7 habits of highly productive Jenkins Users (2014 Edition). 习惯 4: 精选你所使用的Jenkins功能插件(Plugin) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,6 +112,151 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/20161010/jenkins-user-habits-4.html">高效Jenkins用户的第4个习惯</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-10-10T21:32:01-07:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:32 pm</span></time>
+        
+         | <a href="/20161010/jenkins-user-habits-4.html#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
+
+<h1 id="jenkinsplugin">习惯 4: 精选你所使用的Jenkins功能插件(Plugin)</h1>
+
+<p>当你使用了越来越多的Jenkins功能插件时，就需要花一些时间和精力来维护和清理所有的功能插件。 因为当你安装了太多的Jenkins插件时，有可能会带来一些不好的效果，诸如减慢系统速度，占用多过资源，产生无效的记录文件等等。为了避免使用过多的Jenkins插件造成的各种问题，你应该注意下面几个方面。</p>
+
+<h2 id="section">1. 只安装你真正需要的功能插件</h2>
+
+<p>在安装一个功能插件之前，你都应该问一个问题：我真的需要这个插件吗？</p>
+
+<p>如果你并不打算真正使用一个插件，就不要安装在Jenkins Master上。</p>
+
+<p>不同的插件可能包含有一些类似的功能，你所需要完成的事情，也不仅仅只有一个插件可以实现。这时就需要在一些功能类似的插件中选择你真正所需的。</p>
+
+<p>功能插件可能会给Jenkins service的稳定性造成预期之外的影响，并且可能增加系统的负载和每一个job运行的时间。充分考虑到这些可能的负作用，尽量避免安装你并不是真正需要的插件。</p>
+
+<h2 id="section-1">2. 清理旧的插件和数据</h2>
+
+<p>定期检查和删除你不再使用的Jenkins功能插件。</p>
+
+<p>在Jenkins管理页面 (Manage Jenkins) 中，注意关于old data的描述。当你删除一个Jenkins插件后，要把有关的历史数据也同时删除。</p>
+
+<p>及时删除不需要的数据，可以加速Jenkins Master启动时加载配置和所有jobs的过程。</p>
+
+<h2 id="section-2">3. 建立你的必备插件列表</h2>
+
+<p>根据你的使用需求和经验，选择你所需要的Jenkins功能插件。这些功能插件应该是满足你所需要的功能，并且性能良好稳定。为你的这些插件建立一个列表并且维护它。</p>
+
+<p><strong>Andrew Bayer</strong>推荐了一些他所使用的Jenkins功能插件。所有这些提供的插件都可以通过Jenkins插件管理功能(Manage Plugins)来查找和安装。</p>
+
+<ul>
+  <li>
+    <p><strong>Job Config History</strong></p>
+
+    <ul>
+      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/JobConfigHistory+Plugin">插件介绍</a></li>
+      <li>功能：保存job configuration的历史，记录每一次改动的信息。对于job configuration每一次的改变，保存一个config.xml文件。提供overview页面，方便查看全部的改变。可以对比查看两次改动之间的区别。</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Static Analysis Plugins</strong></p>
+
+    <ul>
+      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Static+Code+Analysis+Plug-ins">插件介绍</a></li>
+      <li>功能：处理各种静态代码分析结果数据，生成可视化报告（包括趋势图，Build Summary，结果汇总分析等等）</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>xUnit</strong></p>
+
+    <ul>
+      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/xUnit+Plugin">插件介绍</a></li>
+      <li>功能：生成和发布单元测试报告。可以把各种测试结果转化为jnit格式。</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Parameterized Trigger</strong></p>
+
+    <ul>
+      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Trigger+Plugin">插件介绍</a></li>
+      <li>功能：参数化配置trigger build. 对于一个build job，可以定义多个配置，用于不同的条件和参数。</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Conditional Build Step</strong></p>
+
+    <ul>
+      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Conditional+BuildStep+Plugin">插件介绍</a></li>
+      <li>功能：可以灵活配置的build step。通常和Parameterized Trigger配合使用。</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Tool Environment</strong></p>
+
+    <ul>
+      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Tool+Environment+Plugin">插件介绍</a></li>
+      <li>功能：让你可以自定义使用Jenkin tool的自动安装。在一个job的执行过程中安装指定的tools，供这个job使用。</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>EnvInject</strong></p>
+
+    <ul>
+      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/EnvInject+Plugin">插件介绍</a></li>
+      <li>功能：帮助你管理环境变量，包括删除Jenkins Java process引入的一些环境变量，在一个node启动时设置所需的环境变量，设置密码值等等。</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Rebuild</strong></p>
+
+    <ul>
+      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Rebuild+Plugin">插件介绍</a></li>
+      <li>功能：可以rerun每一个被执行过的parameterized build，保存了parameterized build每一次使用的参数，并且允许你在执行rebuild时修改这些参数。</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Build Timeout</strong></p>
+
+    <ul>
+      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Build-timeout+Plugin">插件介绍</a></li>
+      <li>功能：设置build的时间限制，当一个build时间超过预设时，会自动被停止。这个插件不能用于Jenkins pipelines.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>阅读同主题内容</strong></p>
+
+<ul>
+  <li><a href="http://euccas.github.io/blog/20151210/jenkins-user-habits-1.html">高效Jenkins用户的第1个习惯</a></li>
+  <li><a href="http://euccas.github.io/blog/20151215/jenkins-user-habits-2.html">高效Jenkins用户的第2个习惯</a></li>
+  <li><a href="http://euccas.github.io/blog/20160523/jenkins-user-habits-3.html">高效Jenkins用户的第3个习惯</a></li>
+  <li><a href="http://euccas.github.io/blog/20161010/jenkins-user-habits-4.html">高效Jenkins用户的第4个习惯</a></li>
+  <li><a href="http://euccas.github.io/blog/20161216/jenkins-user-habits-5.html">高效Jenkins用户的第5个习惯</a></li>
+</ul>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -721,277 +866,6 @@ if __name__ == '__main__':
     unittest.main()
 </code></pre>
 
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/20160711/start-unit-testing-in-python.html">Start Unit Testing in Python</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-07-11T22:58:39-07:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>10:58 pm</span></time>
-        
-         | <a href="/20160711/start-unit-testing-in-python.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When is the best time to start unit testing in your Python project? My answer is before you writing the first line of code of this project. Unit testing is the fundamental of Test-driven development, which specifically improves the quality and design of your project.</p>
-
-<p>In this post, I’m writing about how could you do unit testing in Python with the <code>unittest</code> module.</p>
-
-<p>Python 2 (starting on version 2.1) and Python 3 now both have <code>unittest</code> in the standard library. The <code>unittest</code> module provides the unit testing framework, and it’s based on <code>JUnit</code>, which is a unit testing framework for Java.</p>
-
-<h1 id="what-unittest-can-do">What unittest can do</h1>
-
-<p>A few main features that <code>unittest</code> can do are:</p>
-
-<ul>
-  <li>Automatically run the tests (by <code>test runner</code>)</li>
-  <li>Create test cases (by <code>test case</code>)</li>
-  <li>Sharing of setup and shutdown code for tests (by <code>test fixture</code>)</li>
-  <li>Aggrate tests into collections (by <code>test suite</code>)</li>
-  <li>Independence of the tests from the reporting framework</li>
-</ul>
-
-<h1 id="how-does-unittest-work">How does unittest work</h1>
-
-<p>Suppose I’m working on a project called <code>demo</code>, and it has a file structure as:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">demo
-</span><span class="line">-- dev
-</span><span class="line">   -- __init__.py
-</span><span class="line">   -- demoDev.py</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Note the <code>___init___.py</code> file can be empty. The purpose of having this file is for other files outside this directory can easily import the module <code>demoDev.py</code>.</p>
-
-<p>To create unit tests for this project, I’ll need continue the following steps.</p>
-
-<h2 id="create-the-test-file">1. Create the test file</h2>
-
-<p>There is no particular required folder structure that you need to keep your test files. The way I usually do is separating the tests from the project source files. So, I create a <code>test</code> folder in the same level as <code>dev</code>. All my tests will be put into this folder. Now the project’s structure looks like:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">demo
-</span><span class="line">-- dev
-</span><span class="line">   -- __init__.py
-</span><span class="line">   -- demoDev.py
-</span><span class="line">-- test
-</span><span class="line">   -- test_demoDev.py</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="use-unittest-module-in-your-project">2. Use unittest module in your project</h2>
-
-<p>The test file need import the <code>unittest</code> module.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># This is test/test_demoDev.py
-</span><span class="line">
-</span><span class="line">import unittest</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="include-your-project-modules-in-the-test">3. Include your project modules in the test</h2>
-
-<p>Surely you’ll need include the source files of the modules that you want to test in your test file. If your tests are in the same folder of your module sources, you can simply use <code>import SomeModule</code> to pull the modules in. When your tests stay out of the module sources, you’ll need do a little configurations in your test file.</p>
-
-<p>I found the way to import your own modules to your tests can be different depending your development environment. For example, if you run your Python projects within some IDE, like <strong>PyCharm</strong> from JetBrains. The following way always work:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line"># This is test/test_demoDev.py
-</span><span class="line">
-</span><span class="line">from dev import demoDev
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>However if you run through command line <code>python test/test_demoDev.py</code>, you might see errors complaining no module called <code>dev</code> and thus the import fails.</p>
-
-<p>What you can do to resolve this problem, is adding the path of your Python modules to the <code>sys.path</code>.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line"># This is test/test_demoDev.py
-</span><span class="line">
-</span><span class="line">import sys, os.path
-</span><span class="line">
-</span><span class="line">bin_path = os.path.dirname(os.path.realpath(__file__))
-</span><span class="line">lib_path = os.path.abspath(os.path.join(bin_path, '..', 'dev'))
-</span><span class="line">sys.path.insert(0, lib_path)
-</span><span class="line"># or sys.path.append(lib_path)
-</span><span class="line">
-</span><span class="line">import demoDev
-</span><span class="line">
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="create-a-test-case">4. Create a test case</h2>
-
-<p>A test case can be created with unittest <em>TestCase</em> class. The <code>setUp()</code> and <code>tearDown()</code> methods can be overridden to provide initialization and cleanup for the fixture. Each instance of the TestCase will only be used to run a single test method. Multiple test methods share the same text fixture, but the test fixture are created for each test method when they are executed.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line"># This is test/test_demoDev.py
-</span><span class="line">
-</span><span class="line">import sys
-</span><span class="line">import unittest
-</span><span class="line">
-</span><span class="line">bin_path = os.path.dirname(os.path.realpath(__file__))
-</span><span class="line">lib_path = os.path.abspath(os.path.join(bin_path, '..', 'dev'))
-</span><span class="line">sys.path.insert(0, lib_path)
-</span><span class="line">
-</span><span class="line">from dev import demoDev
-</span><span class="line">
-</span><span class="line">class demoDevTestCase(unittest.TestCase):
-</span><span class="line">
-</span><span class="line">    def setUp(self):
-</span><span class="line">        self.checker = eABTCheckerDev.eABTChecker()
-</span><span class="line">
-</span><span class="line">    def test_checker_app(self):
-</span><span class="line">        self.assertEqual(self.demo.app, 'Demo App', 'Wrong app')
-</span><span class="line">
-</span><span class="line">    def tearDown(self):
-</span><span class="line">        print('Bye Test')
-</span><span class="line">
-</span><span class="line">if __name__ == '__main__':
-</span><span class="line">    unittest.main()
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>The <code>TestCase</code> class provides several assert methods to check for and report failures, such as <code>assertEqual</code>, <code>assertNotEqual</code>, <code>assertTrue</code>. <a href="https://docs.python.org/3.4/library/unittest.html#assert-methods">Here is the complete assert list that Python 3 provides.</a></p>
-
-<h2 id="create-more-tests-and-a-test-suites">5. Create more tests and a test suites</h2>
-
-<p><code>TestSuite</code> class represents an aggregation of individual test cases and test suites. The <code>addTest</code> and <code>addTests</code> methods are available to add tests to your TestSuite instances.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line"># This is test_demoDev.py
-</span><span class="line">
-</span><span class="line">def suite():
-</span><span class="line">    suite = unittest.TestSuite();
-</span><span class="line">    suite.addTest(demoDevTestCase('test_checker_app'))
-</span><span class="line">    suite.addTest(demoDevTestCase('test_check_env'))
-</span><span class="line">    
-</span><span class="line">    return suite
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="run-your-unit-tests">6. Run your unit tests!</h1>
-
-<p>The easiest way to run your unit tests is executing the <code>unittest.main()</code> method in the test file.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line"># This is test_demoDev.py
-</span><span class="line">
-</span><span class="line">if __name__ == '__main__':
-</span><span class="line">    unittest.main()
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Then by running command <code>python test_demoDev.py</code>, the tests defined in <code>test_demoDev.py</code> will start running.</p>
-
-<p>Unit tests can run from command line, because <code>unittest</code> module can be used from the command line to run tests from modules, classes or individual test methods.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">python -m unittest test_demoDev.test_checker_app
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>You’ll see the testing result like:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">----------------------------------------------------------------------
-</span><span class="line">Ran 1 test in 0.000s
-</span><span class="line">
-</span><span class="line">OK
-</span><span class="line">Bye Test
-</span><span class="line">
-</span><span class="line">Process finished with exit code 0
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Behind the tests running, there is the <code>run</code> method provided by <code>TestCase</code> and <code>TestCaseSuite</code> classes. This <code>run</code> method implements the function of running the test, collecting the result into the <code>TestResult</code> object passed as result.</p>
-
-<p>Here you go! Enjoy unit testing in Python!</p>
 </div>
   
   

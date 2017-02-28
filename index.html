@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="This post was written in 2013, when I thought it was necessary to summarize infrastructure tools and flows needed in SoC design and verification, &hellip;">
+  <meta name="description" content="Recently I spent a whole lot of time on file compression and decompression with zlib. Thought I’d better write something about it. But before that, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -112,6 +112,167 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/20170227/effective-traditional-c-plus-plus-03-string.html">Effective Traditional C++ 03 String</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-02-27T20:39:46-08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>8:39 pm</span></time>
+        
+         | <a href="/20170227/effective-traditional-c-plus-plus-03-string.html#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Recently I spent a whole lot of time on file compression and decompression with zlib. Thought I’d better write something about it. But before that, let me finish the series of “Effective Traditional C++”. Today I’ll write about Strings in C++.</p>
+
+<p>Two types of String are available in C++: C-Strings (C-style Strings), and STL Strings.</p>
+
+<h1 id="c-string">C-String</h1>
+
+<p>C-String is a fundamental type in C++. Comparing to STL String, C-String is small, simple and fast. A C-String is a special case of an array of characters terminated with a 0. This is sometimes called an null-terminated string. A C-String can be printed out with a <code>printf</code> statement using the <code>%s</code> format string. We can access the individual characters in a C-String just as we do in an array.</p>
+
+<p><strong>Example: print a C-String with %s</strong></p>
+
+<p><code>
+char s[] = {'s', 't', 'r', 'i', 'n', 'g', 0};
+printf("String is: %s\n", s);</code></p>
+
+<p>// »&gt; String is: string
+&lt;/code&gt;</p>
+
+<p><strong>Example: access characters of a C-String</strong></p>
+
+<p><code>
+char s[] = {'s', 't', 'r', 'i', 'n', 'g', 0};
+for (int i = 0; s[i]; i++)
+{
+    printf("Char is: %c\n", s[i]);
+}</code></p>
+
+<p>// »&gt; Char is: s
+// »&gt; Char is: t
+// »&gt; Char is: r
+// »&gt; Char is: i
+// »&gt; Char is: n
+// »&gt; Char is: g
+&lt;/code&gt;</p>
+
+<p><strong>Example: access characters of a C-String, using a pointer</strong></p>
+
+<p><code>
+char s[] = "string";
+for (char* cp = s; *cp; ++cp)
+{
+    printf("Char is %c\n", *cp);
+}</code></p>
+
+<p>// »&gt; Char is: s
+// »&gt; Char is: t
+// … … 
+// »&gt; Char is: g
+&lt;/code&gt;</p>
+
+<p><strong>Example: access characters of a C-String, C++ 11 style</strong></p>
+
+<p>In C++ 11, a <em>range based loop</em> can be used to access arrays and also C-Strings.</p>
+
+<p><code>
+char s[] = "string";
+for (char c : s)
+{
+    printf("Char is %c\n", *cp);
+}</code></p>
+
+<p>// »&gt; Char is: s
+// »&gt; Char is: s
+// »&gt; Char is: t
+// … … 
+// »&gt; Char is: g
+// »&gt; Char is:
+&lt;/code&gt;</p>
+
+<p>You may have noticed that the <code>null</code> character in the end of the C-String was printed out in the above code snippet. This is because the <em>range based for loop</em> in C++ 11 looks at the entire array and doesn’t treat the <code>null</code> as the end of the C-String. To get rid of the ending <code>null</code> character in a C-String, we need add a condition checker inside the range based loop.</p>
+
+<p><code>
+char s[] = "string";
+for (char c : s)
+{
+    if (c==0) break;
+    printf("Char is %c\n", *cp);
+}</code></p>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>Char is: s
+Char is: s
+Char is: t
+… … 
+Char is: g
+&lt;/code&gt;</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<h1 id="stl-string">STL String</h1>
+
+<p>The STL String class is a special type of container designed to operate with sequence of characters. It’s designed with many <a href="http://www.cplusplus.com/reference/string/string/">features and available functions</a> to operate on strings efficiently and intuitively. To use STL String, you need include <code>string</code> header. The following example shows the basic usage of STL string including getting the length of a string, string concatenation, comparison, and accessing each character.</p>
+
+<p><code>
+include <iostream>
+include <string></string></iostream></code></p>
+
+<p>int main(int argc, char** argv) {
+    string s0 = “Hello”;</p>
+
+<pre><code>// size == length
+cout &lt;&lt; "size of string: " &lt;&lt; s0.size() &lt;&lt; endl;
+cout &lt;&lt; "length of string: " &lt;&lt; s0.length() &lt;&lt; endl;
+// &gt;&gt;&gt; 5
+// &gt;&gt;&gt; 5
+
+// + concatenation
+cout &lt;&lt; "concatenated strings: ";
+string s1 = "another hello";
+cout &lt;&lt; s0 + ", " + s1 &lt;&lt; endl;
+// &gt;&gt;&gt; Hello, another hello
+
+// compare: ==, &gt;, &lt;, &gt;=, &lt;=, !=
+cout &lt;&lt; "is s0 == s1? " &lt;&lt; (s0 == s1 ? "yes" : "no") &lt;&lt; endl;
+s1 = s0
+cout &lt;&lt; "is s0 == s1? " &lt;&lt; (s0 == s1 ? "yes" : "no") &lt;&lt; endl;
+// &gt;&gt;&gt; no
+// &gt;&gt;&gt; yes
+
+// access each character
+ cout &lt;&lt; "each character: ";
+ for (char c : s0) {
+    cout &lt;&lt; c &lt;&lt; ' ';
+ }
+ cout &lt;&lt; endl;
+ // &gt;&gt;&gt; Hello } &lt;/code&gt;
+</code></pre>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -721,227 +882,6 @@
 <p>Cheers,</p>
 
 <p>Euccas</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/20170115/c-plus-plus-functors.html">C++ Functors</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-01-15T20:20:07-08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>8:20 pm</span></time>
-        
-         | <a href="/20170115/c-plus-plus-functors.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A <strong>functor</strong> is a powerful C++ entity that everyone who wants to master C++ needs to know. A functor, which is short for “<strong>function object</strong>”, is a C++ class that acts like a function. Functors can be called using the familiar function call syntax, and can yield values and accept parameters just like regular functions.</p>
-
-<p>To create a functor, we create a class (or a struct) that overloads the function <code>operator()</code>. Note here the function is called <code>operator()</code>, and it’s not the <code>operator</code> function, i.e. <code>()</code>. We then create an instance of this class (or struct) to use the created functor.</p>
-
-<h1 id="create-and-use-functors">Create and use functors</h1>
-
-<p>Let’s look at two examples of creating and using a functor. In the first example, a functor is created with a <code>class</code>, and in the second example we use a <code>struct</code> to create the functor.</p>
-
-<h2 id="example-create-a-functor-with-a-class">Example: Create a functor with a Class</h2>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">class MyFunctor {
-</span><span class="line">public:
-</span><span class="line">    void operator() (const string&amp; str) const {
-</span><span class="line">        cout &lt;&lt; str &lt;&lt; endl;
-</span><span class="line">    }
-</span><span class="line">}
-</span><span class="line">
-</span><span class="line">// Using functor:
-</span><span class="line">
-</span><span class="line">MyFunctor functor; // create an instance of the functor class
-</span><span class="line">functor("This is a functor!"); // and "call" it
-</span><span class="line">
-</span><span class="line">// equivalence:
-</span><span class="line">cout &lt;&lt; functor.operator()(23) &lt;&lt; endl;
-</span><span class="line">
-</span><span class="line">// You'll see "This is a functor" printed out.
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="example-create-a-functor-with-a-struct">Example: Create a functor with a Struct</h2>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">struct add_x {
-</span><span class="line">  add_x(int x) : x(x) {}
-</span><span class="line">  int operator()(int y) { return x + y; }
-</span><span class="line">private:
-</span><span class="line">  int x;
-</span><span class="line">};
-</span><span class="line">
-</span><span class="line">// Using functor:
-</span><span class="line">
-</span><span class="line">add_x add42(42); // create an instance of the functor class
-</span><span class="line">int i = add42(8); // and "call" it
-</span><span class="line">assert(i == 50); // and it added 42 to its argument
-</span><span class="line">
-</span><span class="line">std::vector&lt;int&gt; in;
-</span><span class="line">std::vector&lt;int&gt; out;
-</span><span class="line">// Pass a functor to std::transform, which calls the functor on every element 
-</span><span class="line">// in the input sequence, and stores the result to the output sequence
-</span><span class="line">std::transform(in.begin(), in.end(), out.begin(), add_x(1)); 
-</span><span class="line">assert(out[i] == in[i] + 1); // for all i
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="functors-access-class-data-members">Functors access class data members</h1>
-
-<p>The key difference between a function and a functor is that a functor’s function call operator is a <em>member function</em> whereas a raw C++ function is a <em>free</em> function. This means that a functor can access the following information when being called:</p>
-
-<ul>
-  <li>Its local variables</li>
-  <li>Its parameters</li>
-  <li>Global variables</li>
-  <li><strong>Class data members</strong></li>
-</ul>
-
-<p>If a functor’s <code>operator()</code> member function requires access to data beyond what can be communicated by its parameters, we can store that information as a data member inside the functor class. Since <code>operator()</code> is a member of the functor class, it can then access that data freely. The following example shows how a functor’s <code>operator()</code> function access the class’s private member <code>toAppend</code>.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">class StringAppender {
-</span><span class="line">public:
-</span><span class="line">    // Constructor takes and stores a string.
-</span><span class="line">    explicit StringAppender(const string &amp;str) : toAppend(str) {}
-</span><span class="line">    
-</span><span class="line">    // Operator() prints out a string, plus the stored suffix.
-</span><span class="line">    void operator() (const string &amp;str) const {
-</span><span class="line">        cout &lt;&lt; str &lt;&lt; ' ' &lt;&lt; toAppend &lt;&lt; endl;
-</span><span class="line">    }
-</span><span class="line">
-</span><span class="line">private:
-</span><span class="line">    const string toAppend;
-</span><span class="line">};
-</span><span class="line">
-</span><span class="line">// Usage:
-</span><span class="line">StringAppender myFunctor("is awesome");
-</span><span class="line">myFunctor("C++");
-</span><span class="line">
-</span><span class="line">// You'll see "C++ is awesome" is printed out.
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="functors-are-useful-in-stl-algorithms">Functors are useful in STL algorithms</h1>
-
-<p>C++ STL algorithms use functors to increase the flexibility and efficiency. The most common uses for function objects are for generating data, for testing data, and for applying operations to data. here is an example of how STL <code>for_each</code> uses functors.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">struct sum
-</span><span class="line">{
-</span><span class="line">    sum(int* t):total(t){};
-</span><span class="line">    int* total;
-</span><span class="line">    void operator()(int element)
-</span><span class="line">    {
-</span><span class="line">       *total += element;
-</span><span class="line">    }
-</span><span class="line">};
-</span><span class="line">
-</span><span class="line">int main()
-</span><span class="line">{
-</span><span class="line">    int total = 0;
-</span><span class="line">    sum s(&amp;total);
-</span><span class="line">    int arr[] = {0, 1, 2, 3, 4, 5};
-</span><span class="line">    std::for_each(arr, arr+6, s);
-</span><span class="line">    cout &lt;&lt; total &lt;&lt; endl; // prints total = 15;
-</span><span class="line">}
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><em>The reader of <a href="http://web.stanford.edu/class/cs106l/course-reader/Ch13_Functors.pdf">Stanford course CS106l</a> explains functors in detail.</em></p>
 </div>
   
   

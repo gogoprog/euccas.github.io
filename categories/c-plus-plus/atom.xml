@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-02-12T16:22:15-08:00</updated>
+  <updated>2017-02-27T22:55:33-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,144 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Effective Traditional C++ 03 String]]></title>
+    <link href="http://euccas.github.io/20170227/effective-traditional-c-plus-plus-03-string.html"/>
+    <updated>2017-02-27T20:39:46-08:00</updated>
+    <id>http://euccas.github.io/20170227/effective-traditional-c-plus-plus-03-string</id>
+    <content type="html"><![CDATA[<p>Recently I spent a whole lot of time on file compression and decompression with zlib. Thought I’d better write something about it. But before that, let me finish the series of “Effective Traditional C++”. Today I’ll write about Strings in C++.</p>
+
+<p>Two types of String are available in C++: C-Strings (C-style Strings), and STL Strings.</p>
+
+<h1 id="c-string">C-String</h1>
+
+<p>C-String is a fundamental type in C++. Comparing to STL String, C-String is small, simple and fast. A C-String is a special case of an array of characters terminated with a 0. This is sometimes called an null-terminated string. A C-String can be printed out with a <code>printf</code> statement using the <code>%s</code> format string. We can access the individual characters in a C-String just as we do in an array.</p>
+
+<p><strong>Example: print a C-String with %s</strong></p>
+
+<p><code>
+char s[] = {'s', 't', 'r', 'i', 'n', 'g', 0};
+printf("String is: %s\n", s);</code></p>
+
+<p>// »&gt; String is: string
+&lt;/code&gt;</p>
+
+<p><strong>Example: access characters of a C-String</strong></p>
+
+<p><code>
+char s[] = {'s', 't', 'r', 'i', 'n', 'g', 0};
+for (int i = 0; s[i]; i++)
+{
+    printf("Char is: %c\n", s[i]);
+}</code></p>
+
+<p>// »&gt; Char is: s
+// »&gt; Char is: t
+// »&gt; Char is: r
+// »&gt; Char is: i
+// »&gt; Char is: n
+// »&gt; Char is: g
+&lt;/code&gt;</p>
+
+<p><strong>Example: access characters of a C-String, using a pointer</strong></p>
+
+<p><code>
+char s[] = "string";
+for (char* cp = s; *cp; ++cp)
+{
+    printf("Char is %c\n", *cp);
+}</code></p>
+
+<p>// »&gt; Char is: s
+// »&gt; Char is: t
+// … … 
+// »&gt; Char is: g
+&lt;/code&gt;</p>
+
+<p><strong>Example: access characters of a C-String, C++ 11 style</strong></p>
+
+<p>In C++ 11, a <em>range based loop</em> can be used to access arrays and also C-Strings.</p>
+
+<p><code>
+char s[] = "string";
+for (char c : s)
+{
+    printf("Char is %c\n", *cp);
+}</code></p>
+
+<p>// »&gt; Char is: s
+// »&gt; Char is: s
+// »&gt; Char is: t
+// … … 
+// »&gt; Char is: g
+// »&gt; Char is:
+&lt;/code&gt;</p>
+
+<p>You may have noticed that the <code>null</code> character in the end of the C-String was printed out in the above code snippet. This is because the <em>range based for loop</em> in C++ 11 looks at the entire array and doesn’t treat the <code>null</code> as the end of the C-String. To get rid of the ending <code>null</code> character in a C-String, we need add a condition checker inside the range based loop.</p>
+
+<p><code>
+char s[] = "string";
+for (char c : s)
+{
+    if (c==0) break;
+    printf("Char is %c\n", *cp);
+}</code></p>
+
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <p>Char is: s
+Char is: s
+Char is: t
+… … 
+Char is: g
+&lt;/code&gt;</p>
+    </blockquote>
+  </blockquote>
+</blockquote>
+
+<h1 id="stl-string">STL String</h1>
+
+<p>The STL String class is a special type of container designed to operate with sequence of characters. It’s designed with many <a href="http://www.cplusplus.com/reference/string/string/">features and available functions</a> to operate on strings efficiently and intuitively. To use STL String, you need include <code>string</code> header. The following example shows the basic usage of STL string including getting the length of a string, string concatenation, comparison, and accessing each character.</p>
+
+<p><code>
+include <iostream>
+include <string></string></iostream></code></p>
+
+<p>int main(int argc, char** argv) {
+    string s0 = “Hello”;</p>
+
+<pre><code>// size == length
+cout &lt;&lt; "size of string: " &lt;&lt; s0.size() &lt;&lt; endl;
+cout &lt;&lt; "length of string: " &lt;&lt; s0.length() &lt;&lt; endl;
+// &gt;&gt;&gt; 5
+// &gt;&gt;&gt; 5
+
+// + concatenation
+cout &lt;&lt; "concatenated strings: ";
+string s1 = "another hello";
+cout &lt;&lt; s0 + ", " + s1 &lt;&lt; endl;
+// &gt;&gt;&gt; Hello, another hello
+
+// compare: ==, &gt;, &lt;, &gt;=, &lt;=, !=
+cout &lt;&lt; "is s0 == s1? " &lt;&lt; (s0 == s1 ? "yes" : "no") &lt;&lt; endl;
+s1 = s0
+cout &lt;&lt; "is s0 == s1? " &lt;&lt; (s0 == s1 ? "yes" : "no") &lt;&lt; endl;
+// &gt;&gt;&gt; no
+// &gt;&gt;&gt; yes
+
+// access each character
+ cout &lt;&lt; "each character: ";
+ for (char c : s0) {
+    cout &lt;&lt; c &lt;&lt; ' ';
+ }
+ cout &lt;&lt; endl;
+ // &gt;&gt;&gt; Hello } &lt;/code&gt;
+</code></pre>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Effective Traditional C++ (2): Pointer and Reference]]></title>
