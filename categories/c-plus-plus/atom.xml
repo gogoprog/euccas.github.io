@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-02-27T22:55:33-08:00</updated>
+  <updated>2017-02-27T23:08:28-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -30,10 +30,9 @@
 
 <p><code>
 char s[] = {'s', 't', 'r', 'i', 'n', 'g', 0};
-printf("String is: %s\n", s);</code></p>
-
-<p>// »&gt; String is: string
-&lt;/code&gt;</p>
+printf("String is: %s\n", s);
+// output:  String is: string
+</code></p>
 
 <p><strong>Example: access characters of a C-String</strong></p>
 
@@ -42,15 +41,15 @@ char s[] = {'s', 't', 'r', 'i', 'n', 'g', 0};
 for (int i = 0; s[i]; i++)
 {
     printf("Char is: %c\n", s[i]);
-}</code></p>
-
-<p>// »&gt; Char is: s
-// »&gt; Char is: t
-// »&gt; Char is: r
-// »&gt; Char is: i
-// »&gt; Char is: n
-// »&gt; Char is: g
-&lt;/code&gt;</p>
+}
+// output:
+// Char is: s
+// Char is: t
+// Char is: r
+// Char is: i
+// Char is: n
+// Char is: g
+</code></p>
 
 <p><strong>Example: access characters of a C-String, using a pointer</strong></p>
 
@@ -59,13 +58,13 @@ char s[] = "string";
 for (char* cp = s; *cp; ++cp)
 {
     printf("Char is %c\n", *cp);
-}</code></p>
-
-<p>// »&gt; Char is: s
-// »&gt; Char is: t
-// … … 
-// »&gt; Char is: g
-&lt;/code&gt;</p>
+}
+// output:
+// Char is: s
+// Char is: t
+// ... ... 
+// Char is: g
+</code></p>
 
 <p><strong>Example: access characters of a C-String, C++ 11 style</strong></p>
 
@@ -76,15 +75,14 @@ char s[] = "string";
 for (char c : s)
 {
     printf("Char is %c\n", *cp);
-}</code></p>
-
-<p>// »&gt; Char is: s
-// »&gt; Char is: s
-// »&gt; Char is: t
-// … … 
-// »&gt; Char is: g
-// »&gt; Char is:
-&lt;/code&gt;</p>
+}
+// output:
+// Char is: s
+// Char is: t
+// ... ... 
+// Char is: g
+// Char is:
+</code></p>
 
 <p>You may have noticed that the <code>null</code> character in the end of the C-String was printed out in the above code snippet. This is because the <em>range based for loop</em> in C++ 11 looks at the entire array and doesn’t treat the <code>null</code> as the end of the C-String. To get rid of the ending <code>null</code> character in a C-String, we need add a condition checker inside the range based loop.</p>
 
@@ -94,28 +92,21 @@ for (char c : s)
 {
     if (c==0) break;
     printf("Char is %c\n", *cp);
-}</code></p>
-
-<blockquote>
-  <blockquote>
-    <blockquote>
-      <p>Char is: s
-Char is: s
-Char is: t
-… … 
-Char is: g
-&lt;/code&gt;</p>
-    </blockquote>
-  </blockquote>
-</blockquote>
+}
+// output:
+// Char is: s
+// Char is: t
+// ... ... 
+// Char is: g
+</code></p>
 
 <h1 id="stl-string">STL String</h1>
 
 <p>The STL String class is a special type of container designed to operate with sequence of characters. It’s designed with many <a href="http://www.cplusplus.com/reference/string/string/">features and available functions</a> to operate on strings efficiently and intuitively. To use STL String, you need include <code>string</code> header. The following example shows the basic usage of STL string including getting the length of a string, string concatenation, comparison, and accessing each character.</p>
 
-<p><code>
+<p>```
 include <iostream>
-include <string></string></iostream></code></p>
+include <string></string></iostream></p>
 
 <p>int main(int argc, char** argv) {
     string s0 = “Hello”;</p>
@@ -123,29 +114,33 @@ include <string></string></iostream></code></p>
 <pre><code>// size == length
 cout &lt;&lt; "size of string: " &lt;&lt; s0.size() &lt;&lt; endl;
 cout &lt;&lt; "length of string: " &lt;&lt; s0.length() &lt;&lt; endl;
-// &gt;&gt;&gt; 5
-// &gt;&gt;&gt; 5
+// output:
+// 5
+// 5
 
 // + concatenation
 cout &lt;&lt; "concatenated strings: ";
 string s1 = "another hello";
 cout &lt;&lt; s0 + ", " + s1 &lt;&lt; endl;
-// &gt;&gt;&gt; Hello, another hello
+// output:
+// Hello, another hello
 
 // compare: ==, &gt;, &lt;, &gt;=, &lt;=, !=
 cout &lt;&lt; "is s0 == s1? " &lt;&lt; (s0 == s1 ? "yes" : "no") &lt;&lt; endl;
 s1 = s0
 cout &lt;&lt; "is s0 == s1? " &lt;&lt; (s0 == s1 ? "yes" : "no") &lt;&lt; endl;
-// &gt;&gt;&gt; no
-// &gt;&gt;&gt; yes
+// output:
+// no
+// yes
 
 // access each character
- cout &lt;&lt; "each character: ";
- for (char c : s0) {
-    cout &lt;&lt; c &lt;&lt; ' ';
- }
- cout &lt;&lt; endl;
- // &gt;&gt;&gt; Hello } &lt;/code&gt;
+cout &lt;&lt; "each character: ";
+for (char c : s0) {
+   cout &lt;&lt; c &lt;&lt; ' ';
+}
+cout &lt;&lt; endl;
+// output:
+// Hello } ```
 </code></pre>
 
 ]]></content>

@@ -146,125 +146,193 @@
 
 <p><strong>Example: print a C-String with %s</strong></p>
 
-<p><code>
-char s[] = {'s', 't', 'r', 'i', 'n', 'g', 0};
-printf("String is: %s\n", s);</code></p>
-
-<p>// »&gt; String is: string
-&lt;/code&gt;</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">char s[] = {'s', 't', 'r', 'i', 'n', 'g', 0};
+</span><span class="line">printf("String is: %s\n", s);
+</span><span class="line">// output:  String is: string</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><strong>Example: access characters of a C-String</strong></p>
 
-<p><code>
-char s[] = {'s', 't', 'r', 'i', 'n', 'g', 0};
-for (int i = 0; s[i]; i++)
-{
-    printf("Char is: %c\n", s[i]);
-}</code></p>
-
-<p>// »&gt; Char is: s
-// »&gt; Char is: t
-// »&gt; Char is: r
-// »&gt; Char is: i
-// »&gt; Char is: n
-// »&gt; Char is: g
-&lt;/code&gt;</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">char s[] = {'s', 't', 'r', 'i', 'n', 'g', 0};
+</span><span class="line">for (int i = 0; s[i]; i++)
+</span><span class="line">{
+</span><span class="line">    printf("Char is: %c\n", s[i]);
+</span><span class="line">}
+</span><span class="line">// output:
+</span><span class="line">// Char is: s
+</span><span class="line">// Char is: t
+</span><span class="line">// Char is: r
+</span><span class="line">// Char is: i
+</span><span class="line">// Char is: n
+</span><span class="line">// Char is: g</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><strong>Example: access characters of a C-String, using a pointer</strong></p>
 
-<p><code>
-char s[] = "string";
-for (char* cp = s; *cp; ++cp)
-{
-    printf("Char is %c\n", *cp);
-}</code></p>
-
-<p>// »&gt; Char is: s
-// »&gt; Char is: t
-// … … 
-// »&gt; Char is: g
-&lt;/code&gt;</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">char s[] = "string";
+</span><span class="line">for (char* cp = s; *cp; ++cp)
+</span><span class="line">{
+</span><span class="line">    printf("Char is %c\n", *cp);
+</span><span class="line">}
+</span><span class="line">// output:
+</span><span class="line">// Char is: s
+</span><span class="line">// Char is: t
+</span><span class="line">// ... ... 
+</span><span class="line">// Char is: g</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><strong>Example: access characters of a C-String, C++ 11 style</strong></p>
 
 <p>In C++ 11, a <em>range based loop</em> can be used to access arrays and also C-Strings.</p>
 
-<p><code>
-char s[] = "string";
-for (char c : s)
-{
-    printf("Char is %c\n", *cp);
-}</code></p>
-
-<p>// »&gt; Char is: s
-// »&gt; Char is: s
-// »&gt; Char is: t
-// … … 
-// »&gt; Char is: g
-// »&gt; Char is:
-&lt;/code&gt;</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">char s[] = "string";
+</span><span class="line">for (char c : s)
+</span><span class="line">{
+</span><span class="line">    printf("Char is %c\n", *cp);
+</span><span class="line">}
+</span><span class="line">// output:
+</span><span class="line">// Char is: s
+</span><span class="line">// Char is: t
+</span><span class="line">// ... ... 
+</span><span class="line">// Char is: g
+</span><span class="line">// Char is:</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>You may have noticed that the <code>null</code> character in the end of the C-String was printed out in the above code snippet. This is because the <em>range based for loop</em> in C++ 11 looks at the entire array and doesn’t treat the <code>null</code> as the end of the C-String. To get rid of the ending <code>null</code> character in a C-String, we need add a condition checker inside the range based loop.</p>
 
-<p><code>
-char s[] = "string";
-for (char c : s)
-{
-    if (c==0) break;
-    printf("Char is %c\n", *cp);
-}</code></p>
-
-<blockquote>
-  <blockquote>
-    <blockquote>
-      <p>Char is: s
-Char is: s
-Char is: t
-… … 
-Char is: g
-&lt;/code&gt;</p>
-    </blockquote>
-  </blockquote>
-</blockquote>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">char s[] = "string";
+</span><span class="line">for (char c : s)
+</span><span class="line">{
+</span><span class="line">    if (c==0) break;
+</span><span class="line">    printf("Char is %c\n", *cp);
+</span><span class="line">}
+</span><span class="line">// output:
+</span><span class="line">// Char is: s
+</span><span class="line">// Char is: t
+</span><span class="line">// ... ... 
+</span><span class="line">// Char is: g</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h1 id="stl-string">STL String</h1>
 
 <p>The STL String class is a special type of container designed to operate with sequence of characters. It’s designed with many <a href="http://www.cplusplus.com/reference/string/string/">features and available functions</a> to operate on strings efficiently and intuitively. To use STL String, you need include <code>string</code> header. The following example shows the basic usage of STL string including getting the length of a string, string concatenation, comparison, and accessing each character.</p>
 
-<p><code>
-include <iostream>
-include <string></string></iostream></code></p>
-
-<p>int main(int argc, char** argv) {
-    string s0 = “Hello”;</p>
-
-<pre><code>// size == length
-cout &lt;&lt; "size of string: " &lt;&lt; s0.size() &lt;&lt; endl;
-cout &lt;&lt; "length of string: " &lt;&lt; s0.length() &lt;&lt; endl;
-// &gt;&gt;&gt; 5
-// &gt;&gt;&gt; 5
-
-// + concatenation
-cout &lt;&lt; "concatenated strings: ";
-string s1 = "another hello";
-cout &lt;&lt; s0 + ", " + s1 &lt;&lt; endl;
-// &gt;&gt;&gt; Hello, another hello
-
-// compare: ==, &gt;, &lt;, &gt;=, &lt;=, !=
-cout &lt;&lt; "is s0 == s1? " &lt;&lt; (s0 == s1 ? "yes" : "no") &lt;&lt; endl;
-s1 = s0
-cout &lt;&lt; "is s0 == s1? " &lt;&lt; (s0 == s1 ? "yes" : "no") &lt;&lt; endl;
-// &gt;&gt;&gt; no
-// &gt;&gt;&gt; yes
-
-// access each character
- cout &lt;&lt; "each character: ";
- for (char c : s0) {
-    cout &lt;&lt; c &lt;&lt; ' ';
- }
- cout &lt;&lt; endl;
- // &gt;&gt;&gt; Hello } &lt;/code&gt;
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">include &lt;iostream&gt;
+</span><span class="line">include &lt;string&gt;
+</span><span class="line">  
+</span><span class="line">int main(int argc, char** argv) {
+</span><span class="line">    string s0 = "Hello";
+</span><span class="line">    
+</span><span class="line">    // size == length
+</span><span class="line">    cout &lt;&lt; "size of string: " &lt;&lt; s0.size() &lt;&lt; endl;
+</span><span class="line">    cout &lt;&lt; "length of string: " &lt;&lt; s0.length() &lt;&lt; endl;
+</span><span class="line">    // output:
+</span><span class="line">    // 5
+</span><span class="line">    // 5
+</span><span class="line">    
+</span><span class="line">    // + concatenation
+</span><span class="line">    cout &lt;&lt; "concatenated strings: ";
+</span><span class="line">    string s1 = "another hello";
+</span><span class="line">    cout &lt;&lt; s0 + ", " + s1 &lt;&lt; endl;
+</span><span class="line">    // output:
+</span><span class="line">    // Hello, another hello
+</span><span class="line">    
+</span><span class="line">    // compare: ==, &gt;, &lt;, &gt;=, &lt;=, !=
+</span><span class="line">    cout &lt;&lt; "is s0 == s1? " &lt;&lt; (s0 == s1 ? "yes" : "no") &lt;&lt; endl;
+</span><span class="line">    s1 = s0
+</span><span class="line">    cout &lt;&lt; "is s0 == s1? " &lt;&lt; (s0 == s1 ? "yes" : "no") &lt;&lt; endl;
+</span><span class="line">    // output:
+</span><span class="line">    // no
+</span><span class="line">    // yes
+</span><span class="line">    
+</span><span class="line">    // access each character
+</span><span class="line">    cout &lt;&lt; "each character: ";
+</span><span class="line">    for (char c : s0) {
+</span><span class="line">       cout &lt;&lt; c &lt;&lt; ' ';
+</span><span class="line">    }
+</span><span class="line">    cout &lt;&lt; endl;
+</span><span class="line">    // output:
+</span><span class="line">    // Hello
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 </div>
 
