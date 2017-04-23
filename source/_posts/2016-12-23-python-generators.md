@@ -15,6 +15,8 @@ There are mainly two ways to create a generator: using the ```yield``` keyword i
 * The ```yield``` keyword makes the function yields control back to the calling function on every iteration
 * The ```()``` expression returns a generator object
 
+<!--more--> 
+
 # How to refactor a function to use a generator
 
 Functions that construct a list or another iterable and returns it can be turned into a generator by:

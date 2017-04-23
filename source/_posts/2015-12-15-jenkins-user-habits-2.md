@@ -3,7 +3,7 @@ layout: post
 title: "高效Jenkins用户的第2个习惯"
 date: 2015-12-15 20:15:38 -0800
 comments: true
-categories: jenkins Chinese
+categories: jenkins Chinese 中文
 ---
 
 本文内容部分来源于**Andrew Bayer**发布在SlideShare上的 [*7 habits of highly productive Jenkins Users (2014 Edition)*](http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition).
@@ -27,6 +27,8 @@ categories: jenkins Chinese
 多job的Build可以方便地在不同的project, release等等中重用
 
 分解job可以避免长时间运行的job在最后阶段出错，导致整个job需要被重新运行：多job的Build可以实现从其中任何一个子job处重新执行
+
+<!--more--> 
 
 ## 3. 利用工具帮助分解jobs
 

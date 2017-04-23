@@ -1,12 +1,13 @@
 ---
 layout: post
-title: "Now commenting on posts is enabled"
+title: "Enabled blog posts commenting"
 date: 2017-01-16 23:39:06 -0800
 comments: true
 categories: octopress
 keywords: 
 description: 
 ---
+
 Hi there,
 
 I just enabled **commenting** on this blog with [Disqus](https://disqus.com/).

@@ -14,6 +14,8 @@ The good thing is Python provides a [```multiprocessing``` module](https://docs.
 
 In this post I'll briefly introduce ```multiprocess``` module and show how it can be used for parallel programming.
 
+<!--more--> 
+
 # A simple example of *multiprocessing*
 
 In the following example, we use ```multiprocessing``` module to spawn a child process from a parent process using a ```Process``` object.

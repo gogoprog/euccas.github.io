@@ -3,7 +3,7 @@ layout: post
 title: "A list of SoC Design and Verification Infrastructure Needs -  Tools/Automation Flows (2013)"
 date: 2017-02-12 15:53:19 -0800
 comments: true
-categories: Infrastructure Verification
+categories: Infrastructure
 keywords: SoC Design Verification Infrastructure Tools 
 description: SoC Design and Verification Infrastructure and Tools Overview
 ---

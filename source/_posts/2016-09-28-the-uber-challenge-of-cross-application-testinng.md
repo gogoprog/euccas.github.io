@@ -12,6 +12,8 @@ Get it started! Day#1 topic is:
 
 **The Uber Challenge of Cross-Application/Cross-Device Testing**
 
+<!--more--> 
+
 - Presenter: Apple Chow (Uber), Bian Jiang (Uber)
 - [Video](https://www.youtube.com/watch?v=p6gsssppeT0&list=PLSIUOFhnxEiCWGsN9t5A-XOhRbmz54IS1&index=3)
 - [Slides](https://docs.google.com/presentation/d/1vYXhkvgLKun72Ix91LQDDWZQdcY5VOBqKVvI1Y6riYo/pub)

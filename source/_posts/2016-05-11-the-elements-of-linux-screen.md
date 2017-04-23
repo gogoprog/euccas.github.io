@@ -16,6 +16,8 @@ The Element of Linux Screen
 In a system where screen is installed, type "screen" in a terminal will invoke it.
 
 If screen isn't installed in your system, Google "install screen in Linux" to find the solution.
+
+<!--more--> 
  
 Screen can also has a **session name** when get started:
 

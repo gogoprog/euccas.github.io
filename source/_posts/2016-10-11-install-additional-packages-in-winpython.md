@@ -14,6 +14,8 @@ In this post I'll show you how could you install additional packages to WinPytho
 
 WinPython is portable. It means that you can download WinPython from the [WinPython download page](http://winpython.sourceforge.net/), add it to your system PATH, and start using it without any installation.
 
+<!--more--> 
+
 * Unzip the downloaded WinPython Package to a local directory, eg. ```C:\WinPython```.
 * Add the local directory path to your system's ```PATH``` variable. You can use Windows command ```set``` or ```setx```.
 

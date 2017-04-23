@@ -17,6 +17,8 @@ def self.show_name
 end
 ```
 
+<!--more--> 
+
 # Instance Methods
 - Instance methods belong to any instance of a class in Ruby. To use instance methods, you always need to have an existing instance first. Usually this means you have called ```new()``` method.
 - Instance methods do not have "self" prefix in their definition.

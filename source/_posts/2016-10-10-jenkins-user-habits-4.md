@@ -3,7 +3,7 @@ layout: post
 title: "高效Jenkins用户的第4个习惯"
 date: 2016-10-10 20:32:01 -0800
 comments: true
-categories: jenkins Chinese
+categories: jenkins Chinese 中文
 ---
 
 本文内容部分来源于**Andrew Bayer**发布在SlideShare上的 [*7 habits of highly productive Jenkins Users (2014 Edition)*](http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition).
@@ -23,6 +23,7 @@ categories: jenkins Chinese
 
 功能插件可能会给Jenkins service的稳定性造成预期之外的影响，并且可能增加系统的负载和每一个job运行的时间。充分考虑到这些可能的负作用，尽量避免安装你并不是真正需要的插件。
 
+<!--more--> 
 
 ## 2. 清理旧的插件和数据 ##
 

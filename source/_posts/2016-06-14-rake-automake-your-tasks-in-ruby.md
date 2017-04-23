@@ -13,6 +13,8 @@ Rake is the build language for Ruby programs, originally developed by [Jim Weiri
 
 In order to use Rake to define tasks, first you need a Rakefile. A Rakefile is a Ruby source file that has access to some special methods: **task**, **file**, **directory**, and a few others. A task defined in the Rakefile can be run by the command-line ```rake``` program, or be called as a dependency by other tasks. The name of Rakefile can be ```Rakefile``` or ```rakefile```.
 
+<!--more--> 
+
 # Write Descriptions for Rake Tasks
 
 Writing a description to the defined tasks in Rakefile help you get more details about the task and know better what it does.

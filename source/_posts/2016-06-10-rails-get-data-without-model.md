@@ -3,13 +3,16 @@ layout: post
 title: "Rails: Get data from PostgreSQL database without the Model"
 date: 2016-06-10 18:32:01 -0700
 comments: true
-categories: Rails
+categories: Rails Ruby
 ---
+
 In Ruby on Rails, Active Record is the M in MVC - the model. Model is the layer of the system which represents business data and logic. Active Record facilitates the creation and the use of business objects whose data requires persistent storage to a database. In some cases, however, you may want to use databases in Rails applications without the Model. What you can do is using the ```pg``` gem to directly manipulate the data you need.
 
 # Create a database connection
 
 If the database is not declared in Rails app's ```config/database.yml``` file, you won't be able to use the ```establish_connection``` method in ActiveRecord. But you can still use the ```pg``` gem to directly connect to the database.
+
+<!--more--> 
 
 ```
 # page_controller.rb

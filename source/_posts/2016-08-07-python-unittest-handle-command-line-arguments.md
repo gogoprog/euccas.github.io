@@ -10,6 +10,8 @@ In the previous post about [Python Unittest](http://euccas.github.io/blog/201607
 
 Unit testing is meant for testing basic functionality of the application. The target of [Unit testing](https://en.wikipedia.org/wiki/Unit_testing) is expected to be each function of your program. When your program has command line arguments, ideally the unit tests should not accept arguments from the command line because unit tests are supposed to be very specific and not testing on the [Integration level](https://en.wikipedia.org/wiki/Integration_testing) (i.e. across multiple functions in your program).
 
+<!--more--> 
+
 So the way I use to handle the command line arguments can be summarized as: 
 
 - Refactor your program to have the arguments parsing as a function

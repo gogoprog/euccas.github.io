@@ -12,6 +12,8 @@ Sometimes dunder methods are also called "magic methods" because they are usuall
 
 # Examples of Dunder Methods
 
+<!--more--> 
+
 In the following example, we can see three dunder methods:
 
 - ```__init__``` method: is called to initialize the class

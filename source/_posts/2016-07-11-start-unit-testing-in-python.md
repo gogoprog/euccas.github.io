@@ -12,6 +12,8 @@ In this post, I'm writing about how could you do unit testing in Python with the
 
 Python 2 (starting on version 2.1) and Python 3 now both have ```unittest``` in the standard library. The ```unittest``` module provides the unit testing framework, and it's based on ```JUnit```, which is a unit testing framework for Java. 
 
+<!--more--> 
+
 # What unittest can do
 
 A few main features that ```unittest``` can do are:

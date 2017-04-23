@@ -3,7 +3,7 @@ layout: post
 title: "高效Jenkins用户的第1个习惯"
 date: 2015-12-10 19:32:57 -0800
 comments: true
-categories: jenkins Chinese
+categories: jenkins Chinese 中文
 ---
 
 本文内容部分来源于**Andrew Bayer**发布在SlideShare上的 [*7 habits of highly productive Jenkins Users (2014 Edition)*](http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition).
@@ -23,6 +23,8 @@ plugin的升级可能包含非常多的变化
 不是所有的升级都会保证向前兼容。比如最近Extended Email Plugin的升级，就造成之前的recipient/trigger配置不可用
 
 新功能也许不稳定
+
+<!--more--> 
 
 ## 3. 对升级进行测试 ##
 

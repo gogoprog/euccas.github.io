@@ -15,6 +15,8 @@ I have been using log4r at work in most of the applications and systems written 
 
 Here in this post, I'll show you how to use log4r in your Ruby project.
 
+<!--more--> 
+
 ## Step 1. Install Gem log4r
 ```
 gem install log4r

@@ -3,7 +3,7 @@ layout: post
 title: "Case Study: Check on a commit according to its included files"
 date: 2016-08-15 19:43:21 -0700
 comments: true
-categories: casestudy
+categories: case-study
 ---
 
 # Problem Description
@@ -13,6 +13,8 @@ Suppose one task in your Continuous Integration (CI) pipeline is triggered on ev
 # Design the CI task
 
 The CI task need have the ability to analyze the files included in the commit, and decide whether the commit requires passing a check, or not. We need tell the CI task which files require passing a check through configurations.
+
+<!--more--> 
 
 ## Configuration
 

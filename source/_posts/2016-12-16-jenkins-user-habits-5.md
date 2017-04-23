@@ -3,7 +3,7 @@ layout: post
 title: "高效Jenkins用户的第5个习惯"
 date: 2016-12-16 15:49:51 -0800
 comments: true
-categories: jenkins chinese
+categories: jenkins Chinese 中文
 ---
 
 本文内容部分来源于**Andrew Bayer**发布在SlideShare上的 [*7 habits of highly productive Jenkins Users (2014 Edition)*](http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition).
@@ -11,6 +11,8 @@ categories: jenkins chinese
 # 习惯 5: 集成第三方工具和服务
 
 Jenkin可以和许多第三方工具和服务集成，实现强大又实用的功能。常见的集成方式包括使用REST API和一些Jenkins功能插件。可以实现的功能比如：由GitHub pull requests触发builds，当builds成功或失败时根据结果更新JIRA等等。
+
+<!--more--> 
 
 ## Gerrit和Github的pull requests
 

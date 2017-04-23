@@ -8,9 +8,11 @@ categories: system-design algorithm
 
 Recently I'm taking a course ["Algorithm Toolbox"](https://www.coursera.org/learn/algorithmic-toolbox/home/welcome) on Coursera. This course provides me a good chance to review and enhance my knowledge in the fundamental algorithms, which usually would help on achieving better system design. This morning I came across one slide of this course and thought it could be very useful. Sharing it here.
 
-{% img center /images/post_images/20161224-levels-of-design-1.png 600px %}
+{% img center /images/post_images/2016/20161224-levels-of-design-1.png 600px %}
 
 It's important to keep the **levels of (algorithm) design** in mind when solving a problem. 
+
+<!--more--> 
 
 # Level 1: Naive Algorithm
 
