@@ -16,6 +16,8 @@ Two types of String are available in C++: C-Strings (C-style Strings), and STL S
 
 C-String is a fundamental type in C++. Comparing to STL String, C-String is small, simple and fast. A C-String is a special case of an array of characters terminated with a 0. This is sometimes called an null-terminated string. A C-String can be printed out with a <code>printf</code> statement using the <code>%s</code> format string. We can access the individual characters in a C-String just as we do in an array.
 
+<!--more--> 
+
 **Example: print a C-String with %s**
 
 ```

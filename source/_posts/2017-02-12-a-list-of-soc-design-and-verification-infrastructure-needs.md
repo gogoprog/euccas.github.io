@@ -14,6 +14,8 @@ System-on-Chip design and verification process is a complicated one. Unlike the 
  
 Here is a list of areas that need tools and flows for SoC software and hardware design and verification according to my experience.
 
+<!--more--> 
+
 <table>
 <tr>
 	<th>Usage Area of Tools/Flows</th>

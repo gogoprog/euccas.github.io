@@ -22,6 +22,8 @@ CV qualifiers stands for Const and Volatile Qualifier. There are three types of 
 * volatile
 * mutable
 
+<!--more--> 
+
 ## const qualifier
 
 <code>const</code> marks a variable or function as read-only or immutable. It's value (or the return value of a function) cannot be changed once it's been defined.

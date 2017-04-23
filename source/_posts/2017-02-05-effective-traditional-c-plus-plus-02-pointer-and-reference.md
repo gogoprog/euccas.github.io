@@ -20,6 +20,8 @@ A pointer holds the address of a variable and can be used to perform any operati
 
 * Two pointers can equal to each other, such that changing one's value also changes the other's value.
 
+<!--more--> 
+
 ```
 int * p = new int;
 *p = 1;

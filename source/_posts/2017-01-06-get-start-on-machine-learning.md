@@ -14,6 +14,8 @@ Last year when Mark Zuckberg was working on building Jarvis, I didn't spend much
 
 Tonight I just talked to a former colleague who is working at Nvidia, and he gave me a few helpful suggestions about getting started on machine learning according to his own experience. Here are some of his advices:
 
+<!--more--> 
+
 * Set a goal: What do you want to achieve with the knowledge of Machine Learning?
 * Learn the fundamentals: [Andrew Ng's course](https://www.coursera.org/learn/machine-learning) on Coursera
 * If you'd like to have more courses, take [Standford CS231n](http://cs231n.stanford.edu/)
