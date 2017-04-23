@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T14:55:27+08:00</updated>
+  <updated>2017-04-23T15:00:51+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -25,6 +25,8 @@
 <h1 id="c-string">C-String</h1>
 
 <p>C-String is a fundamental type in C++. Comparing to STL String, C-String is small, simple and fast. A C-String is a special case of an array of characters terminated with a 0. This is sometimes called an null-terminated string. A C-String can be printed out with a <code>printf</code> statement using the <code>%s</code> format string. We can access the individual characters in a C-String just as we do in an array.</p>
+
+<!--more-->
 
 <p><strong>Example: print a C-String with %s</strong></p>
 
@@ -168,6 +170,8 @@ cout &lt;&lt; endl;
     <p>Two pointers can equal to each other, such that changing one’s value also changes the other’s value.</p>
   </li>
 </ul>
+
+<!--more-->
 
 <p><code>
 int * p = new int;
@@ -323,6 +327,8 @@ const int &amp; f(const int &amp; x) {
   <li>volatile</li>
   <li>mutable</li>
 </ul>
+
+<!--more-->
 
 <h2 id="const-qualifier">const qualifier</h2>
 

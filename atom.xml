@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T14:55:27+08:00</updated>
+  <updated>2017-04-23T15:00:51+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[谈谈微信小程序的入口设计 | on WeChat Mini Programs]]></title>
+    <title type="html"><![CDATA[谈谈微信小程序的入口设计 | on WeChat Design for Mini Programs]]></title>
     <link href="http://euccas.github.io/20170423/on-wechat-mini-program.html"/>
     <updated>2017-04-23T14:24:14+08:00</updated>
     <id>http://euccas.github.io/20170423/on-wechat-mini-program</id>
@@ -35,20 +35,20 @@
 
 <p>用户第一次进入微信小程序的入口时，看到的有且仅有一个搜索框，其它就是空白。这显著不同于进入App Store后看到的各种玲琅满目的应用和排行榜。</p>
 
-<p><img class="center" src="http://euccas.github.io/images/post_images/2017/20170423-wechat_miniprogram_00.png" width="400" /></p>
+<p><img class="center" src="http://euccas.github.io/images/post_images/2017/20170423-wechat_miniprogram_00.png" width="360" /></p>
 
 <h1 id="section-1">使用小程序</h1>
 
 <p>通过搜索（或者其他二维码）入口找到一个小程序后，一次点击就直接开始了使用过程，没有安装，也没有App启动界面和过程。第一次和小程序交互时甚至会不习惯这个没有暂停的过程。我特别注意到的是，这个点击即使用的过程，也会影响到小程序App本身的入口设计，比如用注册登录作为主入口就不合适了，小程序App需要在最短的时间内提供有效的信息和功能给用户。</p>
 
-<p><img class="center" src="http://euccas.github.io/images/post_images/2017/20170423-wechat_miniprogram_01.png" width="400" />
-<img class="center" src="http://euccas.github.io/images/post_images/2017/20170423-wechat_miniprogram_02.png" width="400" /></p>
+<p><img class="center" src="http://euccas.github.io/images/post_images/2017/20170423-wechat_miniprogram_01.png" width="360" />
+<img class="center" src="http://euccas.github.io/images/post_images/2017/20170423-wechat_miniprogram_02.png" width="360" /></p>
 
 <h1 id="section-2">退出小程序</h1>
 
 <p>退出一个使用中的小程序，是通过微信左上方的后退按钮。退出之后即回到搜索结果的页面。感觉上，好像刚刚什么都没有发生。而使用过的小程序，都会被保存在入口主界面搜索框下的列表中。列表可以手工逐项清除，删除方式和删除微信对话一样，左滑屏幕，选择删除。</p>
 
-<p><img class="center" src="http://euccas.github.io/images/post_images/2017/20170423-wechat_miniprogram_03.png" width="400" /></p>
+<p><img class="center" src="http://euccas.github.io/images/post_images/2017/20170423-wechat_miniprogram_03.png" width="360" /></p>
 
 <p>微信小程序入口的这些特点，可以说是再一次充分展现了微信产品设计一直以来的风格，也即张小龙曾经讲过的关于微信背后的产品观。根据我所观察到的，总结一下有：</p>
 
@@ -80,6 +80,8 @@
 <h1 id="c-string">C-String</h1>
 
 <p>C-String is a fundamental type in C++. Comparing to STL String, C-String is small, simple and fast. A C-String is a special case of an array of characters terminated with a 0. This is sometimes called an null-terminated string. A C-String can be printed out with a <code>printf</code> statement using the <code>%s</code> format string. We can access the individual characters in a C-String just as we do in an array.</p>
+
+<!--more-->
 
 <p><strong>Example: print a C-String with %s</strong></p>
 
@@ -285,6 +287,8 @@
 
 <p>Here is a list of areas that need tools and flows for SoC software and hardware design and verification according to my experience.</p>
 
+<!--more-->
+
 <table>
 <tr>
 	<th>Usage Area of Tools/Flows</th>
@@ -465,6 +469,8 @@
     <p>Two pointers can equal to each other, such that changing one’s value also changes the other’s value.</p>
   </li>
 </ul>
+
+<!--more-->
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
@@ -662,6 +668,8 @@
   <li>volatile</li>
   <li>mutable</li>
 </ul>
+
+<!--more-->
 
 <h2 id="const-qualifier">const qualifier</h2>
 
@@ -1005,6 +1013,8 @@
 <p>Last year when Mark Zuckberg was working on building Jarvis, I didn’t spend much time on AI or Machine Learning. But I know the efforts I made last year get me ready to start on it right now.</p>
 
 <p>Tonight I just talked to a former colleague who is working at Nvidia, and he gave me a few helpful suggestions about getting started on machine learning according to his own experience. Here are some of his advices:</p>
+
+<!--more-->
 
 <ul>
   <li>Set a goal: What do you want to achieve with the knowledge of Machine Learning?</li>

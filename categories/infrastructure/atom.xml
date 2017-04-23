@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Infrastructure | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/infrastructure/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T14:55:27+08:00</updated>
+  <updated>2017-04-23T15:00:51+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -23,6 +23,8 @@
 <p>System-on-Chip design and verification process is a complicated one. Unlike the world of Web and Internet, the design and development of hardware products have higher risk and lower tolerance to any mistakes. SoC design and verification process requires collaborations from multiple teams and vendors. Lots of hard decisions to make. Lots of trade-offs to consider. Moreover, the nonrecurring-engineering (NRE) charge makes sufficient and solid verification a must with limited time and resource. Tools and automated flows are an essential part of any design house.</p>
 
 <p>Here is a list of areas that need tools and flows for SoC software and hardware design and verification according to my experience.</p>
+
+<!--more-->
 
 <table>
 <tr>

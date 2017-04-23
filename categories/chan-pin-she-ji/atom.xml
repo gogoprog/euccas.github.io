@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 产品设计 | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/chan-pin-she-ji/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T14:55:27+08:00</updated>
+  <updated>2017-04-23T15:00:51+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[谈谈微信小程序的入口设计 | on WeChat Mini Programs]]></title>
+    <title type="html"><![CDATA[谈谈微信小程序的入口设计 | on WeChat Design for Mini Programs]]></title>
     <link href="http://euccas.github.io/20170423/on-wechat-mini-program.html"/>
     <updated>2017-04-23T14:24:14+08:00</updated>
     <id>http://euccas.github.io/20170423/on-wechat-mini-program</id>
@@ -35,20 +35,20 @@
 
 <p>用户第一次进入微信小程序的入口时，看到的有且仅有一个搜索框，其它就是空白。这显著不同于进入App Store后看到的各种玲琅满目的应用和排行榜。</p>
 
-<p><img class="center" src="/images/post_images/2017/20170423-wechat_miniprogram_00.png" width="400"></p>
+<p><img class="center" src="/images/post_images/2017/20170423-wechat_miniprogram_00.png" width="360"></p>
 
 <h1 id="section-1">使用小程序</h1>
 
 <p>通过搜索（或者其他二维码）入口找到一个小程序后，一次点击就直接开始了使用过程，没有安装，也没有App启动界面和过程。第一次和小程序交互时甚至会不习惯这个没有暂停的过程。我特别注意到的是，这个点击即使用的过程，也会影响到小程序App本身的入口设计，比如用注册登录作为主入口就不合适了，小程序App需要在最短的时间内提供有效的信息和功能给用户。</p>
 
-<p><img class="center" src="/images/post_images/2017/20170423-wechat_miniprogram_01.png" width="400">
-<img class="center" src="/images/post_images/2017/20170423-wechat_miniprogram_02.png" width="400"></p>
+<p><img class="center" src="/images/post_images/2017/20170423-wechat_miniprogram_01.png" width="360">
+<img class="center" src="/images/post_images/2017/20170423-wechat_miniprogram_02.png" width="360"></p>
 
 <h1 id="section-2">退出小程序</h1>
 
 <p>退出一个使用中的小程序，是通过微信左上方的后退按钮。退出之后即回到搜索结果的页面。感觉上，好像刚刚什么都没有发生。而使用过的小程序，都会被保存在入口主界面搜索框下的列表中。列表可以手工逐项清除，删除方式和删除微信对话一样，左滑屏幕，选择删除。</p>
 
-<p><img class="center" src="/images/post_images/2017/20170423-wechat_miniprogram_03.png" width="400"></p>
+<p><img class="center" src="/images/post_images/2017/20170423-wechat_miniprogram_03.png" width="360"></p>
 
 <p>微信小程序入口的这些特点，可以说是再一次充分展现了微信产品设计一直以来的风格，也即张小龙曾经讲过的关于微信背后的产品观。根据我所观察到的，总结一下有：</p>
 

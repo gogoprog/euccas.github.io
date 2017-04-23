@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Machine-learning | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/machine-learning/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T14:55:27+08:00</updated>
+  <updated>2017-04-23T15:00:51+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -23,6 +23,8 @@
 <p>Last year when Mark Zuckberg was working on building Jarvis, I didn’t spend much time on AI or Machine Learning. But I know the efforts I made last year get me ready to start on it right now.</p>
 
 <p>Tonight I just talked to a former colleague who is working at Nvidia, and he gave me a few helpful suggestions about getting started on machine learning according to his own experience. Here are some of his advices:</p>
+
+<!--more-->
 
 <ul>
   <li>Set a goal: What do you want to achieve with the knowledge of Machine Learning?</li>
