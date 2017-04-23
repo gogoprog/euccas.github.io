@@ -16,6 +16,8 @@ To create a functor, we create a class (or a struct) that overloads the function
 
 Let's look at two examples of creating and using a functor. In the first example, a functor is created with a ```class```, and in the second example we use a ```struct``` to create the functor.  
 
+<!--more--> 
+
 ## Example: Create a functor with a Class
 
 ```
