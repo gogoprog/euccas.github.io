@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Casestudy | euccas.github.io]]></title>
-  <link href="http://euccas.github.io/categories/casestudy/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Case-study | euccas.github.io]]></title>
+  <link href="http://euccas.github.io/categories/case-study/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T20:00:17+08:00</updated>
+  <updated>2017-04-23T20:13:37+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -25,6 +25,8 @@
 <h1 id="design-the-ci-task">Design the CI task</h1>
 
 <p>The CI task need have the ability to analyze the files included in the commit, and decide whether the commit requires passing a check, or not. We need tell the CI task which files require passing a check through configurations.</p>
+
+<!--more-->
 
 <h2 id="configuration">Configuration</h2>
 

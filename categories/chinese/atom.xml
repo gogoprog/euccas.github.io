@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Chinese | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/chinese/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T20:00:17+08:00</updated>
+  <updated>2017-04-23T20:13:37+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -79,6 +79,8 @@
 
 <p>Jenkin可以和许多第三方工具和服务集成，实现强大又实用的功能。常见的集成方式包括使用REST API和一些Jenkins功能插件。可以实现的功能比如：由GitHub pull requests触发builds，当builds成功或失败时根据结果更新JIRA等等。</p>
 
+<!--more-->
+
 <h2 id="gerritgithubpull-requests">Gerrit和Github的pull requests</h2>
 
 <p>一些非常实用的Jenkins builds工具和服务包括：</p>
@@ -130,6 +132,8 @@
     <content type="html"><![CDATA[<p>昨晚提交了MongoDB University的培训课程 <a href="https://university.mongodb.com/courses/M101P/about">M101P: MongoDB for Developers (Python)</a> 的最后一次测试，这历时七周的课程告一段落。这个课程虽然是属于入门级，但是它覆盖了MongoDB各个方面，有不错的课程结构。短时间内，可以让开发者掌握和MongoDB有关的日常开发中所需要掌握的大部分知识和技能。</p>
 
 <p>在学习其他数据库时，也不妨参照这个结构来全面掌握。</p>
+
+<!--more-->
 
 <ul>
   <li>
@@ -203,6 +207,8 @@
 git clone &lt;repo url&gt;
 </code></p>
 
+<!--more-->
+
 <p>如果repo的默认branch设定为master branch:</p>
 
 <p><code>
@@ -263,6 +269,8 @@ bundle exec rake deploy
 <p>不同的插件可能包含有一些类似的功能，你所需要完成的事情，也不仅仅只有一个插件可以实现。这时就需要在一些功能类似的插件中选择你真正所需的。</p>
 
 <p>功能插件可能会给Jenkins service的稳定性造成预期之外的影响，并且可能增加系统的负载和每一个job运行的时间。充分考虑到这些可能的负作用，尽量避免安装你并不是真正需要的插件。</p>
+
+<!--more-->
 
 <h2 id="section-1">2. 清理旧的插件和数据</h2>
 

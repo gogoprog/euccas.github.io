@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Unittesting | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/unittesting/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T20:00:17+08:00</updated>
+  <updated>2017-04-23T20:13:37+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -21,6 +21,8 @@
     <content type="html"><![CDATA[<p>In the previous post about <a href="http://euccas.github.io/blog/20160711/start-unit-testing-in-python.html">Python Unittest</a>, I wrote about the basic steps needed for setting up unit testing for your Python program with the <code>unittest</code> module. In this post, I’ll discuss about handling the command line parameters that your program need while you’re using Python <code>unittest</code>.</p>
 
 <p>Unit testing is meant for testing basic functionality of the application. The target of <a href="https://en.wikipedia.org/wiki/Unit_testing">Unit testing</a> is expected to be each function of your program. When your program has command line arguments, ideally the unit tests should not accept arguments from the command line because unit tests are supposed to be very specific and not testing on the <a href="https://en.wikipedia.org/wiki/Integration_testing">Integration level</a> (i.e. across multiple functions in your program).</p>
+
+<!--more-->
 
 <p>So the way I use to handle the command line arguments can be summarized as:</p>
 
@@ -134,6 +136,8 @@ if __name__ == '__main__':
 <p>In this post, I’m writing about how could you do unit testing in Python with the <code>unittest</code> module.</p>
 
 <p>Python 2 (starting on version 2.1) and Python 3 now both have <code>unittest</code> in the standard library. The <code>unittest</code> module provides the unit testing framework, and it’s based on <code>JUnit</code>, which is a unit testing framework for Java.</p>
+
+<!--more-->
 
 <h1 id="what-unittest-can-do">What unittest can do</h1>
 

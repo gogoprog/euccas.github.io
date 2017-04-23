@@ -157,40 +157,12 @@
 
 <p>这只是一些例子。可以看出，使用scriptler可以方便对job的配置进行批量操作</p>
 
-<h2 id="system-groovy-build-steps">3. System Groovy build steps</h2>
-
-<ul>
-  <li>Groovy build steps 是在build中去执行system Groovy的脚本。需要注意的是，要保证Jenkins有权限执行build的全过程。</li>
-  <li>利用Groovy build steps, 可以方便地做一些类似于plugin的功能，或者作为在开发一个plugin之前的测试</li>
-  <li>通过Scriptler scripts, 可以在多个builds中重用系统脚本</li>
-</ul>
-
-<h2 id="jenkins-jobs">4. 自动生成Jenkins jobs</h2>
-
-<ul>
-  <li>使用Jenkins REST API 和 CLI，可以创建新的job或者改变已有的job</li>
-  <li>可以使用DSL来定义job甚至包含多个job的workflow</li>
-</ul>
-
-<h2 id="dslplugin">5. 一些支持DSL的Plugin</h2>
-
-<ul>
-  <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Job+DSL+Plugin">Job DSL plugin</a></li>
-  <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/DotCi+Plugin">DotCI plugin</a></li>
-  <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Plugin">Workflow plugin (Pipeline plugin)</a></li>
-</ul>
-
-<p><strong>阅读同主题内容</strong></p>
-
-<ul>
-  <li><a href="http://euccas.github.io/blog/20151210/jenkins-user-habits-1.html">高效Jenkins用户的第1个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20151215/jenkins-user-habits-2.html">高效Jenkins用户的第2个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20160523/jenkins-user-habits-3.html">高效Jenkins用户的第3个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20161010/jenkins-user-habits-4.html">高效Jenkins用户的第4个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20161216/jenkins-user-habits-5.html">高效Jenkins用户的第5个习惯</a></li>
-</ul>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/20160524/jenkins-user-habits-3.html">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -229,172 +201,12 @@
 
 <p>Here in this post, I’ll show you how to use log4r in your Ruby project.</p>
 
-<h2 id="step-1-install-gem-log4r">Step 1. Install Gem log4r</h2>
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">gem install log4r</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="step-2-include-log4r-in-your-project">Step 2: Include log4r in your project</h2>
-
-<p>One thing to note is the log4r supports configurations through YAML file, and you can define the configuration file when including the log4r.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">require 'log4r'
-</span><span class="line">require 'log4r/yamlconfigurator'
-</span><span class="line">require 'log4r/outputter/datefileoutputter'
-</span><span class="line">require 'log4r/outputter/emailoutputter'
-</span><span class="line">include Log4r
-</span><span class="line">ycfg = YamlConfigurator    # handy shorthand
-</span><span class="line">ycfg.load_yaml_file(File.dirname(__FILE__)+'/l4r.yml')</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="step-3-configure-log4r-with-a-config-file">Step 3: Configure log4r with a config file</h2>
-
-<p>You can define the logging levels, logger names, output destinations, etc. The following code shows an example of the configurations that I use.</p>
-
-<p>File name: log4r.yml</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-<span class="line-number">42</span>
-<span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-<span class="line-number">46</span>
-<span class="line-number">47</span>
-<span class="line-number">48</span>
-<span class="line-number">49</span>
-<span class="line-number">50</span>
-<span class="line-number">51</span>
-<span class="line-number">52</span>
-<span class="line-number">53</span>
-<span class="line-number">54</span>
-<span class="line-number">55</span>
-<span class="line-number">56</span>
-<span class="line-number">57</span>
-<span class="line-number">58</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">description: config file for log4r
-</span><span class="line">
-</span><span class="line">---
-</span><span class="line"># *** YAML2LOG4R ***
-</span><span class="line">log4r_config:
-</span><span class="line">  # define all pre config ...
-</span><span class="line">  pre_config:
-</span><span class="line">    global:
-</span><span class="line">      level: DEBUG
-</span><span class="line">    root  :
-</span><span class="line">      level: DEBUG
-</span><span class="line">
-</span><span class="line">  # define all loggers ...
-</span><span class="line">  loggers:
-</span><span class="line">    - name      : myproject 
-</span><span class="line">      level     : DEBUG
-</span><span class="line">      additive  : 'false'
-</span><span class="line">      trace     : 'false'
-</span><span class="line">      outputters:
-</span><span class="line">        - stderr
-</span><span class="line">        - logfile
-</span><span class="line">        - email
-</span><span class="line">
-</span><span class="line">
-</span><span class="line">  # define all outputters (incl. formatters)
-</span><span class="line">  outputters:
-</span><span class="line">    - type     : StderrOutputter
-</span><span class="line">      name     : stderr 
-</span><span class="line">      level    : INFO
-</span><span class="line">      formatter:
-</span><span class="line">        date_pattern: #'%y%m%d %H:%M:%S'
-</span><span class="line">        pattern     : '[%c] %l: %m'
-</span><span class="line">        type        : PatternFormatter
-</span><span class="line">
-</span><span class="line">    - type        : DateFileOutputter
-</span><span class="line">      name        : logfile
-</span><span class="line">      level       : DEBUG
-</span><span class="line">      date_pattern: #'%Y%m%d'
-</span><span class="line">      trunc       : 'false'
-</span><span class="line">      dirname     : "."
-</span><span class="line">      formatter   :
-</span><span class="line">        date_pattern: '%H:%M:%S'
-</span><span class="line">        pattern     : '[%c] %d %l: %m'
-</span><span class="line">        type        : PatternFormatter
-</span><span class="line">  
-</span><span class="line">    - type        : EmailOutputter
-</span><span class="line">      name        : email
-</span><span class="line">      level       : FATAL 
-</span><span class="line">      server      : &lt;server domain&gt;
-</span><span class="line">      subject     : 'Message myproject:'
-</span><span class="line">      from        : &lt;email address&gt;
-</span><span class="line">      to          : &lt;email address&gt;
-</span><span class="line">      formatter   :
-</span><span class="line">        date_pattern: #'%y%m%d %H:%M:%S'
-</span><span class="line">        pattern     : '%d %l: %m'
-</span><span class="line">        type        : PatternFormatter
-</span><span class="line">---</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="step-4-initialize-a-logger">Step 4: Initialize a logger</h2>
-
-<p>You need initialize a logger in your project first.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">logger = Log4r::Logger['myproject']</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="step-5-use-your-logger">Step 5: Use your logger</h2>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">logger.info 'My Project Starts!'
-</span><span class="line">logger.warn 'Here is a warning'
-</span><span class="line">logger.error 'Here is an error'
-</span><span class="line">logger.fatal 'Fatal error happens. Program will exit'</span></code></pre></td></tr></table></div></figure></notextile></div>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/20160519/make-logging-easy-in-ruby-with-log4r.html">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -426,15 +238,12 @@
 
   <div class="entry-content"><p>大概从18个月前开始，我开始习惯使用<a href="https://trello.com" target="_blank">Trello</a>作为project management and tracking的主要工具，也逐渐体会到Trello的特点和便利之处。总结起来，“不得不使用Trello”的理由有下面一些：</p>
 
-<ul>
-  <li>作为项目管理：无形之中的敏捷化</li>
-  <li>作为问题记录：即使数目庞多的问题也能够清晰总览，便于分类，每一个问题同时可以有自己的详细记录</li>
-  <li>自带的颜色标签和卡片aging效果非常方便呈现了项目总体和每一个task的状态</li>
-  <li>一些插件提供了更强大的项目管理功能，比如burndown，甘特图等等</li>
-  <li>最重要的特点也许是团队协同工作的便利：team members, assign task, comments</li>
-</ul>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/20160305/use-trello-for-managing-my-projects.html">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -486,60 +295,12 @@
 
 <p>分解job可以避免长时间运行的job在最后阶段出错，导致整个job需要被重新运行：多job的Build可以实现从其中任何一个子job处重新执行</p>
 
-<h2 id="jobs-1">3. 利用工具帮助分解jobs</h2>
-
-<p>混合使用Parameterized trigger, Conditional Build Step, Copy Artifact, Promoted Builds：有效，但是配置困难</p>
-
-<p>Build Pipeline plugin：可以把workflow可视化，集成手工步骤</p>
-
-<p>Workflow plugin: 用DSL定义build steps之间的关系</p>
-
-<p>Jenkins中有许多plugin和有关工具可以实现job分解</p>
-
-<h3 id="jobjenkins-plugins">有关Job分解的Jenkins Plugins</h3>
-
-<h4 id="build-pipeline-pluginhttpswikijenkins-ciorgdisplayjenkinsbuildpipelineplugin"><a href="https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin">Build Pipeline Plugin</a></h4>
-<blockquote>
-  <p>This plugin provides a Build Pipeline View of upstream and downstream connected jobs that typically form a build pipeline.  In addition, it offers the ability to define manual triggers for jobs that require intervention prior to execution, e.g. an approval process outside of Jenkins.</p>
-</blockquote>
-
-<h4 id="workflow-pluginhttpsgithubcomjenkinsciworkflow-pluginblobmasterreadmemdintroduction"><a href="https://github.com/jenkinsci/workflow-plugin/blob/master/README.md#introduction">Workflow plugin</a></h4>
-<blockquote>
-  <p>Building continuous delivery pipelines and similarly complex tasks in Jenkins using freestyle projects and traditional plugins can be awkward. You need to mix Parameterized Trigger, Copy Artifact, Promoted Builds, Conditional Build Step, and more just to express what should be a simple script. The Workflow plugin suite attempts to make it possible to directly write that script, what people often call a workflow (sometimes abbreviated flow), while integrating with Jenkins features like slaves and publishers.</p>
-</blockquote>
-
-<h4 id="parameterized-trigger-pluginhttpswikijenkins-ciorgdisplayjenkinsparameterizedtriggerplugin"><a href="https://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Trigger+Plugin">Parameterized Trigger plugin</a></h4>
-<blockquote>
-  <p>This plugin lets you trigger new builds when your build has completed, with various ways of specifying parameters for the new build.
-You can add multiple configurations: each has a list of projects to trigger, a condition for when to trigger them (based on the result of the current build), and a parameters section.</p>
-</blockquote>
-
-<h4 id="conditional-build-step-pluginhttpswikijenkins-ciorgdisplayjenkinsconditionalbuildstepplugin"><a href="https://wiki.jenkins-ci.org/display/JENKINS/Conditional+BuildStep+Plugin">Conditional Build Step plugin</a></h4>
-<blockquote>
-  <p>A buildstep wrapping any number of other buildsteps, controlling their execution based on a defined condition.</p>
-</blockquote>
-
-<h4 id="copy-artifact-pluginhttpswikijenkins-ciorgdisplayjenkinscopyartifactplugin"><a href="https://wiki.jenkins-ci.org/display/JENKINS/Copy+Artifact+Plugin">Copy Artifact plugin</a></h4>
-<blockquote>
-  <p>Adds a build step to copy artifacts from another project. The plugin lets you specify which build to copy artifacts from (e.g. the last successful/stable build, by build number, or by a build parameter). You can also control the copying process by filtering the files being copied, specifying a destination directory within the target project, etc. Click the help icon on each field to learn the details, such as selecting Maven or multiconfiguration projects or using build parameters. You can also copy from the workspace of the latest completed build of the source project, instead of its artifacts. All artifacts copied are automatically fingerprinted for you.</p>
-</blockquote>
-
-<h4 id="promoted-builds-pluginhttpswikijenkins-ciorgdisplayjenkinspromotedbuildsplugin"><a href="https://wiki.jenkins-ci.org/display/JENKINS/Promoted+Builds+Plugin">Promoted Builds plugin</a></h4>
-<blockquote>
-  <p>This plugin allows you to distinguish good builds from bad builds by introducing the notion of ‘promotion’.Put simply, a promoted build is a successful build that passed additional criteria (such as more comprehensive tests that are set up as downstream jobs.) The typical situation in which you use promotion is where you have multiple ‘test’ jobs hooked up as downstream jobs of a ‘build’ job. You’ll then configure the build job so that the build gets promoted when all the test jobs passed successfully. This allows you to keep the build job run fast (so that developers get faster feedback when a build fails), and you can still distinguish builds that are good from builds that compiled but had runtime problems.</p>
-</blockquote>
-
-<p><strong>阅读同主题内容</strong></p>
-
-<ul>
-  <li><a href="http://euccas.github.io/blog/20151210/jenkins-user-habits-1.html">高效Jenkins用户的第1个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20151215/jenkins-user-habits-2.html">高效Jenkins用户的第2个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20160523/jenkins-user-habits-3.html">高效Jenkins用户的第3个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20161010/jenkins-user-habits-4.html">高效Jenkins用户的第4个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20161216/jenkins-user-habits-5.html">高效Jenkins用户的第5个习惯</a></li>
-</ul>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/20151216/jenkins-user-habits-2.html">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -587,63 +348,12 @@ You can add multiple configurations: each has a list of projects to trigger, a c
 
 <p>新功能也许不稳定</p>
 
-<h2 id="section">3. 对升级进行测试</h2>
-
-<p>建议在测试环境中对升级和新的plugin进行测试，之后再进行production环境的升级</p>
-
-<p>建立针对plugin功能的测试</p>
-
-<p>在更大的规模进行测试</p>
-
-<p>大的改变需要至少经过几天的测试</p>
-
-<h2 id="jenkins-configuration">4. 备份Jenkins Configuration</h2>
-
-<p>建议使用<a href="https://wiki.jenkins-ci.org/display/JENKINS/thinBackup">thinBackup plugin</a></p>
-
-<p>可以通过对$JENKINS_HOME做整体备份实现有效的备份，缺点是速度慢和占用较多的存储空间</p>
-
-<p>Jenkins支持仅仅备份config files，而不需要备份所有的builds。参考<a href="https://gist.github.com/abayer/527063a4519f205efc74">这个gist</a>中的代码实现这一功能。</p>
-
-<h2 id="maven-job">5. 避免使用Maven job类型</h2>
-
-<p>Maven plugin中的Mavin job type可能存在一些问题，包括plugin support, lazy loading等等</p>
-
-<p>在大规模应用中可能会引起一些意外的问题，不建议使用</p>
-
-<h2 id="section-1">一些解释</h2>
-
-<h3 id="lts-release-1">什么是LTS Release?</h3>
-
-<p>Jenkins LTS Release: Jenkins Long-Term Support release. 类似于Ubuntu的LTS版本。</p>
-
-<p>具体说明<a href="https://wiki.jenkins-ci.org/display/JENKINS/LTS+Release+Line">在这里</a>。</p>
-
-<h3 id="jenkins-maven-jobs">关于Jenkins Maven Jobs</h3>
-
-<p>在Jenkins中可以通过两种方式build Maven project</p>
-
-<ol>
-  <li>
-    <p>使用一个 free-style project 和 Maven build step</p>
-  </li>
-  <li>
-    <p>使用一个 Maven-style project (配置job type为Mavin job type)
-推荐使用第一种方法，因为第二种方式可能会出现问题</p>
-  </li>
-</ol>
-
-<p><strong>阅读同主题内容</strong></p>
-
-<ul>
-  <li><a href="http://euccas.github.io/blog/20151210/jenkins-user-habits-1.html">高效Jenkins用户的第1个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20151215/jenkins-user-habits-2.html">高效Jenkins用户的第2个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20160523/jenkins-user-habits-3.html">高效Jenkins用户的第3个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20161010/jenkins-user-habits-4.html">高效Jenkins用户的第4个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20161216/jenkins-user-habits-5.html">高效Jenkins用户的第5个习惯</a></li>
-</ul>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/20151211/jenkins-user-habits-1.html">Read on &rarr;</a>
+    </footer>
   
 
 

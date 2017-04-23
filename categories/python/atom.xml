@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T20:00:17+08:00</updated>
+  <updated>2017-04-23T20:13:37+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -23,6 +23,8 @@
 <p>The good thing is Python provides a <a href="https://docs.python.org/3.4/library/multiprocessing.html"><code>multiprocessing</code> module</a> since Python 2.6. With the <code>multiprocessing</code> module we can spawn subprocesses and effectively avoid some of the limitations that GIL brings, on both Unix and Windows platforms.</p>
 
 <p>In this post I’ll briefly introduce <code>multiprocess</code> module and show how it can be used for parallel programming.</p>
+
+<!--more-->
 
 <h1 id="a-simple-example-of-multiprocessing">A simple example of <em>multiprocessing</em></h1>
 
@@ -166,6 +168,8 @@ pool.join()
   <li>The <code>()</code> expression returns a generator object</li>
 </ul>
 
+<!--more-->
+
 <h1 id="how-to-refactor-a-function-to-use-a-generator">How to refactor a function to use a generator</h1>
 
 <p>Functions that construct a list or another iterable and returns it can be turned into a generator by:</p>
@@ -230,6 +234,8 @@ print(list(running_mean(numbers)))</p>
 <h1 id="install-winpython">Install WinPython</h1>
 
 <p>WinPython is portable. It means that you can download WinPython from the <a href="http://winpython.sourceforge.net/">WinPython download page</a>, add it to your system PATH, and start using it without any installation.</p>
+
+<!--more-->
 
 <ul>
   <li>Unzip the downloaded WinPython Package to a local directory, eg. <code>C:\WinPython</code>.</li>
@@ -296,6 +302,8 @@ That's it! Your Python package is ready to use!
 <p>Sometimes dunder methods are also called “magic methods” because they are usually called by Python under the hood. But they are not really magical, you can define dunder methods to customize the behavior of your own classes.</p>
 
 <h1 id="examples-of-dunder-methods">Examples of Dunder Methods</h1>
+
+<!--more-->
 
 <p>In the following example, we can see three dunder methods:</p>
 
@@ -426,6 +434,8 @@ else:
     <content type="html"><![CDATA[<p>In the previous post about <a href="http://euccas.github.io/blog/20160711/start-unit-testing-in-python.html">Python Unittest</a>, I wrote about the basic steps needed for setting up unit testing for your Python program with the <code>unittest</code> module. In this post, I’ll discuss about handling the command line parameters that your program need while you’re using Python <code>unittest</code>.</p>
 
 <p>Unit testing is meant for testing basic functionality of the application. The target of <a href="https://en.wikipedia.org/wiki/Unit_testing">Unit testing</a> is expected to be each function of your program. When your program has command line arguments, ideally the unit tests should not accept arguments from the command line because unit tests are supposed to be very specific and not testing on the <a href="https://en.wikipedia.org/wiki/Integration_testing">Integration level</a> (i.e. across multiple functions in your program).</p>
+
+<!--more-->
 
 <p>So the way I use to handle the command line arguments can be summarized as:</p>
 

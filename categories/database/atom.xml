@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Database | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/database/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T20:00:17+08:00</updated>
+  <updated>2017-04-23T20:13:37+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -29,6 +29,8 @@ FATAL:  terminating connection due to administrator command (PG::AdminShutdown) 
       This probably means the server terminated abnormally
       before or while processing the request.
 </code></p>
+
+<!--more-->
 
 <p>The PG::AdminShutdown error could be caused by database server receiving SIGTERM/SIGINT/SIGQUIT or kill command on the connection process. Each system signal shut down server processes in different manners, see the <a href="https://www.pgadmin.org/docs/1.4/pg/postmaster-shutdown.html">pgadmin document</a> to know the details.</p>
 
@@ -55,6 +57,8 @@ This probably means the server terminated abnormally before or while processing 
     <content type="html"><![CDATA[<p>昨晚提交了MongoDB University的培训课程 <a href="https://university.mongodb.com/courses/M101P/about">M101P: MongoDB for Developers (Python)</a> 的最后一次测试，这历时七周的课程告一段落。这个课程虽然是属于入门级，但是它覆盖了MongoDB各个方面，有不错的课程结构。短时间内，可以让开发者掌握和MongoDB有关的日常开发中所需要掌握的大部分知识和技能。</p>
 
 <p>在学习其他数据库时，也不妨参照这个结构来全面掌握。</p>
+
+<!--more-->
 
 <ul>
   <li>

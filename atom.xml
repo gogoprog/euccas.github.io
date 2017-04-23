@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T20:00:17+08:00</updated>
+  <updated>2017-04-23T20:13:37+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -789,7 +789,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Now Commenting on Posts Is Enabled]]></title>
+    <title type="html"><![CDATA[Enabled Blog Posts Commenting]]></title>
     <link href="http://euccas.github.io/20170117/now-commenting-on-posts-is-enabled.html"/>
     <updated>2017-01-17T15:39:06+08:00</updated>
     <id>http://euccas.github.io/20170117/now-commenting-on-posts-is-enabled</id>
@@ -1047,6 +1047,8 @@
 
 <p>In this post I’ll briefly introduce <code>multiprocess</code> module and show how it can be used for parallel programming.</p>
 
+<!--more-->
+
 <h1 id="a-simple-example-of-multiprocessing">A simple example of <em>multiprocessing</em></h1>
 
 <p>In the following example, we use <code>multiprocessing</code> module to spawn a child process from a parent process using a <code>Process</code> object.</p>
@@ -1222,9 +1224,11 @@
     <id>http://euccas.github.io/20161225/levels-of-design</id>
     <content type="html"><![CDATA[<p>Recently I’m taking a course <a href="https://www.coursera.org/learn/algorithmic-toolbox/home/welcome">“Algorithm Toolbox”</a> on Coursera. This course provides me a good chance to review and enhance my knowledge in the fundamental algorithms, which usually would help on achieving better system design. This morning I came across one slide of this course and thought it could be very useful. Sharing it here.</p>
 
-<p><img class="center" src="http://euccas.github.io/images/post_images/20161224-levels-of-design-1.png" width="600" /></p>
+<p><img class="center" src="http://euccas.github.io/images/post_images/2016/20161224-levels-of-design-1.png" width="600" /></p>
 
 <p>It’s important to keep the <strong>levels of (algorithm) design</strong> in mind when solving a problem.</p>
+
+<!--more-->
 
 <h1 id="level-1-naive-algorithm">Level 1: Naive Algorithm</h1>
 
@@ -1264,6 +1268,8 @@
   <li>The <code>yield</code> keyword makes the function yields control back to the calling function on every iteration</li>
   <li>The <code>()</code> expression returns a generator object</li>
 </ul>
+
+<!--more-->
 
 <h1 id="how-to-refactor-a-function-to-use-a-generator">How to refactor a function to use a generator</h1>
 
@@ -1348,6 +1354,8 @@ FATAL:  terminating connection due to administrator command (PG::AdminShutdown) 
       before or while processing the request.
 </code></p>
 
+<!--more-->
+
 <p>The PG::AdminShutdown error could be caused by database server receiving SIGTERM/SIGINT/SIGQUIT or kill command on the connection process. Each system signal shut down server processes in different manners, see the <a href="https://www.pgadmin.org/docs/1.4/pg/postmaster-shutdown.html">pgadmin document</a> to know the details.</p>
 
 <p>When you hit the PG::AdminShutdown error, you’ll like to check if the database server gets restarted and if the server resumes to the normal state.</p>
@@ -1375,6 +1383,8 @@ This probably means the server terminated abnormally before or while processing 
 <h1 id="section">习惯 5: 集成第三方工具和服务</h1>
 
 <p>Jenkin可以和许多第三方工具和服务集成，实现强大又实用的功能。常见的集成方式包括使用REST API和一些Jenkins功能插件。可以实现的功能比如：由GitHub pull requests触发builds，当builds成功或失败时根据结果更新JIRA等等。</p>
+
+<!--more-->
 
 <h2 id="gerritgithubpull-requests">Gerrit和Github的pull requests</h2>
 
@@ -1427,6 +1437,8 @@ This probably means the server terminated abnormally before or while processing 
     <content type="html"><![CDATA[<p>昨晚提交了MongoDB University的培训课程 <a href="https://university.mongodb.com/courses/M101P/about">M101P: MongoDB for Developers (Python)</a> 的最后一次测试，这历时七周的课程告一段落。这个课程虽然是属于入门级，但是它覆盖了MongoDB各个方面，有不错的课程结构。短时间内，可以让开发者掌握和MongoDB有关的日常开发中所需要掌握的大部分知识和技能。</p>
 
 <p>在学习其他数据库时，也不妨参照这个结构来全面掌握。</p>
+
+<!--more-->
 
 <ul>
   <li>
@@ -1499,6 +1511,8 @@ This probably means the server terminated abnormally before or while processing 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">git clone &lt;repo url&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<!--more-->
+
 <p>如果repo的默认branch设定为master branch:</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
@@ -1553,6 +1567,8 @@ This probably means the server terminated abnormally before or while processing 
 <h1 id="install-winpython">Install WinPython</h1>
 
 <p>WinPython is portable. It means that you can download WinPython from the <a href="http://winpython.sourceforge.net/">WinPython download page</a>, add it to your system PATH, and start using it without any installation.</p>
+
+<!--more-->
 
 <ul>
   <li>Unzip the downloaded WinPython Package to a local directory, eg. <code>C:\WinPython</code>.</li>
@@ -1616,6 +1632,8 @@ For example:</p>
 <p>不同的插件可能包含有一些类似的功能，你所需要完成的事情，也不仅仅只有一个插件可以实现。这时就需要在一些功能类似的插件中选择你真正所需的。</p>
 
 <p>功能插件可能会给Jenkins service的稳定性造成预期之外的影响，并且可能增加系统的负载和每一个job运行的时间。充分考虑到这些可能的负作用，尽量避免安装你并不是真正需要的插件。</p>
+
+<!--more-->
 
 <h2 id="section-1">2. 清理旧的插件和数据</h2>
 
@@ -1729,6 +1747,8 @@ For example:</p>
 
 <p><strong>The Uber Challenge of Cross-Application/Cross-Device Testing</strong></p>
 
+<!--more-->
+
 <ul>
   <li>Presenter: Apple Chow (Uber), Bian Jiang (Uber)</li>
   <li><a href="https://www.youtube.com/watch?v=p6gsssppeT0&amp;list=PLSIUOFhnxEiCWGsN9t5A-XOhRbmz54IS1&amp;index=3">Video</a></li>
@@ -1765,6 +1785,8 @@ For example:</p>
 <p>Sometimes dunder methods are also called “magic methods” because they are usually called by Python under the hood. But they are not really magical, you can define dunder methods to customize the behavior of your own classes.</p>
 
 <h1 id="examples-of-dunder-methods">Examples of Dunder Methods</h1>
+
+<!--more-->
 
 <p>In the following example, we can see three dunder methods:</p>
 
@@ -1931,6 +1953,8 @@ For example:</p>
 <h1 id="design-the-ci-task">Design the CI task</h1>
 
 <p>The CI task need have the ability to analyze the files included in the commit, and decide whether the commit requires passing a check, or not. We need tell the CI task which files require passing a check through configurations.</p>
+
+<!--more-->
 
 <h2 id="configuration">Configuration</h2>
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Productdesign | euccas.github.io]]></title>
-  <link href="http://euccas.github.io/categories/productdesign/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Product-design | euccas.github.io]]></title>
+  <link href="http://euccas.github.io/categories/product-design/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T20:00:17+08:00</updated>
+  <updated>2017-04-23T20:13:37+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>

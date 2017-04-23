@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/rails/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T20:00:17+08:00</updated>
+  <updated>2017-04-23T20:13:37+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -23,6 +23,8 @@
 <h1 id="create-a-database-connection">Create a database connection</h1>
 
 <p>If the database is not declared in Rails app’s <code>config/database.yml</code> file, you won’t be able to use the <code>establish_connection</code> method in ActiveRecord. But you can still use the <code>pg</code> gem to directly connect to the database.</p>
+
+<!--more-->
 
 <p>```
 # page_controller.rb</p>

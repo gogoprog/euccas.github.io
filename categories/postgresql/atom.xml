@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Postgresql | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/postgresql/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T20:00:17+08:00</updated>
+  <updated>2017-04-23T20:13:37+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -29,6 +29,8 @@ FATAL:  terminating connection due to administrator command (PG::AdminShutdown) 
       This probably means the server terminated abnormally
       before or while processing the request.
 </code></p>
+
+<!--more-->
 
 <p>The PG::AdminShutdown error could be caused by database server receiving SIGTERM/SIGINT/SIGQUIT or kill command on the connection process. Each system signal shut down server processes in different manners, see the <a href="https://www.pgadmin.org/docs/1.4/pg/postmaster-shutdown.html">pgadmin document</a> to know the details.</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/linux/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T20:00:17+08:00</updated>
+  <updated>2017-04-23T20:13:37+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -27,6 +27,8 @@
 <p>In a system where screen is installed, type “screen” in a terminal will invoke it.</p>
 
 <p>If screen isn’t installed in your system, Google “install screen in Linux” to find the solution.</p>
+
+<!--more-->
 
 <p>Screen can also has a <strong>session name</strong> when get started:</p>
 

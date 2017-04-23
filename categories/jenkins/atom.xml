@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jenkins | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/jenkins/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T20:00:17+08:00</updated>
+  <updated>2017-04-23T20:13:37+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -23,6 +23,8 @@
 <h1 id="section">习惯 5: 集成第三方工具和服务</h1>
 
 <p>Jenkin可以和许多第三方工具和服务集成，实现强大又实用的功能。常见的集成方式包括使用REST API和一些Jenkins功能插件。可以实现的功能比如：由GitHub pull requests触发builds，当builds成功或失败时根据结果更新JIRA等等。</p>
+
+<!--more-->
 
 <h2 id="gerritgithubpull-requests">Gerrit和Github的pull requests</h2>
 
@@ -87,6 +89,8 @@
 <p>不同的插件可能包含有一些类似的功能，你所需要完成的事情，也不仅仅只有一个插件可以实现。这时就需要在一些功能类似的插件中选择你真正所需的。</p>
 
 <p>功能插件可能会给Jenkins service的稳定性造成预期之外的影响，并且可能增加系统的负载和每一个job运行的时间。充分考虑到这些可能的负作用，尽量避免安装你并不是真正需要的插件。</p>
+
+<!--more-->
 
 <h2 id="section-1">2. 清理旧的插件和数据</h2>
 
@@ -214,6 +218,8 @@
 
 <p>这只是一些例子。可以看出，使用scriptler可以方便对job的配置进行批量操作</p>
 
+<!--more-->
+
 <h2 id="system-groovy-build-steps">3. System Groovy build steps</h2>
 
 <ul>
@@ -275,6 +281,8 @@
 <p>多job的Build可以方便地在不同的project, release等等中重用</p>
 
 <p>分解job可以避免长时间运行的job在最后阶段出错，导致整个job需要被重新运行：多job的Build可以实现从其中任何一个子job处重新执行</p>
+
+<!--more-->
 
 <h2 id="jobs-1">3. 利用工具帮助分解jobs</h2>
 
@@ -353,6 +361,8 @@ You can add multiple configurations: each has a list of projects to trigger, a c
 <p>不是所有的升级都会保证向前兼容。比如最近Extended Email Plugin的升级，就造成之前的recipient/trigger配置不可用</p>
 
 <p>新功能也许不稳定</p>
+
+<!--more-->
 
 <h2 id="section">3. 对升级进行测试</h2>
 

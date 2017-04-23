@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Testing | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/testing/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T20:00:17+08:00</updated>
+  <updated>2017-04-23T20:13:37+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -23,6 +23,8 @@
 <p>Get it started! Day#1 topic is:</p>
 
 <p><strong>The Uber Challenge of Cross-Application/Cross-Device Testing</strong></p>
+
+<!--more-->
 
 <ul>
   <li>Presenter: Apple Chow (Uber), Bian Jiang (Uber)</li>

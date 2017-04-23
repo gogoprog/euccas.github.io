@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/octopress/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T20:00:17+08:00</updated>
+  <updated>2017-04-23T20:13:37+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Now Commenting on Posts Is Enabled]]></title>
+    <title type="html"><![CDATA[Enabled Blog Posts Commenting]]></title>
     <link href="http://euccas.github.io/20170117/now-commenting-on-posts-is-enabled.html"/>
     <updated>2017-01-17T15:39:06+08:00</updated>
     <id>http://euccas.github.io/20170117/now-commenting-on-posts-is-enabled</id>
@@ -48,6 +48,8 @@
 <p><code>
 git clone &lt;repo url&gt;
 </code></p>
+
+<!--more-->
 
 <p>如果repo的默认branch设定为master branch:</p>
 
