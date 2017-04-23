@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 产品设计 | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/chan-pin-she-ji/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T14:50:59+08:00</updated>
+  <updated>2017-04-23T14:55:27+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -28,6 +28,8 @@
 <p>最近几个月来微信最引人注目的功能变化，无疑是“微信小程序”的推出和初步推广。微信小程序，英文版名称为Mini Program，其实是微信推出的类似于React和Weex的以Javascript为基础的程序框架。微信小程序为开发者提供了各种UI组件和调用底层的API。通过小程序实现的App，无需安装就可以在微信平台使用。</p>
 
 <p>微信小程序的入口，设置在微信底部4个固定Tab之一的”发现“菜单中。从功能上来看，微信小程序的入口类似于Apple App Store，但它的设计和App Store完全不同。下面是一些比较。</p>
+
+<!--more-->
 
 <h1 id="section">入口主界面</h1>
 
