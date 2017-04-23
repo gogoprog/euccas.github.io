@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-23T20:13:37+08:00</updated>
+  <updated>2017-04-23T20:17:14+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -428,6 +428,8 @@ while (cnt &lt; maxcnt)
 <h1 id="create-and-use-functors">Create and use functors</h1>
 
 <p>Let’s look at two examples of creating and using a functor. In the first example, a functor is created with a <code>class</code>, and in the second example we use a <code>struct</code> to create the functor.</p>
+
+<!--more-->
 
 <h2 id="example-create-a-functor-with-a-class">Example: Create a functor with a Class</h2>
 
