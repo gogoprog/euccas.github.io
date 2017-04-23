@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Postgresql | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/postgresql/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-02-27T23:09:55-08:00</updated>
+  <updated>2017-04-23T14:41:34+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[PostgreSQL: Understand PG Errors]]></title>
-    <link href="http://euccas.github.io/20161217/postgresql-understand-pg-errors.html"/>
-    <updated>2016-12-17T09:06:21-08:00</updated>
-    <id>http://euccas.github.io/20161217/postgresql-understand-pg-errors</id>
+    <link href="http://euccas.github.io/20161218/postgresql-understand-pg-errors.html"/>
+    <updated>2016-12-18T01:06:21+08:00</updated>
+    <id>http://euccas.github.io/20161218/postgresql-understand-pg-errors</id>
     <content type="html"><![CDATA[<p>When using Ruby Gem <code>pg</code> and establish database connections to a PostgreSQL database, you’ll see PG errors when the database connection becomes problematic. In my experience, two typical PG errors are <code>PG::AdminShutdown</code> and <code>PG::UnableToSend</code>.</p>
 
 <h1 id="error-pgadminshutdown">Error PG::AdminShutdown</h1>

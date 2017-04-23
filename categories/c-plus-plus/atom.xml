@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-02-27T23:09:55-08:00</updated>
+  <updated>2017-04-23T14:41:34+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Effective Traditional C++ (3): String]]></title>
-    <link href="http://euccas.github.io/20170227/effective-traditional-c-plus-plus-03-string.html"/>
-    <updated>2017-02-27T20:39:46-08:00</updated>
-    <id>http://euccas.github.io/20170227/effective-traditional-c-plus-plus-03-string</id>
+    <link href="http://euccas.github.io/20170228/effective-traditional-c-plus-plus-03-string.html"/>
+    <updated>2017-02-28T12:39:46+08:00</updated>
+    <id>http://euccas.github.io/20170228/effective-traditional-c-plus-plus-03-string</id>
     <content type="html"><![CDATA[<p>Recently I spent a whole lot of time on file compression and decompression with zlib. Thought I’d better write something about it. But before that, let me finish the series of “Effective Traditional C++”. Today I’ll write about Strings in C++.</p>
 
 <p>Two types of String are available in C++: C-Strings (C-style Strings), and STL Strings.</p>
@@ -148,9 +148,9 @@ cout &lt;&lt; endl;
   
   <entry>
     <title type="html"><![CDATA[Effective Traditional C++ (2): Pointer and Reference]]></title>
-    <link href="http://euccas.github.io/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html"/>
-    <updated>2017-02-05T22:18:59-08:00</updated>
-    <id>http://euccas.github.io/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference</id>
+    <link href="http://euccas.github.io/20170206/effective-traditional-c-plus-plus-02-pointer-and-reference.html"/>
+    <updated>2017-02-06T14:18:59+08:00</updated>
+    <id>http://euccas.github.io/20170206/effective-traditional-c-plus-plus-02-pointer-and-reference</id>
     <content type="html"><![CDATA[<p>Pointers and references are two fundamental data types in C++. They are useful, common and somewhat dangerous. Using them correctly, they could greatly improve the efficiency and performance of your program. On the other hand, using them incorrectly could lead to many problems such as memory leaks and buffer overflow.</p>
 
 <h1 id="pointers">Pointers</h1>
@@ -305,9 +305,9 @@ const int &amp; f(const int &amp; x) {
   
   <entry>
     <title type="html"><![CDATA[Effective Traditional C++ (1): Qualifiers]]></title>
-    <link href="http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers.html"/>
-    <updated>2017-01-30T21:41:11-08:00</updated>
-    <id>http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers</id>
+    <link href="http://euccas.github.io/20170131/effective-traditional-c-plus-plus-01-qualifiers.html"/>
+    <updated>2017-01-31T13:41:11+08:00</updated>
+    <id>http://euccas.github.io/20170131/effective-traditional-c-plus-plus-01-qualifiers</id>
     <content type="html"><![CDATA[<p>Recently I’m doing a review on C++ programming language. During the process, I found a few topics which are worth paying more attention to. I’ll write several posts about the related C++ tips and tactics. These topics are not specially for C++ 11 or 14, I therefore name this series of posts as “Effective Traditional C++”.</p>
 
 <p>The first topic I’ll write about here is: <strong>Qualifiers</strong></p>
@@ -412,9 +412,9 @@ while (cnt &lt; maxcnt)
   
   <entry>
     <title type="html"><![CDATA[C++ Functors]]></title>
-    <link href="http://euccas.github.io/20170115/c-plus-plus-functors.html"/>
-    <updated>2017-01-15T20:20:07-08:00</updated>
-    <id>http://euccas.github.io/20170115/c-plus-plus-functors</id>
+    <link href="http://euccas.github.io/20170116/c-plus-plus-functors.html"/>
+    <updated>2017-01-16T12:20:07+08:00</updated>
+    <id>http://euccas.github.io/20170116/c-plus-plus-functors</id>
     <content type="html"><![CDATA[<p>A <strong>functor</strong> is a powerful C++ entity that everyone who wants to master C++ needs to know. A functor, which is short for “<strong>function object</strong>”, is a C++ class that acts like a function. Functors can be called using the familiar function call syntax, and can yield values and accept parameters just like regular functions.</p>
 
 <p>To create a functor, we create a class (or a struct) that overloads the function <code>operator()</code>. Note here the function is called <code>operator()</code>, and it’s not the <code>operator</code> function, i.e. <code>()</code>. We then create an instance of this class (or struct) to use the created functor.</p>

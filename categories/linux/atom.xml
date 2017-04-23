@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/linux/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-02-27T23:09:55-08:00</updated>
+  <updated>2017-04-23T14:41:34+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[The Elements of Linux Screen]]></title>
-    <link href="http://euccas.github.io/20140531/the-elements-of-linux-screen.html"/>
-    <updated>2014-05-31T14:51:54-07:00</updated>
-    <id>http://euccas.github.io/20140531/the-elements-of-linux-screen</id>
+    <link href="http://euccas.github.io/20140601/the-elements-of-linux-screen.html"/>
+    <updated>2014-06-01T05:51:54+08:00</updated>
+    <id>http://euccas.github.io/20140601/the-elements-of-linux-screen</id>
     <content type="html"><![CDATA[<p>The Element of Linux Screen</p>
 
 <p><a href="http://aperiodic.net/screen/start">Linux Screen</a> is a tool installed in Linux system with which you can manage multiple interactive shell processes. With Screen, you can have multiple shells in the same window. You can detach shell processes and attach them when you log into the system from other sessions. With Screen, you don’t need worry about losing your half-way tasks when the terminal exit. I use the Screen on a daily basis, and here I write down the commands and usages that are most commonly used in my everyday work.</p>

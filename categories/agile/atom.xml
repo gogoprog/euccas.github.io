@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Agile | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/agile/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-02-27T23:09:55-08:00</updated>
+  <updated>2017-04-23T14:41:34+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[用Trello做项目管理初体验]]></title>
-    <link href="http://euccas.github.io/20160304/use-trello-for-managing-my-projects.html"/>
-    <updated>2016-03-04T21:09:07-08:00</updated>
-    <id>http://euccas.github.io/20160304/use-trello-for-managing-my-projects</id>
+    <link href="http://euccas.github.io/20160305/use-trello-for-managing-my-projects.html"/>
+    <updated>2016-03-05T13:09:07+08:00</updated>
+    <id>http://euccas.github.io/20160305/use-trello-for-managing-my-projects</id>
     <content type="html"><![CDATA[<p>大概从18个月前开始，我开始习惯使用<a href="https://trello.com" target="_blank">Trello</a>作为project management and tracking的主要工具，也逐渐体会到Trello的特点和便利之处。总结起来，“不得不使用Trello”的理由有下面一些：</p>
 
 <ul>

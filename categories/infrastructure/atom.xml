@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Infrastructure | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/infrastructure/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-02-27T23:09:55-08:00</updated>
+  <updated>2017-04-23T14:41:34+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[A List of SoC Design and Verification Infrastructure Needs - Tools/Automation Flows (2013)]]></title>
-    <link href="http://euccas.github.io/20170212/a-list-of-soc-design-and-verification-infrastructure-needs.html"/>
-    <updated>2017-02-12T15:53:19-08:00</updated>
-    <id>http://euccas.github.io/20170212/a-list-of-soc-design-and-verification-infrastructure-needs</id>
+    <link href="http://euccas.github.io/20170213/a-list-of-soc-design-and-verification-infrastructure-needs.html"/>
+    <updated>2017-02-13T07:53:19+08:00</updated>
+    <id>http://euccas.github.io/20170213/a-list-of-soc-design-and-verification-infrastructure-needs</id>
     <content type="html"><![CDATA[<p><em>This post was written in 2013, when I thought it was necessary to summarize infrastructure tools and flows needed in SoC design and verification, according to all my experience. Today when I checked on my old notes I found this one and would like to share it here. Later on I’ll update and expand this list according to my latest experience and knowledge in engineering tools and infrastructure for software and hardware development.</em></p>
 
 <p>System-on-Chip design and verification process is a complicated one. Unlike the world of Web and Internet, the design and development of hardware products have higher risk and lower tolerance to any mistakes. SoC design and verification process requires collaborations from multiple teams and vendors. Lots of hard decisions to make. Lots of trade-offs to consider. Moreover, the nonrecurring-engineering (NRE) charge makes sufficient and solid verification a must with limited time and resource. Tools and automated flows are an essential part of any design house.</p>
@@ -184,9 +184,9 @@
   
   <entry>
     <title type="html"><![CDATA[GTAC: The Uber Challenge of Cross-Application Testing]]></title>
-    <link href="http://euccas.github.io/20160928/the-uber-challenge-of-cross-application-testinng.html"/>
-    <updated>2016-09-28T23:17:30-07:00</updated>
-    <id>http://euccas.github.io/20160928/the-uber-challenge-of-cross-application-testinng</id>
+    <link href="http://euccas.github.io/20160929/the-uber-challenge-of-cross-application-testinng.html"/>
+    <updated>2016-09-29T14:17:30+08:00</updated>
+    <id>http://euccas.github.io/20160929/the-uber-challenge-of-cross-application-testinng</id>
     <content type="html"><![CDATA[<p>Inspired by Matt Cutts’ TED talk: <a href="https://www.ted.com/talks/matt_cutts_try_something_new_for_30_days?language=en">Try something new for 30 days</a>, I’m starting a “30 Days of GTAC” project. Google’s Test Automation Conference <a href="https://developers.google.com/google-test-automation-conference/">GTAC</a> is an annual test automation conference which brings together engineers from industry and academia to discuss advances in test automation and related engineering tools. In my “30 Days of GTAC” project, I’ll review the topics presented on GTAC. My goal is having a better and deeper understanding in modern testing technologies, methodologies, strategies, and practices.</p>
 
 <p>Get it started! Day#1 topic is:</p>

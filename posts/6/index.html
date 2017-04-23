@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="Log4r is a Ruby gem that features a heirachical logging system of any number of levels, custom level names, multiple output destinations per log &hellip;">
+  <meta name="description" content="本文内容部分来源于Andrew Bayer发布在SlideShare上的 7 habits of highly productive Jenkins Users (2014 Edition). 习惯 3: 让Jenkins任务自动化 1. Script Console 和 Scriptler 插件 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -118,7 +118,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/20160518/make-logging-easy-in-ruby-with-log4r.html">Make Logging Easy in Ruby With Log4r</a></h1>
+      <h1 class="entry-title"><a href="/20160524/jenkins-user-habits-3.html">高效Jenkins用户的第3个习惯</a></h1>
     
     
       <p class="meta">
@@ -127,9 +127,92 @@
 
 
 
-<time class='entry-date' datetime='2016-05-18T16:18:07-07:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>4:18 pm</span></time>
+<time class='entry-date' datetime='2016-05-24T11:54:36+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>11:54 am</span></time>
         
-         | <a href="/20160518/make-logging-easy-in-ruby-with-log4r.html#disqus_thread">Comments</a>
+         | <a href="/20160524/jenkins-user-habits-3.html#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
+
+<h1 id="jenkins">习惯 3: 让Jenkins任务自动化</h1>
+
+<h2 id="script-console--scriptler-">1. Script Console 和 Scriptler 插件</h2>
+
+<p>使用(Scriptler插件)[https://wiki.jenkins-ci.org/display/JENKINS/Scriptler+Plugin]，保存和重用Groovy脚本</p>
+
+<h2 id="scriptler">2. 一些Scriptler可以做的事情的例子</h2>
+
+<ul>
+  <li>通过匹配，控制一些job的开关 (enable, disable)</li>
+  <li>清除build queue</li>
+  <li>为所有的jobs设置log rotation/discard old builds等等配置参数：如果采用手工的方法，需要分别对每一个job进行配置，步骤繁琐</li>
+  <li>对所有的jobs设置取消夜晚时间的SCM Polling: 这个功能其实就是批量设置jobs schedule</li>
+  <li>对所有jobs执行log rotator</li>
+</ul>
+
+<p>这只是一些例子。可以看出，使用scriptler可以方便对job的配置进行批量操作</p>
+
+<h2 id="system-groovy-build-steps">3. System Groovy build steps</h2>
+
+<ul>
+  <li>Groovy build steps 是在build中去执行system Groovy的脚本。需要注意的是，要保证Jenkins有权限执行build的全过程。</li>
+  <li>利用Groovy build steps, 可以方便地做一些类似于plugin的功能，或者作为在开发一个plugin之前的测试</li>
+  <li>通过Scriptler scripts, 可以在多个builds中重用系统脚本</li>
+</ul>
+
+<h2 id="jenkins-jobs">4. 自动生成Jenkins jobs</h2>
+
+<ul>
+  <li>使用Jenkins REST API 和 CLI，可以创建新的job或者改变已有的job</li>
+  <li>可以使用DSL来定义job甚至包含多个job的workflow</li>
+</ul>
+
+<h2 id="dslplugin">5. 一些支持DSL的Plugin</h2>
+
+<ul>
+  <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Job+DSL+Plugin">Job DSL plugin</a></li>
+  <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/DotCi+Plugin">DotCI plugin</a></li>
+  <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Pipeline+Plugin">Workflow plugin (Pipeline plugin)</a></li>
+</ul>
+
+<p><strong>阅读同主题内容</strong></p>
+
+<ul>
+  <li><a href="http://euccas.github.io/blog/20151210/jenkins-user-habits-1.html">高效Jenkins用户的第1个习惯</a></li>
+  <li><a href="http://euccas.github.io/blog/20151215/jenkins-user-habits-2.html">高效Jenkins用户的第2个习惯</a></li>
+  <li><a href="http://euccas.github.io/blog/20160523/jenkins-user-habits-3.html">高效Jenkins用户的第3个习惯</a></li>
+  <li><a href="http://euccas.github.io/blog/20161010/jenkins-user-habits-4.html">高效Jenkins用户的第4个习惯</a></li>
+  <li><a href="http://euccas.github.io/blog/20161216/jenkins-user-habits-5.html">高效Jenkins用户的第5个习惯</a></li>
+</ul>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/20160519/make-logging-easy-in-ruby-with-log4r.html">Make Logging Easy in Ruby With Log4r</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-05-19T07:18:07+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>7:18 am</span></time>
+        
+         | <a href="/20160519/make-logging-easy-in-ruby-with-log4r.html#disqus_thread">Comments</a>
         
         
       </p>
@@ -322,7 +405,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/20160304/use-trello-for-managing-my-projects.html">用Trello做项目管理初体验</a></h1>
+      <h1 class="entry-title"><a href="/20160305/use-trello-for-managing-my-projects.html">用Trello做项目管理初体验</a></h1>
     
     
       <p class="meta">
@@ -331,9 +414,9 @@
 
 
 
-<time class='entry-date' datetime='2016-03-04T21:09:07-08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:09 pm</span></time>
+<time class='entry-date' datetime='2016-03-05T13:09:07+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>1:09 pm</span></time>
         
-         | <a href="/20160304/use-trello-for-managing-my-projects.html#disqus_thread">Comments</a>
+         | <a href="/20160305/use-trello-for-managing-my-projects.html#disqus_thread">Comments</a>
         
         
       </p>
@@ -362,7 +445,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/20151215/jenkins-user-habits-2.html">高效Jenkins用户的第2个习惯</a></h1>
+      <h1 class="entry-title"><a href="/20151216/jenkins-user-habits-2.html">高效Jenkins用户的第2个习惯</a></h1>
     
     
       <p class="meta">
@@ -371,9 +454,9 @@
 
 
 
-<time class='entry-date' datetime='2015-12-15T20:15:38-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:15 pm</span></time>
+<time class='entry-date' datetime='2015-12-16T12:15:38+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>12:15 pm</span></time>
         
-         | <a href="/20151215/jenkins-user-habits-2.html#disqus_thread">Comments</a>
+         | <a href="/20151216/jenkins-user-habits-2.html#disqus_thread">Comments</a>
         
         
       </p>
@@ -467,7 +550,7 @@ You can add multiple configurations: each has a list of projects to trigger, a c
       
   <header>
     
-      <h1 class="entry-title"><a href="/20151210/jenkins-user-habits-1.html">高效Jenkins用户的第1个习惯</a></h1>
+      <h1 class="entry-title"><a href="/20151211/jenkins-user-habits-1.html">高效Jenkins用户的第1个习惯</a></h1>
     
     
       <p class="meta">
@@ -476,9 +559,9 @@ You can add multiple configurations: each has a list of projects to trigger, a c
 
 
 
-<time class='entry-date' datetime='2015-12-10T19:32:57-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>7:32 pm</span></time>
+<time class='entry-date' datetime='2015-12-11T11:32:57+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:32 am</span></time>
         
-         | <a href="/20151210/jenkins-user-habits-1.html#disqus_thread">Comments</a>
+         | <a href="/20151211/jenkins-user-habits-1.html#disqus_thread">Comments</a>
         
         
       </p>
@@ -566,124 +649,9 @@ You can add multiple configurations: each has a list of projects to trigger, a c
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/20140531/the-elements-of-linux-screen.html">The Elements of Linux Screen</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-05-31T14:51:54-07:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>2:51 pm</span></time>
-        
-         | <a href="/20140531/the-elements-of-linux-screen.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The Element of Linux Screen</p>
-
-<p><a href="http://aperiodic.net/screen/start">Linux Screen</a> is a tool installed in Linux system with which you can manage multiple interactive shell processes. With Screen, you can have multiple shells in the same window. You can detach shell processes and attach them when you log into the system from other sessions. With Screen, you don’t need worry about losing your half-way tasks when the terminal exit. I use the Screen on a daily basis, and here I write down the commands and usages that are most commonly used in my everyday work.</p>
-
-<h1 id="start-screen">Start Screen</h1>
-
-<p>In a system where screen is installed, type “screen” in a terminal will invoke it.</p>
-
-<p>If screen isn’t installed in your system, Google “install screen in Linux” to find the solution.</p>
-
-<p>Screen can also has a <strong>session name</strong> when get started:</p>
-
-<p><code>screen -S</code></p>
-
-<p>If no session name is specified, screen will use the default Shell name as the session name.</p>
-
-<p>Example:</p>
-
-<pre><code>Num  Name
-0	bash
-1	bash
-</code></pre>
-
-<h1 id="do-some-configurations">Do some configurations</h1>
-<p>Screen uses a configuration file “~/.screenrc”. It could be empty if there is no customized configurations.</p>
-
-<p>You can skip this .screenrc config and use everything set as default by Screen. It will be fine most of the time. However if you use <strong>Emacs</strong>, you might need <strong>change the default command key</strong> used by Screen in the .screenrc file. Here is the why and how.</p>
-
-<p>Command key in Screen means the key input that issues the commands to Screen instead of to Linux shell.
-By default, the Screen command key is <code>Ctrl+A</code> (C-A).</p>
-
-<pre><code>C-A ? : show the key binning used by Screen
-</code></pre>
-
-<p>Emacs also uses C-A as the command key, so you may face the command key conflict when using Emacs in Screen. To make sure the command key work properly when use Screen and Emacs together, change the command key of Screen in .screenrc to be a command that not used by Emacs.</p>
-
-<p>Some examples:</p>
-
-<pre><code>~/.screenrc$
-
-escape ^L^L   #use Ctrl+L
-escape ^^^^   #use Ctrl+^
-escape ^]^]   #use Ctrl+]
-</code></pre>
-
-<p>Note the first “^” means command key, the second “^” means literal insert key.</p>
-
-<p>You can also set the default caption names when you have multiple shells in one screen</p>
-
-<pre><code>~/.screenrc$
-
-caption always "%{= kw}%-w%{= BW}%n %t%{-}%+w %-= @%H - %LD %d %LM - %c"
-</code></pre>
-
-<h1 id="common-screen-commands">Common Screen Commands</h1>
-
-<h2 id="from-linux-shell">From Linux Shell</h2>
-
-<pre><code>screen  	# start a screen
-screen -S   # start a screen with a session name
-screen -ls  # list current screens
-screen -d  	# detach the current screen
-screen -r  	# re-attach the screen that was attached
-</code></pre>
-
-<h2 id="from-screen">From Screen</h2>
-
-<pre><code>C-a " 		# list all interactive shells
-C-a c  		# create a new interactive shell (window)
-C-a k  		# kill the current window
-C-a n (or ) # switch to the next shell window
-C-a p (or )	# switch to the previous shell window
-C-a shift-A  # rename current window
-C-a S  		# split display horizontally
-C-a V  		# split display vertically
-C-a tab		# jump to the next display region
-C-a X  		# remove current region
-C-a Q  		# remove all regions but the current one 
-</code></pre>
-
-<p>When split the windows horizontally, use <code>C-a S</code>.
-Then use <code>C-a tab</code> to move between the horizontally split regions.</p>
-
-<p><code>screen -S SESSIONNAME</code> is good for starting a session with a name, but if you start a session and later decide to name it or rename it, you’ll need enter command mode <code>(C-a :) </code>and then enter the command <code>sessionname SESSIONNAME</code>.</p>
-
-<p>These are all my notes for using Linux Screen. Hopefully it could help you use it better!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/posts/7">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     

@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-02-27T23:09:55-08:00</updated>
+  <updated>2017-04-23T14:41:34+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -14,10 +14,63 @@
 
   
   <entry>
+    <title type="html"><![CDATA[谈谈微信小程序的入口设计 | on WeChat Mini Programs]]></title>
+    <link href="http://euccas.github.io/20170423/on-wechat-mini-program.html"/>
+    <updated>2017-04-23T14:24:14+08:00</updated>
+    <id>http://euccas.github.io/20170423/on-wechat-mini-program</id>
+    <content type="html"><![CDATA[<p>现在流传的中国互联网圈四大热点是：百度的丑闻，支付宝的社交，微信的功能和网易的猪肉。这大概是个调侃的笑话，但是其中“微信的功能”，确实是我会特别留意和关心的，原因在于两点：</p>
+
+<ol>
+  <li>对微信产品设计的认可和关注</li>
+  <li>对张小龙产品设计理念的好奇与学习</li>
+</ol>
+
+<p>最近几个月来微信最引人注目的功能变化，无疑是“微信小程序”的推出和初步推广。微信小程序，英文版名称为Mini Program，其实是微信推出的类似于React和Weex的以Javascript为基础的程序框架。微信小程序为开发者提供了各种UI组件和调用底层的API。通过小程序实现的App，无需安装就可以在微信平台使用。</p>
+
+<p>微信小程序的入口，设置在微信底部4个固定Tab之一的”发现“菜单中。从功能上来看，微信小程序的入口类似于Apple App Store，但它的设计和App Store完全不同。下面是一些比较。</p>
+
+<ol>
+  <li>入口主界面：用户第一次进入微信小程序的入口时，看到的有且仅有一个搜索框，其它就是空白。这显著不同于进入App Store后看到的各种玲琅满目的应用和排行榜。</li>
+</ol>
+
+<p><img class="center" src="http://euccas.github.io/images/post_images/2017/20170423-wechat_miniprogram_00.jpg" width="420" /></p>
+
+<ol>
+  <li>使用小程序：通过搜索（或者其他二维码）入口找到一个小程序后，一次点击就直接开始了使用过程，没有安装，也没有App启动界面和过程。第一次和小程序交互时甚至会不习惯这个没有暂停的过程。我特别注意到的是，这个点击即使用的过程，也会影响到小程序App本身的入口设计，比如用注册登录作为主入口就不合适了，小程序App需要在最短的时间内提供有效的信息和功能给用户。</li>
+</ol>
+
+<p><img class="center" src="http://euccas.github.io/images/post_images/2017/20170423-wechat_miniprogram_01.jpg" width="420" />
+<img class="center" src="http://euccas.github.io/images/post_images/2017/20170423-wechat_miniprogram_02.jpg" width="420" /></p>
+
+<ol>
+  <li>退出小程序：退出一个使用中的小程序，是通过微信左上方的后退按钮。退出之后即回到搜索结果的页面。感觉上，好像刚刚什么都没有发生。而使用过的小程序，都会被保存在入口主界面搜索框下的列表中。列表可以手工逐项清除，删除方式和删除微信对话一样，左滑屏幕，选择删除。</li>
+</ol>
+
+<p><img class="center" src="http://euccas.github.io/images/post_images/2017/20170423-wechat_miniprogram_03.jpg" width="420" /></p>
+
+<p>微信小程序入口的这些特点，可以说是再一次充分展现了微信产品设计一直以来的风格，也即张小龙曾经讲过的关于微信背后的产品观。根据我所观察到的，总结一下有：</p>
+
+<ul>
+  <li>微信：让用户”聊完就走”。小程序：让用户“用完就走”。</li>
+  <li>微信：让不上微博的用户来用你的产品。小程序：可能是让懒得装App的用户来用你的小程序。</li>
+  <li>微信：大部分的新功能是可以砍掉的；只抓主场景，不做全功能，做多源于不自信。小程序：你看到的只有一个搜索框。</li>
+  <li>微信：需求来自于对信息流的理解，让品牌通过朋友传播。小程序：二维码入口。</li>
+  <li>微信：PC上的入口在搜索框，手机上的入口在二维码。小程序：入口是搜索框，可以通过二维码（来自朋友，公众号，印刷品分享）直接进入小程序。</li>
+  <li>微信：设计就是分类，越简单的分类越容易被接受，微信的结构和界面保持简单。小程序：甚至没有分类，界面特别特别简单！</li>
+  <li>微信：去除人们在QQ上说”88”的习惯。小程序：去除人们安装App，删除App的习惯</li>
+  <li>微信：让功能存在于无形之中；只有新手才将所有（新）功能罗列在显眼的地方。小程序：什么功能都没有罗列，来了就用，用完就走！</li>
+  <li>总结：极简才能不被超越。关于这一点，根据《腾讯传》中的描述，马化腾和张小龙解释说，把产品设计做到极简，这样如果你要抄我们的产品，就会加东西，而一旦加了东西，就不如我们的产品了。</li>
+</ul>
+
+<p>现在微信小程序的热度还不高，处于一个开发者仍在观望的状态，加之最近Apple的封锁打赏事件，更让不少唱衰小程序的论调流传起来。而无论小程序未来发展会如何，我在体验它之后立刻感受到设计的用心。在互联网和移动产品的茫茫大海之中探索，我发现，有些产品会让你觉得不明白设计者在想什么（可能是不存在），有些产品让你想吐槽设计者怎么连这个都想不到，有些产品让你觉得设计者好机智，而还有一些产品，会让你为设计者的用心良苦而感动。对我来说，微信是属于最后一类产品，虽然它其貌不扬（也不洋，挺土的）。</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Effective Traditional C++ (3): String]]></title>
-    <link href="http://euccas.github.io/20170227/effective-traditional-c-plus-plus-03-string.html"/>
-    <updated>2017-02-27T20:39:46-08:00</updated>
-    <id>http://euccas.github.io/20170227/effective-traditional-c-plus-plus-03-string</id>
+    <link href="http://euccas.github.io/20170228/effective-traditional-c-plus-plus-03-string.html"/>
+    <updated>2017-02-28T12:39:46+08:00</updated>
+    <id>http://euccas.github.io/20170228/effective-traditional-c-plus-plus-03-string</id>
     <content type="html"><![CDATA[<p>Recently I spent a whole lot of time on file compression and decompression with zlib. Thought I’d better write something about it. But before that, let me finish the series of “Effective Traditional C++”. Today I’ll write about Strings in C++.</p>
 
 <p>Two types of String are available in C++: C-Strings (C-style Strings), and STL Strings.</p>
@@ -221,9 +274,9 @@
   
   <entry>
     <title type="html"><![CDATA[A List of SoC Design and Verification Infrastructure Needs - Tools/Automation Flows (2013)]]></title>
-    <link href="http://euccas.github.io/20170212/a-list-of-soc-design-and-verification-infrastructure-needs.html"/>
-    <updated>2017-02-12T15:53:19-08:00</updated>
-    <id>http://euccas.github.io/20170212/a-list-of-soc-design-and-verification-infrastructure-needs</id>
+    <link href="http://euccas.github.io/20170213/a-list-of-soc-design-and-verification-infrastructure-needs.html"/>
+    <updated>2017-02-13T07:53:19+08:00</updated>
+    <id>http://euccas.github.io/20170213/a-list-of-soc-design-and-verification-infrastructure-needs</id>
     <content type="html"><![CDATA[<p><em>This post was written in 2013, when I thought it was necessary to summarize infrastructure tools and flows needed in SoC design and verification, according to all my experience. Today when I checked on my old notes I found this one and would like to share it here. Later on I’ll update and expand this list according to my latest experience and knowledge in engineering tools and infrastructure for software and hardware development.</em></p>
 
 <p>System-on-Chip design and verification process is a complicated one. Unlike the world of Web and Internet, the design and development of hardware products have higher risk and lower tolerance to any mistakes. SoC design and verification process requires collaborations from multiple teams and vendors. Lots of hard decisions to make. Lots of trade-offs to consider. Moreover, the nonrecurring-engineering (NRE) charge makes sufficient and solid verification a must with limited time and resource. Tools and automated flows are an essential part of any design house.</p>
@@ -390,9 +443,9 @@
   
   <entry>
     <title type="html"><![CDATA[Effective Traditional C++ (2): Pointer and Reference]]></title>
-    <link href="http://euccas.github.io/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html"/>
-    <updated>2017-02-05T22:18:59-08:00</updated>
-    <id>http://euccas.github.io/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference</id>
+    <link href="http://euccas.github.io/20170206/effective-traditional-c-plus-plus-02-pointer-and-reference.html"/>
+    <updated>2017-02-06T14:18:59+08:00</updated>
+    <id>http://euccas.github.io/20170206/effective-traditional-c-plus-plus-02-pointer-and-reference</id>
     <content type="html"><![CDATA[<p>Pointers and references are two fundamental data types in C++. They are useful, common and somewhat dangerous. Using them correctly, they could greatly improve the efficiency and performance of your program. On the other hand, using them incorrectly could lead to many problems such as memory leaks and buffer overflow.</p>
 
 <h1 id="pointers">Pointers</h1>
@@ -589,9 +642,9 @@
   
   <entry>
     <title type="html"><![CDATA[Effective Traditional C++ (1): Qualifiers]]></title>
-    <link href="http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers.html"/>
-    <updated>2017-01-30T21:41:11-08:00</updated>
-    <id>http://euccas.github.io/20170130/effective-traditional-c-plus-plus-01-qualifiers</id>
+    <link href="http://euccas.github.io/20170131/effective-traditional-c-plus-plus-01-qualifiers.html"/>
+    <updated>2017-01-31T13:41:11+08:00</updated>
+    <id>http://euccas.github.io/20170131/effective-traditional-c-plus-plus-01-qualifiers</id>
     <content type="html"><![CDATA[<p>Recently I’m doing a review on C++ programming language. During the process, I found a few topics which are worth paying more attention to. I’ll write several posts about the related C++ tips and tactics. These topics are not specially for C++ 11 or 14, I therefore name this series of posts as “Effective Traditional C++”.</p>
 
 <p>The first topic I’ll write about here is: <strong>Qualifiers</strong></p>
@@ -727,9 +780,9 @@
   
   <entry>
     <title type="html"><![CDATA[Now Commenting on Posts Is Enabled]]></title>
-    <link href="http://euccas.github.io/20170116/now-commenting-on-posts-is-enabled.html"/>
-    <updated>2017-01-16T23:39:06-08:00</updated>
-    <id>http://euccas.github.io/20170116/now-commenting-on-posts-is-enabled</id>
+    <link href="http://euccas.github.io/20170117/now-commenting-on-posts-is-enabled.html"/>
+    <updated>2017-01-17T15:39:06+08:00</updated>
+    <id>http://euccas.github.io/20170117/now-commenting-on-posts-is-enabled</id>
     <content type="html"><![CDATA[<p>Hi there,</p>
 
 <p>I just enabled <strong>commenting</strong> on this blog with <a href="https://disqus.com/">Disqus</a>.</p>
@@ -744,9 +797,9 @@
   
   <entry>
     <title type="html"><![CDATA[C++ Functors]]></title>
-    <link href="http://euccas.github.io/20170115/c-plus-plus-functors.html"/>
-    <updated>2017-01-15T20:20:07-08:00</updated>
-    <id>http://euccas.github.io/20170115/c-plus-plus-functors</id>
+    <link href="http://euccas.github.io/20170116/c-plus-plus-functors.html"/>
+    <updated>2017-01-16T12:20:07+08:00</updated>
+    <id>http://euccas.github.io/20170116/c-plus-plus-functors</id>
     <content type="html"><![CDATA[<p>A <strong>functor</strong> is a powerful C++ entity that everyone who wants to master C++ needs to know. A functor, which is short for “<strong>function object</strong>”, is a C++ class that acts like a function. Functors can be called using the familiar function call syntax, and can yield values and accept parameters just like regular functions.</p>
 
 <p>To create a functor, we create a class (or a struct) that overloads the function <code>operator()</code>. Note here the function is called <code>operator()</code>, and it’s not the <code>operator</code> function, i.e. <code>()</code>. We then create an instance of this class (or struct) to use the created functor.</p>
@@ -942,9 +995,9 @@
   
   <entry>
     <title type="html"><![CDATA[Get Start on Machine Learning]]></title>
-    <link href="http://euccas.github.io/20170106/get-start-on-machine-learning.html"/>
-    <updated>2017-01-06T23:17:40-08:00</updated>
-    <id>http://euccas.github.io/20170106/get-start-on-machine-learning</id>
+    <link href="http://euccas.github.io/20170107/get-start-on-machine-learning.html"/>
+    <updated>2017-01-07T15:17:40+08:00</updated>
+    <id>http://euccas.github.io/20170107/get-start-on-machine-learning</id>
     <content type="html"><![CDATA[<p>So here comes 2017, a year when you hear people talk about the words <em>Machine Learning</em>, <em>Reinforcement Learning</em>, and <em>Artificial Intelligence</em> everywhere.</p>
 
 <p>Last year when Mark Zuckberg was working on building Jarvis, I didn’t spend much time on AI or Machine Learning. But I know the efforts I made last year get me ready to start on it right now.</p>
@@ -964,7 +1017,7 @@
 
 <p>Some people I know might think Machine Learning or AI is sort of irrelevant to what I’m working on. That’s not what I think though. Even if it is irrelevant today, it will become relevant sooner than expected. Machine Learning is not a fad. It’s the way how technology works tomorrow. If you can’t master it, at least you need have a good understanding of it.</p>
 
-<p><img class="center" src="http://euccas.github.io/images/post_images/20170107-larrypage.jpg" width="640" /></p>
+<p><img class="center" src="http://euccas.github.io/images/post_images/2017/20170107-larrypage.jpg" width="640" /></p>
 
 <p><em>Image source: Medium <a href="https://medium.com/the-mission/20-things-i-ve-learned-from-larry-page-4f83674a1a52#.elpww9snf">“20 things I’ve learned from Larry Page”</a></em></p>
 
@@ -973,9 +1026,9 @@
   
   <entry>
     <title type="html"><![CDATA[Python Multiprocessing]]></title>
-    <link href="http://euccas.github.io/20161231/python-multiprocessing.html"/>
-    <updated>2016-12-31T09:37:01-08:00</updated>
-    <id>http://euccas.github.io/20161231/python-multiprocessing</id>
+    <link href="http://euccas.github.io/20170101/python-multiprocessing.html"/>
+    <updated>2017-01-01T01:37:01+08:00</updated>
+    <id>http://euccas.github.io/20170101/python-multiprocessing</id>
     <content type="html"><![CDATA[<p>Python’s GIL (Global Interpreter Lock) was designed to be a thread-safe mechanism, and it effectively prevents conflicts between multiple threads. GIL makes it easy to implemente multi-threading with Python. However, it also prevents Python multi-threading from utilizing the multiple cores of a computer to achieve improved execution speed. This is why using the <code>threading</code> module in Python won’t help your program run faster through parallelism.</p>
 
 <p>The good thing is Python provides a <a href="https://docs.python.org/3.4/library/multiprocessing.html"><code>multiprocessing</code> module</a> since Python 2.6. With the <code>multiprocessing</code> module we can spawn subprocesses and effectively avoid some of the limitations that GIL brings, on both Unix and Windows platforms.</p>
@@ -1152,9 +1205,9 @@
   
   <entry>
     <title type="html"><![CDATA[Levels of Design]]></title>
-    <link href="http://euccas.github.io/20161224/levels-of-design.html"/>
-    <updated>2016-12-24T09:52:07-08:00</updated>
-    <id>http://euccas.github.io/20161224/levels-of-design</id>
+    <link href="http://euccas.github.io/20161225/levels-of-design.html"/>
+    <updated>2016-12-25T01:52:07+08:00</updated>
+    <id>http://euccas.github.io/20161225/levels-of-design</id>
     <content type="html"><![CDATA[<p>Recently I’m taking a course <a href="https://www.coursera.org/learn/algorithmic-toolbox/home/welcome">“Algorithm Toolbox”</a> on Coursera. This course provides me a good chance to review and enhance my knowledge in the fundamental algorithms, which usually would help on achieving better system design. This morning I came across one slide of this course and thought it could be very useful. Sharing it here.</p>
 
 <p><img class="center" src="http://euccas.github.io/images/post_images/20161224-levels-of-design-1.png" width="600" /></p>
@@ -1186,9 +1239,9 @@
   
   <entry>
     <title type="html"><![CDATA[Python Generators]]></title>
-    <link href="http://euccas.github.io/20161223/python-generators.html"/>
-    <updated>2016-12-23T08:48:45-08:00</updated>
-    <id>http://euccas.github.io/20161223/python-generators</id>
+    <link href="http://euccas.github.io/20161224/python-generators.html"/>
+    <updated>2016-12-24T00:48:45+08:00</updated>
+    <id>http://euccas.github.io/20161224/python-generators</id>
     <content type="html"><![CDATA[<p>Generators is a powerful weapon of Python. Generators help you write concise code, give you lazy evaluation, and improve the efficience for calculating large sets of results. Personally I think it’s a good habit to use generators in Python whenever you can, if you really want your code to be Pythonic.</p>
 
 <h1 id="how-to-create-a-generator">How to create a generator</h1>
@@ -1268,9 +1321,9 @@
   
   <entry>
     <title type="html"><![CDATA[PostgreSQL: Understand PG Errors]]></title>
-    <link href="http://euccas.github.io/20161217/postgresql-understand-pg-errors.html"/>
-    <updated>2016-12-17T09:06:21-08:00</updated>
-    <id>http://euccas.github.io/20161217/postgresql-understand-pg-errors</id>
+    <link href="http://euccas.github.io/20161218/postgresql-understand-pg-errors.html"/>
+    <updated>2016-12-18T01:06:21+08:00</updated>
+    <id>http://euccas.github.io/20161218/postgresql-understand-pg-errors</id>
     <content type="html"><![CDATA[<p>When using Ruby Gem <code>pg</code> and establish database connections to a PostgreSQL database, you’ll see PG errors when the database connection becomes problematic. In my experience, two typical PG errors are <code>PG::AdminShutdown</code> and <code>PG::UnableToSend</code>.</p>
 
 <h1 id="error-pgadminshutdown">Error PG::AdminShutdown</h1>
@@ -1302,9 +1355,9 @@ This probably means the server terminated abnormally before or while processing 
   
   <entry>
     <title type="html"><![CDATA[高效Jenkins用户的第5个习惯]]></title>
-    <link href="http://euccas.github.io/20161216/jenkins-user-habits-5.html"/>
-    <updated>2016-12-16T15:49:51-08:00</updated>
-    <id>http://euccas.github.io/20161216/jenkins-user-habits-5</id>
+    <link href="http://euccas.github.io/20161217/jenkins-user-habits-5.html"/>
+    <updated>2016-12-17T07:49:51+08:00</updated>
+    <id>http://euccas.github.io/20161217/jenkins-user-habits-5</id>
     <content type="html"><![CDATA[<p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
 
 <h1 id="section">习惯 5: 集成第三方工具和服务</h1>
@@ -1356,9 +1409,9 @@ This probably means the server terminated abnormally before or while processing 
   
   <entry>
     <title type="html"><![CDATA[MongoDB Training: MongoDB for Developers (Python)]]></title>
-    <link href="http://euccas.github.io/20161205/mongodb-training-mongodb-for-developers-python.html"/>
-    <updated>2016-12-05T13:56:45-08:00</updated>
-    <id>http://euccas.github.io/20161205/mongodb-training-mongodb-for-developers-python</id>
+    <link href="http://euccas.github.io/20161206/mongodb-training-mongodb-for-developers-python.html"/>
+    <updated>2016-12-06T05:56:45+08:00</updated>
+    <id>http://euccas.github.io/20161206/mongodb-training-mongodb-for-developers-python</id>
     <content type="html"><![CDATA[<p>昨晚提交了MongoDB University的培训课程 <a href="https://university.mongodb.com/courses/M101P/about">M101P: MongoDB for Developers (Python)</a> 的最后一次测试，这历时七周的课程告一段落。这个课程虽然是属于入门级，但是它覆盖了MongoDB各个方面，有不错的课程结构。短时间内，可以让开发者掌握和MongoDB有关的日常开发中所需要掌握的大部分知识和技能。</p>
 
 <p>在学习其他数据库时，也不妨参照这个结构来全面掌握。</p>
@@ -1418,9 +1471,9 @@ This probably means the server terminated abnormally before or while processing 
   
   <entry>
     <title type="html"><![CDATA[Octopress Tips]]></title>
-    <link href="http://euccas.github.io/20161011/octopress-tips.html"/>
-    <updated>2016-10-11T22:36:44-07:00</updated>
-    <id>http://euccas.github.io/20161011/octopress-tips</id>
+    <link href="http://euccas.github.io/20161012/octopress-tips.html"/>
+    <updated>2016-10-12T13:36:44+08:00</updated>
+    <id>http://euccas.github.io/20161012/octopress-tips</id>
     <content type="html"><![CDATA[<p>使用Octopress搭建这个blog已经有一段时间了，记录几个使用中需要注意的Tips.</p>
 
 <h1 id="tip-1-clone-repo">Tip 1: Clone Repo</h1>
@@ -1478,9 +1531,9 @@ This probably means the server terminated abnormally before or while processing 
   
   <entry>
     <title type="html"><![CDATA[Install Additional Packages in WinPython]]></title>
-    <link href="http://euccas.github.io/20161011/install-additional-packages-in-winpython.html"/>
-    <updated>2016-10-11T17:11:51-07:00</updated>
-    <id>http://euccas.github.io/20161011/install-additional-packages-in-winpython</id>
+    <link href="http://euccas.github.io/20161012/install-additional-packages-in-winpython.html"/>
+    <updated>2016-10-12T08:11:51+08:00</updated>
+    <id>http://euccas.github.io/20161012/install-additional-packages-in-winpython</id>
     <content type="html"><![CDATA[<p>For people who need use portable Python on Windows, <a href="https://winpython.github.io/">WinPython</a> is a good choice. WinPython is a free open-source portable distribution of Python. The project is hosted on <a href="https://github.com/winpython">github</a>. It is also a good alternative to <a href="http://portablepython.com/">Portable Python</a>, which is not being developed anymore.</p>
 
 <p>In this post I’ll show you how could you install additional packages to WinPython.</p>
@@ -1533,9 +1586,9 @@ For example:</p>
   
   <entry>
     <title type="html"><![CDATA[高效Jenkins用户的第4个习惯]]></title>
-    <link href="http://euccas.github.io/20161010/jenkins-user-habits-4.html"/>
-    <updated>2016-10-10T21:32:01-07:00</updated>
-    <id>http://euccas.github.io/20161010/jenkins-user-habits-4</id>
+    <link href="http://euccas.github.io/20161011/jenkins-user-habits-4.html"/>
+    <updated>2016-10-11T12:32:01+08:00</updated>
+    <id>http://euccas.github.io/20161011/jenkins-user-habits-4</id>
     <content type="html"><![CDATA[<p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
 
 <h1 id="jenkinsplugin">习惯 4: 精选你所使用的Jenkins功能插件(Plugin)</h1>
@@ -1655,9 +1708,9 @@ For example:</p>
   
   <entry>
     <title type="html"><![CDATA[GTAC: The Uber Challenge of Cross-Application Testing]]></title>
-    <link href="http://euccas.github.io/20160928/the-uber-challenge-of-cross-application-testinng.html"/>
-    <updated>2016-09-28T23:17:30-07:00</updated>
-    <id>http://euccas.github.io/20160928/the-uber-challenge-of-cross-application-testinng</id>
+    <link href="http://euccas.github.io/20160929/the-uber-challenge-of-cross-application-testinng.html"/>
+    <updated>2016-09-29T14:17:30+08:00</updated>
+    <id>http://euccas.github.io/20160929/the-uber-challenge-of-cross-application-testinng</id>
     <content type="html"><![CDATA[<p>Inspired by Matt Cutts’ TED talk: <a href="https://www.ted.com/talks/matt_cutts_try_something_new_for_30_days?language=en">Try something new for 30 days</a>, I’m starting a “30 Days of GTAC” project. Google’s Test Automation Conference <a href="https://developers.google.com/google-test-automation-conference/">GTAC</a> is an annual test automation conference which brings together engineers from industry and academia to discuss advances in test automation and related engineering tools. In my “30 Days of GTAC” project, I’ll review the topics presented on GTAC. My goal is having a better and deeper understanding in modern testing technologies, methodologies, strategies, and practices.</p>
 
 <p>Get it started! Day#1 topic is:</p>
@@ -1692,9 +1745,9 @@ For example:</p>
   
   <entry>
     <title type="html"><![CDATA[Dunder Methods in Python]]></title>
-    <link href="http://euccas.github.io/20160920/python-dunder-methods.html"/>
-    <updated>2016-09-20T21:28:51-07:00</updated>
-    <id>http://euccas.github.io/20160920/python-dunder-methods</id>
+    <link href="http://euccas.github.io/20160921/python-dunder-methods.html"/>
+    <updated>2016-09-21T12:28:51+08:00</updated>
+    <id>http://euccas.github.io/20160921/python-dunder-methods</id>
     <content type="html"><![CDATA[<p>In Python, we sometimes see method names with <code>__</code> around, such as the <code>__init__</code> method that every Class has. These methods are “dunder” methods (“dunder” stands for “double under” or “double underscore”). Dunder methods in Python are used for operator overloading and customizing behavior of other functions.</p>
 
 <p>Sometimes dunder methods are also called “magic methods” because they are usually called by Python under the hood. But they are not really magical, you can define dunder methods to customize the behavior of your own classes.</p>
@@ -1856,9 +1909,9 @@ For example:</p>
   
   <entry>
     <title type="html"><![CDATA[Case Study: Check on a Commit According to Its Included Files]]></title>
-    <link href="http://euccas.github.io/20160815/case-study-check-on-a-commit-according-to-the-included-files.html"/>
-    <updated>2016-08-15T19:43:21-07:00</updated>
-    <id>http://euccas.github.io/20160815/case-study-check-on-a-commit-according-to-the-included-files</id>
+    <link href="http://euccas.github.io/20160816/case-study-check-on-a-commit-according-to-the-included-files.html"/>
+    <updated>2016-08-16T10:43:21+08:00</updated>
+    <id>http://euccas.github.io/20160816/case-study-check-on-a-commit-according-to-the-included-files</id>
     <content type="html"><![CDATA[<h1 id="problem-description">Problem Description</h1>
 
 <p>Suppose one task in your Continuous Integration (CI) pipeline is triggered on every commit to the project repository. Some the files in the repository require passing the check of the CI task, while some other files do not require passing the check. What should the CI task do to decide if it is needed to perform the needed checking on the commit?</p>
@@ -2061,117 +2114,6 @@ For example:</p>
 </span><span class="line">
 </span><span class="line">    return need_check
 </span></code></pre></td></tr></table></div></figure></notextile></div>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Python Unittest: Handle the Command Line Arguments]]></title>
-    <link href="http://euccas.github.io/20160807/python-unittest-handle-command-line-arguments.html"/>
-    <updated>2016-08-07T11:57:32-07:00</updated>
-    <id>http://euccas.github.io/20160807/python-unittest-handle-command-line-arguments</id>
-    <content type="html"><![CDATA[<p>In the previous post about <a href="http://euccas.github.io/blog/20160711/start-unit-testing-in-python.html">Python Unittest</a>, I wrote about the basic steps needed for setting up unit testing for your Python program with the <code>unittest</code> module. In this post, I’ll discuss about handling the command line parameters that your program need while you’re using Python <code>unittest</code>.</p>
-
-<p>Unit testing is meant for testing basic functionality of the application. The target of <a href="https://en.wikipedia.org/wiki/Unit_testing">Unit testing</a> is expected to be each function of your program. When your program has command line arguments, ideally the unit tests should not accept arguments from the command line because unit tests are supposed to be very specific and not testing on the <a href="https://en.wikipedia.org/wiki/Integration_testing">Integration level</a> (i.e. across multiple functions in your program).</p>
-
-<p>So the way I use to handle the command line arguments can be summarized as:</p>
-
-<ul>
-  <li>Refactor your program to have the arguments parsing as a function</li>
-  <li>Refactor your program to handle the arguments parsing differently when doing unit testing</li>
-  <li>In the unit tests, set the arguments and pass them directly to the functions under test</li>
-</ul>
-
-<p>The following is a demo Python project I built to demonstrate handling command line arguments when using <code>unittest</code>.</p>
-
-<h2 id="myapppy">myapp.py</h2>
-
-<pre><code>#!/usr/bin/env python
-
-import sys, os.path, re
-import argparse
-
-class myApp():
-
-    EXIT_PASS, EXIT_FAIL = 0, 1
-
-    def __init__(self, mode = 'normal', test_param = None):
-        # Validate and process argument options
-        self.parse_args(mode, test_param)
-        # Initialize database connection
-        self.app_name = self.get_app_name(self.name)
-
-    def parse_args(self, mode, test_param):
-        if mode == 'unittest':
-            if test_param is None:
-                print("Missing test param")
-                self.app_exit('fail')
-
-            self.name = test_param['app_name']
-            self.verbose = test_param['verbose']
-        else:
-            parser = argparse.ArgumentParser(description='myApp: A demo project')
-            parser.add_argument('-n', '--name', help='Name of myApp', required=True)
-            parser.add_argument('--verbose', action='store_true', help='Verbose mode with more information printed')
-
-            args = parser.parse_args()
-
-            self.name = args.name
-            self.verbose = args.verbose
-
-    def app_exit(self, status):
-        if status.lower() == 'pass':
-            print("** App Exit Status: PASS \n")
-            exit(self.EXIT_PASS)
-        elif status.lower() == 'skip':
-            print("** App Exit Status: SKIP \n")
-            exit(self.EXIT_PASS)
-        else:
-            print("** App Exit Status: FAIL \n")
-            exit(self.EXIT_FAIL)
-
-    def get_app_name(self):
-        app_name = self.name
-
-        return app_name
-
-if __name__ == '__main__':
-    app = myApp()
-</code></pre>
-
-<h2 id="testmyapppy">test_myapp.py</h2>
-
-<pre><code>#!/usr/bin/env python
-
-import sys, os.path, re
-import argparse
-import unittest
-
-bin_path = os.path.dirname(os.path.realpath(__file__))
-lib_path = os.path.abspath(bin_path)
-sys.path.insert(0, lib_path)
-
-import myApp
-
-class myAppTestCase(unittest.TestCase):
-
-    def setUp(self):
-        mode = 'unittest'
-        test_param = {
-            'name': 'Test App',
-            'verbose': True
-        }
-        self.app = myapp.myApp(mode, test_param)
-
-    def test_app_name(self):
-        self.assertEqual(self.app.get_app_name, 'Test App', 'Wrong App Name')
-
-    def tearDown(self):
-        print('Bye Test')
-
-if __name__ == '__main__':
-    unittest.main()
-</code></pre>
 
 ]]></content>
   </entry>

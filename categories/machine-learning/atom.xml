@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Machine-learning | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/machine-learning/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-02-27T23:09:55-08:00</updated>
+  <updated>2017-04-23T14:41:34+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Get Start on Machine Learning]]></title>
-    <link href="http://euccas.github.io/20170106/get-start-on-machine-learning.html"/>
-    <updated>2017-01-06T23:17:40-08:00</updated>
-    <id>http://euccas.github.io/20170106/get-start-on-machine-learning</id>
+    <link href="http://euccas.github.io/20170107/get-start-on-machine-learning.html"/>
+    <updated>2017-01-07T15:17:40+08:00</updated>
+    <id>http://euccas.github.io/20170107/get-start-on-machine-learning</id>
     <content type="html"><![CDATA[<p>So here comes 2017, a year when you hear people talk about the words <em>Machine Learning</em>, <em>Reinforcement Learning</em>, and <em>Artificial Intelligence</em> everywhere.</p>
 
 <p>Last year when Mark Zuckberg was working on building Jarvis, I didn’t spend much time on AI or Machine Learning. But I know the efforts I made last year get me ready to start on it right now.</p>
@@ -37,7 +37,7 @@
 
 <p>Some people I know might think Machine Learning or AI is sort of irrelevant to what I’m working on. That’s not what I think though. Even if it is irrelevant today, it will become relevant sooner than expected. Machine Learning is not a fad. It’s the way how technology works tomorrow. If you can’t master it, at least you need have a good understanding of it.</p>
 
-<p><img class="center" src="/images/post_images/20170107-larrypage.jpg" width="640"></p>
+<p><img class="center" src="/images/post_images/2017/20170107-larrypage.jpg" width="640"></p>
 
 <p><em>Image source: Medium <a href="https://medium.com/the-mission/20-things-i-ve-learned-from-larry-page-4f83674a1a52#.elpww9snf">“20 things I’ve learned from Larry Page”</a></em></p>
 

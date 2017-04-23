@@ -4,7 +4,7 @@
   <title><![CDATA[Category: System-design | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/system-design/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-02-27T23:09:55-08:00</updated>
+  <updated>2017-04-23T14:41:34+08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Levels of Design]]></title>
-    <link href="http://euccas.github.io/20161224/levels-of-design.html"/>
-    <updated>2016-12-24T09:52:07-08:00</updated>
-    <id>http://euccas.github.io/20161224/levels-of-design</id>
+    <link href="http://euccas.github.io/20161225/levels-of-design.html"/>
+    <updated>2016-12-25T01:52:07+08:00</updated>
+    <id>http://euccas.github.io/20161225/levels-of-design</id>
     <content type="html"><![CDATA[<p>Recently I’m taking a course <a href="https://www.coursera.org/learn/algorithmic-toolbox/home/welcome">“Algorithm Toolbox”</a> on Coursera. This course provides me a good chance to review and enhance my knowledge in the fundamental algorithms, which usually would help on achieving better system design. This morning I came across one slide of this course and thought it could be very useful. Sharing it here.</p>
 
 <p><img class="center" src="/images/post_images/20161224-levels-of-design-1.png" width="600"></p>
