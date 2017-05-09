@@ -1,1 +1,1 @@
-bundle exec new_post
+bundle exec rake new_post
