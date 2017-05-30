@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Cmake | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/cmake/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-05-29T22:47:05-07:00</updated>
+  <updated>2017-05-29T22:48:40-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[CMake: Use the Correct Options to Solve Linker Errors]]></title>
     <link href="http://euccas.github.io/20170529/cmake-linker-options.html"/>
-    <updated>2017-05-29T07:30:46-07:00</updated>
+    <updated>2017-05-29T23:30:46-07:00</updated>
     <id>http://euccas.github.io/20170529/cmake-linker-options</id>
     <content type="html"><![CDATA[<p>A few months ago when I worked on a project using zlib to compress and decompress files, I once met linker errors complaining about unable to resolve symbols of zlib functions:</p>
 
