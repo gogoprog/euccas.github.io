@@ -23,12 +23,13 @@ TARGET_LINK_LIBRARIES(myProject zlibstatic)
 When I was looking for solutions to fix those linker errors, I found several related CMake commands which look quite similar and could be confusing in terms of their functions and when to use them. Here is a quick summary of these commands.
 
 Related CMake commands:
+
 * add_dependencies
 * link_directories
 * link_libraries
 * target_link_libraries
 
-# ADD_DEPENDENCIES(zlibProfiler zlibstatic)
+# ADD_DEPENDENCIES
 
 Usage: ```add_dependencies(<target> ...)```
 
