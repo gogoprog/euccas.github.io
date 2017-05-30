@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "CMake: Use the correct options to solve linker errors"
-date: 2017-05-29 22:30:46 -0800
+date: 2017-05-29 22:30:46 -0700
 comments: true
 categories: build cmake
 keywords: build cmake linker
 description: CMake options for linkers, difference between TARGET_LINK_LIBRARIES and LINK_DIRECTORIES
 ---
 
-A few months ago when I worked on a project using zlib to compress and decompress files, I once met linker errors complaining about unable to resolve symbols of zlib functions:
+A few months ago when I worked on a project using [zlib](https://www.zlib.net/) to compress and decompress files, I once met linker errors complaining about unable to resolve symbols of zlib functions:
 
 ```
 cannot resolve symbols _gzbuffer, _gzopen, ...
