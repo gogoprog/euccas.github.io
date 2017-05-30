@@ -158,37 +158,12 @@
   <li>target_link_libraries</li>
 </ul>
 
-<h1 id="adddependencies">ADD_DEPENDENCIES</h1>
-
-<p>Usage: <code>add_dependencies(&lt;target&gt; ...)</code></p>
-
-<p>ADD_DEPENDENCIES adds a dependency between top-level targets. It makes a top level target depend on other top level targets to ensure that the dependents build beforehand. This command doesn’t ensure CMake to find the path to the targets though.</p>
-
-<h1 id="linkdirectories">LINK_DIRECTORIES</h1>
-
-<p>Usage: <code>link_directories(directory1 directory2 ...)</code></p>
-
-<p>LINK_DIRECTORIES specifies directories in which the linker will look for libraries. This command will apply only to targets created after it is called. This command is rarely necessary. You can always pass absolute paths to target_link_libraries() command instead.</p>
-
-<p>The function of this command is similar to <code>-L</code> option in g++. It is also similar to adding the specified directories to environment variable <code>LD_LIBRARY_PATH</code>.</p>
-
-<h1 id="linklibraries">LINK_LIBRARIES</h1>
-
-<p>Usage: <code>link_libraries([item1 [item2 [...] ]])</code></p>
-
-<p>LINK_LIBRARIES specifies link libraries or flags to use when linking all targets added later by commands such as <code>add_executables()</code> or <code>add_library()</code>.</p>
-
-<p>This command was deprecated in CMake version 3.0, and was added back in version 3.2. But CMake document recommends using <code>target_link_libraries</code> to replace this command whenever possible.</p>
-
-<p>The link libraries specified in this command are expected to be full paths.</p>
-
-<h1 id="targetlinklibraries">TARGET_LINK_LIBRARIES</h1>
-
-<p>Usage: <code>target_link_libraries(&lt;target&gt; ... &lt;item&gt; ...)</code></p>
-
-<p>TARGET_LINK_LIBRARIES specifies libraries or flags to use when linking a given target and/or its dependents. The specified target must be created by <code>add_library()</code> within the project or as an imported library.</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/20170529/cmake-linker-options.html">Read on &rarr;</a>
+    </footer>
   
 
 
