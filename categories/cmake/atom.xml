@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Cmake | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/cmake/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-05-29T23:01:05-07:00</updated>
+  <updated>2017-05-29T23:02:29-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -32,13 +32,16 @@ TARGET_LINK_LIBRARIES(myProject zlibstatic)
 
 <p>When I was looking for solutions to fix those linker errors, I found several related CMake commands which look quite similar and could be confusing in terms of their functions and when to use them. Here is a quick summary of these commands.</p>
 
-<p>Related CMake commands:
-* add_dependencies
-* link_directories
-* link_libraries
-* target_link_libraries</p>
+<p>Related CMake commands:</p>
 
-<h1 id="adddependencieszlibprofiler-zlibstatic">ADD_DEPENDENCIES(zlibProfiler zlibstatic)</h1>
+<ul>
+  <li>add_dependencies</li>
+  <li>link_directories</li>
+  <li>link_libraries</li>
+  <li>target_link_libraries</li>
+</ul>
+
+<h1 id="adddependencies">ADD_DEPENDENCIES</h1>
 
 <p>Usage: <code>add_dependencies(&lt;target&gt; ...)</code></p>
 
