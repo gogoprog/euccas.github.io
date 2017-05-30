@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/octopress/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-24T12:20:03+08:00</updated>
+  <updated>2017-05-29T22:47:05-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Enabled Blog Posts Commenting]]></title>
-    <link href="http://euccas.github.io/20170117/now-commenting-on-posts-is-enabled.html"/>
-    <updated>2017-01-17T15:39:06+08:00</updated>
-    <id>http://euccas.github.io/20170117/now-commenting-on-posts-is-enabled</id>
+    <link href="http://euccas.github.io/20170116/now-commenting-on-posts-is-enabled.html"/>
+    <updated>2017-01-16T23:39:06-08:00</updated>
+    <id>http://euccas.github.io/20170116/now-commenting-on-posts-is-enabled</id>
     <content type="html"><![CDATA[<p>Hi there,</p>
 
 <p>I just enabled <strong>commenting</strong> on this blog with <a href="https://disqus.com/">Disqus</a>.</p>
@@ -32,9 +32,9 @@
   
   <entry>
     <title type="html"><![CDATA[Octopress Tips]]></title>
-    <link href="http://euccas.github.io/20161012/octopress-tips.html"/>
-    <updated>2016-10-12T13:36:44+08:00</updated>
-    <id>http://euccas.github.io/20161012/octopress-tips</id>
+    <link href="http://euccas.github.io/20161011/octopress-tips.html"/>
+    <updated>2016-10-11T22:36:44-07:00</updated>
+    <id>http://euccas.github.io/20161011/octopress-tips</id>
     <content type="html"><![CDATA[<p>使用Octopress搭建这个blog已经有一段时间了，记录几个使用中需要注意的Tips.</p>
 
 <h1 id="tip-1-clone-repo">Tip 1: Clone Repo</h1>

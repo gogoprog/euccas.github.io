@@ -9,7 +9,7 @@
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="现在流传的中国互联网圈四大热点是：百度的丑闻，支付宝的社交，微信的功能和网易的猪肉。这大概是个调侃的笑话，但是其中“微信的功能”，确实是我会特别留意和关心的，原因在于两点： 对微信产品设计的认可和关注 对张小龙产品设计理念的好奇与学习 最近几个月来微信最引人注目的功能变化，无疑是“微信小程序” &hellip;">
+  <meta name="description" content="A few months ago when I worked on a project using zlib to compress and decompress files, I once met linker errors complaining about unable to resolve &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -118,7 +118,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/20170423/on-wechat-mini-program.html">谈谈微信小程序的入口设计 | on WeChat Design for Mini Programs</a></h1>
+      <h1 class="entry-title"><a href="/20170529/cmake-linker-options.html">CMake: Use the Correct Options to Solve Linker Errors</a></h1>
     
     
       <p class="meta">
@@ -127,9 +127,87 @@
 
 
 
-<time class='entry-date' datetime='2017-04-23T14:24:14+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2017</span></span> <span class='time'>2:24 pm</span></time>
+<time class='entry-date' datetime='2017-05-29T07:30:46-07:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>7:30 am</span></time>
         
-         | <a href="/20170423/on-wechat-mini-program.html#disqus_thread">Comments</a>
+         | <a href="/20170529/cmake-linker-options.html#disqus_thread">Comments</a>
+        
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A few months ago when I worked on a project using zlib to compress and decompress files, I once met linker errors complaining about unable to resolve symbols of zlib functions:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">cannot resolve symbols _gzbuffer, _gzopen, ...</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>In the end I fixed these linker errors by using <code>TARGET_LINK_LIBRARIES</code> command in the project’s CMakefile to specify the linker package dependency, as the following:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">TARGET_LINK_LIBRARIES(myProject zlibstatic)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>When I was looking for solutions to fix those linker errors, I found several related CMake commands which look quite similar and could be confusing in terms of their functions and when to use them. Here is a quick summary of these commands.</p>
+
+<p>Related CMake commands:
+* add_dependencies
+* link_directories
+* link_libraries
+* target_link_libraries</p>
+
+<h1 id="adddependencieszlibprofiler-zlibstatic">ADD_DEPENDENCIES(zlibProfiler zlibstatic)</h1>
+
+<p>Usage: <code>add_dependencies(&lt;target&gt; ...)</code></p>
+
+<p>ADD_DEPENDENCIES adds a dependency between top-level targets. It makes a top level target depend on other top level targets to ensure that the dependents build beforehand. This command doesn’t ensure CMake to find the path to the targets though.</p>
+
+<h1 id="linkdirectories">LINK_DIRECTORIES</h1>
+
+<p>Usage: <code>link_directories(directory1 directory2 ...)</code></p>
+
+<p>LINK_DIRECTORIES specifies directories in which the linker will look for libraries. This command will apply only to targets created after it is called. This command is rarely necessary. You can always pass absolute paths to target_link_libraries() command instead.</p>
+
+<p>The function of this command is similar to <code>-L</code> option in g++. It is also similar to adding the specified directories to environment variable <code>LD_LIBRARY_PATH</code>.</p>
+
+<h1 id="linklibraries">LINK_LIBRARIES</h1>
+
+<p>Usage: <code>link_libraries([item1 [item2 [...] ]])</code></p>
+
+<p>LINK_LIBRARIES specifies link libraries or flags to use when linking all targets added later by commands such as <code>add_executables()</code> or <code>add_library()</code>.</p>
+
+<p>This command was deprecated in CMake version 3.0, and was added back in version 3.2. But CMake document recommends using <code>target_link_libraries</code> to replace this command whenever possible.</p>
+
+<p>The link libraries specified in this command are expected to be full paths.</p>
+
+<h1 id="targetlinklibraries">TARGET_LINK_LIBRARIES</h1>
+
+<p>Usage: <code>target_link_libraries(&lt;target&gt; ... &lt;item&gt; ...)</code></p>
+
+<p>TARGET_LINK_LIBRARIES specifies libraries or flags to use when linking a given target and/or its dependents. The specified target must be created by <code>add_library()</code> within the project or as an imported library.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/20170422/on-wechat-mini-program.html">谈谈微信小程序的入口设计 | on WeChat Design for Mini Programs</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-04-22T23:24:14-07:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2017</span></span> <span class='time'>11:24 pm</span></time>
+        
+         | <a href="/20170422/on-wechat-mini-program.html#disqus_thread">Comments</a>
         
         
       </p>
@@ -152,7 +230,7 @@
   
   
     <footer>
-      <a rel="full-article" href="/20170423/on-wechat-mini-program.html">Read on &rarr;</a>
+      <a rel="full-article" href="/20170422/on-wechat-mini-program.html">Read on &rarr;</a>
     </footer>
   
 
@@ -164,7 +242,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/20170228/effective-traditional-c-plus-plus-03-string.html">Effective Traditional C++ (3): String</a></h1>
+      <h1 class="entry-title"><a href="/20170227/effective-traditional-c-plus-plus-03-string.html">Effective Traditional C++ (3): String</a></h1>
     
     
       <p class="meta">
@@ -173,9 +251,9 @@
 
 
 
-<time class='entry-date' datetime='2017-02-28T12:39:46+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>12:39 pm</span></time>
+<time class='entry-date' datetime='2017-02-27T20:39:46-08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>8:39 pm</span></time>
         
-         | <a href="/20170228/effective-traditional-c-plus-plus-03-string.html#disqus_thread">Comments</a>
+         | <a href="/20170227/effective-traditional-c-plus-plus-03-string.html#disqus_thread">Comments</a>
         
         
       </p>
@@ -195,7 +273,7 @@
   
   
     <footer>
-      <a rel="full-article" href="/20170228/effective-traditional-c-plus-plus-03-string.html">Read on &rarr;</a>
+      <a rel="full-article" href="/20170227/effective-traditional-c-plus-plus-03-string.html">Read on &rarr;</a>
     </footer>
   
 
@@ -207,7 +285,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/20170213/a-list-of-soc-design-and-verification-infrastructure-needs.html">A List of SoC Design and Verification Infrastructure Needs - Tools/Automation Flows (2013)</a></h1>
+      <h1 class="entry-title"><a href="/20170212/a-list-of-soc-design-and-verification-infrastructure-needs.html">A List of SoC Design and Verification Infrastructure Needs - Tools/Automation Flows (2013)</a></h1>
     
     
       <p class="meta">
@@ -216,9 +294,9 @@
 
 
 
-<time class='entry-date' datetime='2017-02-13T07:53:19+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>7:53 am</span></time>
+<time class='entry-date' datetime='2017-02-12T15:53:19-08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>3:53 pm</span></time>
         
-         | <a href="/20170213/a-list-of-soc-design-and-verification-infrastructure-needs.html#disqus_thread">Comments</a>
+         | <a href="/20170212/a-list-of-soc-design-and-verification-infrastructure-needs.html#disqus_thread">Comments</a>
         
         
       </p>
@@ -236,7 +314,7 @@
   
   
     <footer>
-      <a rel="full-article" href="/20170213/a-list-of-soc-design-and-verification-infrastructure-needs.html">Read on &rarr;</a>
+      <a rel="full-article" href="/20170212/a-list-of-soc-design-and-verification-infrastructure-needs.html">Read on &rarr;</a>
     </footer>
   
 
@@ -248,7 +326,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/20170206/effective-traditional-c-plus-plus-02-pointer-and-reference.html">Effective Traditional C++ (2): Pointer and Reference</a></h1>
+      <h1 class="entry-title"><a href="/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html">Effective Traditional C++ (2): Pointer and Reference</a></h1>
     
     
       <p class="meta">
@@ -257,9 +335,9 @@
 
 
 
-<time class='entry-date' datetime='2017-02-06T14:18:59+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>2:18 pm</span></time>
+<time class='entry-date' datetime='2017-02-05T22:18:59-08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>10:18 pm</span></time>
         
-         | <a href="/20170206/effective-traditional-c-plus-plus-02-pointer-and-reference.html#disqus_thread">Comments</a>
+         | <a href="/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html#disqus_thread">Comments</a>
         
         
       </p>
@@ -289,58 +367,7 @@
   
   
     <footer>
-      <a rel="full-article" href="/20170206/effective-traditional-c-plus-plus-02-pointer-and-reference.html">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/20170131/effective-traditional-c-plus-plus-01-qualifiers.html">Effective Traditional C++ (1): Qualifiers</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-01-31T13:41:11+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2017</span></span> <span class='time'>1:41 pm</span></time>
-        
-         | <a href="/20170131/effective-traditional-c-plus-plus-01-qualifiers.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Recently I’m doing a review on C++ programming language. During the process, I found a few topics which are worth paying more attention to. I’ll write several posts about the related C++ tips and tactics. These topics are not specially for C++ 11 or 14, I therefore name this series of posts as “Effective Traditional C++”.</p>
-
-<p>The first topic I’ll write about here is: <strong>Qualifiers</strong></p>
-
-<p>C++ uses Qualifiers to adjust qualities of a variable or an object. In C++, there are two types of qualifiers: CV qualifiers and storage qualifiers.</p>
-
-<h1 id="cv-qualifiers">CV Qualifiers</h1>
-
-<p>CV qualifiers stands for Const and Volatile Qualifier. There are three types of CV qualifiers:</p>
-
-<ul>
-  <li>const</li>
-  <li>volatile</li>
-  <li>mutable</li>
-</ul>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/20170131/effective-traditional-c-plus-plus-01-qualifiers.html">Read on &rarr;</a>
+      <a rel="full-article" href="/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html">Read on &rarr;</a>
     </footer>
   
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Machine-learning | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/machine-learning/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-24T12:20:03+08:00</updated>
+  <updated>2017-05-29T22:47:05-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Get Start on Machine Learning]]></title>
-    <link href="http://euccas.github.io/20170107/get-start-on-machine-learning.html"/>
-    <updated>2017-01-07T15:17:40+08:00</updated>
-    <id>http://euccas.github.io/20170107/get-start-on-machine-learning</id>
+    <link href="http://euccas.github.io/20170106/get-start-on-machine-learning.html"/>
+    <updated>2017-01-06T23:17:40-08:00</updated>
+    <id>http://euccas.github.io/20170106/get-start-on-machine-learning</id>
     <content type="html"><![CDATA[<p>So here comes 2017, a year when you hear people talk about the words <em>Machine Learning</em>, <em>Reinforcement Learning</em>, and <em>Artificial Intelligence</em> everywhere.</p>
 
 <p>Last year when Mark Zuckberg was working on building Jarvis, I didn’t spend much time on AI or Machine Learning. But I know the efforts I made last year get me ready to start on it right now.</p>

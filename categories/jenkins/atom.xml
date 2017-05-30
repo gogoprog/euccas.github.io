@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jenkins | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/jenkins/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-24T12:20:03+08:00</updated>
+  <updated>2017-05-29T22:47:05-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[高效Jenkins用户的第5个习惯]]></title>
-    <link href="http://euccas.github.io/20161217/jenkins-user-habits-5.html"/>
-    <updated>2016-12-17T07:49:51+08:00</updated>
-    <id>http://euccas.github.io/20161217/jenkins-user-habits-5</id>
+    <link href="http://euccas.github.io/20161216/jenkins-user-habits-5.html"/>
+    <updated>2016-12-16T15:49:51-08:00</updated>
+    <id>http://euccas.github.io/20161216/jenkins-user-habits-5</id>
     <content type="html"><![CDATA[<p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
 
 <h1 id="section">习惯 5: 集成第三方工具和服务</h1>
@@ -71,9 +71,9 @@
   
   <entry>
     <title type="html"><![CDATA[高效Jenkins用户的第4个习惯]]></title>
-    <link href="http://euccas.github.io/20161011/jenkins-user-habits-4.html"/>
-    <updated>2016-10-11T12:32:01+08:00</updated>
-    <id>http://euccas.github.io/20161011/jenkins-user-habits-4</id>
+    <link href="http://euccas.github.io/20161010/jenkins-user-habits-4.html"/>
+    <updated>2016-10-10T21:32:01-07:00</updated>
+    <id>http://euccas.github.io/20161010/jenkins-user-habits-4</id>
     <content type="html"><![CDATA[<p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
 
 <h1 id="jenkinsplugin">习惯 4: 精选你所使用的Jenkins功能插件(Plugin)</h1>
@@ -195,9 +195,9 @@
   
   <entry>
     <title type="html"><![CDATA[高效Jenkins用户的第3个习惯]]></title>
-    <link href="http://euccas.github.io/20160524/jenkins-user-habits-3.html"/>
-    <updated>2016-05-24T11:54:36+08:00</updated>
-    <id>http://euccas.github.io/20160524/jenkins-user-habits-3</id>
+    <link href="http://euccas.github.io/20160523/jenkins-user-habits-3.html"/>
+    <updated>2016-05-23T20:54:36-07:00</updated>
+    <id>http://euccas.github.io/20160523/jenkins-user-habits-3</id>
     <content type="html"><![CDATA[<p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
 
 <h1 id="jenkins">习惯 3: 让Jenkins任务自动化</h1>
@@ -257,9 +257,9 @@
   
   <entry>
     <title type="html"><![CDATA[高效Jenkins用户的第2个习惯]]></title>
-    <link href="http://euccas.github.io/20151216/jenkins-user-habits-2.html"/>
-    <updated>2015-12-16T12:15:38+08:00</updated>
-    <id>http://euccas.github.io/20151216/jenkins-user-habits-2</id>
+    <link href="http://euccas.github.io/20151215/jenkins-user-habits-2.html"/>
+    <updated>2015-12-15T20:15:38-08:00</updated>
+    <id>http://euccas.github.io/20151215/jenkins-user-habits-2</id>
     <content type="html"><![CDATA[<p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
 
 <h1 id="section">习惯 2: 大而化小</h1>
@@ -341,9 +341,9 @@ You can add multiple configurations: each has a list of projects to trigger, a c
   
   <entry>
     <title type="html"><![CDATA[高效Jenkins用户的第1个习惯]]></title>
-    <link href="http://euccas.github.io/20151211/jenkins-user-habits-1.html"/>
-    <updated>2015-12-11T11:32:57+08:00</updated>
-    <id>http://euccas.github.io/20151211/jenkins-user-habits-1</id>
+    <link href="http://euccas.github.io/20151210/jenkins-user-habits-1.html"/>
+    <updated>2015-12-10T19:32:57-08:00</updated>
+    <id>http://euccas.github.io/20151210/jenkins-user-habits-1</id>
     <content type="html"><![CDATA[<p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
 
 <h1 id="jenkins-master">习惯 1: 保持Jenkins Master的稳定与可恢复</h1>

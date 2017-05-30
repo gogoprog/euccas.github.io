@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Cmake | euccas.github.io]]></title>
+  <link href="http://euccas.github.io/categories/cmake/atom.xml" rel="self"/>
+  <link href="http://euccas.github.io/"/>
+  <updated>2017-05-29T22:47:05-07:00</updated>
+  <id>http://euccas.github.io/</id>
+  <author>
+    <name><![CDATA[euccas]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[CMake: Use the Correct Options to Solve Linker Errors]]></title>
+    <link href="http://euccas.github.io/20170529/cmake-linker-options.html"/>
+    <updated>2017-05-29T07:30:46-07:00</updated>
+    <id>http://euccas.github.io/20170529/cmake-linker-options</id>
+    <content type="html"><![CDATA[<p>A few months ago when I worked on a project using zlib to compress and decompress files, I once met linker errors complaining about unable to resolve symbols of zlib functions:</p>
+
+<p><code>
+cannot resolve symbols _gzbuffer, _gzopen, ...
+</code></p>
+
+<p>In the end I fixed these linker errors by using <code>TARGET_LINK_LIBRARIES</code> command in the project’s CMakefile to specify the linker package dependency, as the following:</p>
+
+<p><code>
+TARGET_LINK_LIBRARIES(myProject zlibstatic)
+</code></p>
+
+<p>When I was looking for solutions to fix those linker errors, I found several related CMake commands which look quite similar and could be confusing in terms of their functions and when to use them. Here is a quick summary of these commands.</p>
+
+<p>Related CMake commands:
+* add_dependencies
+* link_directories
+* link_libraries
+* target_link_libraries</p>
+
+<h1 id="adddependencieszlibprofiler-zlibstatic">ADD_DEPENDENCIES(zlibProfiler zlibstatic)</h1>
+
+<p>Usage: <code>add_dependencies(&lt;target&gt; ...)</code></p>
+
+<p>ADD_DEPENDENCIES adds a dependency between top-level targets. It makes a top level target depend on other top level targets to ensure that the dependents build beforehand. This command doesn’t ensure CMake to find the path to the targets though.</p>
+
+<h1 id="linkdirectories">LINK_DIRECTORIES</h1>
+
+<p>Usage: <code>link_directories(directory1 directory2 ...)</code></p>
+
+<p>LINK_DIRECTORIES specifies directories in which the linker will look for libraries. This command will apply only to targets created after it is called. This command is rarely necessary. You can always pass absolute paths to target_link_libraries() command instead.</p>
+
+<p>The function of this command is similar to <code>-L</code> option in g++. It is also similar to adding the specified directories to environment variable <code>LD_LIBRARY_PATH</code>.</p>
+
+<h1 id="linklibraries">LINK_LIBRARIES</h1>
+
+<p>Usage: <code>link_libraries([item1 [item2 [...] ]])</code></p>
+
+<p>LINK_LIBRARIES specifies link libraries or flags to use when linking all targets added later by commands such as <code>add_executables()</code> or <code>add_library()</code>.</p>
+
+<p>This command was deprecated in CMake version 3.0, and was added back in version 3.2. But CMake document recommends using <code>target_link_libraries</code> to replace this command whenever possible.</p>
+
+<p>The link libraries specified in this command are expected to be full paths.</p>
+
+<h1 id="targetlinklibraries">TARGET_LINK_LIBRARIES</h1>
+
+<p>Usage: <code>target_link_libraries(&lt;target&gt; ... &lt;item&gt; ...)</code></p>
+
+<p>TARGET_LINK_LIBRARIES specifies libraries or flags to use when linking a given target and/or its dependents. The specified target must be created by <code>add_library()</code> within the project or as an imported library.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Unittesting | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/unittesting/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-24T12:20:03+08:00</updated>
+  <updated>2017-05-29T22:47:05-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Python Unittest: Handle the Command Line Arguments]]></title>
-    <link href="http://euccas.github.io/20160808/python-unittest-handle-command-line-arguments.html"/>
-    <updated>2016-08-08T02:57:32+08:00</updated>
-    <id>http://euccas.github.io/20160808/python-unittest-handle-command-line-arguments</id>
+    <link href="http://euccas.github.io/20160807/python-unittest-handle-command-line-arguments.html"/>
+    <updated>2016-08-07T11:57:32-07:00</updated>
+    <id>http://euccas.github.io/20160807/python-unittest-handle-command-line-arguments</id>
     <content type="html"><![CDATA[<p>In the previous post about <a href="http://euccas.github.io/blog/20160711/start-unit-testing-in-python.html">Python Unittest</a>, I wrote about the basic steps needed for setting up unit testing for your Python program with the <code>unittest</code> module. In this post, I’ll discuss about handling the command line parameters that your program need while you’re using Python <code>unittest</code>.</p>
 
 <p>Unit testing is meant for testing basic functionality of the application. The target of <a href="https://en.wikipedia.org/wiki/Unit_testing">Unit testing</a> is expected to be each function of your program. When your program has command line arguments, ideally the unit tests should not accept arguments from the command line because unit tests are supposed to be very specific and not testing on the <a href="https://en.wikipedia.org/wiki/Integration_testing">Integration level</a> (i.e. across multiple functions in your program).</p>
@@ -128,9 +128,9 @@ if __name__ == '__main__':
   
   <entry>
     <title type="html"><![CDATA[Start Unit Testing in Python]]></title>
-    <link href="http://euccas.github.io/20160712/start-unit-testing-in-python.html"/>
-    <updated>2016-07-12T13:58:39+08:00</updated>
-    <id>http://euccas.github.io/20160712/start-unit-testing-in-python</id>
+    <link href="http://euccas.github.io/20160711/start-unit-testing-in-python.html"/>
+    <updated>2016-07-11T22:58:39-07:00</updated>
+    <id>http://euccas.github.io/20160711/start-unit-testing-in-python</id>
     <content type="html"><![CDATA[<p>When is the best time to start unit testing in your Python project? My answer is before you writing the first line of code of this project. Unit testing is the fundamental of Test-driven development, which specifically improves the quality and design of your project.</p>
 
 <p>In this post, I’m writing about how could you do unit testing in Python with the <code>unittest</code> module.</p>

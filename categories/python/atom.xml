@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-24T12:20:03+08:00</updated>
+  <updated>2017-05-29T22:47:05-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Python Multiprocessing]]></title>
-    <link href="http://euccas.github.io/20170101/python-multiprocessing.html"/>
-    <updated>2017-01-01T01:37:01+08:00</updated>
-    <id>http://euccas.github.io/20170101/python-multiprocessing</id>
+    <link href="http://euccas.github.io/20161231/python-multiprocessing.html"/>
+    <updated>2016-12-31T09:37:01-08:00</updated>
+    <id>http://euccas.github.io/20161231/python-multiprocessing</id>
     <content type="html"><![CDATA[<p>Python’s GIL (Global Interpreter Lock) was designed to be a thread-safe mechanism, and it effectively prevents conflicts between multiple threads. GIL makes it easy to implemente multi-threading with Python. However, it also prevents Python multi-threading from utilizing the multiple cores of a computer to achieve improved execution speed. This is why using the <code>threading</code> module in Python won’t help your program run faster through parallelism.</p>
 
 <p>The good thing is Python provides a <a href="https://docs.python.org/3.4/library/multiprocessing.html"><code>multiprocessing</code> module</a> since Python 2.6. With the <code>multiprocessing</code> module we can spawn subprocesses and effectively avoid some of the limitations that GIL brings, on both Unix and Windows platforms.</p>
@@ -154,9 +154,9 @@ pool.join()
   
   <entry>
     <title type="html"><![CDATA[Python Generators]]></title>
-    <link href="http://euccas.github.io/20161224/python-generators.html"/>
-    <updated>2016-12-24T00:48:45+08:00</updated>
-    <id>http://euccas.github.io/20161224/python-generators</id>
+    <link href="http://euccas.github.io/20161223/python-generators.html"/>
+    <updated>2016-12-23T08:48:45-08:00</updated>
+    <id>http://euccas.github.io/20161223/python-generators</id>
     <content type="html"><![CDATA[<p>Generators is a powerful weapon of Python. Generators help you write concise code, give you lazy evaluation, and improve the efficience for calculating large sets of results. Personally I think it’s a good habit to use generators in Python whenever you can, if you really want your code to be Pythonic.</p>
 
 <h1 id="how-to-create-a-generator">How to create a generator</h1>
@@ -224,9 +224,9 @@ print(list(running_mean(numbers)))</p>
   
   <entry>
     <title type="html"><![CDATA[Install Additional Packages in WinPython]]></title>
-    <link href="http://euccas.github.io/20161012/install-additional-packages-in-winpython.html"/>
-    <updated>2016-10-12T08:11:51+08:00</updated>
-    <id>http://euccas.github.io/20161012/install-additional-packages-in-winpython</id>
+    <link href="http://euccas.github.io/20161011/install-additional-packages-in-winpython.html"/>
+    <updated>2016-10-11T17:11:51-07:00</updated>
+    <id>http://euccas.github.io/20161011/install-additional-packages-in-winpython</id>
     <content type="html"><![CDATA[<p>For people who need use portable Python on Windows, <a href="https://winpython.github.io/">WinPython</a> is a good choice. WinPython is a free open-source portable distribution of Python. The project is hosted on <a href="https://github.com/winpython">github</a>. It is also a good alternative to <a href="http://portablepython.com/">Portable Python</a>, which is not being developed anymore.</p>
 
 <p>In this post I’ll show you how could you install additional packages to WinPython.</p>
@@ -294,9 +294,9 @@ That's it! Your Python package is ready to use!
   
   <entry>
     <title type="html"><![CDATA[Dunder Methods in Python]]></title>
-    <link href="http://euccas.github.io/20160921/python-dunder-methods.html"/>
-    <updated>2016-09-21T12:28:51+08:00</updated>
-    <id>http://euccas.github.io/20160921/python-dunder-methods</id>
+    <link href="http://euccas.github.io/20160920/python-dunder-methods.html"/>
+    <updated>2016-09-20T21:28:51-07:00</updated>
+    <id>http://euccas.github.io/20160920/python-dunder-methods</id>
     <content type="html"><![CDATA[<p>In Python, we sometimes see method names with <code>__</code> around, such as the <code>__init__</code> method that every Class has. These methods are “dunder” methods (“dunder” stands for “double under” or “double underscore”). Dunder methods in Python are used for operator overloading and customizing behavior of other functions.</p>
 
 <p>Sometimes dunder methods are also called “magic methods” because they are usually called by Python under the hood. But they are not really magical, you can define dunder methods to customize the behavior of your own classes.</p>
@@ -428,9 +428,9 @@ else:
   
   <entry>
     <title type="html"><![CDATA[Python Unittest: Handle the Command Line Arguments]]></title>
-    <link href="http://euccas.github.io/20160808/python-unittest-handle-command-line-arguments.html"/>
-    <updated>2016-08-08T02:57:32+08:00</updated>
-    <id>http://euccas.github.io/20160808/python-unittest-handle-command-line-arguments</id>
+    <link href="http://euccas.github.io/20160807/python-unittest-handle-command-line-arguments.html"/>
+    <updated>2016-08-07T11:57:32-07:00</updated>
+    <id>http://euccas.github.io/20160807/python-unittest-handle-command-line-arguments</id>
     <content type="html"><![CDATA[<p>In the previous post about <a href="http://euccas.github.io/blog/20160711/start-unit-testing-in-python.html">Python Unittest</a>, I wrote about the basic steps needed for setting up unit testing for your Python program with the <code>unittest</code> module. In this post, I’ll discuss about handling the command line parameters that your program need while you’re using Python <code>unittest</code>.</p>
 
 <p>Unit testing is meant for testing basic functionality of the application. The target of <a href="https://en.wikipedia.org/wiki/Unit_testing">Unit testing</a> is expected to be each function of your program. When your program has command line arguments, ideally the unit tests should not accept arguments from the command line because unit tests are supposed to be very specific and not testing on the <a href="https://en.wikipedia.org/wiki/Integration_testing">Integration level</a> (i.e. across multiple functions in your program).</p>

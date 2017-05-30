@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/ruby/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-24T12:20:03+08:00</updated>
+  <updated>2017-05-29T22:47:05-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[PostgreSQL: Understand PG Errors]]></title>
-    <link href="http://euccas.github.io/20161218/postgresql-understand-pg-errors.html"/>
-    <updated>2016-12-18T01:06:21+08:00</updated>
-    <id>http://euccas.github.io/20161218/postgresql-understand-pg-errors</id>
+    <link href="http://euccas.github.io/20161217/postgresql-understand-pg-errors.html"/>
+    <updated>2016-12-17T09:06:21-08:00</updated>
+    <id>http://euccas.github.io/20161217/postgresql-understand-pg-errors</id>
     <content type="html"><![CDATA[<p>When using Ruby Gem <code>pg</code> and establish database connections to a PostgreSQL database, you’ll see PG errors when the database connection becomes problematic. In my experience, two typical PG errors are <code>PG::AdminShutdown</code> and <code>PG::UnableToSend</code>.</p>
 
 <h1 id="error-pgadminshutdown">Error PG::AdminShutdown</h1>
@@ -51,9 +51,9 @@ This probably means the server terminated abnormally before or while processing 
   
   <entry>
     <title type="html"><![CDATA[Rake: Automake Your Tasks in Ruby]]></title>
-    <link href="http://euccas.github.io/20160615/rake-automake-your-tasks-in-ruby.html"/>
-    <updated>2016-06-15T08:59:06+08:00</updated>
-    <id>http://euccas.github.io/20160615/rake-automake-your-tasks-in-ruby</id>
+    <link href="http://euccas.github.io/20160614/rake-automake-your-tasks-in-ruby.html"/>
+    <updated>2016-06-14T17:59:06-07:00</updated>
+    <id>http://euccas.github.io/20160614/rake-automake-your-tasks-in-ruby</id>
     <content type="html"><![CDATA[<p>Rake is the build language for Ruby programs, originally developed by <a href="http://onestepback.org/">Jim Weirich</a>. It’s a standard library in Ruby 2.1. You can define tasks with Rake: named code blocks that carry out specific actions, such as running unit tests, deploy your code to github, etc. In this post, I’ll write about the basics of Rake and how to use it to automate the tasks of your Ruby projects.</p>
 
 <h1 id="rakefile">Rakefile</h1>
@@ -228,9 +228,9 @@ end</p>
   
   <entry>
     <title type="html"><![CDATA[Rails: Get Data From PostgreSQL Database Without the Model]]></title>
-    <link href="http://euccas.github.io/20160611/rails-get-data-without-model.html"/>
-    <updated>2016-06-11T09:32:01+08:00</updated>
-    <id>http://euccas.github.io/20160611/rails-get-data-without-model</id>
+    <link href="http://euccas.github.io/20160610/rails-get-data-without-model.html"/>
+    <updated>2016-06-10T18:32:01-07:00</updated>
+    <id>http://euccas.github.io/20160610/rails-get-data-without-model</id>
     <content type="html"><![CDATA[<p>In Ruby on Rails, Active Record is the M in MVC - the model. Model is the layer of the system which represents business data and logic. Active Record facilitates the creation and the use of business objects whose data requires persistent storage to a database. In some cases, however, you may want to use databases in Rails applications without the Model. What you can do is using the <code>pg</code> gem to directly manipulate the data you need.</p>
 
 <h1 id="create-a-database-connection">Create a database connection</h1>
@@ -306,9 +306,9 @@ class Pages &lt; ActiveRecord::Base</p>
   
   <entry>
     <title type="html"><![CDATA[Ruby Class and Instance Methods]]></title>
-    <link href="http://euccas.github.io/20160608/ruby-class-and-instance-methods.html"/>
-    <updated>2016-06-08T02:37:51+08:00</updated>
-    <id>http://euccas.github.io/20160608/ruby-class-and-instance-methods</id>
+    <link href="http://euccas.github.io/20160607/ruby-class-and-instance-methods.html"/>
+    <updated>2016-06-07T11:37:51-07:00</updated>
+    <id>http://euccas.github.io/20160607/ruby-class-and-instance-methods</id>
     <content type="html"><![CDATA[<p>If you ever get confused about Class Methods, Instance Methods, Class Variables and Instance Variables in Ruby, read this post and you’ll understand it better :)</p>
 
 <h1 id="class-methods">Class Methods</h1>
@@ -473,9 +473,9 @@ myfruit.add</p>
   
   <entry>
     <title type="html"><![CDATA[Make Logging Easy in Ruby With Log4r]]></title>
-    <link href="http://euccas.github.io/20160519/make-logging-easy-in-ruby-with-log4r.html"/>
-    <updated>2016-05-19T07:18:07+08:00</updated>
-    <id>http://euccas.github.io/20160519/make-logging-easy-in-ruby-with-log4r</id>
+    <link href="http://euccas.github.io/20160518/make-logging-easy-in-ruby-with-log4r.html"/>
+    <updated>2016-05-18T16:18:07-07:00</updated>
+    <id>http://euccas.github.io/20160518/make-logging-easy-in-ruby-with-log4r</id>
     <content type="html"><![CDATA[<p>Log4r is a Ruby gem that features a heirachical logging system of any number of levels, custom level names, multiple output destinations per log event, custom formatting, and more. The Log4r gem is open sourced on <a href="https://github.com/colbygk/log4r">GitHub</a>, and with comphrehensive documentations available on <a href="https://github.com/colbygk/log4r">Rubyforge</a>.</p>
 
 <p>I have been using log4r at work in most of the applications and systems written in Ruby. It’s easy to use, and provide the features that an application would need:

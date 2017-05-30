@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mongodb | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/mongodb/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-04-24T12:20:03+08:00</updated>
+  <updated>2017-05-29T22:47:05-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MongoDB Training: MongoDB for Developers (Python)]]></title>
-    <link href="http://euccas.github.io/20161206/mongodb-training-mongodb-for-developers-python.html"/>
-    <updated>2016-12-06T05:56:45+08:00</updated>
-    <id>http://euccas.github.io/20161206/mongodb-training-mongodb-for-developers-python</id>
+    <link href="http://euccas.github.io/20161205/mongodb-training-mongodb-for-developers-python.html"/>
+    <updated>2016-12-05T13:56:45-08:00</updated>
+    <id>http://euccas.github.io/20161205/mongodb-training-mongodb-for-developers-python</id>
     <content type="html"><![CDATA[<p>昨晚提交了MongoDB University的培训课程 <a href="https://university.mongodb.com/courses/M101P/about">M101P: MongoDB for Developers (Python)</a> 的最后一次测试，这历时七周的课程告一段落。这个课程虽然是属于入门级，但是它覆盖了MongoDB各个方面，有不错的课程结构。短时间内，可以让开发者掌握和MongoDB有关的日常开发中所需要掌握的大部分知识和技能。</p>
 
 <p>在学习其他数据库时，也不妨参照这个结构来全面掌握。</p>
