@@ -29,6 +29,8 @@ Related CMake commands:
 * link_libraries
 * target_link_libraries
 
+<!--more--> 
+
 # ADD_DEPENDENCIES
 
 Usage: ```add_dependencies(<target> ...)```
