@@ -31,7 +31,7 @@ In the talk, Lisa shared the challenges they faced in the migration process and 
 - **Pickle memcache data format incompatibility** in Python 2 and Python 3. Solved by isolating memcaches for Python 2 and Python 3.
 - **Iterator** differences, such as ```map```. Solved by converting all maps to list in Python 3.
 - **Dictionary order** is different in different Python versions, which caused differences in the dumped JSON data. Solved by forcing ```sorted_keys``` in ```json.dump``` function.
-- With Python 3, while CPU instructions per request decreased by 12%, max requests per second (capacity) had 0% increase! Found the root cause in the code of checking memory configuration, and the issue was memory optimization condition was never met in Python 3 as "True" because of unicode issue. Solve by adding a magical character **"b"**, just like this:
+- With Python 3, while CPU instructions per request decreased by 12%, max requests per second (capacity) had 0% increase! Found the root cause in the code of checking memory configuration, and the issue was memory optimization condition was never met in Python 3 as ```True``` because of unicode issue. Solved by adding a magical character **"b"**, just like this:
 
 {% img center /images/post_images/2017/20170616-instagram_python3_01.png 520px %}
 
