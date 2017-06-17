@@ -20,8 +20,8 @@ The whole migration process took about 10 months, in roughly 3 stages.
 
 {% img center /images/post_images/2017/20170616-instagram_python3_00.png 520px %}
 
-- First off, the migration was done directly on the Master Branch, which means the developers were adding new features to the code while migration is ongoing. So in the beginning of the Mirgration process, infrastructure added support of Python 3 on the Master Branch to make the code be able to run on both Python 2 and Python 3 environment. 
-- Massive code modification for 3 months, with the help of Python package [**modernize**](https://pypi.python.org/pypi/modernize). Meanwhile upgraded Third-party packages to Python 3 (working rule: *No Python 3, no new package*). Also deleted unused, incompatible packages.
+- First off, the migration was done directly on the Master Branch, which means the developers were adding new features to the code while migration was ongoing. So in the beginning of the Mirgration process, infrastructure added support of Python 3 on the Master Branch to make the code be able to run with both Python 2 and Python 3 environment. 
+- Massive code modification for 3 months, with the help of Python package [**"modernize"**](https://pypi.python.org/pypi/modernize). Meanwhile, upgraded Third-party packages to Python 3 (working rule: *No Python 3, no new package*). Also deleted unused, incompatible packages.
 - Intensive unit testing for 2 months. One limitation is data compatibility issues typically do not show up in unit tests.
 - Production rollout for another 4 months (push Python 3 to every developer's sandbox)
 
@@ -46,7 +46,7 @@ One more thing, in the talk Hui Ding also briefly discussed a few **Python Effic
 - Use Cythonization to improve performance
 - Future ideas: Make the Django stack completely Async? Create a new python runtime?
 
-Changing an existing service to use a version of language can never be easy, especially when you cannot afford to breaking the existing services serving millions of people. Moving to Python 3 in 10 months must be a challenging process. "It can be done. It worths it. Make it happen. And Make Python 3 better."
+Changing an existing service to use a new version of language can never be easy, especially when your service is at such a scale - serving millions of people. You just cannot afford to breaking the existing service. Moving to Python 3 in 10 months must be a challenging process. "It can be done. It worths it. Make it happen. And Make Python 3 better."
 
 Nice work Instagram!
 
