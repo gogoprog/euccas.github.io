@@ -137,7 +137,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Instagram, the famous brunch sharing app, presented in <a href="https://us.pycon.org/2017/">PyCon 2017</a> and gave a talk in the keynote session on “How Instagram moves to Python 3”. If you have 15 minutes, read the interview with the speakers, Hui Ding and Lisa Guo from Instagram Infrastructure team, <a href="https://thenewstack.io/instagram-makes-smooth-move-python-3/]"><strong>here</strong></a>. If you have 45 minutes, watch their PyCon talk video, [<a href="https://www.youtube.com/watch?v=66XoCk79kjM"><strong>here</strong></a>. If you have only 5 minutes, continue reading, <strong>right here</strong>.</p>
+  <div class="entry-content"><p>Instagram, the famous brunch sharing app, presented in <a href="https://us.pycon.org/2017/">PyCon 2017</a> and gave a talk in the keynote session on “How Instagram moves to Python 3”. If you have 15 minutes, read the interview with the speakers, Hui Ding and Lisa Guo from Instagram Infrastructure team, <a href="https://thenewstack.io/instagram-makes-smooth-move-python-3/]"><strong>here</strong></a>. If you have 45 minutes, watch their PyCon talk video, <a href="https://www.youtube.com/watch?v=66XoCk79kjM"><strong>here</strong></a>. If you have only 5 minutes, continue reading, <strong>right here</strong>.</p>
 
 <p>Instagram’s backend, which serves over 400 million active users every day, is built on Python/Django stack. The decision on whether moving from Python 2 to Python 3, was really a decision on whether investing in a version of the language that was mature, but wasn’t going anywhere (Python 2 is expected to retire in 2020) – or the language that was the next version and had great and growing community support. The major motivations behind Instagram’s migration to Python 3 are:</p>
 
@@ -165,7 +165,7 @@
   <li><strong>Pickle memcache data format incompatibility</strong> in Python 2 and Python 3. Solved by isolating memcaches for Python 2 and Python 3.</li>
   <li><strong>Iterator</strong> differences, such as <code>map</code>. Solved by converting all maps to list in Python 3.</li>
   <li><strong>Dictionary order</strong> is different in different Python versions, which caused differences in the dumped JSON data. Solved by forcing <code>sorted_keys</code> in <code>json.dump</code> function.</li>
-  <li>With Python 3, while CPU instructions per request decreased by 12%, max requests per second (capacity) had 0% increase! Found the root cause in the code of checking memory configuration, and the issue was memory optimization condition was never met in Python 3 as “True” because of unicode issue. Solve by adding a magical character <strong><em>“b”</em></strong>, just like this:</li>
+  <li>With Python 3, while CPU instructions per request decreased by 12%, max requests per second (capacity) had 0% increase! Found the root cause in the code of checking memory configuration, and the issue was memory optimization condition was never met in Python 3 as “True” because of unicode issue. Solve by adding a magical character <strong>“b”</strong>, just like this:</li>
 </ul>
 
 <p><img class="center" src="/images/post_images/2017/20170616-instagram_python3_01.png" width="520" /></p>
