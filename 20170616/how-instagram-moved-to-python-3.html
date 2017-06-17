@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Infrastructure - euccas.github.io</title>
+  <title>How Instagram Moved to Python 3 - euccas.github.io</title>
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="Category: infrastructure">
-  
+  <meta name="description" content="How Instagram moved to Python 3, the challenges and problem solved when migrating to Python 3">
+  <meta name="keywords" content="python python3 instagram infrastracture">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://euccas.github.io/categories/infrastructure/index.html">
+  <link rel="canonical" href="http://euccas.github.io/20170616/how-instagram-moved-to-python-3.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="euccas.github.io" type="application/atom+xml">
@@ -111,77 +111,143 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Infrastructure</h1>
+    
+      
+        <h1 class="entry-title">How Instagram Moved to Python 3</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-06-16T17:52:34-07:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>5:52 pm</span></time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>Instagram, the famous brunch sharing app, presented in <a href="https://us.pycon.org/2017/">PyCon 2017</a> and gave a talk in the keynote session on “How Instagram moves to Python 3”. If you have 15 minutes, read the interview with the speakers, Hui Ding and Lisa Guo from Instagram Infrastructure team, <a href="**here**">https://thenewstack.io/instagram-makes-smooth-move-python-3/</a>. If you have 45 minutes, watch their PyCon talk video, <a href="**here**">https://www.youtube.com/watch?v=66XoCk79kjM</a>. If you have only 5 minutes, continue reading, <strong>right here</strong>.</p>
 
-  
-  <h2>2017</h2>
+<p>Instagram’s backend, which serves over 400 million active users every day, is built on Python/Django stack. The decision on whether moving from Python 2 to Python 3, was really a decision on whether investing in a version of the language that was mature, but wasn’t going anywhere (Python 2 is expected to retire in 2020) – or the language that was the next version and had great and growing community support. The major motivations behind Instagram’s migration to Python 3 are:</p>
 
-<article>
-  
-<h1><a href="/20170616/how-instagram-moved-to-python-3.html">How Instagram Moved to Python 3</a></h1>
-<time datetime="2017-06-16T17:52:34-07:00" pubdate><span class='month'>Jun</span> <span class='day'>16</span> <span class='year'>2017</span></time>
+<ul>
+  <li>Typing support for dev velocity</li>
+  <li>Better performance than Python 2</li>
+  <li>Community continues to make Python 3 better and faster</li>
+</ul>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/categories/infrastructure/'>infrastructure</a>, <a class='category' href='/categories/python/'>python</a></span>
-</footer>
+<p>The whole migration process took about 10 months, in roughly 3 stages.</p>
 
+<p><img class="center" src="/images/post_images/2017/20170616-instagram_python3_00.png" width="480" /></p>
 
-</article>
+<ul>
+  <li>First off, the migration was done directly on the Master Branch, which means the developers were adding new features to the code while migration is ongoing. So in the beginning of the Mirgration process, infrastructure added support of Python 3 on the Master Branch to make the code be able to run on both Python 2 and Python 3 environment.</li>
+  <li>Massive code modification for 3 months, with the help of Python package <a href="**modernize**">https://pypi.python.org/pypi/modernize</a>. Meanwhile upgraded Third-party packages to Python 3 (working rule: <em>No Python 3, no new package</em>). Also deleted unused, incompatible packages.</li>
+  <li>Intensive unit testing for 2 months. One limitation is data compatibility issues typically do not show up in unit tests.</li>
+  <li>Production rollout for another 4 months (push Python 3 to every developer’s sandbox)</li>
+</ul>
 
+<p>In the talk, Lisa shared the challenges they faced in the migration process and how did they solved those problems.</p>
 
+<ul>
+  <li>Differences in unicode, str, bytes. Solved by using helper functions.</li>
+  <li>Pickle memcache data format incompatibility in Python 2 and Python 3. Solved by isolating memcaches for Python 2 and Python 3.</li>
+  <li>Iterator differences, such as <code>map</code>. Solved by converting all maps to list in Python 3.</li>
+  <li>Dictionary order is different in different Python versions, which caused differences in the dumped JSON data. Solved by forcing <code>sorted_keys</code> in <code>json.dump</code> function.</li>
+  <li>With Python 3, while CPU instructions per request decreased by 12%, max requests per second (capacity) had 0% increase! Found the root cause in the code of checking memory configuration, and the issue was memory optimization condition was never met in Python 3 as “True” because of unicode issue. Solve by adding a magical character <strong><em>“b”</em></strong>, just like this:</li>
+</ul>
 
-<article>
-  
-<h1><a href="/20170212/a-list-of-soc-design-and-verification-infrastructure-needs.html">A List of SoC Design and Verification Infrastructure Needs - Tools/Automation Flows (2013)</a></h1>
-<time datetime="2017-02-12T15:53:19-08:00" pubdate><span class='month'>Feb</span> <span class='day'>12</span> <span class='year'>2017</span></time>
+<p><img class="center" src="/images/post_images/2017/20170616-instagram_python3_01.png" width="480" /></p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/categories/infrastructure/'>infrastructure</a></span>
-</footer>
+<p>In Feb 2017, Instagram’s stack completely dropped Python 2 and moved to Python 3 (v3.6). So far they’ve got this from Python 3:</p>
 
+<p><img class="center" src="/images/post_images/2017/20170616-instagram_python3_02.png" width="480" /></p>
 
-</article>
+<p>One more thing, in the talk Hui Ding also briefly discussed a few Python Efficiency Strategies that Instagram used to support the growing number of features and users:</p>
 
+<ul>
+  <li>Build extensive tools to profile and understand perf bottleneck</li>
+  <li>Proactively push stable, critical components to C/C++, e.g., memcached access library</li>
+  <li>Use Cythonization to improve performance</li>
+  <li>Future ideas: Make the Django stack completely Async? Create a new python runtime?</li>
+</ul>
 
+<p>Changing an existing service to use a version of language can never be easy, especially when you cannot afford to breaking the existing services serving millions of people. Moving to Python 3 in 10 months must be a challenging process. “It can be done. It worths it. Make it happen. And Make Python 3 better.”</p>
 
-  
-  <h2>2016</h2>
+<p>Nice work Instagram!</p>
 
-<article>
-  
-<h1><a href="/20160928/the-uber-challenge-of-cross-application-testinng.html">GTAC: The Uber Challenge of Cross-Application Testing</a></h1>
-<time datetime="2016-09-28T23:17:30-07:00" pubdate><span class='month'>Sep</span> <span class='day'>28</span> <span class='year'>2016</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/categories/google/'>google</a>, <a class='category' href='/categories/gtac/'>gtac</a>, <a class='category' href='/categories/infrastructure/'>infrastructure</a>, <a class='category' href='/categories/testing/'>testing</a></span>
-</footer>
-
-
-</article>
-
+<p><img class="center" src="/images/post_images/2017/20170616-instagram_python3_04.png" width="480" /></p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
-</article>
 
 
-</div>
 
-<aside class="sidebar">
+  <span class="byline author vcard">Authored by <span class="fn">
   
+    euccas
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2017-06-16T17:52:34-07:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>5:52 pm</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/infrastructure/'>infrastructure</a>, <a class='category' href='/categories/python/'>python</a>
+  
+</span>
+
+
+    </p>
     
+      <div class="sharing">
   
-</aside>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://euccas.github.io/20170616/how-instagram-moved-to-python-3.html" data-via="euccas" data-counturl="http://euccas.github.io/20170616/how-instagram-moved-to-python-3.html" >Tweet</a>
+  
+  
+  
+</div>
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/20170529/cmake-linker-options.html" title="Previous Post: CMake: Use the correct options to solve linker errors">&laquo; CMake: Use the correct options to solve linker errors</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
 
     </div>
   </div>
@@ -197,7 +263,10 @@
       var disqus_shortname = 'euccas-github-io';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://euccas.github.io/20170616/how-instagram-moved-to-python-3.html';
+        var disqus_url = 'http://euccas.github.io/20170616/how-instagram-moved-to-python-3.html';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
