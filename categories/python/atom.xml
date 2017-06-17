@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-06-16T18:44:10-07:00</updated>
+  <updated>2017-06-16T18:48:27-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -46,7 +46,7 @@
   <li><strong>Pickle memcache data format incompatibility</strong> in Python 2 and Python 3. Solved by isolating memcaches for Python 2 and Python 3.</li>
   <li><strong>Iterator</strong> differences, such as <code>map</code>. Solved by converting all maps to list in Python 3.</li>
   <li><strong>Dictionary order</strong> is different in different Python versions, which caused differences in the dumped JSON data. Solved by forcing <code>sorted_keys</code> in <code>json.dump</code> function.</li>
-  <li>With Python 3, while CPU instructions per request decreased by 12%, max requests per second (capacity) had 0% increase! Found the root cause in the code of checking memory configuration, and the issue was memory optimization condition was never met in Python 3 as “True” because of unicode issue. Solve by adding a magical character <strong>“b”</strong>, just like this:</li>
+  <li>With Python 3, while CPU instructions per request decreased by 12%, max requests per second (capacity) had 0% increase! Found the root cause in the code of checking memory configuration, and the issue was memory optimization condition was never met in Python 3 as <code>True</code> because of unicode issue. Solved by adding a magical character <strong>“b”</strong>, just like this:</li>
 </ul>
 
 <p><img class="center" src="/images/post_images/2017/20170616-instagram_python3_01.png" width="520"></p>
