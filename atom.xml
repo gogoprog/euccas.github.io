@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-06-16T18:34:37-07:00</updated>
+  <updated>2017-06-16T18:44:10-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -33,8 +33,8 @@
 <p><img class="center" src="http://euccas.github.io/images/post_images/2017/20170616-instagram_python3_00.png" width="520" /></p>
 
 <ul>
-  <li>First off, the migration was done directly on the Master Branch, which means the developers were adding new features to the code while migration is ongoing. So in the beginning of the Mirgration process, infrastructure added support of Python 3 on the Master Branch to make the code be able to run on both Python 2 and Python 3 environment.</li>
-  <li>Massive code modification for 3 months, with the help of Python package <a href="https://pypi.python.org/pypi/modernize"><strong>modernize</strong></a>. Meanwhile upgraded Third-party packages to Python 3 (working rule: <em>No Python 3, no new package</em>). Also deleted unused, incompatible packages.</li>
+  <li>First off, the migration was done directly on the Master Branch, which means the developers were adding new features to the code while migration was ongoing. So in the beginning of the Mirgration process, infrastructure added support of Python 3 on the Master Branch to make the code be able to run with both Python 2 and Python 3 environment.</li>
+  <li>Massive code modification for 3 months, with the help of Python package <a href="https://pypi.python.org/pypi/modernize"><strong>“modernize”</strong></a>. Meanwhile, upgraded Third-party packages to Python 3 (working rule: <em>No Python 3, no new package</em>). Also deleted unused, incompatible packages.</li>
   <li>Intensive unit testing for 2 months. One limitation is data compatibility issues typically do not show up in unit tests.</li>
   <li>Production rollout for another 4 months (push Python 3 to every developer’s sandbox)</li>
 </ul>
@@ -64,7 +64,7 @@
   <li>Future ideas: Make the Django stack completely Async? Create a new python runtime?</li>
 </ul>
 
-<p>Changing an existing service to use a version of language can never be easy, especially when you cannot afford to breaking the existing services serving millions of people. Moving to Python 3 in 10 months must be a challenging process. “It can be done. It worths it. Make it happen. And Make Python 3 better.”</p>
+<p>Changing an existing service to use a new version of language can never be easy, especially when your service is at such a scale - serving millions of people. You just cannot afford to breaking the existing service. Moving to Python 3 in 10 months must be a challenging process. “It can be done. It worths it. Make it happen. And Make Python 3 better.”</p>
 
 <p>Nice work Instagram!</p>
 
