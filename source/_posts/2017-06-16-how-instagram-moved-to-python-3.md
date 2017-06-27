@@ -3,7 +3,7 @@ layout: post
 title: "How Instagram moved to Python 3"
 date: 2017-06-16 17:52:34 -0700
 comments: true
-categories: python infrastructure
+categories: Python Infrastructure System-Design
 keywords: python python3 instagram infrastracture
 description: How Instagram moved to Python 3, the challenges and problem solved when migrating to Python 3
 ---
