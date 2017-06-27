@@ -162,14 +162,14 @@
 <span class="line-number">8</span>
 <span class="line-number">9</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">class Flower:
-</span><span class="line">    def __init__(self, color='red'):
-</span><span class="line">	    self.color = color
+</span><span class="line">	def __init__(self, color='red'):
+</span><span class="line">		self.color = color
 </span><span class="line">
 </span><span class="line">	def __str__(self):
 </span><span class="line">		return "Flower in color {color}".format(color=self.color)
 </span><span class="line">
 </span><span class="line">	def __repr__(self):
-</span><span class="line">	return "Flower(color={})".format(self.color)</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line">	    return "Flower(color={})".format(self.color)</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>In Python, many dunder methods are implemented and used for operations such as arithmetic operators, comparison operators, truthiness, etc. The following are a few examples:</p>
 
@@ -237,15 +237,15 @@
 <span class="line-number">9</span>
 <span class="line-number">10</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">def is_callable(obj):
-</span><span class="line">
+</span><span class="line">    
 </span><span class="line">try:
-</span><span class="line">	obj.__call__
-</span><span class="line">	# hasattr(str, '__call__')
-</span><span class="line">	# getattr(str, '__call__')
-</span><span class="line">except AttributeError:
-</span><span class="line">	return False
-</span><span class="line">else:
-</span><span class="line">	return True</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line">    obj.__call__
+</span><span class="line">    # hasattr(str, '__call__')
+</span><span class="line">    # getattr(str, '__call__')
+</span><span class="line">    except AttributeError:
+</span><span class="line">    	return False
+</span><span class="line">    else:
+</span><span class="line">    	return True</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h2 id="example-2-class-easydict">Example 2: Class EasyDict</h2>
 
@@ -262,12 +262,16 @@
 <span class="line-number">7</span>
 <span class="line-number">8</span>
 <span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">&gt;&gt;&gt; a = EasyDict()
 </span><span class="line">&gt;&gt;&gt; a['shoe'] = "blue"
 </span><span class="line">&gt;&gt;&gt; a.shoe
 </span><span class="line">"blue"
+</span><span class="line">
 </span><span class="line">&gt;&gt;&gt; a['shoe']
 </span><span class="line">"blue"
+</span><span class="line">	
 </span><span class="line">&gt;&gt;&gt; a.car = "green"
 </span><span class="line">&gt;&gt;&gt; a['car']
 </span><span class="line">"green"</span></code></pre></td></tr></table></div></figure></notextile></div>
@@ -284,14 +288,14 @@
 <span class="line-number">8</span>
 <span class="line-number">9</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">class EasyDict:
-</span><span class="line">	def __init__(self):
-</span><span class="line">    	pass
+</span><span class="line">    def __init__(self):
+</span><span class="line">        pass
 </span><span class="line">
-</span><span class="line">   		def __getitem__(self, item):
-</span><span class="line">    	return self.__dict__[item]
+</span><span class="line">   	def __getitem__(self, item):
+</span><span class="line">        return self.__dict__[item]
 </span><span class="line">
-</span><span class="line">	def __setitem__(self, key, value):
-</span><span class="line">    	self.__dict__[key] = value
+</span><span class="line">    def __setitem__(self, key, value):
+</span><span class="line">        self.__dict__[key] = value
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 </div>
@@ -340,7 +344,7 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/20160815/case-study-check-on-a-commit-according-to-the-included-files.html" title="Previous Post: Case Study: Check on a commit according to its included files">&laquo; Case Study: Check on a commit according to its included files</a>
+        <a class="basic-alignment left" href="/20160815/case-study-check-on-a-commit-according-to-the-included-files.html" title="Previous Post: [Case Study] Perform checks on a commit according to its included files">&laquo; [Case Study] Perform checks on a commit according to its included files</a>
       
       
         <a class="basic-alignment right" href="/20160928/the-uber-challenge-of-cross-application-testinng.html" title="Next Post: GTAC: The Uber Challenge of Cross-Application Testing">GTAC: The Uber Challenge of Cross-Application Testing &raquo;</a>

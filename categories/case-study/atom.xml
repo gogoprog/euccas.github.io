@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Case-study | euccas.github.io]]></title>
+  <title><![CDATA[Category: Case-study, | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/case-study/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-06-16T18:48:27-07:00</updated>
+  <updated>2017-06-26T18:06:00-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Case Study: Check on a Commit According to Its Included Files]]></title>
+    <title type="html"><![CDATA[[Case Study] Perform Checks on a Commit According to Its Included Files]]></title>
     <link href="http://euccas.github.io/20160815/case-study-check-on-a-commit-according-to-the-included-files.html"/>
     <updated>2016-08-15T19:43:21-07:00</updated>
     <id>http://euccas.github.io/20160815/case-study-check-on-a-commit-according-to-the-included-files</id>
