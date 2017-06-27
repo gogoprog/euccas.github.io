@@ -3,7 +3,7 @@ layout: post
 title: "Dunder Methods in Python"
 date: 2016-09-20 20:28:51 -0800
 comments: true
-categories: python
+categories: Python
 ---
 
 In Python, we sometimes see method names with ```__``` around, such as the ```__init__``` method that every Class has. These methods are "dunder" methods ("dunder" stands for "double under" or "double underscore"). Dunder methods in Python are used for operator overloading and customizing behavior of other functions.
@@ -21,15 +21,15 @@ In the following example, we can see three dunder methods:
 - ```__repr__``` method: is called when converting the object to a developer-readable string
 
 ```
-    class Flower:
-	    def __init__(self, color='red'):
-		    self.color = color
+class Flower:
+	def __init__(self, color='red'):
+		self.color = color
 
-		def __str__(self):
-			return "Flower in color {color}".format(color=self.color)
+	def __str__(self):
+		return "Flower in color {color}".format(color=self.color)
 
-		def __repr__(self):
-		return "Flower(color={})".format(self.color)
+	def __repr__(self):
+	    return "Flower(color={})".format(self.color)
 ```
 
 In Python, many dunder methods are implemented and used for operations such as arithmetic operators, comparison operators, truthiness, etc. The following are a few examples:
@@ -67,23 +67,23 @@ Make an ```is_callable``` function to check if an object type is callable.
 Example:
 
 ```
-    >>> is_callable(sorted)
-    True
-    >>> is_callable(str)
-    True
-    >>> is_callable(4)
-    False
+>>> is_callable(sorted)
+True
+>>> is_callable(str)
+True
+>>> is_callable(4)
+False
 ```
 
 Source Code:
 
 ```
-    def is_callable(obj):
+def is_callable(obj):
     
-    try:
-    	obj.__call__
-    	# hasattr(str, '__call__')
-    	# getattr(str, '__call__')
+try:
+    obj.__call__
+    # hasattr(str, '__call__')
+    # getattr(str, '__call__')
     except AttributeError:
     	return False
     else:
@@ -97,31 +97,31 @@ Make an ```EasyDict``` class that can be used with both attribute and item synta
 Example:
 
 ```
-	>>> a = EasyDict()
-	>>> a['shoe'] = "blue"
-	>>> a.shoe
-	"blue"
-	>>> a['shoe']
-	"blue"
-	>>> a.car = "green"
-	>>> a['car']
-	"green"
+>>> a = EasyDict()
+>>> a['shoe'] = "blue"
+>>> a.shoe
+"blue"
+
+>>> a['shoe']
+"blue"
+	
+>>> a.car = "green"
+>>> a['car']
+"green"
 ```
 
 Source Code:
 
 ```
-	class EasyDict:
-    	def __init__(self):
-        	pass
+class EasyDict:
+    def __init__(self):
+        pass
 
-   		def __getitem__(self, item):
-        	return self.__dict__[item]
+   	def __getitem__(self, item):
+        return self.__dict__[item]
 
-    	def __setitem__(self, key, value):
-        	self.__dict__[key] = value
+    def __setitem__(self, key, value):
+        self.__dict__[key] = value
 
 ```
-
-
 

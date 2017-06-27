@@ -3,7 +3,7 @@ layout: post
 title: "Install additional packages in WinPython"
 date: 2016-10-11 17:11:51 -0700
 comments: true
-categories: python
+categories: Python
 ---
 
 For people who need use portable Python on Windows, [WinPython](https://winpython.github.io/) is a good choice. WinPython is a free open-source portable distribution of Python. The project is hosted on [github](https://github.com/winpython). It is also a good alternative to [Portable Python](http://portablepython.com/), which is not being developed anymore.

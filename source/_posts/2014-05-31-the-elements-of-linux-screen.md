@@ -3,7 +3,7 @@ layout: post
 title: "the elements of linux screen"
 date: 2014-05-31 14:51:54 -0700
 comments: true
-categories: linux
+categories: Linux
 ---
 
 The Element of Linux Screen

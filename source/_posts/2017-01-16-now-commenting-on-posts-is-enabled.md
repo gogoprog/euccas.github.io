@@ -3,7 +3,7 @@ layout: post
 title: "Enabled blog posts commenting"
 date: 2017-01-16 23:39:06 -0800
 comments: true
-categories: octopress
+categories: Octopress
 keywords: 
 description: 
 ---

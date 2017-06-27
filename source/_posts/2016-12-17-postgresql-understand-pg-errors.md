@@ -3,7 +3,7 @@ layout: post
 title: "PostgreSQL: Understand PG Errors"
 date: 2016-12-17 09:06:21 -0800
 comments: true
-categories: database postgresql ruby
+categories: Database PostgreSQL Ruby
 ---
 
 When using Ruby Gem ```pg``` and establish database connections to a PostgreSQL database, you'll see PG errors when the database connection becomes problematic. In my experience, two typical PG errors are ```PG::AdminShutdown``` and ```PG::UnableToSend```.

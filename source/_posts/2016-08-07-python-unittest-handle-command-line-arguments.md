@@ -3,7 +3,7 @@ layout: post
 title: "Python Unittest: Handle the command line arguments"
 date: 2016-08-07 11:57:32 -0700
 comments: true
-categories: python unittesting
+categories: Python
 ---
 
 In the previous post about [Python Unittest](http://euccas.github.io/blog/20160711/start-unit-testing-in-python.html), I wrote about the basic steps needed for setting up unit testing for your Python program with the <code>unittest</code> module. In this post, I'll discuss about handling the command line parameters that your program need while you're using Python <code>unittest</code>.

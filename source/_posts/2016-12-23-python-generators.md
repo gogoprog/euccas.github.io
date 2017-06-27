@@ -3,7 +3,7 @@ layout: post
 title: "Python Generators"
 date: 2016-12-23 08:48:45 -0800
 comments: true
-categories: python
+categories: Python
 ---
 
 Generators is a powerful weapon of Python. Generators help you write concise code, give you lazy evaluation, and improve the efficience for calculating large sets of results. Personally I think it's a good habit to use generators in Python whenever you can, if you really want your code to be Pythonic.

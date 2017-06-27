@@ -3,7 +3,7 @@ layout: post
 title: "CMake: Use the correct options to solve linker errors"
 date: 2017-05-29 22:30:46 -0700
 comments: true
-categories: build cmake
+categories: Build CMake
 keywords: build cmake linker
 description: CMake options for linkers, difference between TARGET_LINK_LIBRARIES and LINK_DIRECTORIES
 ---

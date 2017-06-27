@@ -3,7 +3,7 @@ layout: post
 title: "Get Start on Machine Learning"
 date: 2017-01-06 23:17:40 -0800
 comments: true
-categories: machine-learning
+categories: Machine-Learning
 keywords: machine-learning
 description: Get started in Machine Learning
 ---

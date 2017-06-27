@@ -3,7 +3,7 @@ layout: post
 title: "Levels of Design"
 date: 2016-12-24 09:52:07 -0800
 comments: true
-categories: system-design algorithm
+categories: System-Design
 ---
 
 Recently I'm taking a course ["Algorithm Toolbox"](https://www.coursera.org/learn/algorithmic-toolbox/home/welcome) on Coursera. This course provides me a good chance to review and enhance my knowledge in the fundamental algorithms, which usually would help on achieving better system design. This morning I came across one slide of this course and thought it could be very useful. Sharing it here.

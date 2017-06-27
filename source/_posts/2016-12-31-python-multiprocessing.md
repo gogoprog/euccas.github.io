@@ -3,7 +3,7 @@ layout: post
 title: "Python Multiprocessing"
 date: 2016-12-31 09:37:01 -0800
 comments: true
-categories: python
+categories: Python
 keywords: python, multiprocessing, programming, parallel programming
 description: Python Multiprocessing usage and demos
 ---

@@ -3,7 +3,7 @@ layout: post
 title: "Start Unit Testing in Python"
 date: 2016-07-11 22:58:39 -0700
 comments: true
-categories: Python UnitTesting
+categories: Python
 ---
 
 When is the best time to start unit testing in your Python project? My answer is before you writing the first line of code of this project. Unit testing is the fundamental of Test-driven development, which specifically improves the quality and design of your project. 
