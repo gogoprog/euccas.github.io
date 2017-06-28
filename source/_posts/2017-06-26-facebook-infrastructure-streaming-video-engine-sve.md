@@ -44,7 +44,7 @@ Let's take a deep dive to see how SVE was designed to meet these goals.
 - Scheduler will find workers to encode videos. Multiple works can be utilized and each worker will process one or multiple GOPs
 - Overlapped upload and encoding process: While proprocessor, scheduler and works are working, the uploading process is still ongoing. Clients continues splitting videos into segments and uploading to the web server.
 
-{% img center /images/post_images/2017/20170627-facebook_sve_00.png 600px %}
+{% img center /images/post_images/2017/20170627-fb_00.png 600px %}
 
 With this design, the process speedup reached 2.3x (small videos < 3MB) ~ 9.3x (large videos > 1G). 
 
@@ -54,7 +54,7 @@ With this design, the process speedup reached 2.3x (small videos < 3MB) ~ 9.3x (
 - Arbitrary dependencies can be added between the tasks in the video processing pipepline. The added tasks can be executed in parallel while the main pipeline tasks are running.  
 - SVE provides very simple API functions for the video pipeline (Ideally, you can add a video processing pipeline in your product in less than 10 lines of code). 
 
-{% img center /images/post_images/2017/20170627-facebook_sve_01.png 600px %}
+{% img center /images/post_images/2017/20170627-fb_01.png 600px %}
 
 # Scalable
 
@@ -82,7 +82,7 @@ With this design, the process speedup reached 2.3x (small videos < 3MB) ~ 9.3x (
   - the encoder takes the settings, and encodes the video scenes in multiple ways. Then discard the encoded videos which are below quality bar. 
 - Achieved 20% smaller video file sizes. This is a huge saving of user's data plans.
 
-{% img center /images/post_images/2017/20170627-facebook_sve_02.png 600px %}
+{% img center /images/post_images/2017/20170627-fb_02.png 600px %}
 
 This Streaming Video Engine was designed, coded and tested in roughly 9 months. The most important learnings are:
 
