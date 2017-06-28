@@ -4,7 +4,7 @@
   <title><![CDATA[Category: System-design | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/system-design/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-06-27T22:38:41-07:00</updated>
+  <updated>2017-06-27T22:42:17-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -22,7 +22,7 @@
 
 <p>Sharing on Facebook started from largely text, and quickly changed to be largely photos. Since 2014, more videos started to be posted and shared among users. The challenge was, building a video processing system is much harder than building a text or image processing system. Videos are greedy, they will consume all your resources: CPU, memory, disk, network, and anything else.</p>
 
-<p>Before building the Streaming Video Engine system, the team started by reviewing Facebook’s existing video uploading and processing process, which was slow and not scalable. They found several problems need change or improvement:</p>
+<p>Before building the Streaming Video Engine system, the team started by reviewing Facebook’s existing video upload and processing process, which was slow and not scalable. They found several problems need change or improvement:</p>
 
 <ul>
   <li>No unified clients</li>
@@ -40,7 +40,7 @@
   <li>Efficient: storage efficiency, processing efficiency, and more importantly consume less bytes of users’ data plan</li>
 </ul>
 
-<p><em>These four design goals, in my opinion, are also the most common goals applicable to most engineering infrastructure systems.</em></p>
+<p>These four design goals, in my opinion, are also the most common goals applicable to most engineering infrastructure systems.</p>
 
 <p>Let’s take a deep dive to see how SVE was designed to meet these goals.</p>
 
@@ -59,7 +59,7 @@
       <li>Further split the video segment into GOPs</li>
     </ul>
   </li>
-  <li>Scheduler will find workers to encode videos. Multiple works can be utilized and each worker will process one or multiple GOPs</li>
+  <li>Scheduler will find workers to encode videos. Multiple works can be utilized and each worker will process one or multiple GOPs.</li>
   <li>Overlapped upload and encoding process: While proprocessor, scheduler and works are working, the uploading process is still ongoing. Clients continues splitting videos into segments and uploading to the web server.</li>
 </ul>
 
