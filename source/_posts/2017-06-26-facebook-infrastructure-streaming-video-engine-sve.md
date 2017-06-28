@@ -12,7 +12,7 @@ In last year's [**Facebook F8 conference**](https://developers.facebook.com/vide
 
 Sharing on Facebook started from largely text, and quickly changed to be largely photos. Since 2014, more videos started to be posted and shared among users. The challenge was, building a video processing system is much harder than building a text or image processing system. Videos are greedy, they will consume all your resources: CPU, memory, disk, network, and anything else.
 
-Before building the Streaming Video Engine system, the team started by reviewing Facebook's existing video uploading and processing process, which was slow and not scalable. They found several problems need change or improvement:
+Before building the Streaming Video Engine system, the team started by reviewing Facebook's existing video upload and processing process, which was slow and not scalable. They found several problems need change or improvement:
 
 - No unified clients
 - Several disk reads and writes in the critical path
@@ -26,7 +26,7 @@ The new Streaming Video Engine (SVE) is expected to change the aforementioned pr
 - Scalable: everything at Facebook has to scale
 - Efficient: storage efficiency, processing efficiency, and more importantly consume less bytes of users' data plan
 
-*These four design goals, in my opinion, are also the most common goals applicable to most engineering infrastructure systems.*
+These four design goals, in my opinion, are also the most common goals applicable to most engineering infrastructure systems.
 
 Let's take a deep dive to see how SVE was designed to meet these goals.
 
@@ -41,7 +41,7 @@ Let's take a deep dive to see how SVE was designed to meet these goals.
   - Notify the **scheduler** that there are video segments available to be encoded
   - Write the video (segment) to the **original storage**
   - Further split the video segment into GOPs
-- Scheduler will find workers to encode videos. Multiple works can be utilized and each worker will process one or multiple GOPs
+- Scheduler will find workers to encode videos. Multiple works can be utilized and each worker will process one or multiple GOPs.
 - Overlapped upload and encoding process: While proprocessor, scheduler and works are working, the uploading process is still ongoing. Clients continues splitting videos into segments and uploading to the web server.
 
 {% img center /images/post_images/2017/20170627-fb_00.png 600px %}
