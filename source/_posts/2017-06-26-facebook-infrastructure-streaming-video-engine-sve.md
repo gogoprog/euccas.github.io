@@ -12,14 +12,14 @@ In last year's [**Facebook F8 conference**](https://developers.facebook.com/vide
 
 Sharing on Facebook started from largely text, and quickly changed to be largely photos. Since 2014, more videos started to be posted and shared among users. The challenge was, building a video processing system is much harder than building a text or image processing system. Videos are greedy, they will consume all your resources: CPU, memory, disk, network, and anything else.
 
-Before building the Streaming Video Engine system, the team started by reviewing Facebook's existing video upload and processing process, which was slow and not scalable. They found several problems need change or improvement:
+Before building the Streaming Video Engine system, the team started by reviewing Facebook's existing video uploading and processing process, which was slow and not scalable. They found several problems need change or improvement:
 
 - No unified clients
 - Several disk reads and writes in the critical path
 - Was doing serial processing throughout
 - Read a video as one single big file, instead of splitting it up to chunks
 
-The new Streaming Video Engine (SVE) is expected to change the aforementioned problem, and to meet the four design goals:
+The new Streaming Video Engine (SVE) is expected to solve the aforementioned problems, and to meet the four design goals:
 
 - Fast: make users upload their videos super fast
 - Flexible: usable for different Facebook products
@@ -50,7 +50,7 @@ With this design, the process speedup reached 2.3x (small videos < 3MB) ~ 9.3x (
 
 # Flexible
 
-- The key insight that allows SVE to be flexible is, all the video processing pipelines can be represented as a DAG (Directed acyclic graph). 
+- The key insight that allows SVE to be flexible is, all the video processing pipelines can be represented as a DAG (Directed Acyclic Graph). 
 - Arbitrary dependencies can be added between the tasks in the video processing pipepline. The added tasks can be executed in parallel while the main pipeline tasks are running.  
 - SVE provides very simple API functions for the video pipeline (Ideally, you can add a video processing pipeline in your product in less than 10 lines of code). 
 
@@ -59,7 +59,7 @@ With this design, the process speedup reached 2.3x (small videos < 3MB) ~ 9.3x (
 # Scalable
 
 - SVE was designed to prepare for overloads, such as handling the worldwide uploading "spike" on New Year's Eve (could be 3x video uploads). 
-- Building a scalable system is relevant only when the system is **robust**. When the system gets overloaded, it must gracefully degrade. It cannot crash and burn. 
+- Building a scalable system is relevant only when the system is **robust**. When the system gets overloaded, it must **gracefully degrade**. It cannot crash and burn. 
 - Prepare for overload along two dimensions: at the pipeline level, and the task level.
 - Pipeline level, when uploads overwhelm the system:
   - Do not cache original videos in upload: Preprocessor stops caching original videos. Workers then need fetch videos from the original storage, not from preprocessor. The cost here is disk latency is added to the critical path.
@@ -77,12 +77,13 @@ With this design, the process speedup reached 2.3x (small videos < 3MB) ~ 9.3x (
 - The adopted solution is: 
   - Categorize each scene such as "minimal motion", "rapid movement", and "complex crowded scene". 
   - Build a Neural Network Model and a large training data set to train the network.
-  - In SVE, video scene segments are sent to a Fingerprint generator, which generates fingerprints and sends to the Neural Network Model. 
+  - In SVE, video scene segments are sent to a Fingerprint generator, which generates fingerprints and sends them to the Neural Network Model. 
   - The neural network figures out optimal encoding settings (could be multiple) for each scene, and sends the encoding settings to encoders.
   - the encoder takes the settings, and encodes the video scenes in multiple ways. Then discard the encoded videos which are below quality bar. 
-- Achieved 20% smaller video file sizes. This is a huge saving of user's data plans.
 
 {% img center /images/post_images/2017/20170627-fb_02.png 600px %}
+
+SVE achieved 20% smaller video file sizes. This is a huge saving of user's data plans.
 
 This Streaming Video Engine was designed, coded and tested in roughly 9 months. The most important learnings are:
 
@@ -90,5 +91,5 @@ This Streaming Video Engine was designed, coded and tested in roughly 9 months. 
 - Multi-dimensional flexibility is a key for making the system most useful
 - Parallel and shadow mode testing to find correctness and scalability issues before production
 - Design the ability to handle extreme products such as 360 videos
-- Trackk direct measures (latency, reliability, etc.) and indirect measures (number of videos uploaded, watch times, etc.). Mapping indirect measures to direct measures could give you a good view in figuring out what you could do better next. 
+- Track direct measures (latency, reliability, etc.) and indirect measures (number of videos uploaded, watch times, etc.). Mapping indirect measures to direct measures could give you a good view in figuring out what you could do better next. 
  
