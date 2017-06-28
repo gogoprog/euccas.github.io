@@ -18,6 +18,8 @@ Instagram's backend, which serves over 400 million active users every day, is bu
 
 The whole migration process took about 10 months, in roughly 3 stages.
 
+<!--more--> 
+
 {% img center /images/post_images/2017/20170616-instagram_python3_00.png 520px %}
 
 - First off, the migration was done directly on the Master Branch, which means the developers were adding new features to the code while migration was ongoing. So in the beginning of the Mirgration process, infrastructure added support of Python 3 on the Master Branch to make the code be able to run with both Python 2 and Python 3 environment. 
