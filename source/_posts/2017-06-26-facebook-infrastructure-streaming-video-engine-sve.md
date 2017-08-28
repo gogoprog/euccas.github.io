@@ -30,6 +30,8 @@ These four design goals, in my opinion, are also the most common goals applicabl
 
 Let's take a deep dive to see how SVE was designed to meet these goals.
 
+<!--more--> 
+
 # Fast
 
 - First step is build a common library (for video uploading) that could be used for the clients cross platforms (Web, Mobile, Android, etc.). With the common library, optimizations on video uploading can be applied to all platforms.
