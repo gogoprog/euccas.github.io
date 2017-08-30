@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-06-27T22:50:03-07:00</updated>
+  <updated>2017-08-29T18:07:23-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,141 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[CPU Profiling Tools on Linux]]></title>
+    <link href="http://euccas.github.io/20170827/cpu-profiling-tools-on-linux.html"/>
+    <updated>2017-08-27T14:23:21-07:00</updated>
+    <id>http://euccas.github.io/20170827/cpu-profiling-tools-on-linux</id>
+    <content type="html"><![CDATA[<p>Profiling is an effective method to provide measurements for the performance of software applications. With profiling, you get fine grained information for the components of an application, such as how often a function is called, how long a routine takes to execute and how much time are spent of different spots in the code. With these information, you could identify the performance bottlenecks and the poorly implemented parts in a software application, and find effective methods to improve them.</p>
+
+<p>In this post I’ll write a brief summary of two profiling methods: <strong>Instrumentation</strong> and <strong>Sampling</strong>, and four CPU profiling tools on Linux: <strong>perf</strong>, <strong>gprof</strong>, <strong>Valgrind</strong> and Google’s <strong>gperftools</strong>.</p>
+
+<h1 id="profiling-methods">Profiling Methods</h1>
+
+<p>Different profiling methods use different ways to measure the performance of an application when it is executed. <strong>Instrumentation</strong> and <strong>Sampling</strong> are the two categories that profiling methods fall into.</p>
+
+<h2 id="instrumentation">Instrumentation</h2>
+
+<p>Instrumentation method inserts special code at the beginning and end of each routine to record when the routine starts and ends. The time spent on calling other routines within a routine may also be recorded. The profiling result shows the actual time taken by the routine on each call.</p>
+
+<p>There are two types of instrumenting profiler tools: <strong>source-code modifying</strong> profilers and <strong>binary profilers</strong>. Source-code modifying profilers insert the instrumenting code in the source code, while the binary profilers insert instrumentation into an application’s executable code once it is loaded in memory.</p>
+
+<p>The good thing of instrumentation method is it gives you the actual time. The inserted instrumentation code (timer calls) take some time themselves. To reduce the impact of that, at the start of each run profilers measure the overhead incurred from the instrumenting process, and later subtract this overhead from the measurement result. But the instrumenting process could still significantly affect an application’s performance in some cases, for example when the routine is very short and frequently called, as the inserted instrumentation would disturb the way the routine executes in the CPU.</p>
+
+<h2 id="sampling">Sampling</h2>
+
+<p>Sampling measures applications without inserting any modifications. Sampling profilers record the executed instruction when the operating system interrupts the CPU at regular intervals to execute process switches, and correlates the recorded execution points with the routines and source code during the linking process. The profiling result shows the frequency with which a routine and source line is executing during the application’s run.</p>
+
+<p>Sampling profilers causes little overhead to the application run process, and they work well on small and often-called routines. One drawback is the evaluations of time spent are statistical approximations rather than actual time. Also sampling could only tell what routine is executing currently, not where it was called from. As a result, sampling profilers can’t report call traces of an application.</p>
+
+<h1 id="cpu-profiling-tools-on-linux">CPU Profiling Tools on Linux</h1>
+
+<h2 id="perf">perf</h2>
+
+<p>The <a href="https://perf.wiki.kernel.org/index.php/Main_Page"><strong>perf</strong></a> tool is provided by Linux kernel (2.6+) for profiling CPU and software events. You can get the tool installed by:</p>
+
+<ul>
+  <li>Ubuntu: install <em>linux-tools_common</em></li>
+  <li>Debian: install <em>linux-base</em></li>
+  <li>Arch: install <em>perf-utils</em></li>
+  <li>Fedora: install <em>perf</em></li>
+</ul>
+
+<p><code>perf</code> is based on the perf_events system, which is based on event-based sampling, and it uses CPU performance counters to profile the application. It can instrument hardware counters, static tracepoints, and dynamic tracepoints. It also provide per task, per CPU and per-workload counters, sampling on top of these and source code event annotation. It does <em>not</em> instrument the code, so that it has a really fast speed and generates precise results.</p>
+
+<p>You can use <code>perf</code> to profile with <code>perf record</code> and <code>perf report</code> commands:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">perf record -g &lt;app&gt; &lt;options&gt;
+</span><span class="line">perf report</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>The <code>perf record</code> command collects samples and generates an output file called <code>perf.data</code>. This file can then be analyzed using <code>perf report</code> and <code>perf annotate</code> commands. Sampling frequency can be specified with <code>-F</code> option. As an example, <code>perf record -F 1000</code> means 1000 samples per second.</p>
+
+<h2 id="gprof">gprof</h2>
+
+<p>GNU profiler <a href="https://sourceware.org/binutils/docs/gprof/"><strong>gprof</strong></a> tool uses a hybrid of instrumentation and sampling. Instrumentation is used to collect function call information, and sampling is used to gather runtime profiling information.</p>
+
+<p>Using <code>gprof</code> to profile your applications requires the following steps:</p>
+
+<ol>
+  <li>Compile and link the application with <code>-pg</code> option</li>
+  <li>Execute the application to generate a profile data file, default file name is <code>gmon.out</code></li>
+  <li>Run <code>gprof</code> command to analyze the profile data</li>
+</ol>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">g++ -pg myapp.cpp -o myapp.o
+</span><span class="line">./myapp.o
+</span><span class="line">gprof myapp.o  </span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>The <code>gprof</code> command prints a flat profile and a call graph on standard output. The flat profile shows how much time was spent executing directly in each function. The call graph shows which functions called which others, and how much time each function used when its subroutine calls are included. You can use the supported options <a href="https://ftp.gnu.org/old-gnu/Manuals/gprof-2.9.1/html_mono/gprof.html#SEC4">listed here</a> to control <code>gprof</code> output styles, such as enabling line-by-line analysis and annoted source.</p>
+
+<h2 id="valgrind-callgrind">Valgrind Callgrind</h2>
+
+<p><a href="http://www.valgrind.org/"><strong>Valgrind</strong></a> is an instrumentation framework for building dynamic analysis tools. Valgrind distribution includes six production-quality tools that can detect memory issues and profile programs. <strong>Callgrind</strong>, built as an extension to <strong>Cachegrind</strong>, provides function call call-graph. A separated visualisation tool <a href="http://kcachegrind.sourceforge.net/cgi-bin/show.cgi/KcacheGrindIndex"><strong>KCachegrind</strong></a> could also be used to visualize Callgrind’s output.</p>
+
+<p>Valgrind is a CPU emulator. The technology behind Valgrind is Dynamic binary instrumentation (DBI), whereby the analysis code is added to the original code of the client program at run-time. The profiling tool Callgrind is simulation based, it uses Valgrind as a runtime instrumentation framework. The following two papers explains how Valgrind and Callgrind work in detail.</p>
+
+<ul>
+  <li><a href="http://www.valgrind.org/docs/valgrind2007.pdf">Valgrind: A Framework for Heavyweight Dynamic Binary Instrumentation (<em>Nicholas Nethercote and Julian Seward</em>)</a></li>
+  <li><a href="http://www.valgrind.org/docs/callgrind2004.pdf">A Tool Suite for Simulation Based Analysis of Memory Access Behavior (<em>Josef Weidendorfer, Markus Kowarschik and Carsten Trinitis</em>)</a></li>
+</ul>
+
+<p>You need use the following commands to profile your program with <code>valgrind</code>:</p>
+
+<ol>
+  <li>Build your program as usual, no need adding any special compiler or linker flags</li>
+  <li>Execute the program with callgrind tool to generate a profile data file, default file name is <code>callgrind.out.&lt;pid&gt;</code></li>
+  <li>View the generated profile data with <code>callgrind_annotate</code> or <code>kcachegrind</code> tool</li>
+</ol>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">g++ myapp.cpp -o myapp.o 
+</span><span class="line">valgrind --tool=callgrind myapp.o
+</span><span class="line">callgrind_annotate callgrind.out.&lt;pid&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="gperftools">gperftools</h2>
+
+<p><a href="https://github.com/gperftools/gperftools"><strong>gperftools</strong></a>, originally “Google Performance Tools”, is a collection of tools for analyzing and improving performance of multi-threaded applications. It offers a fast malloc, a thread-friendly heap-checker, a heap-profiler, and a cpu-profiler. gperftools was developed and tested on x86 Linux systems, and it works in its full generality only on those systems. Some of the libraries and functionality have been ported to other Unix systems and Windows.</p>
+
+<p>To use the CPU profiler in gperftools, you need:
+1. Install the gperftools, following the instructions <a href="https://github.com/gperftools/gperftools">here</a>
+2. Include gperftools header file in your application’s source files, and compile the application 
+3. Link the library into an application with <code>-lprofiler</code>
+4. Set enrionement variable <code>CPUPROFILE</code>, then run the application
+5. Analyze the output with <code>pprof</code> commands</p>
+
+<p>Include gperftools header files in your source file:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">#include "gperftools-2.6.1/src/gperftools/profiler.h"</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Link with <code>-lprofiler</code>, <code>profiler</code> is in the installation directory of <code>gperftools</code>:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">g++ -DWITHGPERFTOOLS -lprofiler -g myapp.cpp -o myapp.o</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Set CPUPROFILE environment variable, which controls the location of profiler output data file:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">export CPUPROFILE=./prof.out</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Run <code>pprof</code> commands to analyze the profiling result:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">pprof --text &lt;app&gt; ./prof.out # text output
+</span><span class="line">pprof --gv &lt;app&gt; ./prof.out # graphical output, requires gz installed</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Facebook Infrastructure: Streaming Video Engine (SVE)]]></title>
@@ -43,6 +178,8 @@
 <p>These four design goals, in my opinion, are also the most common goals applicable to most engineering infrastructure systems.</p>
 
 <p>Let’s take a deep dive to see how SVE was designed to meet these goals.</p>
+
+<!--more-->
 
 <h1 id="fast">Fast</h1>
 
@@ -1866,130 +2003,6 @@ For example:</p>
 
 <p>That’s it! Your Python package is ready to use!</p>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[高效Jenkins用户的第4个习惯]]></title>
-    <link href="http://euccas.github.io/20161010/jenkins-user-habits-4.html"/>
-    <updated>2016-10-10T21:32:01-07:00</updated>
-    <id>http://euccas.github.io/20161010/jenkins-user-habits-4</id>
-    <content type="html"><![CDATA[<p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
-
-<h1 id="jenkinsplugin">习惯 4: 精选你所使用的Jenkins功能插件(Plugin)</h1>
-
-<p>当你使用了越来越多的Jenkins功能插件时，就需要花一些时间和精力来维护和清理所有的功能插件。 因为当你安装了太多的Jenkins插件时，有可能会带来一些不好的效果，诸如减慢系统速度，占用多过资源，产生无效的记录文件等等。为了避免使用过多的Jenkins插件造成的各种问题，你应该注意下面几个方面。</p>
-
-<h2 id="section">1. 只安装你真正需要的功能插件</h2>
-
-<p>在安装一个功能插件之前，你都应该问一个问题：我真的需要这个插件吗？</p>
-
-<p>如果你并不打算真正使用一个插件，就不要安装在Jenkins Master上。</p>
-
-<p>不同的插件可能包含有一些类似的功能，你所需要完成的事情，也不仅仅只有一个插件可以实现。这时就需要在一些功能类似的插件中选择你真正所需的。</p>
-
-<p>功能插件可能会给Jenkins service的稳定性造成预期之外的影响，并且可能增加系统的负载和每一个job运行的时间。充分考虑到这些可能的负作用，尽量避免安装你并不是真正需要的插件。</p>
-
-<!--more-->
-
-<h2 id="section-1">2. 清理旧的插件和数据</h2>
-
-<p>定期检查和删除你不再使用的Jenkins功能插件。</p>
-
-<p>在Jenkins管理页面 (Manage Jenkins) 中，注意关于old data的描述。当你删除一个Jenkins插件后，要把有关的历史数据也同时删除。</p>
-
-<p>及时删除不需要的数据，可以加速Jenkins Master启动时加载配置和所有jobs的过程。</p>
-
-<h2 id="section-2">3. 建立你的必备插件列表</h2>
-
-<p>根据你的使用需求和经验，选择你所需要的Jenkins功能插件。这些功能插件应该是满足你所需要的功能，并且性能良好稳定。为你的这些插件建立一个列表并且维护它。</p>
-
-<p><strong>Andrew Bayer</strong>推荐了一些他所使用的Jenkins功能插件。所有这些提供的插件都可以通过Jenkins插件管理功能(Manage Plugins)来查找和安装。</p>
-
-<ul>
-  <li>
-    <p><strong>Job Config History</strong></p>
-
-    <ul>
-      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/JobConfigHistory+Plugin">插件介绍</a></li>
-      <li>功能：保存job configuration的历史，记录每一次改动的信息。对于job configuration每一次的改变，保存一个config.xml文件。提供overview页面，方便查看全部的改变。可以对比查看两次改动之间的区别。</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>Static Analysis Plugins</strong></p>
-
-    <ul>
-      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Static+Code+Analysis+Plug-ins">插件介绍</a></li>
-      <li>功能：处理各种静态代码分析结果数据，生成可视化报告（包括趋势图，Build Summary，结果汇总分析等等）</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>xUnit</strong></p>
-
-    <ul>
-      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/xUnit+Plugin">插件介绍</a></li>
-      <li>功能：生成和发布单元测试报告。可以把各种测试结果转化为jnit格式。</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>Parameterized Trigger</strong></p>
-
-    <ul>
-      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Trigger+Plugin">插件介绍</a></li>
-      <li>功能：参数化配置trigger build. 对于一个build job，可以定义多个配置，用于不同的条件和参数。</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>Conditional Build Step</strong></p>
-
-    <ul>
-      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Conditional+BuildStep+Plugin">插件介绍</a></li>
-      <li>功能：可以灵活配置的build step。通常和Parameterized Trigger配合使用。</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>Tool Environment</strong></p>
-
-    <ul>
-      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Tool+Environment+Plugin">插件介绍</a></li>
-      <li>功能：让你可以自定义使用Jenkin tool的自动安装。在一个job的执行过程中安装指定的tools，供这个job使用。</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>EnvInject</strong></p>
-
-    <ul>
-      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/EnvInject+Plugin">插件介绍</a></li>
-      <li>功能：帮助你管理环境变量，包括删除Jenkins Java process引入的一些环境变量，在一个node启动时设置所需的环境变量，设置密码值等等。</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>Rebuild</strong></p>
-
-    <ul>
-      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Rebuild+Plugin">插件介绍</a></li>
-      <li>功能：可以rerun每一个被执行过的parameterized build，保存了parameterized build每一次使用的参数，并且允许你在执行rebuild时修改这些参数。</li>
-    </ul>
-  </li>
-  <li>
-    <p><strong>Build Timeout</strong></p>
-
-    <ul>
-      <li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Build-timeout+Plugin">插件介绍</a></li>
-      <li>功能：设置build的时间限制，当一个build时间超过预设时，会自动被停止。这个插件不能用于Jenkins pipelines.</li>
-    </ul>
-  </li>
-</ul>
-
-<p><strong>阅读同主题内容</strong></p>
-
-<ul>
-  <li><a href="http://euccas.github.io/blog/20151210/jenkins-user-habits-1.html">高效Jenkins用户的第1个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20151215/jenkins-user-habits-2.html">高效Jenkins用户的第2个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20160523/jenkins-user-habits-3.html">高效Jenkins用户的第3个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20161010/jenkins-user-habits-4.html">高效Jenkins用户的第4个习惯</a></li>
-  <li><a href="http://euccas.github.io/blog/20161216/jenkins-user-habits-5.html">高效Jenkins用户的第5个习惯</a></li>
-</ul>
 ]]></content>
   </entry>
   

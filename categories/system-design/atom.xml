@@ -4,7 +4,7 @@
   <title><![CDATA[Category: System-design | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/system-design/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-06-27T22:50:03-07:00</updated>
+  <updated>2017-08-29T18:07:23-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -43,6 +43,8 @@
 <p>These four design goals, in my opinion, are also the most common goals applicable to most engineering infrastructure systems.</p>
 
 <p>Let’s take a deep dive to see how SVE was designed to meet these goals.</p>
+
+<!--more-->
 
 <h1 id="fast">Fast</h1>
 
