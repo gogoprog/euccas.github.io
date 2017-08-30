@@ -6,9 +6,9 @@ sharing: true
 footer: true
 ---
 
-Hi there. I'm Euccas Chen. This is my blog writing about software, mobile and web development. 
+Hi there. I'm Euccas Chen. This is my blog writing about Engineering Infrastructure and Software Development. Sometimes I also write on mobile and web development technologies. 
 
-You can visit my website [**euccas.me**](http://euccas.me) to know more about me.
+Welcome to take a look at my website [**euccas.me**](http://euccas.me) to know more about me.
 
 Cheers,
 
