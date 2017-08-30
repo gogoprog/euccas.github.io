@@ -125,5 +125,5 @@ Run ```pprof``` commands to analyze the profiling result:
 
 ```
 pprof --text <app> ./prof.out # text output
-pprof --gv <app> ./prof.out # graphical output, requires gz installed
+pprof --gv <app> ./prof.out # graphical output, requires gv installed
 ```
