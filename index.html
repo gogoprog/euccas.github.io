@@ -202,13 +202,13 @@
 </span><span class="line">./myapp.o
 </span><span class="line">gprof myapp.o  </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>The <code>gprof</code> command prints a flat profile and a call graph on standard output. The flat profile shows how much time was spent executing directly in each function. The call graph shows which functions called which others, and how much time each function used when its subroutine calls are included. You can use the supported options <a href="https://ftp.gnu.org/old-gnu/Manuals/gprof-2.9.1/html_mono/gprof.html#SEC4">listed here</a> to control <code>gprof</code> output styles, such as enabling line-by-line analysis and annoted source.</p>
+<p>The <code>gprof</code> command prints a flat profile and a call graph on standard output. The flat profile shows how much time was spent executing directly in each function. The call graph shows which functions called which others, and how much time each function used when its subroutine calls are included. You can use the supported options <a href="https://ftp.gnu.org/old-gnu/Manuals/gprof-2.9.1/html_mono/gprof.html#SEC4">listed here</a> to control <code>gprof</code> output styles, such as enabling line-by-line analysis and annotated source.</p>
 
 <h2 id="valgrind-callgrind">Valgrind Callgrind</h2>
 
 <p><a href="http://www.valgrind.org/"><strong>Valgrind</strong></a> is an instrumentation framework for building dynamic analysis tools. Valgrind distribution includes six production-quality tools that can detect memory issues and profile programs. <strong>Callgrind</strong>, built as an extension to <strong>Cachegrind</strong>, provides function call call-graph. A separated visualisation tool <a href="http://kcachegrind.sourceforge.net/cgi-bin/show.cgi/KcacheGrindIndex"><strong>KCachegrind</strong></a> could also be used to visualize Callgrind’s output.</p>
 
-<p>Valgrind is a CPU emulator. The technology behind Valgrind is Dynamic binary instrumentation (DBI), whereby the analysis code is added to the original code of the client program at run-time. The profiling tool Callgrind is simulation based, it uses Valgrind as a runtime instrumentation framework. The following two papers explains how Valgrind and Callgrind work in detail.</p>
+<p>Valgrind is a CPU emulator. The technology behind Valgrind is Dynamic binary instrumentation (DBI), whereby the analysis code is added to the original code of the client program at run-time. The profiling tool Callgrind is simulation based, it uses Valgrind as a runtime instrumentation framework. The following two papers explain how Valgrind and Callgrind work in detail.</p>
 
 <ul>
   <li><a href="http://www.valgrind.org/docs/valgrind2007.pdf">Valgrind: A Framework for Heavyweight Dynamic Binary Instrumentation (<em>Nicholas Nethercote and Julian Seward</em>)</a></li>
@@ -234,12 +234,15 @@
 
 <p><a href="https://github.com/gperftools/gperftools"><strong>gperftools</strong></a>, originally “Google Performance Tools”, is a collection of tools for analyzing and improving performance of multi-threaded applications. It offers a fast malloc, a thread-friendly heap-checker, a heap-profiler, and a cpu-profiler. gperftools was developed and tested on x86 Linux systems, and it works in its full generality only on those systems. Some of the libraries and functionality have been ported to other Unix systems and Windows.</p>
 
-<p>To use the CPU profiler in gperftools, you need:
-1. Install the gperftools, following the instructions <a href="https://github.com/gperftools/gperftools">here</a>
-2. Include gperftools header file in your application’s source files, and compile the application 
-3. Link the library into an application with <code>-lprofiler</code>
-4. Set enrionement variable <code>CPUPROFILE</code>, then run the application
-5. Analyze the output with <code>pprof</code> commands</p>
+<p>To use the CPU profiler in gperftools, you need:</p>
+
+<ol>
+  <li>Install the gperftools, following the instructions <a href="https://github.com/gperftools/gperftools">here</a></li>
+  <li>Include gperftools header file in your application’s source files, and compile the application</li>
+  <li>Link the library into an application with <code>-lprofiler</code></li>
+  <li>Set enrionement variable <code>CPUPROFILE</code>, then run the application</li>
+  <li>Analyze the output with <code>pprof</code> commands</li>
+</ol>
 
 <p>Include gperftools header files in your source file:</p>
 
@@ -262,8 +265,6 @@
 <span class="line-number">2</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">pprof --text &lt;app&gt; ./prof.out # text output
 </span><span class="line">pprof --gv &lt;app&gt; ./prof.out # graphical output, requires gz installed</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>```</p>
 </div>
   
   
