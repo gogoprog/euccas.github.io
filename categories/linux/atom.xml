@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/linux/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-08-29T18:24:34-07:00</updated>
+  <updated>2017-08-29T20:09:34-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -145,7 +145,7 @@ export CPUPROFILE=./prof.out
 
 <p><code>
 pprof --text &lt;app&gt; ./prof.out # text output
-pprof --gv &lt;app&gt; ./prof.out # graphical output, requires gz installed
+pprof --gv &lt;app&gt; ./prof.out # graphical output, requires gv installed
 </code></p>
 ]]></content>
   </entry>
