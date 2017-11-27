@@ -26,11 +26,11 @@ The new Streaming Video Engine (SVE) is expected to solve the aforementioned pro
 - Scalable: everything at Facebook has to scale
 - Efficient: storage efficiency, processing efficiency, and more importantly consume less bytes of users' data plan
 
+<!--more--> 
+
 These four design goals, in my opinion, are also the most common goals applicable to most engineering infrastructure systems.
 
 Let's take a deep dive to see how SVE was designed to meet these goals.
-
-<!--more--> 
 
 # Fast
 
