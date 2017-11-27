@@ -32,7 +32,7 @@ Sampling profilers causes little overhead to the application run process, and th
 
 # CPU Profiling Tools on Linux
 
-## perf
+## 1. perf
 
 The [**perf**](https://perf.wiki.kernel.org/index.php/Main_Page) tool is provided by Linux kernel (2.6+) for profiling CPU and software events. You can get the tool installed by:
 
@@ -52,7 +52,7 @@ perf report
 
 The ```perf record``` command collects samples and generates an output file called ```perf.data```. This file can then be analyzed using ```perf report``` and ```perf annotate``` commands. Sampling frequency can be specified with ```-F``` option. As an example, ```perf record -F 1000``` means 1000 samples per second.
 
-## gprof
+## 2. gprof
 
 GNU profiler [**gprof**](https://sourceware.org/binutils/docs/gprof/) tool uses a hybrid of instrumentation and sampling. Instrumentation is used to collect function call information, and sampling is used to gather runtime profiling information. 
 
@@ -70,7 +70,7 @@ gprof myapp.o
 
 The ```gprof``` command prints a flat profile and a call graph on standard output. The flat profile shows how much time was spent executing directly in each function. The call graph shows which functions called which others, and how much time each function used when its subroutine calls are included. You can use the supported options [listed here](https://ftp.gnu.org/old-gnu/Manuals/gprof-2.9.1/html_mono/gprof.html#SEC4) to control ```gprof``` output styles, such as enabling line-by-line analysis and annotated source. 
 
-## Valgrind Callgrind 
+## 3. Valgrind Callgrind 
 
 [**Valgrind**](http://www.valgrind.org/) is an instrumentation framework for building dynamic analysis tools. Valgrind distribution includes six production-quality tools that can detect memory issues and profile programs. **Callgrind**, built as an extension to **Cachegrind**, provides function call call-graph. A separated visualisation tool [**KCachegrind**](http://kcachegrind.sourceforge.net/cgi-bin/show.cgi/KcacheGrindIndex) could also be used to visualize Callgrind's output. 
 
@@ -91,7 +91,7 @@ valgrind --tool=callgrind myapp.o
 callgrind_annotate callgrind.out.<pid>
 ```
 
-## gperftools
+## 4. gperftools
 
 [**gperftools**](https://github.com/gperftools/gperftools), originally "Google Performance Tools", is a collection of tools for analyzing and improving performance of multi-threaded applications. It offers a fast malloc, a thread-friendly heap-checker, a heap-profiler, and a cpu-profiler. gperftools was developed and tested on x86 Linux systems, and it works in its full generality only on those systems. Some of the libraries and functionality have been ported to other Unix systems and Windows. 
  
