@@ -26,7 +26,7 @@ gem install log4r
 
 One thing to note is the log4r supports configurations through YAML file, and you can define the configuration file when including the log4r.
 
-```
+```ruby
 require 'log4r'
 require 'log4r/yamlconfigurator'
 require 'log4r/outputter/datefileoutputter'
@@ -43,7 +43,6 @@ You can define the logging levels, logger names, output destinations, etc. The f
 File name: log4r.yml
 
 ```
-
 description: config file for log4r
 
 ---
@@ -107,16 +106,15 @@ log4r_config:
 
 You need initialize a logger in your project first.
 
-```
+```ruby
 logger = Log4r::Logger['myproject']
 ```
 
 ## Step 5: Use your logger
 
-```
+```ruby
 logger.info 'My Project Starts!'
 logger.warn 'Here is a warning'
 logger.error 'Here is an error'
 logger.fatal 'Fatal error happens. Program will exit'
 ```
-

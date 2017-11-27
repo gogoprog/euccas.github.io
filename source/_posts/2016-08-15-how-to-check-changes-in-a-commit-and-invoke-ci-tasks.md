@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "[Case Study] Perform checks on a commit according to its included files"
+title: "How to check changes in a commit and invoke CI tasks"
 date: 2016-08-15 19:43:21 -0700
 comments: true
-categories: Case-Study, Infrastructure
+categories: Continuous-Integration Infrastructure
 ---
 
 # Problem Description
@@ -29,7 +29,6 @@ There are multiple ways to design the configurations, such as:
 The 3rd way probably is the optimal one because it provides the flexibility for you to put a large scope path as the files need check, and then exclude a subset from the large scope path. For example:
 
 ```
-
 check: my_project/dev/
 
 skip: my_project/dev/test/
@@ -64,14 +63,13 @@ Here is the code written in Python for demonstrating the case discussed above.
 
 - ```config['exclude']```: a list containing the files or paths do not need check
 
-```
+```python
 
 def analyze_commit_files(commit_files, config):
 
     need_check = False    
 
     
-
     # commit need_check is False if:    
 
     # - No files in this commit    
@@ -129,5 +127,4 @@ def analyze_commit_files(commit_files, config):
     return need_check
 
 ```
-
 

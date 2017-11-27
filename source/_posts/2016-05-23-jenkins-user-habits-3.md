@@ -3,7 +3,7 @@ layout: post
 title: "高效Jenkins用户的第3个习惯"
 date: 2016-05-23 20:54:36 -0700
 comments: true
-categories: Jenkins Chinese 中文
+categories: Jenkins Continuous-Integration Chinese 中文
 ---
 
 本文内容部分来源于**Andrew Bayer**发布在SlideShare上的 [*7 habits of highly productive Jenkins Users (2014 Edition)*](http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition).

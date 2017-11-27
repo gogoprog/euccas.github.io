@@ -22,6 +22,7 @@ The following is a demo Python project I built to demonstrate handling command l
 
 ## myapp.py
 
+```python
     #!/usr/bin/env python
 
     import sys, os.path, re
@@ -73,9 +74,11 @@ The following is a demo Python project I built to demonstrate handling command l
 
     if __name__ == '__main__':
         app = myApp()
+```
 
 ## test_myapp.py
 
+```python
     #!/usr/bin/env python
 
     import sys, os.path, re
@@ -106,4 +109,4 @@ The following is a demo Python project I built to demonstrate handling command l
 
     if __name__ == '__main__':
         unittest.main()
-
+```

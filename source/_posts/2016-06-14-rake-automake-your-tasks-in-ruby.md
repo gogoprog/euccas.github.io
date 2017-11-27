@@ -21,7 +21,7 @@ Writing a description to the defined tasks in Rakefile help you get more details
 
 Example:
 
-```
+```ruby
 desc 'Upload documentation to server'
 task 'upload-docs' => ['rdoc'] do
     sh "scp -r #{html_dir}/* " + "#{user}:#{server_path}"
@@ -39,7 +39,7 @@ rake db:migrate
 
 In this command, the ***db*** is the namespace, and the ***migrate*** is the task inside the namespace.
 
-```
+```ruby
 namespace :cleanup do
     desc 'Clean up database'
     task  :dbs => :environment do
@@ -63,20 +63,21 @@ task :cleanup => "cleanup:all"
 
 The default task is the one gets executed when you run rake without any arguments. You can set the default task in Rakefile by using the ```:default``` keyword.
 
-```
+```ruby
 task :default => 'cleanup'
 ```
 
-```
+```ruby
 task :default => 'logs: cleanup'
 ```
 
 # Multiple Tasks Running in Parallel
+
 Rake's ```multitask``` function supports running multiple tasks in parallel. The method is defining a task using the ```multitask``` function, and each of this task's prerequisites will be run in a separate thread.
 
 An example of multiple parallel tasks:
 
-```
+```ruby
 task 'copy_docs' do
     # Simulate a large disk copy
     sleep 5
@@ -98,8 +99,7 @@ In this example, the ```build_serial``` task runs in about 15 seconds, but the `
 
 Rake tasks can be invoked from other tasks using the ```Rake::Task['<your take>'].invoke``` method.
 
-```
-
+```ruby
 task :cleanup do
     Rake::Task['logs: cleanup'].invoke
     puts "logs are cleaned!"
@@ -119,14 +119,13 @@ When your project need include the Rake tasks defined in external directories, y
 
 Include one rakefile:
 
-```
+```ruby
 import File.dirname(__FILE__)+"/../../task/common/rakefile"
 ```
 
 Include multiple rakefiles in nested directories:
 
-```
-
+```ruby
 Dir.glob("#{File.dirname(__FILE__)}/*").each do |d|
   next if !File.directory? d
   import d + "/rakefile" if File.file?(d + "/rakefile")
@@ -144,8 +143,7 @@ In a Ruby function, you can use ```return``` in the function when you want to ex
 
 - fail/raise
 
-```
-
+```ruby
 task :something do
   [1,2,3].each do |i|
     ...

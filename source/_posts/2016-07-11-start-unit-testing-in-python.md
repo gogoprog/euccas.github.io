@@ -3,7 +3,7 @@ layout: post
 title: "Start Unit Testing in Python"
 date: 2016-07-11 22:58:39 -0700
 comments: true
-categories: Python
+categories: Python Unit-Testing
 ---
 
 When is the best time to start unit testing in your Python project? My answer is before you writing the first line of code of this project. Unit testing is the fundamental of Test-driven development, which specifically improves the quality and design of your project. 
@@ -33,6 +33,7 @@ demo
 -- dev
    -- __init__.py
    -- demoDev.py
+
 ```
 
 Note the ```___init___.py``` file can be empty. The purpose of having this file is for other files outside this directory can easily import the module ```demoDev.py```.
@@ -50,16 +51,18 @@ demo
    -- demoDev.py
 -- test
    -- test_demoDev.py
+
 ```
 
 ## 2. Use unittest module in your project
 
 The test file need import the ```unittest``` module.
 
-```
+```python
 # This is test/test_demoDev.py
 
 import unittest
+
 ```
 
 ## 3. Include your project modules in the test
@@ -68,8 +71,7 @@ Surely you'll need include the source files of the modules that you want to test
 
 I found the way to import your own modules to your tests can be different depending your development environment. For example, if you run your Python projects within some IDE, like **PyCharm** from JetBrains. The following way always work:
 
-```
-
+```python
 # This is test/test_demoDev.py
 
 from dev import demoDev
@@ -80,8 +82,7 @@ However if you run through command line ```python test/test_demoDev.py```, you m
 
 What you can do to resolve this problem, is adding the path of your Python modules to the <code>sys.path</code>.
 
-```
-
+```python
 # This is test/test_demoDev.py
 
 import sys, os.path
@@ -93,15 +94,13 @@ sys.path.insert(0, lib_path)
 
 import demoDev
 
-
 ```
 
 ## 4. Create a test case
 
 A test case can be created with unittest *TestCase* class. The <code>setUp()</code> and <code>tearDown()</code> methods can be overridden to provide initialization and cleanup for the fixture. Each instance of the TestCase will only be used to run a single test method. Multiple test methods share the same text fixture, but the test fixture are created for each test method when they are executed.
 
-```
-
+```python
 # This is test/test_demoDev.py
 
 import sys
@@ -135,8 +134,7 @@ The <code>TestCase</code> class provides several assert methods to check for and
 
 <code>TestSuite</code> class represents an aggregation of individual test cases and test suites. The <code>addTest</code> and <code>addTests</code> methods are available to add tests to your TestSuite instances.
 
-```
-
+```python
 # This is test_demoDev.py
 
 def suite():
@@ -152,8 +150,7 @@ def suite():
 
 The easiest way to run your unit tests is executing the <code>unittest.main()</code> method in the test file.
 
-```
-
+```python
 # This is test_demoDev.py
 
 if __name__ == '__main__':

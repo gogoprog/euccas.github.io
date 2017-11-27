@@ -12,7 +12,7 @@ If you ever get confused about Class Methods, Instance Methods, Class Variables 
 - Class methods belong to a class in Ruby, and it can be used without instance any class object. 
 - The definition of class methods has a "self" prefix.
 
-```
+```ruby
 def self.show_name
 end
 ```
@@ -23,7 +23,7 @@ end
 - Instance methods belong to any instance of a class in Ruby. To use instance methods, you always need to have an existing instance first. Usually this means you have called ```new()``` method.
 - Instance methods do not have "self" prefix in their definition.
 
-```
+```ruby
 def show_name
 end
 ```
@@ -33,10 +33,10 @@ end
 - Class variables are totally separated with instance variables (obvious though). The value of a class variable doesn't change when the instance variables having the same name change.
 - The name of a class variable has the "@@" prefix.
 
-```
+```ruby
 class myClass
     @@foo = 0
-end  
+end
 ```
 
 # Instance Variables
@@ -44,7 +44,7 @@ end
 - Different instances have their own set of instance variables.
 - The name of an instance variable has the "@" prefix.
 
-```
+```ruby
 class myClass
     def initialize()
         @foo = 0
@@ -61,7 +61,7 @@ Fruit class has a class method ```self.show_color```, and an instance method wit
 
 Now check out how these stuff works.
 
-```
+```ruby
 # fruit.rb
 
 class Fruit
@@ -93,11 +93,12 @@ class Fruit
         puts "(instance method) color: #{@color}"
     end
 end
+
 ```
 
 The test file:
 
-```
+```ruby
 # test.rb
 
 $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__)))
@@ -108,6 +109,7 @@ myfruit.show_color
 myfruit.change
 
 Fruit.show_color
+
 ```
 
 Executing the ```test.rb``` file will generate the following result:
@@ -128,9 +130,10 @@ change done
 
 - Instance methods only calls the instance methods within itself, even use the ```self``` prefix.
 
-```
+```ruby
 show_color()
 self.show_color()
+
 ```
 
 Both call the instance method, and shows the ```color: green```
@@ -138,15 +141,19 @@ Both call the instance method, and shows the ```color: green```
 - The change on instance variables doesn't affect the class variables
 
 - Class methods can be called without instances
-```
+
+```ruby
 Fruit.show_color
-```
-- Instance methods can't be called without instances. The following statement will exceptions (NoMethodError).
 
 ```
+
+- Instance methods can't be called without instances. The following statement will exceptions (NoMethodError).
+
+```ruby
 myfruit = Fruit.new
 myfruit.add
 
 # undefined method `add ... (NoMethodError)
+
 ```
 

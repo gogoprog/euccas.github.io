@@ -14,7 +14,7 @@ If the database is not declared in Rails app's ```config/database.yml``` file, y
 
 <!--more--> 
 
-```
+```ruby
 # page_controller.rb
 
 conn = PGconn.connect('<server>', <port>, "", "", '<database>', "<user>", "<password>")
@@ -24,7 +24,7 @@ render :plain => "Oops, database currently not accessible" unless conn
 
 # Query data with RAW SQL
 
-```
+```ruby
 # page_controller.rb
 
 @page_records = []
@@ -36,7 +36,7 @@ result = conn.exec('SELECT * FROM <table> ORDER BY id DESC')
 
 The result is an array of Hash. For example:
 
-```
+```ruby
 [
   { "title" => "my page 1", "author" => "Tom", "created_at" => "2016-06-08" }
   { "title" => "my page 2", "author" => "Nancy", "created_at" => "2016-06-09" }
@@ -47,7 +47,7 @@ The result is an array of Hash. For example:
 
 When using the queried data in Rails View, need to note you need use ```record['title']``` instead of ```record.title```, which is different from using the data generated from a Rails Model.
 
-```
+```ruby
 # page.erb
 
 <div>
@@ -65,11 +65,12 @@ Although the above approach works in Rails, I'd say a more decent way to handle 
 - Add the configurations of all your external databases in Rails app
 - Create a Model file
 
-```
+```ruby
 class Pages < ActiveRecord::Base
 
 end
 ```
+
 - Use ```establish_connection``` in the Model
 - When your table name doesn't match Rails convention, set the table name with ```self.table_name = '<your table name>'```
 - Create methods in the Model to fetch the data you need
