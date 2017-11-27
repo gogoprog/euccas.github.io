@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/ruby/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-26T22:48:44-08:00</updated>
+  <updated>2017-11-26T23:17:34-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -68,7 +68,7 @@ This probably means the server terminated abnormally before or while processing 
 
 <p>Example:</p>
 
-<p>```
+<p>```ruby
 desc ‘Upload documentation to server’
 task ‘upload-docs’ =&gt; [‘rdoc’] do
     sh “scp -r #{html_dir}/* “ + “#{user}:#{server_path}”
@@ -86,7 +86,7 @@ rake db:migrate
 
 <p>In this command, the <strong><em>db</em></strong> is the namespace, and the <strong><em>migrate</em></strong> is the task inside the namespace.</p>
 
-<p>```
+<p>```ruby
 namespace :cleanup do
     desc ‘Clean up database’
     task  :dbs =&gt; :environment do
@@ -110,20 +110,21 @@ task :cleanup =&gt; “cleanup:all”</p>
 
 <p>The default task is the one gets executed when you run rake without any arguments. You can set the default task in Rakefile by using the <code>:default</code> keyword.</p>
 
-<p><code>
+<p><code>ruby
 task :default =&gt; 'cleanup'
 </code></p>
 
-<p><code>
+<p><code>ruby
 task :default =&gt; 'logs: cleanup'
 </code></p>
 
 <h1 id="multiple-tasks-running-in-parallel">Multiple Tasks Running in Parallel</h1>
+
 <p>Rake’s <code>multitask</code> function supports running multiple tasks in parallel. The method is defining a task using the <code>multitask</code> function, and each of this task’s prerequisites will be run in a separate thread.</p>
 
 <p>An example of multiple parallel tasks:</p>
 
-<p>```
+<p>```ruby
 task ‘copy_docs’ do
     # Simulate a large disk copy
     sleep 5
@@ -145,9 +146,8 @@ multitask ‘build_parallel’ =&gt; [‘copy_docs’, ‘compile_extensions’]
 
 <p>Rake tasks can be invoked from other tasks using the <code>Rake::Task['&lt;your take&gt;'].invoke</code> method.</p>
 
-<p>```</p>
-
-<p>task :cleanup do
+<p>```ruby
+task :cleanup do
     Rake::Task[‘logs: cleanup’].invoke
     puts “logs are cleaned!”
     Rake::Task[‘dbs: cleanup’].invoke
@@ -166,15 +166,14 @@ end</p>
 
 <p>Include one rakefile:</p>
 
-<p><code>
+<p><code>ruby
 import File.dirname(__FILE__)+"/../../task/common/rakefile"
 </code></p>
 
 <p>Include multiple rakefiles in nested directories:</p>
 
-<p>```</p>
-
-<p>Dir.glob(“#{File.dirname(<strong>FILE</strong>)}/*”).each do |d|
+<p>```ruby
+Dir.glob(“#{File.dirname(<strong>FILE</strong>)}/*”).each do |d|
   next if !File.directory? d
   import d + “/rakefile” if File.file?(d + “/rakefile”)
 end</p>
@@ -195,9 +194,8 @@ end</p>
   <li>fail/raise</li>
 </ul>
 
-<p>```</p>
-
-<p>task :something do
+<p>```ruby
+task :something do
   [1,2,3].each do |i|
     …
     fail “some error” if …
@@ -239,7 +237,7 @@ end</p>
 
 <!--more-->
 
-<p>```
+<p>```ruby
 # page_controller.rb</p>
 
 <p>conn = PGconn.connect(‘<server>', <port>, "", "", '<database>', "<user>", "<password>")
@@ -249,7 +247,7 @@ render :plain =&gt; "Oops, database currently not accessible" unless conn</passw
 
 <h1 id="query-data-with-raw-sql">Query data with RAW SQL</h1>
 
-<p>```
+<p>```ruby
 # page_controller.rb</p>
 
 <p>@page_records = []
@@ -261,7 +259,7 @@ result = conn.exec(‘SELECT * FROM &lt;table&gt; ORDER BY id DESC’)</p>
 
 <p>The result is an array of Hash. For example:</p>
 
-<p><code>
+<p><code>ruby
 [
   { "title" =&gt; "my page 1", "author" =&gt; "Tom", "created_at" =&gt; "2016-06-08" }
   { "title" =&gt; "my page 2", "author" =&gt; "Nancy", "created_at" =&gt; "2016-06-09" }
@@ -272,7 +270,7 @@ result = conn.exec(‘SELECT * FROM &lt;table&gt; ORDER BY id DESC’)</p>
 
 <p>When using the queried data in Rails View, need to note you need use <code>record['title']</code> instead of <code>record.title</code>, which is different from using the data generated from a Rails Model.</p>
 
-<p>```
+<p>```ruby
 # page.erb</p>
 
 <div>
@@ -292,14 +290,17 @@ result = conn.exec(‘SELECT * FROM &lt;table&gt; ORDER BY id DESC’)</p>
   <li>Create a Model file</li>
 </ul>
 
-<p>```
+<p>```ruby
 class Pages &lt; ActiveRecord::Base</p>
 
 <p>end
-<code>
-- Use</code>establish_connection<code>in the Model
-- When your table name doesn't match Rails convention, set the table name with</code>self.table_name = ‘<your table="" name="">'```
-- Create methods in the Model to fetch the data you need</your></p>
+```</p>
+
+<ul>
+  <li>Use <code>establish_connection</code> in the Model</li>
+  <li>When your table name doesn’t match Rails convention, set the table name with <code>self.table_name = '&lt;your table name&gt;'</code></li>
+  <li>Create methods in the Model to fetch the data you need</li>
+</ul>
 
 ]]></content>
   </entry>
@@ -317,7 +318,7 @@ class Pages &lt; ActiveRecord::Base</p>
   <li>The definition of class methods has a “self” prefix.</li>
 </ul>
 
-<p><code>
+<p><code>ruby
 def self.show_name
 end
 </code></p>
@@ -330,7 +331,7 @@ end
   <li>Instance methods do not have “self” prefix in their definition.</li>
 </ul>
 
-<p><code>
+<p><code>ruby
 def show_name
 end
 </code></p>
@@ -342,10 +343,10 @@ end
   <li>The name of a class variable has the “@@” prefix.</li>
 </ul>
 
-<p><code>
+<p><code>ruby
 class myClass
     @@foo = 0
-end  
+end
 </code></p>
 
 <h1 id="instance-variables">Instance Variables</h1>
@@ -355,7 +356,7 @@ end
   <li>The name of an instance variable has the “@” prefix.</li>
 </ul>
 
-<p><code>
+<p><code>ruby
 class myClass
     def initialize()
         @foo = 0
@@ -372,7 +373,7 @@ class myClass
 
 <p>Now check out how these stuff works.</p>
 
-<p>```
+<p>```ruby
 # fruit.rb</p>
 
 <p>class Fruit
@@ -402,12 +403,14 @@ end
 
 def show_color()
     puts "(instance method) color: #{@color}"
-end end ```
+end end
 </code></pre>
+
+<p>```</p>
 
 <p>The test file:</p>
 
-<p>```
+<p>```ruby
 # test.rb</p>
 
 <p>$LOAD_PATH.unshift(File.expand_path(File.dirname(<strong>FILE</strong>)))
@@ -417,8 +420,9 @@ require ‘fruit.rb’</p>
 myfruit.show_color
 myfruit.change</p>
 
-<p>Fruit.show_color
-```</p>
+<p>Fruit.show_color</p>
+
+<p>```</p>
 
 <p>Executing the <code>test.rb</code> file will generate the following result:</p>
 
@@ -443,10 +447,11 @@ change done
   </li>
 </ul>
 
-<p><code>
+<p>```ruby
 show_color()
-self.show_color()
-</code></p>
+self.show_color()</p>
+
+<p>```</p>
 
 <p>Both call the instance method, and shows the <code>color: green</code></p>
 
@@ -454,18 +459,26 @@ self.show_color()
   <li>
     <p>The change on instance variables doesn’t affect the class variables</p>
   </li>
-  <li>Class methods can be called without instances
-<code>
-Fruit.show_color
-</code></li>
+  <li>
+    <p>Class methods can be called without instances</p>
+  </li>
+</ul>
+
+<p>```ruby
+Fruit.show_color</p>
+
+<p>```</p>
+
+<ul>
   <li>Instance methods can’t be called without instances. The following statement will exceptions (NoMethodError).</li>
 </ul>
 
-<p>```
+<p>```ruby
 myfruit = Fruit.new
 myfruit.add</p>
 
 <h1 id="undefined-method-add--nomethoderror">undefined method `add … (NoMethodError)</h1>
+
 <p>```</p>
 
 ]]></content>
@@ -496,7 +509,7 @@ gem install log4r
 
 <p>One thing to note is the log4r supports configurations through YAML file, and you can define the configuration file when including the log4r.</p>
 
-<p><code>
+<p><code>ruby
 require 'log4r'
 require 'log4r/yamlconfigurator'
 require 'log4r/outputter/datefileoutputter'
@@ -512,9 +525,8 @@ ycfg.load_yaml_file(File.dirname(__FILE__)+'/l4r.yml')
 
 <p>File name: log4r.yml</p>
 
-<p>```</p>
-
-<p>description: config file for log4r</p>
+<p>```
+description: config file for log4r</p>
 
 <hr />
 <p># <em>** YAML2LOG4R **</em>
@@ -575,19 +587,18 @@ log4r_config:
 
 <p>You need initialize a logger in your project first.</p>
 
-<p><code>
+<p><code>ruby
 logger = Log4r::Logger['myproject']
 </code></p>
 
 <h2 id="step-5-use-your-logger">Step 5: Use your logger</h2>
 
-<p><code>
+<p><code>ruby
 logger.info 'My Project Starts!'
 logger.warn 'Here is a warning'
 logger.error 'Here is an error'
 logger.fatal 'Fatal error happens. Program will exit'
 </code></p>
-
 ]]></content>
   </entry>
   

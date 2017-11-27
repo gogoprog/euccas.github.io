@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/rails/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-26T22:48:44-08:00</updated>
+  <updated>2017-11-26T23:17:34-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -26,7 +26,7 @@
 
 <!--more-->
 
-<p>```
+<p>```ruby
 # page_controller.rb</p>
 
 <p>conn = PGconn.connect(‘<server>', <port>, "", "", '<database>', "<user>", "<password>")
@@ -36,7 +36,7 @@ render :plain =&gt; "Oops, database currently not accessible" unless conn</passw
 
 <h1 id="query-data-with-raw-sql">Query data with RAW SQL</h1>
 
-<p>```
+<p>```ruby
 # page_controller.rb</p>
 
 <p>@page_records = []
@@ -48,7 +48,7 @@ result = conn.exec(‘SELECT * FROM &lt;table&gt; ORDER BY id DESC’)</p>
 
 <p>The result is an array of Hash. For example:</p>
 
-<p><code>
+<p><code>ruby
 [
   { "title" =&gt; "my page 1", "author" =&gt; "Tom", "created_at" =&gt; "2016-06-08" }
   { "title" =&gt; "my page 2", "author" =&gt; "Nancy", "created_at" =&gt; "2016-06-09" }
@@ -59,7 +59,7 @@ result = conn.exec(‘SELECT * FROM &lt;table&gt; ORDER BY id DESC’)</p>
 
 <p>When using the queried data in Rails View, need to note you need use <code>record['title']</code> instead of <code>record.title</code>, which is different from using the data generated from a Rails Model.</p>
 
-<p>```
+<p>```ruby
 # page.erb</p>
 
 <div>
@@ -79,14 +79,17 @@ result = conn.exec(‘SELECT * FROM &lt;table&gt; ORDER BY id DESC’)</p>
   <li>Create a Model file</li>
 </ul>
 
-<p>```
+<p>```ruby
 class Pages &lt; ActiveRecord::Base</p>
 
 <p>end
-<code>
-- Use</code>establish_connection<code>in the Model
-- When your table name doesn't match Rails convention, set the table name with</code>self.table_name = ‘<your table="" name="">'```
-- Create methods in the Model to fetch the data you need</your></p>
+```</p>
+
+<ul>
+  <li>Use <code>establish_connection</code> in the Model</li>
+  <li>When your table name doesn’t match Rails convention, set the table name with <code>self.table_name = '&lt;your table name&gt;'</code></li>
+  <li>Create methods in the Model to fetch the data you need</li>
+</ul>
 
 ]]></content>
   </entry>

@@ -130,10 +130,11 @@
   <li>The definition of class methods has a “self” prefix.</li>
 </ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">def self.show_name
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">show_name</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <!--more-->
 
@@ -143,10 +144,11 @@
   <li>Instance methods do not have “self” prefix in their definition.</li>
 </ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">def show_name
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">def</span> <span class="nf">show_name</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h1 id="class-variables">Class Variables</h1>
 <ul>
@@ -155,12 +157,13 @@
   <li>The name of a class variable has the “@@” prefix.</li>
 </ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">class myClass
-</span><span class="line">    @@foo = 0
-</span><span class="line">end  </span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="n">myClass</span>
+</span><span class="line">    <span class="vc">@@foo</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h1 id="instance-variables">Instance Variables</h1>
 <ul>
@@ -169,14 +172,15 @@
   <li>The name of an instance variable has the “@” prefix.</li>
 </ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">class myClass
-</span><span class="line">    def initialize()
-</span><span class="line">        @foo = 0
-</span><span class="line">    end</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="n">myClass</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">initialize</span><span class="p">()</span>
+</span><span class="line">        <span class="vi">@foo</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class="line">    <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h1 id="a-quick-demo">A quick demo</h1>
 
@@ -188,7 +192,7 @@
 
 <p>Now check out how these stuff works.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -219,41 +223,42 @@
 <span class="line-number">29</span>
 <span class="line-number">30</span>
 <span class="line-number">31</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># fruit.rb
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="c1"># fruit.rb</span>
 </span><span class="line">
-</span><span class="line">class Fruit
-</span><span class="line">    @@color = 'yellow' # class variable
+</span><span class="line"><span class="k">class</span> <span class="nc">Fruit</span>
+</span><span class="line">    <span class="vc">@@color</span> <span class="o">=</span> <span class="s1">&#39;yellow&#39;</span> <span class="c1"># class variable</span>
 </span><span class="line">
-</span><span class="line">    def initialize()
-</span><span class="line">        @name = 'apple'
-</span><span class="line">        @color = 'red' # instance variable
-</span><span class="line">    end
+</span><span class="line">    <span class="k">def</span> <span class="nf">initialize</span><span class="p">()</span>
+</span><span class="line">        <span class="vi">@name</span> <span class="o">=</span> <span class="s1">&#39;apple&#39;</span>
+</span><span class="line">        <span class="vi">@color</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span> <span class="c1"># instance variable</span>
+</span><span class="line">    <span class="k">end</span>
 </span><span class="line">
-</span><span class="line">    def self.show_color()
-</span><span class="line">        puts "(class method) color: #{@@color}"
-</span><span class="line">    end
+</span><span class="line">    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">show_color</span><span class="p">()</span>
+</span><span class="line">        <span class="nb">puts</span> <span class="s2">&quot;(class method) color: </span><span class="si">#{</span><span class="vc">@@color</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class="line">    <span class="k">end</span>
 </span><span class="line">
-</span><span class="line">    def change()
-</span><span class="line">        change_color()
-</span><span class="line">        puts "try calling instance method"
-</span><span class="line">        show_color()
-</span><span class="line">        puts "try calling class method"
-</span><span class="line">        self.show_color()
-</span><span class="line">        puts "change done"
-</span><span class="line">    end
+</span><span class="line">    <span class="k">def</span> <span class="nf">change</span><span class="p">()</span>
+</span><span class="line">        <span class="n">change_color</span><span class="p">()</span>
+</span><span class="line">        <span class="nb">puts</span> <span class="s2">&quot;try calling instance method&quot;</span>
+</span><span class="line">        <span class="n">show_color</span><span class="p">()</span>
+</span><span class="line">        <span class="nb">puts</span> <span class="s2">&quot;try calling class method&quot;</span>
+</span><span class="line">        <span class="nb">self</span><span class="o">.</span><span class="n">show_color</span><span class="p">()</span>
+</span><span class="line">        <span class="nb">puts</span> <span class="s2">&quot;change done&quot;</span>
+</span><span class="line">    <span class="k">end</span>
 </span><span class="line">
-</span><span class="line">    def change_color()
-</span><span class="line">        @color = 'green'
-</span><span class="line">    end
+</span><span class="line">    <span class="k">def</span> <span class="nf">change_color</span><span class="p">()</span>
+</span><span class="line">        <span class="vi">@color</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span>
+</span><span class="line">    <span class="k">end</span>
 </span><span class="line">
-</span><span class="line">    def show_color()
-</span><span class="line">        puts "(instance method) color: #{@color}"
-</span><span class="line">    end
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line">    <span class="k">def</span> <span class="nf">show_color</span><span class="p">()</span>
+</span><span class="line">        <span class="nb">puts</span> <span class="s2">&quot;(instance method) color: </span><span class="si">#{</span><span class="vi">@color</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class="line">    <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>The test file:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -263,33 +268,35 @@
 <span class="line-number">8</span>
 <span class="line-number">9</span>
 <span class="line-number">10</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># test.rb
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="c1"># test.rb</span>
 </span><span class="line">
-</span><span class="line">$LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__)))
-</span><span class="line">require 'fruit.rb'
+</span><span class="line"><span class="vg">$LOAD_PATH</span><span class="o">.</span><span class="n">unshift</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)))</span>
+</span><span class="line"><span class="nb">require</span> <span class="s1">&#39;fruit.rb&#39;</span>
 </span><span class="line">
-</span><span class="line">myfruit = Fruit.new
-</span><span class="line">myfruit.show_color
-</span><span class="line">myfruit.change
+</span><span class="line"><span class="n">myfruit</span> <span class="o">=</span> <span class="no">Fruit</span><span class="o">.</span><span class="n">new</span>
+</span><span class="line"><span class="n">myfruit</span><span class="o">.</span><span class="n">show_color</span>
+</span><span class="line"><span class="n">myfruit</span><span class="o">.</span><span class="n">change</span>
 </span><span class="line">
-</span><span class="line">Fruit.show_color</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line"><span class="no">Fruit</span><span class="o">.</span><span class="n">show_color</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Executing the <code>test.rb</code> file will generate the following result:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
 <span class="line-number">5</span>
 <span class="line-number">6</span>
 <span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">(instance method) color: red
-</span><span class="line">try calling instance method
-</span><span class="line">(instance method) color: green
-</span><span class="line">try calling class method
-</span><span class="line">(instance method) color: green
-</span><span class="line">change done
-</span><span class="line">(class method) color: yellow</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="p">(</span><span class="n">instance</span> <span class="nb">method</span><span class="p">)</span> <span class="ss">color</span><span class="p">:</span> <span class="n">red</span>
+</span><span class="line"><span class="n">try</span> <span class="n">calling</span> <span class="n">instance</span> <span class="nb">method</span>
+</span><span class="line"><span class="p">(</span><span class="n">instance</span> <span class="nb">method</span><span class="p">)</span> <span class="ss">color</span><span class="p">:</span> <span class="n">green</span>
+</span><span class="line"><span class="n">try</span> <span class="n">calling</span> <span class="k">class</span> <span class="nb">method</span>
+</span><span class="line"><span class="p">(</span><span class="n">instance</span> <span class="nb">method</span><span class="p">)</span> <span class="ss">color</span><span class="p">:</span> <span class="n">green</span>
+</span><span class="line"><span class="n">change</span> <span class="n">done</span>
+</span><span class="line"><span class="p">(</span><span class="k">class</span> <span class="nb">method</span><span class="p">)</span> <span class="ss">color</span><span class="p">:</span> <span class="n">yellow</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h2 id="summary-of-the-demo">Summary of the demo</h2>
 
@@ -302,10 +309,11 @@
   </li>
 </ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">show_color()
-</span><span class="line">self.show_color()</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">show_color</span><span class="p">()</span>
+</span><span class="line"><span class="nb">self</span><span class="o">.</span><span class="n">show_color</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Both call the instance method, and shows the <code>color: green</code></p>
 
@@ -317,20 +325,24 @@
     <p>Class methods can be called without instances</p>
   </li>
 </ul>
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">Fruit.show_color</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="no">Fruit</span><span class="o">.</span><span class="n">show_color</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 <ul>
   <li>Instance methods can’t be called without instances. The following statement will exceptions (NoMethodError).</li>
 </ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">myfruit = Fruit.new
-</span><span class="line">myfruit.add
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">myfruit</span> <span class="o">=</span> <span class="no">Fruit</span><span class="o">.</span><span class="n">new</span>
+</span><span class="line"><span class="n">myfruit</span><span class="o">.</span><span class="n">add</span>
 </span><span class="line">
-</span><span class="line"># undefined method `add ... (NoMethodError)</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line"><span class="c1"># undefined method `add ... (NoMethodError)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 </div>
 

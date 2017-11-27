@@ -140,93 +140,173 @@
 
 <h2 id="myapppy">myapp.py</h2>
 
-<pre><code>#!/usr/bin/env python
-
-import sys, os.path, re
-import argparse
-
-class myApp():
-
-    EXIT_PASS, EXIT_FAIL = 0, 1
-
-    def __init__(self, mode = 'normal', test_param = None):
-        # Validate and process argument options
-        self.parse_args(mode, test_param)
-        # Initialize database connection
-        self.app_name = self.get_app_name(self.name)
-
-    def parse_args(self, mode, test_param):
-        if mode == 'unittest':
-            if test_param is None:
-                print("Missing test param")
-                self.app_exit('fail')
-
-            self.name = test_param['app_name']
-            self.verbose = test_param['verbose']
-        else:
-            parser = argparse.ArgumentParser(description='myApp: A demo project')
-            parser.add_argument('-n', '--name', help='Name of myApp', required=True)
-            parser.add_argument('--verbose', action='store_true', help='Verbose mode with more information printed')
-
-            args = parser.parse_args()
-
-            self.name = args.name
-            self.verbose = args.verbose
-
-    def app_exit(self, status):
-        if status.lower() == 'pass':
-            print("** App Exit Status: PASS \n")
-            exit(self.EXIT_PASS)
-        elif status.lower() == 'skip':
-            print("** App Exit Status: SKIP \n")
-            exit(self.EXIT_PASS)
-        else:
-            print("** App Exit Status: FAIL \n")
-            exit(self.EXIT_FAIL)
-
-    def get_app_name(self):
-        app_name = self.name
-
-        return app_name
-
-if __name__ == '__main__':
-    app = myApp()
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="c">#!/usr/bin/env python</span>
+</span><span class="line">
+</span><span class="line"><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os.path</span><span class="o">,</span> <span class="nn">re</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">argparse</span>
+</span><span class="line">
+</span><span class="line"><span class="k">class</span> <span class="nc">myApp</span><span class="p">():</span>
+</span><span class="line">
+</span><span class="line">    <span class="n">EXIT_PASS</span><span class="p">,</span> <span class="n">EXIT_FAIL</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s">&#39;normal&#39;</span><span class="p">,</span> <span class="n">test_param</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+</span><span class="line">        <span class="c"># Validate and process argument options</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">test_param</span><span class="p">)</span>
+</span><span class="line">        <span class="c"># Initialize database connection</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">app_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_app_name</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">parse_args</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">test_param</span><span class="p">):</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;unittest&#39;</span><span class="p">:</span>
+</span><span class="line">            <span class="k">if</span> <span class="n">test_param</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+</span><span class="line">                <span class="k">print</span><span class="p">(</span><span class="s">&quot;Missing test param&quot;</span><span class="p">)</span>
+</span><span class="line">                <span class="bp">self</span><span class="o">.</span><span class="n">app_exit</span><span class="p">(</span><span class="s">&#39;fail&#39;</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">test_param</span><span class="p">[</span><span class="s">&#39;app_name&#39;</span><span class="p">]</span>
+</span><span class="line">            <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">test_param</span><span class="p">[</span><span class="s">&#39;verbose&#39;</span><span class="p">]</span>
+</span><span class="line">        <span class="k">else</span><span class="p">:</span>
+</span><span class="line">            <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">&#39;myApp: A demo project&#39;</span><span class="p">)</span>
+</span><span class="line">            <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&#39;-n&#39;</span><span class="p">,</span> <span class="s">&#39;--name&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&#39;Name of myApp&#39;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span><span class="line">            <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&#39;store_true&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&#39;Verbose mode with more information printed&#39;</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">            <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span><span class="line">
+</span><span class="line">            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">name</span>
+</span><span class="line">            <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">app_exit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">):</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">status</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s">&#39;pass&#39;</span><span class="p">:</span>
+</span><span class="line">            <span class="k">print</span><span class="p">(</span><span class="s">&quot;** App Exit Status: PASS </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span class="line">            <span class="nb">exit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EXIT_PASS</span><span class="p">)</span>
+</span><span class="line">        <span class="k">elif</span> <span class="n">status</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s">&#39;skip&#39;</span><span class="p">:</span>
+</span><span class="line">            <span class="k">print</span><span class="p">(</span><span class="s">&quot;** App Exit Status: SKIP </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span class="line">            <span class="nb">exit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EXIT_PASS</span><span class="p">)</span>
+</span><span class="line">        <span class="k">else</span><span class="p">:</span>
+</span><span class="line">            <span class="k">print</span><span class="p">(</span><span class="s">&quot;** App Exit Status: FAIL </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span class="line">            <span class="nb">exit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EXIT_FAIL</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">get_app_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="n">app_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+</span><span class="line">
+</span><span class="line">        <span class="k">return</span> <span class="n">app_name</span>
+</span><span class="line">
+</span><span class="line"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span class="line">    <span class="n">app</span> <span class="o">=</span> <span class="n">myApp</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h2 id="testmyapppy">test_myapp.py</h2>
 
-<pre><code>#!/usr/bin/env python
-
-import sys, os.path, re
-import argparse
-import unittest
-
-bin_path = os.path.dirname(os.path.realpath(__file__))
-lib_path = os.path.abspath(bin_path)
-sys.path.insert(0, lib_path)
-
-import myApp
-
-class myAppTestCase(unittest.TestCase):
-
-    def setUp(self):
-        mode = 'unittest'
-        test_param = {
-            'name': 'Test App',
-            'verbose': True
-        }
-        self.app = myapp.myApp(mode, test_param)
-
-    def test_app_name(self):
-        self.assertEqual(self.app.get_app_name, 'Test App', 'Wrong App Name')
-
-    def tearDown(self):
-        print('Bye Test')
-
-if __name__ == '__main__':
-    unittest.main()
-</code></pre>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="c">#!/usr/bin/env python</span>
+</span><span class="line">
+</span><span class="line"><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os.path</span><span class="o">,</span> <span class="nn">re</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">argparse</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">unittest</span>
+</span><span class="line">
+</span><span class="line"><span class="n">bin_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
+</span><span class="line"><span class="n">lib_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">bin_path</span><span class="p">)</span>
+</span><span class="line"><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">lib_path</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="kn">import</span> <span class="nn">myApp</span>
+</span><span class="line">
+</span><span class="line"><span class="k">class</span> <span class="nc">myAppTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="n">mode</span> <span class="o">=</span> <span class="s">&#39;unittest&#39;</span>
+</span><span class="line">        <span class="n">test_param</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class="line">            <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;Test App&#39;</span><span class="p">,</span>
+</span><span class="line">            <span class="s">&#39;verbose&#39;</span><span class="p">:</span> <span class="bp">True</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">myapp</span><span class="o">.</span><span class="n">myApp</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">test_param</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">test_app_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">get_app_name</span><span class="p">,</span> <span class="s">&#39;Test App&#39;</span><span class="p">,</span> <span class="s">&#39;Wrong App Name&#39;</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="k">print</span><span class="p">(</span><span class="s">&#39;Bye Test&#39;</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span class="line">    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 </div>
 
 
@@ -276,7 +356,7 @@ if __name__ == '__main__':
         <a class="basic-alignment left" href="/blog/20160711/start-unit-testing-in-python.html" title="Previous Post: Start Unit Testing in Python">&laquo; Start Unit Testing in Python</a>
       
       
-        <a class="basic-alignment right" href="/blog/20160815/case-study-check-on-a-commit-according-to-the-included-files.html" title="Next Post: [Case Study] Perform checks on a commit according to its included files">[Case Study] Perform checks on a commit according to its included files &raquo;</a>
+        <a class="basic-alignment right" href="/blog/20160815/how-to-check-changes-in-a-commit-and-invoke-ci-tasks.html" title="Next Post: How to check changes in a commit and invoke CI tasks">How to check changes in a commit and invoke CI tasks &raquo;</a>
       
     </p>
   </footer>

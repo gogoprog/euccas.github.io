@@ -93,7 +93,7 @@
 <lastmod>2016-09-20T21:28:51-07:00</lastmod>
 </url>
 <url>
-<loc>http://euccas.github.io/blog/20160815/case-study-check-on-a-commit-according-to-the-included-files.html</loc>
+<loc>http://euccas.github.io/blog/20160815/how-to-check-changes-in-a-commit-and-invoke-ci-tasks.html</loc>
 <lastmod>2016-08-15T19:43:21-07:00</lastmod>
 </url>
 <url>
@@ -159,6 +159,9 @@
 <loc>http://euccas.github.io/categories/jenkins/</loc>
 </url>
 <url>
+<loc>http://euccas.github.io/categories/continuous-integration/</loc>
+</url>
+<url>
 <loc>http://euccas.github.io/categories/chinese/</loc>
 </url>
 <url>
@@ -180,7 +183,7 @@
 <loc>http://euccas.github.io/categories/python/</loc>
 </url>
 <url>
-<loc>http://euccas.github.io/categories/case-study/</loc>
+<loc>http://euccas.github.io/categories/unit-testing/</loc>
 </url>
 <url>
 <loc>http://euccas.github.io/categories/infrastructure/</loc>

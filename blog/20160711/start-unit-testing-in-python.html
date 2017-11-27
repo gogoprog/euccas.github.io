@@ -153,7 +153,8 @@
 </pre></td><td class="code"><pre><code class=""><span class="line">demo
 </span><span class="line">-- dev
 </span><span class="line">   -- __init__.py
-</span><span class="line">   -- demoDev.py</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line">   -- demoDev.py
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Note the <code>___init___.py</code> file can be empty. The purpose of having this file is for other files outside this directory can easily import the module <code>demoDev.py</code>.</p>
 
@@ -174,18 +175,20 @@
 </span><span class="line">   -- __init__.py
 </span><span class="line">   -- demoDev.py
 </span><span class="line">-- test
-</span><span class="line">   -- test_demoDev.py</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line">   -- test_demoDev.py
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h2 id="use-unittest-module-in-your-project">2. Use unittest module in your project</h2>
 
 <p>The test file need import the <code>unittest</code> module.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># This is test/test_demoDev.py
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="c"># This is test/test_demoDev.py</span>
 </span><span class="line">
-</span><span class="line">import unittest</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line"><span class="kn">import</span> <span class="nn">unittest</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h2 id="include-your-project-modules-in-the-test">3. Include your project modules in the test</h2>
 
@@ -193,21 +196,19 @@
 
 <p>I found the way to import your own modules to your tests can be different depending your development environment. For example, if you run your Python projects within some IDE, like <strong>PyCharm</strong> from JetBrains. The following way always work:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line"># This is test/test_demoDev.py
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="c"># This is test/test_demoDev.py</span>
 </span><span class="line">
-</span><span class="line">from dev import demoDev
+</span><span class="line"><span class="kn">from</span> <span class="nn">dev</span> <span class="kn">import</span> <span class="n">demoDev</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>However if you run through command line <code>python test/test_demoDev.py</code>, you might see errors complaining no module called <code>dev</code> and thus the import fails.</p>
 
 <p>What you can do to resolve this problem, is adding the path of your Python modules to the <code>sys.path</code>.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -217,27 +218,23 @@
 <span class="line-number">8</span>
 <span class="line-number">9</span>
 <span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line"># This is test/test_demoDev.py
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="c"># This is test/test_demoDev.py</span>
 </span><span class="line">
-</span><span class="line">import sys, os.path
+</span><span class="line"><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os.path</span>
 </span><span class="line">
-</span><span class="line">bin_path = os.path.dirname(os.path.realpath(__file__))
-</span><span class="line">lib_path = os.path.abspath(os.path.join(bin_path, '..', 'dev'))
-</span><span class="line">sys.path.insert(0, lib_path)
-</span><span class="line"># or sys.path.append(lib_path)
+</span><span class="line"><span class="n">bin_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
+</span><span class="line"><span class="n">lib_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bin_path</span><span class="p">,</span> <span class="s">&#39;..&#39;</span><span class="p">,</span> <span class="s">&#39;dev&#39;</span><span class="p">))</span>
+</span><span class="line"><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">lib_path</span><span class="p">)</span>
+</span><span class="line"><span class="c"># or sys.path.append(lib_path)</span>
 </span><span class="line">
-</span><span class="line">import demoDev
-</span><span class="line">
+</span><span class="line"><span class="kn">import</span> <span class="nn">demoDev</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h2 id="create-a-test-case">4. Create a test case</h2>
 
 <p>A test case can be created with unittest <em>TestCase</em> class. The <code>setUp()</code> and <code>tearDown()</code> methods can be overridden to provide initialization and cleanup for the fixture. Each instance of the TestCase will only be used to run a single test method. Multiple test methods share the same text fixture, but the test fixture are created for each test method when they are executed.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -261,32 +258,30 @@
 <span class="line-number">22</span>
 <span class="line-number">23</span>
 <span class="line-number">24</span>
-<span class="line-number">25</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line"># This is test/test_demoDev.py
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="c"># This is test/test_demoDev.py</span>
 </span><span class="line">
-</span><span class="line">import sys
-</span><span class="line">import unittest
+</span><span class="line"><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">unittest</span>
 </span><span class="line">
-</span><span class="line">bin_path = os.path.dirname(os.path.realpath(__file__))
-</span><span class="line">lib_path = os.path.abspath(os.path.join(bin_path, '..', 'dev'))
-</span><span class="line">sys.path.insert(0, lib_path)
+</span><span class="line"><span class="n">bin_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
+</span><span class="line"><span class="n">lib_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bin_path</span><span class="p">,</span> <span class="s">&#39;..&#39;</span><span class="p">,</span> <span class="s">&#39;dev&#39;</span><span class="p">))</span>
+</span><span class="line"><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">lib_path</span><span class="p">)</span>
 </span><span class="line">
-</span><span class="line">from dev import demoDev
+</span><span class="line"><span class="kn">from</span> <span class="nn">dev</span> <span class="kn">import</span> <span class="n">demoDev</span>
 </span><span class="line">
-</span><span class="line">class demoDevTestCase(unittest.TestCase):
+</span><span class="line"><span class="k">class</span> <span class="nc">demoDevTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 </span><span class="line">
-</span><span class="line">    def setUp(self):
-</span><span class="line">        self.checker = eABTCheckerDev.eABTChecker()
+</span><span class="line">    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">checker</span> <span class="o">=</span> <span class="n">eABTCheckerDev</span><span class="o">.</span><span class="n">eABTChecker</span><span class="p">()</span>
 </span><span class="line">
-</span><span class="line">    def test_checker_app(self):
-</span><span class="line">        self.assertEqual(self.demo.app, 'Demo App', 'Wrong app')
+</span><span class="line">    <span class="k">def</span> <span class="nf">test_checker_app</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">demo</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="s">&#39;Demo App&#39;</span><span class="p">,</span> <span class="s">&#39;Wrong app&#39;</span><span class="p">)</span>
 </span><span class="line">
-</span><span class="line">    def tearDown(self):
-</span><span class="line">        print('Bye Test')
+</span><span class="line">    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class="line">        <span class="k">print</span><span class="p">(</span><span class="s">&#39;Bye Test&#39;</span><span class="p">)</span>
 </span><span class="line">
-</span><span class="line">if __name__ == '__main__':
-</span><span class="line">    unittest.main()
+</span><span class="line"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span class="line">    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>The <code>TestCase</code> class provides several assert methods to check for and report failures, such as <code>assertEqual</code>, <code>assertNotEqual</code>, <code>assertTrue</code>. <a href="https://docs.python.org/3.4/library/unittest.html#assert-methods">Here is the complete assert list that Python 3 provides.</a></p>
@@ -295,7 +290,7 @@
 
 <p><code>TestSuite</code> class represents an aggregation of individual test cases and test suites. The <code>addTest</code> and <code>addTests</code> methods are available to add tests to your TestSuite instances.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -303,62 +298,54 @@
 <span class="line-number">6</span>
 <span class="line-number">7</span>
 <span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line"># This is test_demoDev.py
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="c"># This is test_demoDev.py</span>
 </span><span class="line">
-</span><span class="line">def suite():
-</span><span class="line">    suite = unittest.TestSuite();
-</span><span class="line">    suite.addTest(demoDevTestCase('test_checker_app'))
-</span><span class="line">    suite.addTest(demoDevTestCase('test_check_env'))
-</span><span class="line">    
-</span><span class="line">    return suite
+</span><span class="line"><span class="k">def</span> <span class="nf">suite</span><span class="p">():</span>
+</span><span class="line">    <span class="n">suite</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestSuite</span><span class="p">();</span>
+</span><span class="line">    <span class="n">suite</span><span class="o">.</span><span class="n">addTest</span><span class="p">(</span><span class="n">demoDevTestCase</span><span class="p">(</span><span class="s">&#39;test_checker_app&#39;</span><span class="p">))</span>
+</span><span class="line">    <span class="n">suite</span><span class="o">.</span><span class="n">addTest</span><span class="p">(</span><span class="n">demoDevTestCase</span><span class="p">(</span><span class="s">&#39;test_check_env&#39;</span><span class="p">))</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">return</span> <span class="n">suite</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h1 id="run-your-unit-tests">6. Run your unit tests!</h1>
 
 <p>The easiest way to run your unit tests is executing the <code>unittest.main()</code> method in the test file.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line"># This is test_demoDev.py
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="c"># This is test_demoDev.py</span>
 </span><span class="line">
-</span><span class="line">if __name__ == '__main__':
-</span><span class="line">    unittest.main()
+</span><span class="line"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span class="line">    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Then by running command <code>python test_demoDev.py</code>, the tests defined in <code>test_demoDev.py</code> will start running.</p>
 
 <p>Unit tests can run from command line, because <code>unittest</code> module can be used from the command line to run tests from modules, classes or individual test methods.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">python -m unittest test_demoDev.test_checker_app
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">unittest</span> <span class="n">test_demoDev</span><span class="o">.</span><span class="n">test_checker_app</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>You’ll see the testing result like:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
 <span class="line-number">5</span>
 <span class="line-number">6</span>
 <span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">----------------------------------------------------------------------
-</span><span class="line">Ran 1 test in 0.000s
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="o">----------------------------------------------------------------------</span>
+</span><span class="line"><span class="n">Ran</span> <span class="mi">1</span> <span class="n">test</span> <span class="ow">in</span> <span class="mf">0.000</span><span class="n">s</span>
 </span><span class="line">
-</span><span class="line">OK
-</span><span class="line">Bye Test
+</span><span class="line"><span class="n">OK</span>
+</span><span class="line"><span class="n">Bye</span> <span class="n">Test</span>
 </span><span class="line">
-</span><span class="line">Process finished with exit code 0
+</span><span class="line"><span class="n">Process</span> <span class="n">finished</span> <span class="k">with</span> <span class="nb">exit</span> <span class="n">code</span> <span class="mi">0</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Behind the tests running, there is the <code>run</code> method provided by <code>TestCase</code> and <code>TestCaseSuite</code> classes. This <code>run</code> method implements the function of running the test, collecting the result into the <code>TestResult</code> object passed as result.</p>
@@ -392,7 +379,7 @@
 
 <span class="categories">
   
-    <a class='category' href='/categories/python/'>python</a>
+    <a class='category' href='/categories/python/'>python</a>, <a class='category' href='/categories/unit-testing/'>unit-testing</a>
   
 </span>
 

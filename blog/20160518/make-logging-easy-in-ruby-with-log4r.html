@@ -141,20 +141,21 @@
 
 <p>One thing to note is the log4r supports configurations through YAML file, and you can define the configuration file when including the log4r.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
 <span class="line-number">5</span>
 <span class="line-number">6</span>
 <span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">require 'log4r'
-</span><span class="line">require 'log4r/yamlconfigurator'
-</span><span class="line">require 'log4r/outputter/datefileoutputter'
-</span><span class="line">require 'log4r/outputter/emailoutputter'
-</span><span class="line">include Log4r
-</span><span class="line">ycfg = YamlConfigurator    # handy shorthand
-</span><span class="line">ycfg.load_yaml_file(File.dirname(__FILE__)+'/l4r.yml')</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">require</span> <span class="s1">&#39;log4r&#39;</span>
+</span><span class="line"><span class="nb">require</span> <span class="s1">&#39;log4r/yamlconfigurator&#39;</span>
+</span><span class="line"><span class="nb">require</span> <span class="s1">&#39;log4r/outputter/datefileoutputter&#39;</span>
+</span><span class="line"><span class="nb">require</span> <span class="s1">&#39;log4r/outputter/emailoutputter&#39;</span>
+</span><span class="line"><span class="kp">include</span> <span class="no">Log4r</span>
+</span><span class="line"><span class="n">ycfg</span> <span class="o">=</span> <span class="no">YamlConfigurator</span>    <span class="c1"># handy shorthand</span>
+</span><span class="line"><span class="n">ycfg</span><span class="o">.</span><span class="n">load_yaml_file</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;/l4r.yml&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h2 id="step-3-configure-log4r-with-a-config-file">Step 3: Configure log4r with a config file</h2>
 
@@ -162,7 +163,7 @@
 
 <p>File name: log4r.yml</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -219,84 +220,84 @@
 <span class="line-number">55</span>
 <span class="line-number">56</span>
 <span class="line-number">57</span>
-<span class="line-number">58</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">description: config file for log4r
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="ss">description</span><span class="p">:</span> <span class="n">config</span> <span class="n">file</span> <span class="k">for</span> <span class="n">log4r</span>
 </span><span class="line">
-</span><span class="line">---
-</span><span class="line"># *** YAML2LOG4R ***
-</span><span class="line">log4r_config:
-</span><span class="line">  # define all pre config ...
-</span><span class="line">  pre_config:
-</span><span class="line">    global:
-</span><span class="line">      level: DEBUG
-</span><span class="line">    root  :
-</span><span class="line">      level: DEBUG
+</span><span class="line"><span class="o">---</span>
+</span><span class="line"><span class="c1"># *** YAML2LOG4R ***</span>
+</span><span class="line"><span class="ss">log4r_config</span><span class="p">:</span>
+</span><span class="line">  <span class="c1"># define all pre config ...</span>
+</span><span class="line">  <span class="ss">pre_config</span><span class="p">:</span>
+</span><span class="line">    <span class="ss">global</span><span class="p">:</span>
+</span><span class="line">      <span class="ss">level</span><span class="p">:</span> <span class="no">DEBUG</span>
+</span><span class="line">    <span class="n">root</span>  <span class="p">:</span>
+</span><span class="line">      <span class="ss">level</span><span class="p">:</span> <span class="no">DEBUG</span>
 </span><span class="line">
-</span><span class="line">  # define all loggers ...
-</span><span class="line">  loggers:
-</span><span class="line">    - name      : myproject 
-</span><span class="line">      level     : DEBUG
-</span><span class="line">      additive  : 'false'
-</span><span class="line">      trace     : 'false'
-</span><span class="line">      outputters:
-</span><span class="line">        - stderr
-</span><span class="line">        - logfile
-</span><span class="line">        - email
+</span><span class="line">  <span class="c1"># define all loggers ...</span>
+</span><span class="line">  <span class="ss">loggers</span><span class="p">:</span>
+</span><span class="line">    <span class="o">-</span> <span class="nb">name</span>      <span class="p">:</span> <span class="n">myproject</span>
+</span><span class="line">      <span class="n">level</span>     <span class="p">:</span> <span class="no">DEBUG</span>
+</span><span class="line">      <span class="n">additive</span>  <span class="p">:</span> <span class="s1">&#39;false&#39;</span>
+</span><span class="line">      <span class="n">trace</span>     <span class="p">:</span> <span class="s1">&#39;false&#39;</span>
+</span><span class="line">      <span class="ss">outputters</span><span class="p">:</span>
+</span><span class="line">        <span class="o">-</span> <span class="n">stderr</span>
+</span><span class="line">        <span class="o">-</span> <span class="n">logfile</span>
+</span><span class="line">        <span class="o">-</span> <span class="n">email</span>
 </span><span class="line">
 </span><span class="line">
-</span><span class="line">  # define all outputters (incl. formatters)
-</span><span class="line">  outputters:
-</span><span class="line">    - type     : StderrOutputter
-</span><span class="line">      name     : stderr 
-</span><span class="line">      level    : INFO
-</span><span class="line">      formatter:
-</span><span class="line">        date_pattern: #'%y%m%d %H:%M:%S'
-</span><span class="line">        pattern     : '[%c] %l: %m'
-</span><span class="line">        type        : PatternFormatter
+</span><span class="line">  <span class="c1"># define all outputters (incl. formatters)</span>
+</span><span class="line">  <span class="ss">outputters</span><span class="p">:</span>
+</span><span class="line">    <span class="o">-</span> <span class="n">type</span>     <span class="p">:</span> <span class="no">StderrOutputter</span>
+</span><span class="line">      <span class="nb">name</span>     <span class="p">:</span> <span class="n">stderr</span>
+</span><span class="line">      <span class="n">level</span>    <span class="p">:</span> <span class="no">INFO</span>
+</span><span class="line">      <span class="ss">formatter</span><span class="p">:</span>
+</span><span class="line">        <span class="ss">date_pattern</span><span class="p">:</span> <span class="c1">#&#39;%y%m%d %H:%M:%S&#39;</span>
+</span><span class="line">        <span class="n">pattern</span>     <span class="p">:</span> <span class="s1">&#39;[%c] %l: %m&#39;</span>
+</span><span class="line">        <span class="n">type</span>        <span class="p">:</span> <span class="no">PatternFormatter</span>
 </span><span class="line">
-</span><span class="line">    - type        : DateFileOutputter
-</span><span class="line">      name        : logfile
-</span><span class="line">      level       : DEBUG
-</span><span class="line">      date_pattern: #'%Y%m%d'
-</span><span class="line">      trunc       : 'false'
-</span><span class="line">      dirname     : "."
-</span><span class="line">      formatter   :
-</span><span class="line">        date_pattern: '%H:%M:%S'
-</span><span class="line">        pattern     : '[%c] %d %l: %m'
-</span><span class="line">        type        : PatternFormatter
-</span><span class="line">  
-</span><span class="line">    - type        : EmailOutputter
-</span><span class="line">      name        : email
-</span><span class="line">      level       : FATAL 
-</span><span class="line">      server      : &lt;server domain&gt;
-</span><span class="line">      subject     : 'Message myproject:'
-</span><span class="line">      from        : &lt;email address&gt;
-</span><span class="line">      to          : &lt;email address&gt;
-</span><span class="line">      formatter   :
-</span><span class="line">        date_pattern: #'%y%m%d %H:%M:%S'
-</span><span class="line">        pattern     : '%d %l: %m'
-</span><span class="line">        type        : PatternFormatter
-</span><span class="line">---</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line">    <span class="o">-</span> <span class="n">type</span>        <span class="p">:</span> <span class="no">DateFileOutputter</span>
+</span><span class="line">      <span class="nb">name</span>        <span class="p">:</span> <span class="n">logfile</span>
+</span><span class="line">      <span class="n">level</span>       <span class="p">:</span> <span class="no">DEBUG</span>
+</span><span class="line">      <span class="ss">date_pattern</span><span class="p">:</span> <span class="c1">#&#39;%Y%m%d&#39;</span>
+</span><span class="line">      <span class="n">trunc</span>       <span class="p">:</span> <span class="s1">&#39;false&#39;</span>
+</span><span class="line">      <span class="n">dirname</span>     <span class="p">:</span> <span class="s2">&quot;.&quot;</span>
+</span><span class="line">      <span class="n">formatter</span>   <span class="p">:</span>
+</span><span class="line">        <span class="ss">date_pattern</span><span class="p">:</span> <span class="s1">&#39;%H:%M:%S&#39;</span>
+</span><span class="line">        <span class="n">pattern</span>     <span class="p">:</span> <span class="s1">&#39;[%c] %d %l: %m&#39;</span>
+</span><span class="line">        <span class="n">type</span>        <span class="p">:</span> <span class="no">PatternFormatter</span>
+</span><span class="line">
+</span><span class="line">    <span class="o">-</span> <span class="n">type</span>        <span class="p">:</span> <span class="no">EmailOutputter</span>
+</span><span class="line">      <span class="nb">name</span>        <span class="p">:</span> <span class="n">email</span>
+</span><span class="line">      <span class="n">level</span>       <span class="p">:</span> <span class="no">FATAL</span>
+</span><span class="line">      <span class="n">server</span>      <span class="p">:</span> <span class="o">&lt;</span><span class="n">server</span> <span class="n">domain</span><span class="o">&gt;</span>
+</span><span class="line">      <span class="n">subject</span>     <span class="p">:</span> <span class="s1">&#39;Message myproject:&#39;</span>
+</span><span class="line">      <span class="n">from</span>        <span class="p">:</span> <span class="o">&lt;</span><span class="n">email</span> <span class="n">address</span><span class="o">&gt;</span>
+</span><span class="line">      <span class="n">to</span>          <span class="p">:</span> <span class="o">&lt;</span><span class="n">email</span> <span class="n">address</span><span class="o">&gt;</span>
+</span><span class="line">      <span class="n">formatter</span>   <span class="p">:</span>
+</span><span class="line">        <span class="ss">date_pattern</span><span class="p">:</span> <span class="c1">#&#39;%y%m%d %H:%M:%S&#39;</span>
+</span><span class="line">        <span class="n">pattern</span>     <span class="p">:</span> <span class="s1">&#39;%d %l: %m&#39;</span>
+</span><span class="line">        <span class="n">type</span>        <span class="p">:</span> <span class="no">PatternFormatter</span>
+</span><span class="line"><span class="o">---</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h2 id="step-4-initialize-a-logger">Step 4: Initialize a logger</h2>
 
 <p>You need initialize a logger in your project first.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">logger = Log4r::Logger['myproject']</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">logger</span> <span class="o">=</span> <span class="no">Log4r</span><span class="o">::</span><span class="no">Logger</span><span class="o">[</span><span class="s1">&#39;myproject&#39;</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h2 id="step-5-use-your-logger">Step 5: Use your logger</h2>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">logger.info 'My Project Starts!'
-</span><span class="line">logger.warn 'Here is a warning'
-</span><span class="line">logger.error 'Here is an error'
-</span><span class="line">logger.fatal 'Fatal error happens. Program will exit'</span></code></pre></td></tr></table></div></figure></notextile></div>
-
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">logger</span><span class="o">.</span><span class="n">info</span> <span class="s1">&#39;My Project Starts!&#39;</span>
+</span><span class="line"><span class="n">logger</span><span class="o">.</span><span class="n">warn</span> <span class="s1">&#39;Here is a warning&#39;</span>
+</span><span class="line"><span class="n">logger</span><span class="o">.</span><span class="n">error</span> <span class="s1">&#39;Here is an error&#39;</span>
+</span><span class="line"><span class="n">logger</span><span class="o">.</span><span class="n">fatal</span> <span class="s1">&#39;Fatal error happens. Program will exit&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 </div>
 
 

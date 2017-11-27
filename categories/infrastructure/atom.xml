@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Infrastructure | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/infrastructure/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-26T22:48:44-08:00</updated>
+  <updated>2017-11-26T23:17:34-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -406,10 +406,10 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[[Case Study] Perform Checks on a Commit According to Its Included Files]]></title>
-    <link href="http://euccas.github.io/blog/20160815/case-study-check-on-a-commit-according-to-the-included-files.html"/>
+    <title type="html"><![CDATA[How to Check Changes in a Commit and Invoke CI Tasks]]></title>
+    <link href="http://euccas.github.io/blog/20160815/how-to-check-changes-in-a-commit-and-invoke-ci-tasks.html"/>
     <updated>2016-08-15T19:43:21-07:00</updated>
-    <id>http://euccas.github.io/blog/20160815/case-study-check-on-a-commit-according-to-the-included-files</id>
+    <id>http://euccas.github.io/blog/20160815/how-to-check-changes-in-a-commit-and-invoke-ci-tasks</id>
     <content type="html"><![CDATA[<h1 id="problem-description">Problem Description</h1>
 
 <p>Suppose one task in your Continuous Integration (CI) pipeline is triggered on every commit to the project repository. Some the files in the repository require passing the check of the CI task, while some other files do not require passing the check. What should the CI task do to decide if it is needed to perform the needed checking on the commit?</p>
@@ -438,9 +438,8 @@
 
 <p>The 3rd way probably is the optimal one because it provides the flexibility for you to put a large scope path as the files need check, and then exclude a subset from the large scope path. For example:</p>
 
-<p>```</p>
-
-<p>check: my_project/dev/</p>
+<p>```
+check: my_project/dev/</p>
 
 <p>skip: my_project/dev/test/</p>
 
@@ -487,12 +486,11 @@
   </li>
 </ul>
 
-<p>```</p>
+<p>```python</p>
 
 <p>def analyze_commit_files(commit_files, config):</p>
 
 <pre><code>need_check = False    
-
 
 
 # commit need_check is False if:    

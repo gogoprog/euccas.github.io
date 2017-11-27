@@ -130,48 +130,49 @@
 
 <!--more-->
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># page_controller.rb
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="c1"># page_controller.rb</span>
 </span><span class="line">
-</span><span class="line">conn = PGconn.connect('&lt;server&gt;', &lt;port&gt;, "", "", '&lt;database&gt;', "&lt;user&gt;", "&lt;password&gt;")
-</span><span class="line">render :plain =&gt; "Oops, database currently not accessible" unless conn
+</span><span class="line"><span class="n">conn</span> <span class="o">=</span> <span class="no">PGconn</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;&lt;server&gt;&#39;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">port</span><span class="o">&gt;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s1">&#39;&lt;database&gt;&#39;</span><span class="p">,</span> <span class="s2">&quot;&lt;user&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;password&gt;&quot;</span><span class="p">)</span>
+</span><span class="line"><span class="n">render</span> <span class="ss">:plain</span> <span class="o">=&gt;</span> <span class="s2">&quot;Oops, database currently not accessible&quot;</span> <span class="k">unless</span> <span class="n">conn</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h1 id="query-data-with-raw-sql">Query data with RAW SQL</h1>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
 <span class="line-number">5</span>
 <span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># page_controller.rb
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="c1"># page_controller.rb</span>
 </span><span class="line">
-</span><span class="line">@page_records = []
-</span><span class="line">result = conn.exec('SELECT * FROM &lt;table&gt; ORDER BY id DESC')
+</span><span class="line"><span class="vi">@page_records</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class="line"><span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM &lt;table&gt; ORDER BY id DESC&#39;</span><span class="p">)</span>
 </span><span class="line">
-</span><span class="line">@page_records = result
+</span><span class="line"><span class="vi">@page_records</span> <span class="o">=</span> <span class="n">result</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>The result is an array of Hash. For example:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">[
-</span><span class="line">  { "title" =&gt; "my page 1", "author" =&gt; "Tom", "created_at" =&gt; "2016-06-08" }
-</span><span class="line">  { "title" =&gt; "my page 2", "author" =&gt; "Nancy", "created_at" =&gt; "2016-06-09" }
-</span><span class="line">]</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="o">[</span>
+</span><span class="line">  <span class="p">{</span> <span class="s2">&quot;title&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;my page 1&quot;</span><span class="p">,</span> <span class="s2">&quot;author&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Tom&quot;</span><span class="p">,</span> <span class="s2">&quot;created_at&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;2016-06-08&quot;</span> <span class="p">}</span>
+</span><span class="line">  <span class="p">{</span> <span class="s2">&quot;title&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;my page 2&quot;</span><span class="p">,</span> <span class="s2">&quot;author&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Nancy&quot;</span><span class="p">,</span> <span class="s2">&quot;created_at&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;2016-06-09&quot;</span> <span class="p">}</span>
+</span><span class="line"><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h1 id="use-the-data-in-view">Use the data in View</h1>
 
 <p>When using the queried data in Rails View, need to note you need use <code>record['title']</code> instead of <code>record.title</code>, which is different from using the data generated from a Rails Model.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -179,14 +180,15 @@
 <span class="line-number">6</span>
 <span class="line-number">7</span>
 <span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># page.erb
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="c1"># page.erb</span>
 </span><span class="line">
-</span><span class="line">&lt;div&gt;
-</span><span class="line">    &lt;% @page_records.each do |record| %&gt;
-</span><span class="line">        &lt;p&gt; &lt;%= record['title'] %&gt; &lt;/p&gt;
-</span><span class="line">        &lt;p&gt; &lt;%= record['author'] %&gt; &lt;/p&gt;
-</span><span class="line">    &lt;% end %&gt;
-</span><span class="line">&lt;/div&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line"><span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+</span><span class="line">    <span class="o">&lt;</span><span class="sx">% @page_records.each </span><span class="k">do</span> <span class="o">|</span><span class="n">record</span><span class="o">|</span> <span class="sx">%&gt;</span>
+</span><span class="line"><span class="sx">        &lt;p&gt;</span> <span class="o">&lt;</span><span class="sx">%= record[&#39;title&#39;] %&gt; &lt;/p&gt;</span>
+</span><span class="line"><span class="sx">        &lt;p&gt; &lt;%=</span> <span class="n">record</span><span class="o">[</span><span class="s1">&#39;author&#39;</span><span class="o">]</span> <span class="sx">%&gt; &lt;/p&gt;</span>
+</span><span class="line">    <span class="o">&lt;</span><span class="sx">% end %&gt;</span>
+</span><span class="line"><span class="sx">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h1 id="as-a-note-in-the-end">As a note in the end</h1>
 
@@ -197,12 +199,14 @@
   <li>Create a Model file</li>
 </ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">class Pages &lt; ActiveRecord::Base
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Pages</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
 </span><span class="line">
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 <ul>
   <li>Use <code>establish_connection</code> in the Model</li>
   <li>When your table name doesn’t match Rails convention, set the table name with <code>self.table_name = '&lt;your table name&gt;'</code></li>
