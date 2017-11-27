@@ -13,6 +13,5 @@ Take a look at my website [**euccas.me**](http://euccas.me) to know more about m
 {% img center /images/page_images/euccas_moma_2017.png 400px %}
 
 
-Cheers,
-
+Cheers, <br>
 Euccas
