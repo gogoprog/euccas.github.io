@@ -3,7 +3,7 @@ layout: post
 title: "CPU Profiling Tools on Linux"
 date: 2017-08-27 14:23:21 -0700
 comments: true
-categories: Linux 
+categories: Linux Performance
 keywords: Profiling Profiler Performance GCC
 description: Review CPU profiling tools on Linux, including perf, gprof, valgrind, and google gperf tools.
 ---
