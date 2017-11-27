@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/linux/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-19T21:24:32-08:00</updated>
+  <updated>2017-11-26T22:45:35-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[CPU Profiling Tools on Linux]]></title>
-    <link href="http://euccas.github.io/20170827/cpu-profiling-tools-on-linux.html"/>
+    <link href="http://euccas.github.io/blog/20170827/cpu-profiling-tools-on-linux.html"/>
     <updated>2017-08-27T14:23:21-07:00</updated>
-    <id>http://euccas.github.io/20170827/cpu-profiling-tools-on-linux</id>
+    <id>http://euccas.github.io/blog/20170827/cpu-profiling-tools-on-linux</id>
     <content type="html"><![CDATA[<p>Profiling is an effective method to provide measurements for the performance of software applications. With profiling, you get fine grained information for the components of an application, such as how often a function is called, how long a routine takes to execute and how much time are spent of different spots in the code. With these information, you could identify the performance bottlenecks and the poorly implemented parts in a software application, and find effective methods to improve them.</p>
 
 <p>In this post I’ll write a brief summary of two profiling methods: <strong>Instrumentation</strong> and <strong>Sampling</strong>, and four CPU profiling tools on Linux: <strong>perf</strong>, <strong>gprof</strong>, <strong>Valgrind</strong> and Google’s <strong>gperftools</strong>.</p>
@@ -152,9 +152,9 @@ pprof --gv &lt;app&gt; ./prof.out # graphical output, requires gv installed
   
   <entry>
     <title type="html"><![CDATA[The Elements of Linux Screen]]></title>
-    <link href="http://euccas.github.io/20140531/the-elements-of-linux-screen.html"/>
+    <link href="http://euccas.github.io/blog/20140531/the-elements-of-linux-screen.html"/>
     <updated>2014-05-31T14:51:54-07:00</updated>
-    <id>http://euccas.github.io/20140531/the-elements-of-linux-screen</id>
+    <id>http://euccas.github.io/blog/20140531/the-elements-of-linux-screen</id>
     <content type="html"><![CDATA[<p>The Element of Linux Screen</p>
 
 <p><a href="http://aperiodic.net/screen/start">Linux Screen</a> is a tool installed in Linux system with which you can manage multiple interactive shell processes. With Screen, you can have multiple shells in the same window. You can detach shell processes and attach them when you log into the system from other sessions. With Screen, you don’t need worry about losing your half-way tasks when the terminal exit. I use the Screen on a daily basis, and here I write down the commands and usages that are most commonly used in my everyday work.</p>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Infrastructure | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/infrastructure/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-19T21:24:32-08:00</updated>
+  <updated>2017-11-26T22:45:35-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Facebook Infrastructure: Streaming Video Engine (SVE)]]></title>
-    <link href="http://euccas.github.io/20170627/facebook-infrastructure-streaming-video-engine-sve.html"/>
+    <link href="http://euccas.github.io/blog/20170627/facebook-infrastructure-streaming-video-engine-sve.html"/>
     <updated>2017-06-27T22:16:02-07:00</updated>
-    <id>http://euccas.github.io/20170627/facebook-infrastructure-streaming-video-engine-sve</id>
+    <id>http://euccas.github.io/blog/20170627/facebook-infrastructure-streaming-video-engine-sve</id>
     <content type="html"><![CDATA[<p>In last year’s <a href="https://developers.facebook.com/videos/?category=f8_2016"><strong>Facebook F8 conference</strong></a>, Sachin Kulkarni, who worked on Facebook’s Video Infrastructure, gave a talk (<a href="https://developers.facebook.com/videos/f8-2016/inside-look-at-facebook-media-infrastructure/">watch it here</a>) to introduce the design of Facebook’s <strong>Streaming Video Engine System (SVE)</strong>. I found this talk particularly interesting because it revealed, in a very well structured, concise yet informative way, how Facebook infrastructure team came up with a solution to build a video system solving user frustrations by reviewing the end-to-end process, and how such a design meet the goal of being <strong>fast</strong>, <strong>flexible</strong>, <strong>scalable</strong>, and <strong>efficient</strong>. After watching the presentation video for a few times, I thought it would be helpful to write down some notes here, for my own reviewing in the future, and for people who might be interested in Facebook’s media infrastructure.</p>
 
 <p>Sharing on Facebook started from largely text, and quickly changed to be largely photos. Since 2014, more videos started to be posted and shared among users. The challenge was, building a video processing system is much harder than building a text or image processing system. Videos are greedy, they will consume all your resources: CPU, memory, disk, network, and anything else.</p>
@@ -136,9 +136,9 @@
   
   <entry>
     <title type="html"><![CDATA[How Instagram Moved to Python 3]]></title>
-    <link href="http://euccas.github.io/20170616/how-instagram-moved-to-python-3.html"/>
+    <link href="http://euccas.github.io/blog/20170616/how-instagram-moved-to-python-3.html"/>
     <updated>2017-06-16T17:52:34-07:00</updated>
-    <id>http://euccas.github.io/20170616/how-instagram-moved-to-python-3</id>
+    <id>http://euccas.github.io/blog/20170616/how-instagram-moved-to-python-3</id>
     <content type="html"><![CDATA[<p>Instagram, the famous brunch sharing app, presented in <a href="https://us.pycon.org/2017/">PyCon 2017</a> and gave a talk in the keynote session on “How Instagram moves to Python 3”. If you have 15 minutes, read the interview with the speakers, Hui Ding and Lisa Guo from Instagram Infrastructure team, <a href="https://thenewstack.io/instagram-makes-smooth-move-python-3/]"><strong>here</strong></a>. If you have 45 minutes, watch their PyCon talk video, <a href="https://www.youtube.com/watch?v=66XoCk79kjM"><strong>here</strong></a>. If you have only 5 minutes, continue reading, <strong>right here</strong>.</p>
 
 <p>Instagram’s backend, which serves over 400 million active users every day, is built on Python/Django stack. The decision on whether moving from Python 2 to Python 3, was really a decision on whether investing in a version of the language that was mature, but wasn’t going anywhere (Python 2 is expected to retire in 2020) – or the language that was the next version and had great and growing community support. The major motivations behind Instagram’s migration to Python 3 are:</p>
@@ -197,9 +197,9 @@
   
   <entry>
     <title type="html"><![CDATA[A List of SoC Design and Verification Infrastructure Needs - Tools/Automation Flows (2013)]]></title>
-    <link href="http://euccas.github.io/20170212/a-list-of-soc-design-and-verification-infrastructure-needs.html"/>
+    <link href="http://euccas.github.io/blog/20170212/a-list-of-soc-design-and-verification-infrastructure-needs.html"/>
     <updated>2017-02-12T15:53:19-08:00</updated>
-    <id>http://euccas.github.io/20170212/a-list-of-soc-design-and-verification-infrastructure-needs</id>
+    <id>http://euccas.github.io/blog/20170212/a-list-of-soc-design-and-verification-infrastructure-needs</id>
     <content type="html"><![CDATA[<p><em>This post was written in 2013, when I thought it was necessary to summarize infrastructure tools and flows needed in SoC design and verification, according to all my experience. Today when I checked on my old notes I found this one and would like to share it here. Later on I’ll update and expand this list according to my latest experience and knowledge in engineering tools and infrastructure for software and hardware development.</em></p>
 
 <p>System-on-Chip design and verification process is a complicated one. Unlike the world of Web and Internet, the design and development of hardware products have higher risk and lower tolerance to any mistakes. SoC design and verification process requires collaborations from multiple teams and vendors. Lots of hard decisions to make. Lots of trade-offs to consider. Moreover, the nonrecurring-engineering (NRE) charge makes sufficient and solid verification a must with limited time and resource. Tools and automated flows are an essential part of any design house.</p>
@@ -368,9 +368,9 @@
   
   <entry>
     <title type="html"><![CDATA[GTAC: The Uber Challenge of Cross-Application Testing]]></title>
-    <link href="http://euccas.github.io/20160928/the-uber-challenge-of-cross-application-testinng.html"/>
+    <link href="http://euccas.github.io/blog/20160928/the-uber-challenge-of-cross-application-testinng.html"/>
     <updated>2016-09-28T23:17:30-07:00</updated>
-    <id>http://euccas.github.io/20160928/the-uber-challenge-of-cross-application-testinng</id>
+    <id>http://euccas.github.io/blog/20160928/the-uber-challenge-of-cross-application-testinng</id>
     <content type="html"><![CDATA[<p>Inspired by Matt Cutts’ TED talk: <a href="https://www.ted.com/talks/matt_cutts_try_something_new_for_30_days?language=en">Try something new for 30 days</a>, I’m starting a “30 Days of GTAC” project. Google’s Test Automation Conference <a href="https://developers.google.com/google-test-automation-conference/">GTAC</a> is an annual test automation conference which brings together engineers from industry and academia to discuss advances in test automation and related engineering tools. In my “30 Days of GTAC” project, I’ll review the topics presented on GTAC. My goal is having a better and deeper understanding in modern testing technologies, methodologies, strategies, and practices.</p>
 
 <p>Get it started! Day#1 topic is:</p>
@@ -407,9 +407,9 @@
   
   <entry>
     <title type="html"><![CDATA[[Case Study] Perform Checks on a Commit According to Its Included Files]]></title>
-    <link href="http://euccas.github.io/20160815/case-study-check-on-a-commit-according-to-the-included-files.html"/>
+    <link href="http://euccas.github.io/blog/20160815/case-study-check-on-a-commit-according-to-the-included-files.html"/>
     <updated>2016-08-15T19:43:21-07:00</updated>
-    <id>http://euccas.github.io/20160815/case-study-check-on-a-commit-according-to-the-included-files</id>
+    <id>http://euccas.github.io/blog/20160815/case-study-check-on-a-commit-according-to-the-included-files</id>
     <content type="html"><![CDATA[<h1 id="problem-description">Problem Description</h1>
 
 <p>Suppose one task in your Continuous Integration (CI) pipeline is triggered on every commit to the project repository. Some the files in the repository require passing the check of the CI task, while some other files do not require passing the check. What should the CI task do to decide if it is needed to perform the needed checking on the commit?</p>

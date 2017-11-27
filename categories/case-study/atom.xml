@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Case-study, | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/case-study/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-19T21:24:32-08:00</updated>
+  <updated>2017-11-26T22:45:35-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[Case Study] Perform Checks on a Commit According to Its Included Files]]></title>
-    <link href="http://euccas.github.io/20160815/case-study-check-on-a-commit-according-to-the-included-files.html"/>
+    <link href="http://euccas.github.io/blog/20160815/case-study-check-on-a-commit-according-to-the-included-files.html"/>
     <updated>2016-08-15T19:43:21-07:00</updated>
-    <id>http://euccas.github.io/20160815/case-study-check-on-a-commit-according-to-the-included-files</id>
+    <id>http://euccas.github.io/blog/20160815/case-study-check-on-a-commit-according-to-the-included-files</id>
     <content type="html"><![CDATA[<h1 id="problem-description">Problem Description</h1>
 
 <p>Suppose one task in your Continuous Integration (CI) pipeline is triggered on every commit to the project repository. Some the files in the repository require passing the check of the CI task, while some other files do not require passing the check. What should the CI task do to decide if it is needed to perform the needed checking on the commit?</p>

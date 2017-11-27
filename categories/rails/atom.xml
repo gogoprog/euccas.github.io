@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/rails/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-19T21:24:32-08:00</updated>
+  <updated>2017-11-26T22:45:35-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rails: Get Data From PostgreSQL Database Without the Model]]></title>
-    <link href="http://euccas.github.io/20160610/rails-get-data-without-model.html"/>
+    <link href="http://euccas.github.io/blog/20160610/rails-get-data-without-model.html"/>
     <updated>2016-06-10T18:32:01-07:00</updated>
-    <id>http://euccas.github.io/20160610/rails-get-data-without-model</id>
+    <id>http://euccas.github.io/blog/20160610/rails-get-data-without-model</id>
     <content type="html"><![CDATA[<p>In Ruby on Rails, Active Record is the M in MVC - the model. Model is the layer of the system which represents business data and logic. Active Record facilitates the creation and the use of business objects whose data requires persistent storage to a database. In some cases, however, you may want to use databases in Rails applications without the Model. What you can do is using the <code>pg</code> gem to directly manipulate the data you need.</p>
 
 <h1 id="create-a-database-connection">Create a database connection</h1>

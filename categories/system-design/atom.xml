@@ -4,7 +4,7 @@
   <title><![CDATA[Category: System-design | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/system-design/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-19T21:24:32-08:00</updated>
+  <updated>2017-11-26T22:45:35-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Facebook Infrastructure: Streaming Video Engine (SVE)]]></title>
-    <link href="http://euccas.github.io/20170627/facebook-infrastructure-streaming-video-engine-sve.html"/>
+    <link href="http://euccas.github.io/blog/20170627/facebook-infrastructure-streaming-video-engine-sve.html"/>
     <updated>2017-06-27T22:16:02-07:00</updated>
-    <id>http://euccas.github.io/20170627/facebook-infrastructure-streaming-video-engine-sve</id>
+    <id>http://euccas.github.io/blog/20170627/facebook-infrastructure-streaming-video-engine-sve</id>
     <content type="html"><![CDATA[<p>In last year’s <a href="https://developers.facebook.com/videos/?category=f8_2016"><strong>Facebook F8 conference</strong></a>, Sachin Kulkarni, who worked on Facebook’s Video Infrastructure, gave a talk (<a href="https://developers.facebook.com/videos/f8-2016/inside-look-at-facebook-media-infrastructure/">watch it here</a>) to introduce the design of Facebook’s <strong>Streaming Video Engine System (SVE)</strong>. I found this talk particularly interesting because it revealed, in a very well structured, concise yet informative way, how Facebook infrastructure team came up with a solution to build a video system solving user frustrations by reviewing the end-to-end process, and how such a design meet the goal of being <strong>fast</strong>, <strong>flexible</strong>, <strong>scalable</strong>, and <strong>efficient</strong>. After watching the presentation video for a few times, I thought it would be helpful to write down some notes here, for my own reviewing in the future, and for people who might be interested in Facebook’s media infrastructure.</p>
 
 <p>Sharing on Facebook started from largely text, and quickly changed to be largely photos. Since 2014, more videos started to be posted and shared among users. The challenge was, building a video processing system is much harder than building a text or image processing system. Videos are greedy, they will consume all your resources: CPU, memory, disk, network, and anything else.</p>
@@ -136,9 +136,9 @@
   
   <entry>
     <title type="html"><![CDATA[How Instagram Moved to Python 3]]></title>
-    <link href="http://euccas.github.io/20170616/how-instagram-moved-to-python-3.html"/>
+    <link href="http://euccas.github.io/blog/20170616/how-instagram-moved-to-python-3.html"/>
     <updated>2017-06-16T17:52:34-07:00</updated>
-    <id>http://euccas.github.io/20170616/how-instagram-moved-to-python-3</id>
+    <id>http://euccas.github.io/blog/20170616/how-instagram-moved-to-python-3</id>
     <content type="html"><![CDATA[<p>Instagram, the famous brunch sharing app, presented in <a href="https://us.pycon.org/2017/">PyCon 2017</a> and gave a talk in the keynote session on “How Instagram moves to Python 3”. If you have 15 minutes, read the interview with the speakers, Hui Ding and Lisa Guo from Instagram Infrastructure team, <a href="https://thenewstack.io/instagram-makes-smooth-move-python-3/]"><strong>here</strong></a>. If you have 45 minutes, watch their PyCon talk video, <a href="https://www.youtube.com/watch?v=66XoCk79kjM"><strong>here</strong></a>. If you have only 5 minutes, continue reading, <strong>right here</strong>.</p>
 
 <p>Instagram’s backend, which serves over 400 million active users every day, is built on Python/Django stack. The decision on whether moving from Python 2 to Python 3, was really a decision on whether investing in a version of the language that was mature, but wasn’t going anywhere (Python 2 is expected to retire in 2020) – or the language that was the next version and had great and growing community support. The major motivations behind Instagram’s migration to Python 3 are:</p>
@@ -197,9 +197,9 @@
   
   <entry>
     <title type="html"><![CDATA[Levels of Design]]></title>
-    <link href="http://euccas.github.io/20161224/levels-of-design.html"/>
+    <link href="http://euccas.github.io/blog/20161224/levels-of-design.html"/>
     <updated>2016-12-24T09:52:07-08:00</updated>
-    <id>http://euccas.github.io/20161224/levels-of-design</id>
+    <id>http://euccas.github.io/blog/20161224/levels-of-design</id>
     <content type="html"><![CDATA[<p>Recently I’m taking a course <a href="https://www.coursera.org/learn/algorithmic-toolbox/home/welcome">“Algorithm Toolbox”</a> on Coursera. This course provides me a good chance to review and enhance my knowledge in the fundamental algorithms, which usually would help on achieving better system design. This morning I came across one slide of this course and thought it could be very useful. Sharing it here.</p>
 
 <p><img class="center" src="/images/post_images/2016/20161224-levels-of-design-1.png" width="600"></p>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Performance | euccas.github.io]]></title>
+  <link href="http://euccas.github.io/categories/performance/atom.xml" rel="self"/>
+  <link href="http://euccas.github.io/"/>
+  <updated>2017-11-26T22:45:35-08:00</updated>
+  <id>http://euccas.github.io/</id>
+  <author>
+    <name><![CDATA[euccas]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[CPU Profiling Tools on Linux]]></title>
+    <link href="http://euccas.github.io/blog/20170827/cpu-profiling-tools-on-linux.html"/>
+    <updated>2017-08-27T14:23:21-07:00</updated>
+    <id>http://euccas.github.io/blog/20170827/cpu-profiling-tools-on-linux</id>
+    <content type="html"><![CDATA[<p>Profiling is an effective method to provide measurements for the performance of software applications. With profiling, you get fine grained information for the components of an application, such as how often a function is called, how long a routine takes to execute and how much time are spent of different spots in the code. With these information, you could identify the performance bottlenecks and the poorly implemented parts in a software application, and find effective methods to improve them.</p>
+
+<p>In this post I’ll write a brief summary of two profiling methods: <strong>Instrumentation</strong> and <strong>Sampling</strong>, and four CPU profiling tools on Linux: <strong>perf</strong>, <strong>gprof</strong>, <strong>Valgrind</strong> and Google’s <strong>gperftools</strong>.</p>
+
+<h1 id="profiling-methods">Profiling Methods</h1>
+
+<p>Different profiling methods use different ways to measure the performance of an application when it is executed. <strong>Instrumentation</strong> and <strong>Sampling</strong> are the two categories that profiling methods fall into.</p>
+
+<h2 id="instrumentation">Instrumentation</h2>
+
+<p>Instrumentation method inserts special code at the beginning and end of each routine to record when the routine starts and ends. The time spent on calling other routines within a routine may also be recorded. The profiling result shows the actual time taken by the routine on each call.</p>
+
+<p>There are two types of instrumenting profiler tools: <strong>source-code modifying</strong> profilers and <strong>binary profilers</strong>. Source-code modifying profilers insert the instrumenting code in the source code, while the binary profilers insert instrumentation into an application’s executable code once it is loaded in memory.</p>
+
+<p>The good thing of instrumentation method is it gives you the actual time. The inserted instrumentation code (timer calls) take some time themselves. To reduce the impact of that, at the start of each run profilers measure the overhead incurred from the instrumenting process, and later subtract this overhead from the measurement result. But the instrumenting process could still significantly affect an application’s performance in some cases, for example when the routine is very short and frequently called, as the inserted instrumentation would disturb the way the routine executes in the CPU.</p>
+
+<h2 id="sampling">Sampling</h2>
+
+<p>Sampling measures applications without inserting any modifications. Sampling profilers record the executed instruction when the operating system interrupts the CPU at regular intervals to execute process switches, and correlates the recorded execution points with the routines and source code during the linking process. The profiling result shows the frequency with which a routine and source line is executing during the application’s run.</p>
+
+<p>Sampling profilers causes little overhead to the application run process, and they work well on small and often-called routines. One drawback is the evaluations of time spent are statistical approximations rather than actual time. Also sampling could only tell what routine is executing currently, not where it was called from. As a result, sampling profilers can’t report call traces of an application.</p>
+
+<h1 id="cpu-profiling-tools-on-linux">CPU Profiling Tools on Linux</h1>
+
+<h2 id="perf">perf</h2>
+
+<p>The <a href="https://perf.wiki.kernel.org/index.php/Main_Page"><strong>perf</strong></a> tool is provided by Linux kernel (2.6+) for profiling CPU and software events. You can get the tool installed by:</p>
+
+<ul>
+  <li>Ubuntu: install <em>linux-tools_common</em></li>
+  <li>Debian: install <em>linux-base</em></li>
+  <li>Arch: install <em>perf-utils</em></li>
+  <li>Fedora: install <em>perf</em></li>
+</ul>
+
+<p><code>perf</code> is based on the perf_events system, which is based on event-based sampling, and it uses CPU performance counters to profile the application. It can instrument hardware counters, static tracepoints, and dynamic tracepoints. It also provide per task, per CPU and per-workload counters, sampling on top of these and source code event annotation. It does <em>not</em> instrument the code, so that it has a really fast speed and generates precise results.</p>
+
+<p>You can use <code>perf</code> to profile with <code>perf record</code> and <code>perf report</code> commands:</p>
+
+<p><code>
+perf record -g &lt;app&gt; &lt;options&gt;
+perf report
+</code></p>
+
+<p>The <code>perf record</code> command collects samples and generates an output file called <code>perf.data</code>. This file can then be analyzed using <code>perf report</code> and <code>perf annotate</code> commands. Sampling frequency can be specified with <code>-F</code> option. As an example, <code>perf record -F 1000</code> means 1000 samples per second.</p>
+
+<h2 id="gprof">gprof</h2>
+
+<p>GNU profiler <a href="https://sourceware.org/binutils/docs/gprof/"><strong>gprof</strong></a> tool uses a hybrid of instrumentation and sampling. Instrumentation is used to collect function call information, and sampling is used to gather runtime profiling information.</p>
+
+<p>Using <code>gprof</code> to profile your applications requires the following steps:</p>
+
+<ol>
+  <li>Compile and link the application with <code>-pg</code> option</li>
+  <li>Execute the application to generate a profile data file, default file name is <code>gmon.out</code></li>
+  <li>Run <code>gprof</code> command to analyze the profile data</li>
+</ol>
+
+<p><code>
+g++ -pg myapp.cpp -o myapp.o
+./myapp.o
+gprof myapp.o  
+</code></p>
+
+<p>The <code>gprof</code> command prints a flat profile and a call graph on standard output. The flat profile shows how much time was spent executing directly in each function. The call graph shows which functions called which others, and how much time each function used when its subroutine calls are included. You can use the supported options <a href="https://ftp.gnu.org/old-gnu/Manuals/gprof-2.9.1/html_mono/gprof.html#SEC4">listed here</a> to control <code>gprof</code> output styles, such as enabling line-by-line analysis and annotated source.</p>
+
+<h2 id="valgrind-callgrind">Valgrind Callgrind</h2>
+
+<p><a href="http://www.valgrind.org/"><strong>Valgrind</strong></a> is an instrumentation framework for building dynamic analysis tools. Valgrind distribution includes six production-quality tools that can detect memory issues and profile programs. <strong>Callgrind</strong>, built as an extension to <strong>Cachegrind</strong>, provides function call call-graph. A separated visualisation tool <a href="http://kcachegrind.sourceforge.net/cgi-bin/show.cgi/KcacheGrindIndex"><strong>KCachegrind</strong></a> could also be used to visualize Callgrind’s output.</p>
+
+<p>Valgrind is a CPU emulator. The technology behind Valgrind is Dynamic binary instrumentation (DBI), whereby the analysis code is added to the original code of the client program at run-time. The profiling tool Callgrind is simulation based, it uses Valgrind as a runtime instrumentation framework. The following two papers explain how Valgrind and Callgrind work in detail.</p>
+
+<ul>
+  <li><a href="http://www.valgrind.org/docs/valgrind2007.pdf">Valgrind: A Framework for Heavyweight Dynamic Binary Instrumentation (<em>Nicholas Nethercote and Julian Seward</em>)</a></li>
+  <li><a href="http://www.valgrind.org/docs/callgrind2004.pdf">A Tool Suite for Simulation Based Analysis of Memory Access Behavior (<em>Josef Weidendorfer, Markus Kowarschik and Carsten Trinitis</em>)</a></li>
+</ul>
+
+<p>You need use the following commands to profile your program with <code>valgrind</code>:</p>
+
+<ol>
+  <li>Build your program as usual, no need adding any special compiler or linker flags</li>
+  <li>Execute the program with callgrind tool to generate a profile data file, default file name is <code>callgrind.out.&lt;pid&gt;</code></li>
+  <li>View the generated profile data with <code>callgrind_annotate</code> or <code>kcachegrind</code> tool</li>
+</ol>
+
+<p><code>
+g++ myapp.cpp -o myapp.o 
+valgrind --tool=callgrind myapp.o
+callgrind_annotate callgrind.out.&lt;pid&gt;
+</code></p>
+
+<h2 id="gperftools">gperftools</h2>
+
+<p><a href="https://github.com/gperftools/gperftools"><strong>gperftools</strong></a>, originally “Google Performance Tools”, is a collection of tools for analyzing and improving performance of multi-threaded applications. It offers a fast malloc, a thread-friendly heap-checker, a heap-profiler, and a cpu-profiler. gperftools was developed and tested on x86 Linux systems, and it works in its full generality only on those systems. Some of the libraries and functionality have been ported to other Unix systems and Windows.</p>
+
+<p>To use the CPU profiler in gperftools, you need:</p>
+
+<ol>
+  <li>Install the gperftools, following the instructions <a href="https://github.com/gperftools/gperftools">here</a></li>
+  <li>Include gperftools header file in your application’s source files, and compile the application</li>
+  <li>Link the library into an application with <code>-lprofiler</code></li>
+  <li>Set enrionement variable <code>CPUPROFILE</code>, then run the application</li>
+  <li>Analyze the output with <code>pprof</code> commands</li>
+</ol>
+
+<p>Include gperftools header files in your source file:</p>
+
+<p><code>
+#include "gperftools-2.6.1/src/gperftools/profiler.h"
+</code></p>
+
+<p>Link with <code>-lprofiler</code>, <code>profiler</code> is in the installation directory of <code>gperftools</code>:</p>
+
+<p><code>
+g++ -DWITHGPERFTOOLS -lprofiler -g myapp.cpp -o myapp.o
+</code></p>
+
+<p>Set CPUPROFILE environment variable, which controls the location of profiler output data file:</p>
+
+<p><code>
+export CPUPROFILE=./prof.out
+</code></p>
+
+<p>Run <code>pprof</code> commands to analyze the profiling result:</p>
+
+<p><code>
+pprof --text &lt;app&gt; ./prof.out # text output
+pprof --gv &lt;app&gt; ./prof.out # graphical output, requires gv installed
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

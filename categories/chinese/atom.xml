@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Chinese | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/chinese/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-19T21:24:32-08:00</updated>
+  <updated>2017-11-26T22:45:35-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[谈谈微信小程序的入口设计 | on WeChat Design for Mini Programs]]></title>
-    <link href="http://euccas.github.io/20170422/on-wechat-mini-program.html"/>
+    <link href="http://euccas.github.io/blog/20170422/on-wechat-mini-program.html"/>
     <updated>2017-04-22T23:24:14-07:00</updated>
-    <id>http://euccas.github.io/20170422/on-wechat-mini-program</id>
+    <id>http://euccas.github.io/blog/20170422/on-wechat-mini-program</id>
     <content type="html"><![CDATA[<p>现在流传的中国互联网圈四大热点是：百度的丑闻，支付宝的社交，微信的功能和网易的猪肉。这大概是个调侃的笑话，但是其中“微信的功能”，确实是我会特别留意和关心的，原因在于两点：</p>
 
 <ol>
@@ -85,9 +85,9 @@
   
   <entry>
     <title type="html"><![CDATA[高效Jenkins用户的第5个习惯]]></title>
-    <link href="http://euccas.github.io/20161216/jenkins-user-habits-5.html"/>
+    <link href="http://euccas.github.io/blog/20161216/jenkins-user-habits-5.html"/>
     <updated>2016-12-16T15:49:51-08:00</updated>
-    <id>http://euccas.github.io/20161216/jenkins-user-habits-5</id>
+    <id>http://euccas.github.io/blog/20161216/jenkins-user-habits-5</id>
     <content type="html"><![CDATA[<p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
 
 <h1 id="section">习惯 5: 集成第三方工具和服务</h1>
@@ -141,9 +141,9 @@
   
   <entry>
     <title type="html"><![CDATA[MongoDB Training: MongoDB for Developers (Python)]]></title>
-    <link href="http://euccas.github.io/20161205/mongodb-training-mongodb-for-developers-python.html"/>
+    <link href="http://euccas.github.io/blog/20161205/mongodb-training-mongodb-for-developers-python.html"/>
     <updated>2016-12-05T13:56:45-08:00</updated>
-    <id>http://euccas.github.io/20161205/mongodb-training-mongodb-for-developers-python</id>
+    <id>http://euccas.github.io/blog/20161205/mongodb-training-mongodb-for-developers-python</id>
     <content type="html"><![CDATA[<p>昨晚提交了MongoDB University的培训课程 <a href="https://university.mongodb.com/courses/M101P/about">M101P: MongoDB for Developers (Python)</a> 的最后一次测试，这历时七周的课程告一段落。这个课程虽然是属于入门级，但是它覆盖了MongoDB各个方面，有不错的课程结构。短时间内，可以让开发者掌握和MongoDB有关的日常开发中所需要掌握的大部分知识和技能。</p>
 
 <p>在学习其他数据库时，也不妨参照这个结构来全面掌握。</p>
@@ -205,9 +205,9 @@
   
   <entry>
     <title type="html"><![CDATA[Octopress Tips]]></title>
-    <link href="http://euccas.github.io/20161011/octopress-tips.html"/>
+    <link href="http://euccas.github.io/blog/20161011/octopress-tips.html"/>
     <updated>2016-10-11T22:36:44-07:00</updated>
-    <id>http://euccas.github.io/20161011/octopress-tips</id>
+    <id>http://euccas.github.io/blog/20161011/octopress-tips</id>
     <content type="html"><![CDATA[<p>使用Octopress搭建这个blog已经有一段时间了，记录几个使用中需要注意的Tips.</p>
 
 <h1 id="tip-1-clone-repo">Tip 1: Clone Repo</h1>
@@ -266,9 +266,9 @@ bundle exec rake deploy
   
   <entry>
     <title type="html"><![CDATA[高效Jenkins用户的第4个习惯]]></title>
-    <link href="http://euccas.github.io/20161010/jenkins-user-habits-4.html"/>
+    <link href="http://euccas.github.io/blog/20161010/jenkins-user-habits-4.html"/>
     <updated>2016-10-10T21:32:01-07:00</updated>
-    <id>http://euccas.github.io/20161010/jenkins-user-habits-4</id>
+    <id>http://euccas.github.io/blog/20161010/jenkins-user-habits-4</id>
     <content type="html"><![CDATA[<p>本文内容部分来源于<strong>Andrew Bayer</strong>发布在SlideShare上的 <a href="http://www.slideshare.net/andrewbayer/seven-habits-of-highly-effective-jenkins-users-2014-edition"><em>7 habits of highly productive Jenkins Users (2014 Edition)</em></a>.</p>
 
 <h1 id="jenkinsplugin">习惯 4: 精选你所使用的Jenkins功能插件(Plugin)</h1>
