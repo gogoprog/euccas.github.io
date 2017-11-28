@@ -4,7 +4,7 @@
   <title><![CDATA[Category: System-design | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/system-design/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-27T00:50:05-08:00</updated>
+  <updated>2017-11-27T17:32:00-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -227,6 +227,45 @@
 <p>When the solutions from the previous three levels are not good enough, you’ll need some magic to get a better one. This can be hard. You will need some clever new ideas and unique insights of the problem you’re trying to solve. Even if you don’t get a magic solution in the end, the thought process will be beneficial.</p>
 
 <p>Sometimes when I finish a project, I do have the feeling that the way I do it is just not good enough, even though the project has been proved to be successful, useful and solved a particular technical challenge we faced. Looking at the “Levels of Design”, I believe what I need to do is spending more efforts on the higher levels. Actually what you really need for getting a really good solution is not magic. What you need is mastering more existing good standard techniques, exploring the possibility for optimization, and a deep understanding of the problem you want to solve.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[GTAC: The Uber Challenge of Cross-Application Testing]]></title>
+    <link href="http://euccas.github.io/blog/20160928/the-uber-challenge-of-cross-application-testinng.html"/>
+    <updated>2016-09-28T23:17:30-07:00</updated>
+    <id>http://euccas.github.io/blog/20160928/the-uber-challenge-of-cross-application-testinng</id>
+    <content type="html"><![CDATA[<p>Inspired by Matt Cutts’ TED talk: <a href="https://www.ted.com/talks/matt_cutts_try_something_new_for_30_days?language=en">Try something new for 30 days</a>, I’m starting a “30 Days of GTAC” project. Google’s Test Automation Conference <a href="https://developers.google.com/google-test-automation-conference/">GTAC</a> is an annual test automation conference which brings together engineers from industry and academia to discuss advances in test automation and related engineering tools. In my “30 Days of GTAC” project, I’ll review the topics presented on GTAC. My goal is having a better and deeper understanding in modern testing technologies, methodologies, strategies, and practices.</p>
+
+<p>Get it started! Day#1 topic is:</p>
+
+<p><strong>The Uber Challenge of Cross-Application/Cross-Device Testing</strong></p>
+
+<!--more-->
+
+<ul>
+  <li>Presenter: Apple Chow (Uber), Bian Jiang (Uber)</li>
+  <li><a href="https://www.youtube.com/watch?v=p6gsssppeT0&amp;list=PLSIUOFhnxEiCWGsN9t5A-XOhRbmz54IS1&amp;index=3">Video</a></li>
+  <li><a href="https://docs.google.com/presentation/d/1vYXhkvgLKun72Ix91LQDDWZQdcY5VOBqKVvI1Y6riYo/pub">Slides</a></li>
+</ul>
+
+<p><strong>My takeaways</strong></p>
+
+<ul>
+  <li>The challenge: End-to-end tests require cross application communication (between rider app and driver app)</li>
+  <li>Uber’s solution: Octopus
+    <ul>
+      <li>Octopus coordinates communication across different apps running on different devices</li>
+      <li>This solution can be adopted for any tests that require coordination/communication across different apps or devices</li>
+    </ul>
+  </li>
+  <li>What makes testing Uber’s mobile apps significantly different from testing Google Maps?</li>
+  <li>Why (built) Octopus? Unified (iOS and Android). Extensible (Integrate with different UI testing frameworks). Parallelized. Signaling (enabling cross-app and cross-device testing).</li>
+  <li>What does Octopus do? Prepare test targets. Run tests (handles signaling). Create test results reports. Pull test artifacts. Perform clean ups. All from simple command line.</li>
+  <li>Signaling between driver test and rider test: Conducted with Test Host to improve the consistency. API readSignal (blocking), writeSignal (nonblocking). Test hosts and test targets are connected via USB (reliable).</li>
+  <li>Apple Chow wrote about Octopus on <a href="http://eng.uber.com/rescued-by-octopus/">Uber Engineering</a></li>
+</ul>
 
 ]]></content>
   </entry>

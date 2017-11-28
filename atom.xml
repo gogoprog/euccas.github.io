@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-27T00:50:05-08:00</updated>
+  <updated>2017-11-27T17:32:00-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -462,11 +462,11 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Effective Traditional C++ (3): String]]></title>
-    <link href="http://euccas.github.io/blog/20170227/effective-traditional-c-plus-plus-03-string.html"/>
+    <title type="html"><![CDATA[String in C++]]></title>
+    <link href="http://euccas.github.io/blog/20170227/string-in-c-plus-plus.html"/>
     <updated>2017-02-27T20:39:46-08:00</updated>
-    <id>http://euccas.github.io/blog/20170227/effective-traditional-c-plus-plus-03-string</id>
-    <content type="html"><![CDATA[<p>Recently I spent a whole lot of time on file compression and decompression with zlib. Thought I’d better write something about it. But before that, let me finish the series of “Effective Traditional C++”. Today I’ll write about Strings in C++.</p>
+    <id>http://euccas.github.io/blog/20170227/string-in-c-plus-plus</id>
+    <content type="html"><![CDATA[<p>Recently I spent a whole lot of time on file compression and decompression with zlib. Thought I’d better write something about it. But before that, let me finish the review of C++ fundamentals. Today I’ll write about Strings in C++.</p>
 
 <p>Two types of String are available in C++: C-Strings (C-style Strings), and STL Strings.</p>
 
@@ -478,16 +478,17 @@
 
 <p><strong>Example: print a C-String with %s</strong></p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">char s[] = {'s', 't', 'r', 'i', 'n', 'g', 0};
-</span><span class="line">printf("String is: %s\n", s);
-</span><span class="line">// output:  String is: string</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="kt">char</span> <span class="n">s</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="sc">&#39;s&#39;</span><span class="p">,</span> <span class="sc">&#39;t&#39;</span><span class="p">,</span> <span class="sc">&#39;r&#39;</span><span class="p">,</span> <span class="sc">&#39;i&#39;</span><span class="p">,</span> <span class="sc">&#39;n&#39;</span><span class="p">,</span> <span class="sc">&#39;g&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+</span><span class="line"><span class="n">printf</span><span class="p">(</span><span class="s">&quot;String is: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+</span><span class="line"><span class="c1">// output:  String is: string</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><strong>Example: access characters of a C-String</strong></p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -499,22 +500,23 @@
 <span class="line-number">10</span>
 <span class="line-number">11</span>
 <span class="line-number">12</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">char s[] = {'s', 't', 'r', 'i', 'n', 'g', 0};
-</span><span class="line">for (int i = 0; s[i]; i++)
-</span><span class="line">{
-</span><span class="line">    printf("Char is: %c\n", s[i]);
-</span><span class="line">}
-</span><span class="line">// output:
-</span><span class="line">// Char is: s
-</span><span class="line">// Char is: t
-</span><span class="line">// Char is: r
-</span><span class="line">// Char is: i
-</span><span class="line">// Char is: n
-</span><span class="line">// Char is: g</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="kt">char</span> <span class="n">s</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="sc">&#39;s&#39;</span><span class="p">,</span> <span class="sc">&#39;t&#39;</span><span class="p">,</span> <span class="sc">&#39;r&#39;</span><span class="p">,</span> <span class="sc">&#39;i&#39;</span><span class="p">,</span> <span class="sc">&#39;n&#39;</span><span class="p">,</span> <span class="sc">&#39;g&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+</span><span class="line"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Char is: %c</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="c1">// output:</span>
+</span><span class="line"><span class="c1">// Char is: s</span>
+</span><span class="line"><span class="c1">// Char is: t</span>
+</span><span class="line"><span class="c1">// Char is: r</span>
+</span><span class="line"><span class="c1">// Char is: i</span>
+</span><span class="line"><span class="c1">// Char is: n</span>
+</span><span class="line"><span class="c1">// Char is: g</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><strong>Example: access characters of a C-String, using a pointer</strong></p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -524,22 +526,23 @@
 <span class="line-number">8</span>
 <span class="line-number">9</span>
 <span class="line-number">10</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">char s[] = "string";
-</span><span class="line">for (char* cp = s; *cp; ++cp)
-</span><span class="line">{
-</span><span class="line">    printf("Char is %c\n", *cp);
-</span><span class="line">}
-</span><span class="line">// output:
-</span><span class="line">// Char is: s
-</span><span class="line">// Char is: t
-</span><span class="line">// ... ... 
-</span><span class="line">// Char is: g</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="kt">char</span> <span class="n">s</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;string&quot;</span><span class="p">;</span>
+</span><span class="line"><span class="k">for</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">cp</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span> <span class="o">*</span><span class="n">cp</span><span class="p">;</span> <span class="o">++</span><span class="n">cp</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Char is %c</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">cp</span><span class="p">);</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="c1">// output:</span>
+</span><span class="line"><span class="c1">// Char is: s</span>
+</span><span class="line"><span class="c1">// Char is: t</span>
+</span><span class="line"><span class="c1">// ... ... </span>
+</span><span class="line"><span class="c1">// Char is: g</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><strong>Example: access characters of a C-String, C++ 11 style</strong></p>
 
 <p>In C++ 11, a <em>range based loop</em> can be used to access arrays and also C-Strings.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -550,21 +553,22 @@
 <span class="line-number">9</span>
 <span class="line-number">10</span>
 <span class="line-number">11</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">char s[] = "string";
-</span><span class="line">for (char c : s)
-</span><span class="line">{
-</span><span class="line">    printf("Char is %c\n", *cp);
-</span><span class="line">}
-</span><span class="line">// output:
-</span><span class="line">// Char is: s
-</span><span class="line">// Char is: t
-</span><span class="line">// ... ... 
-</span><span class="line">// Char is: g
-</span><span class="line">// Char is:</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="kt">char</span> <span class="n">s</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;string&quot;</span><span class="p">;</span>
+</span><span class="line"><span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="nl">c</span> <span class="p">:</span> <span class="n">s</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Char is %c</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">cp</span><span class="p">);</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="c1">// output:</span>
+</span><span class="line"><span class="c1">// Char is: s</span>
+</span><span class="line"><span class="c1">// Char is: t</span>
+</span><span class="line"><span class="c1">// ... ... </span>
+</span><span class="line"><span class="c1">// Char is: g</span>
+</span><span class="line"><span class="c1">// Char is:</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>You may have noticed that the <code>null</code> character in the end of the C-String was printed out in the above code snippet. This is because the <em>range based for loop</em> in C++ 11 looks at the entire array and doesn’t treat the <code>null</code> as the end of the C-String. To get rid of the ending <code>null</code> character in a C-String, we need add a condition checker inside the range based loop.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -575,23 +579,24 @@
 <span class="line-number">9</span>
 <span class="line-number">10</span>
 <span class="line-number">11</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">char s[] = "string";
-</span><span class="line">for (char c : s)
-</span><span class="line">{
-</span><span class="line">    if (c==0) break;
-</span><span class="line">    printf("Char is %c\n", *cp);
-</span><span class="line">}
-</span><span class="line">// output:
-</span><span class="line">// Char is: s
-</span><span class="line">// Char is: t
-</span><span class="line">// ... ... 
-</span><span class="line">// Char is: g</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="kt">char</span> <span class="n">s</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;string&quot;</span><span class="p">;</span>
+</span><span class="line"><span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="nl">c</span> <span class="p">:</span> <span class="n">s</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="n">c</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Char is %c</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">cp</span><span class="p">);</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="c1">// output:</span>
+</span><span class="line"><span class="c1">// Char is: s</span>
+</span><span class="line"><span class="c1">// Char is: t</span>
+</span><span class="line"><span class="c1">// ... ... </span>
+</span><span class="line"><span class="c1">// Char is: g</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h1 id="stl-string">STL String</h1>
 
 <p>The STL String class is a special type of container designed to operate with sequence of characters. It’s designed with many <a href="http://www.cplusplus.com/reference/string/string/">features and available functions</a> to operate on strings efficiently and intuitively. To use STL String, you need include <code>string</code> header. The following example shows the basic usage of STL string including getting the length of a string, string concatenation, comparison, and accessing each character.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -628,44 +633,44 @@
 <span class="line-number">35</span>
 <span class="line-number">36</span>
 <span class="line-number">37</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">include &lt;iostream&gt;
-</span><span class="line">include &lt;string&gt;
-</span><span class="line">  
-</span><span class="line">int main(int argc, char** argv) {
-</span><span class="line">    string s0 = "Hello";
-</span><span class="line">    
-</span><span class="line">    // size == length
-</span><span class="line">    cout &lt;&lt; "size of string: " &lt;&lt; s0.size() &lt;&lt; endl;
-</span><span class="line">    cout &lt;&lt; "length of string: " &lt;&lt; s0.length() &lt;&lt; endl;
-</span><span class="line">    // output:
-</span><span class="line">    // 5
-</span><span class="line">    // 5
-</span><span class="line">    
-</span><span class="line">    // + concatenation
-</span><span class="line">    cout &lt;&lt; "concatenated strings: ";
-</span><span class="line">    string s1 = "another hello";
-</span><span class="line">    cout &lt;&lt; s0 + ", " + s1 &lt;&lt; endl;
-</span><span class="line">    // output:
-</span><span class="line">    // Hello, another hello
-</span><span class="line">    
-</span><span class="line">    // compare: ==, &gt;, &lt;, &gt;=, &lt;=, !=
-</span><span class="line">    cout &lt;&lt; "is s0 == s1? " &lt;&lt; (s0 == s1 ? "yes" : "no") &lt;&lt; endl;
-</span><span class="line">    s1 = s0
-</span><span class="line">    cout &lt;&lt; "is s0 == s1? " &lt;&lt; (s0 == s1 ? "yes" : "no") &lt;&lt; endl;
-</span><span class="line">    // output:
-</span><span class="line">    // no
-</span><span class="line">    // yes
-</span><span class="line">    
-</span><span class="line">    // access each character
-</span><span class="line">    cout &lt;&lt; "each character: ";
-</span><span class="line">    for (char c : s0) {
-</span><span class="line">       cout &lt;&lt; c &lt;&lt; ' ';
-</span><span class="line">    }
-</span><span class="line">    cout &lt;&lt; endl;
-</span><span class="line">    // output:
-</span><span class="line">    // Hello
-</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
-
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="n">include</span> <span class="o">&lt;</span><span class="n">iostream</span><span class="o">&gt;</span>
+</span><span class="line"><span class="n">include</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="n">string</span> <span class="n">s0</span> <span class="o">=</span> <span class="s">&quot;Hello&quot;</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line">    <span class="c1">// size == length</span>
+</span><span class="line">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;size of string: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">s0</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class="line">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;length of string: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">s0</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class="line">    <span class="c1">// output:</span>
+</span><span class="line">    <span class="c1">// 5</span>
+</span><span class="line">    <span class="c1">// 5</span>
+</span><span class="line">
+</span><span class="line">    <span class="c1">// + concatenation</span>
+</span><span class="line">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;concatenated strings: &quot;</span><span class="p">;</span>
+</span><span class="line">    <span class="n">string</span> <span class="n">s1</span> <span class="o">=</span> <span class="s">&quot;another hello&quot;</span><span class="p">;</span>
+</span><span class="line">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s0</span> <span class="o">+</span> <span class="s">&quot;, &quot;</span> <span class="o">+</span> <span class="n">s1</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class="line">    <span class="c1">// output:</span>
+</span><span class="line">    <span class="c1">// Hello, another hello</span>
+</span><span class="line">
+</span><span class="line">    <span class="c1">// compare: ==, &gt;, &lt;, &gt;=, &lt;=, !=</span>
+</span><span class="line">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;is s0 == s1? &quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">s0</span> <span class="o">==</span> <span class="n">s1</span> <span class="o">?</span> <span class="s">&quot;yes&quot;</span> <span class="o">:</span> <span class="s">&quot;no&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class="line">    <span class="n">s1</span> <span class="o">=</span> <span class="n">s0</span>
+</span><span class="line">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;is s0 == s1? &quot;</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">s0</span> <span class="o">==</span> <span class="n">s1</span> <span class="o">?</span> <span class="s">&quot;yes&quot;</span> <span class="o">:</span> <span class="s">&quot;no&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class="line">    <span class="c1">// output:</span>
+</span><span class="line">    <span class="c1">// no</span>
+</span><span class="line">    <span class="c1">// yes</span>
+</span><span class="line">
+</span><span class="line">    <span class="c1">// access each character</span>
+</span><span class="line">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;each character: &quot;</span><span class="p">;</span>
+</span><span class="line">    <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="nl">c</span> <span class="p">:</span> <span class="n">s0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">       <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">;</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class="line">    <span class="c1">// output:</span>
+</span><span class="line">    <span class="c1">// Hello</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 ]]></content>
   </entry>
   
@@ -841,10 +846,10 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Effective Traditional C++ (2): Pointer and Reference]]></title>
-    <link href="http://euccas.github.io/blog/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html"/>
+    <title type="html"><![CDATA[C++ Pointers and References]]></title>
+    <link href="http://euccas.github.io/blog/20170205/c-plus-plus-pointer-and-reference.html"/>
     <updated>2017-02-05T22:18:59-08:00</updated>
-    <id>http://euccas.github.io/blog/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference</id>
+    <id>http://euccas.github.io/blog/20170205/c-plus-plus-pointer-and-reference</id>
     <content type="html"><![CDATA[<p>Pointers and references are two fundamental data types in C++. They are useful, common and somewhat dangerous. Using them correctly, they could greatly improve the efficiency and performance of your program. On the other hand, using them incorrectly could lead to many problems such as memory leaks and buffer overflow.</p>
 
 <h1 id="pointers">Pointers</h1>
@@ -865,16 +870,17 @@
 
 <!--more-->
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
 <span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">int * p = new int;
-</span><span class="line">*p = 1;
-</span><span class="line">int * q = p;
-</span><span class="line">*p = 2;
-</span><span class="line">cout &lt;&lt; *q; // Outputs 2. * is the pointer dereferene operator</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="kt">int</span> <span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">;</span>
+</span><span class="line"><span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class="line"><span class="kt">int</span> <span class="o">*</span> <span class="n">q</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+</span><span class="line"><span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span><span class="line"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">q</span><span class="p">;</span> <span class="c1">// Outputs 2. * is the pointer dereferene operator</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
   <li>
@@ -885,31 +891,33 @@
   </li>
 </ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
 <span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">int a = 1;
-</span><span class="line">int b = 2;
-</span><span class="line">int * pa = &a;
-</span><span class="line">int * pb = &b;
-</span><span class="line">int pdis = pa - pb;</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class="line"><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span><span class="line"><span class="kt">int</span> <span class="o">*</span> <span class="n">pa</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+</span><span class="line"><span class="kt">int</span> <span class="o">*</span> <span class="n">pb</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>
+</span><span class="line"><span class="kt">int</span> <span class="n">pdis</span> <span class="o">=</span> <span class="n">pa</span> <span class="o">-</span> <span class="n">pb</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
   <li>Adding a pointer and a distance gets another meaningful pointer.</li>
 </ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
 <span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">int * p = new int[2];
-</span><span class="line">p[0] = 0;
-</span><span class="line">p[1] = 1;
-</span><span class="line">p++;
-</span><span class="line">cout &lt;&lt; *p; // Outputs 1</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="kt">int</span> <span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</span><span class="line"><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class="line"><span class="n">p</span><span class="o">++</span><span class="p">;</span>
+</span><span class="line"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span> <span class="c1">// Outputs 1</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
   <li>But adding two pointers won’t give you a meaningful pointer. Don’t do it.</li>
@@ -923,17 +931,19 @@
   <li>You cannot create a reference without specifying where in memory it refers to. A reference cannot be null.</li>
 </ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">int x = 7;
-</span><span class="line">int &amp; y = x; // Makes y a reference, initialized with the address of x</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+</span><span class="line"><span class="kt">int</span> <span class="o">&amp;</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// Makes y a reference, initialized with the address of x</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
   <li>You can create a free-standing reference as shown below:</li>
 </ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">const int &amp; a = 12;</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
   <li>
@@ -944,7 +954,7 @@
   </li>
 </ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -957,24 +967,24 @@
 <span class="line-number">11</span>
 <span class="line-number">12</span>
 <span class="line-number">13</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">int &amp; f(int &amp;x) {
-</span><span class="line">    ++x;
-</span><span class="line">    return x;
-</span><span class="line">}
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="kt">int</span> <span class="o">&amp;</span> <span class="n">f</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="o">++</span><span class="n">x</span><span class="p">;</span>
+</span><span class="line">    <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line">int main(int argc, char** argv)
-</span><span class="line">{
-</span><span class="line">    int i = 5;
-</span><span class="line">    printf("the value is %d\n", i); // i is 5
-</span><span class="line">    printf("the value is %d\n", f(i)); // f(i) is 6
-</span><span class="line">    printf("the value is %d\n", i); // i is changed to 6 unindently
-</span><span class="line">    return 0;
-</span><span class="line">}
+</span><span class="line"><span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;the value is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> <span class="c1">// i is 5</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;the value is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">));</span> <span class="c1">// f(i) is 6</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;the value is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> <span class="c1">// i is changed to 6 unindently</span>
+</span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>The good way is always using <code>const</code> when using references:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -988,20 +998,21 @@
 <span class="line-number">12</span>
 <span class="line-number">13</span>
 <span class="line-number">14</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">const int &amp; f(const int &amp; x) {
-</span><span class="line">    static int y = x;
-</span><span class="line">    ++y;
-</span><span class="line">    return y;
-</span><span class="line">}
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span> <span class="n">f</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">static</span> <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span><span class="line">    <span class="o">++</span><span class="n">y</span><span class="p">;</span>
+</span><span class="line">    <span class="k">return</span> <span class="n">y</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line">int main(int argc, char** argv)
-</span><span class="line">{
-</span><span class="line">    int i = 5;
-</span><span class="line">    printf("the value is %d\n", i); // i is 5
-</span><span class="line">    printf("the value is %d\n", f(i)); // f(i) is 6
-</span><span class="line">    printf("the value is %d\n", i); // i is 5
-</span><span class="line">    return 0;
-</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line"><span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;the value is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> <span class="c1">// i is 5</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;the value is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">));</span> <span class="c1">// f(i) is 6</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;the value is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> <span class="c1">// i is 5</span>
+</span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h1 id="functions-call-by-reference">Functions: Call by Reference</h1>
 
@@ -1011,7 +1022,7 @@
 
 <p>Example of a “call by reference”:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -1024,29 +1035,29 @@
 <span class="line-number">11</span>
 <span class="line-number">12</span>
 <span class="line-number">13</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"> void func(const string &amp; fs)
-</span><span class="line"> {
-</span><span class="line">    print("string value is %s\n", fs.c_str());
-</span><span class="line"> }
-</span><span class="line"> 
-</span><span class="line"> int main(int argc, char ** argv)
-</span><span class="line"> {
-</span><span class="line">    string s = "I'm a string!";
-</span><span class="line">    func(s); // Outputs: string value is I'm a string
-</span><span class="line">    printf("string is %s\n", s.c_str()); // Outputs: string is I'm a string
-</span><span class="line">    return 0;
-</span><span class="line"> }
-</span><span class="line"> </span></code></pre></td></tr></table></div></figure></notextile></div>
-
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"> <span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span> <span class="o">&amp;</span> <span class="n">fs</span><span class="p">)</span>
+</span><span class="line"> <span class="p">{</span>
+</span><span class="line">    <span class="n">print</span><span class="p">(</span><span class="s">&quot;string value is %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">fs</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+</span><span class="line"> <span class="p">}</span>
+</span><span class="line">
+</span><span class="line"> <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+</span><span class="line"> <span class="p">{</span>
+</span><span class="line">    <span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;I&#39;m a string!&quot;</span><span class="p">;</span>
+</span><span class="line">    <span class="n">func</span><span class="p">(</span><span class="n">s</span><span class="p">);</span> <span class="c1">// Outputs: string value is I&#39;m a string</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;string is %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span> <span class="c1">// Outputs: string is I&#39;m a string</span>
+</span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"> <span class="p">}</span>
+</span><span class="line">
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Effective Traditional C++ (1): Qualifiers]]></title>
-    <link href="http://euccas.github.io/blog/20170130/effective-traditional-c-plus-plus-01-qualifiers.html"/>
+    <title type="html"><![CDATA[C++ Qualifiers]]></title>
+    <link href="http://euccas.github.io/blog/20170130/c-plus-plus-qualifiers.html"/>
     <updated>2017-01-30T21:41:11-08:00</updated>
-    <id>http://euccas.github.io/blog/20170130/effective-traditional-c-plus-plus-01-qualifiers</id>
-    <content type="html"><![CDATA[<p>Recently I’m doing a review on C++ programming language. During the process, I found a few topics which are worth paying more attention to. I’ll write several posts about the related C++ tips and tactics. These topics are not specially for C++ 11 or 14, I therefore name this series of posts as “Effective Traditional C++”.</p>
+    <id>http://euccas.github.io/blog/20170130/c-plus-plus-qualifiers</id>
+    <content type="html"><![CDATA[<p>Recently I’m doing a review on C++ programming language. During the process, I found a few topics which are worth paying more attention to. I’ll write several posts about the related C++ tips and tactics.</p>
 
 <p>The first topic I’ll write about here is: <strong>Qualifiers</strong></p>
 
@@ -1068,7 +1079,7 @@
 
 <p><code>const</code> marks a variable or function as read-only or immutable. It’s value (or the return value of a function) cannot be changed once it’s been defined.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -1080,47 +1091,43 @@
 <span class="line-number">10</span>
 <span class="line-number">11</span>
 <span class="line-number">12</span>
-<span class="line-number">13</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">const int weekdays = 7;
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="k">const</span> <span class="kt">int</span> <span class="n">weekdays</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
 </span><span class="line">
-</span><span class="line">const int * myptr1; // declares myptr1 is a pointer to a constant integer
-</span><span class="line">int const * myptr2; // same as above, declares myptr2 is a pointer to a constant integer
-</span><span class="line">// myptr1 and myptr2 can be changed to point to other const integers
+</span><span class="line"><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">myptr1</span><span class="p">;</span> <span class="c1">// declares myptr1 is a pointer to a constant integer</span>
+</span><span class="line"><span class="kt">int</span> <span class="k">const</span> <span class="o">*</span> <span class="n">myptr2</span><span class="p">;</span> <span class="c1">// same as above, declares myptr2 is a pointer to a constant integer</span>
+</span><span class="line"><span class="c1">// myptr1 and myptr2 can be changed to point to other const integers</span>
 </span><span class="line">
-</span><span class="line">int * const  myptr3; // declares myptr3 is constant pointer to a variable integer
-</span><span class="line">int const * const myptr4; // declares myptr4 is constant pointer to a constant integer
-</span><span class="line">// myptr3 and myptr4 cannot be changed once initialized
+</span><span class="line"><span class="kt">int</span> <span class="o">*</span> <span class="k">const</span>  <span class="n">myptr3</span><span class="p">;</span> <span class="c1">// declares myptr3 is constant pointer to a variable integer</span>
+</span><span class="line"><span class="kt">int</span> <span class="k">const</span> <span class="o">*</span> <span class="k">const</span> <span class="n">myptr4</span><span class="p">;</span> <span class="c1">// declares myptr4 is constant pointer to a constant integer</span>
+</span><span class="line"><span class="c1">// myptr3 and myptr4 cannot be changed once initialized</span>
 </span><span class="line">
-</span><span class="line">const char *Function1()
-</span><span class="line">{ return "Some text";}
+</span><span class="line"><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="nf">Function1</span><span class="p">()</span>
+</span><span class="line"><span class="p">{</span> <span class="k">return</span> <span class="s">&quot;Some text&quot;</span><span class="p">;}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h2 id="volatile-qualifier">volatile qualifier</h2>
 
 <p><code>volatile</code> marks a variable that may be <strong>changed by another process</strong>. This is generally used for threaded code, or externally linked code. Often <code>volatile</code> is used to tell the compiler avoid aggressive optimization involving the qualified object because the value of the object might be changed by means that the compiler is not aware of.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
 <span class="line-number">5</span>
 <span class="line-number">6</span>
-<span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">volatile int maxcnt = 10;
-</span><span class="line">int cnt = 0;
-</span><span class="line">while (cnt &lt; maxcnt)
-</span><span class="line">{
-</span><span class="line">    // do something ... 
-</span><span class="line">}
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="k">volatile</span> <span class="kt">int</span> <span class="n">maxcnt</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span><span class="line"><span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="k">while</span> <span class="p">(</span><span class="n">cnt</span> <span class="o">&lt;</span> <span class="n">maxcnt</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="c1">// do something ... </span>
+</span><span class="line"><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h2 id="mutable-qualifier">mutable qualifier</h2>
 
 <p><code>mutable</code> is used on data member to make it writable from a <code>const</code> qualified member function.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -1136,24 +1143,22 @@
 <span class="line-number">14</span>
 <span class="line-number">15</span>
 <span class="line-number">16</span>
-<span class="line-number">17</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">class A {
-</span><span class="line">   mutable int x;
-</span><span class="line">   int y;
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+</span><span class="line">   <span class="k">mutable</span> <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+</span><span class="line">   <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
 </span><span class="line">
-</span><span class="line">   public:
-</span><span class="line">     void f1() {
-</span><span class="line">       // "this" has type `A*`
-</span><span class="line">       x = 1; // okay
-</span><span class="line">       y = 1; // okay
-</span><span class="line">     }
-</span><span class="line">     void f2() const {
-</span><span class="line">       // "this" has type `A const*`
-</span><span class="line">       x = 1; // okay, because x is mutable qualified
-</span><span class="line">       y = 1; // illegal, because f2 is const
-</span><span class="line">     }
-</span><span class="line">};
+</span><span class="line">   <span class="k">public</span><span class="o">:</span>
+</span><span class="line">     <span class="kt">void</span> <span class="n">f1</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">       <span class="c1">// &quot;this&quot; has type `A*`</span>
+</span><span class="line">       <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// okay</span>
+</span><span class="line">       <span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// okay</span>
+</span><span class="line">     <span class="p">}</span>
+</span><span class="line">     <span class="kt">void</span> <span class="n">f2</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+</span><span class="line">       <span class="c1">// &quot;this&quot; has type `A const*`</span>
+</span><span class="line">       <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// okay, because x is mutable qualified</span>
+</span><span class="line">       <span class="n">y</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// illegal, because f2 is const</span>
+</span><span class="line">     <span class="p">}</span>
+</span><span class="line"><span class="p">};</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h1 id="storage-qualifiers">Storage Qualifiers</h1>
@@ -1215,7 +1220,7 @@
 
 <h2 id="example-create-a-functor-with-a-class">Example: Create a functor with a Class</h2>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -1231,29 +1236,27 @@
 <span class="line-number">14</span>
 <span class="line-number">15</span>
 <span class="line-number">16</span>
-<span class="line-number">17</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">class MyFunctor {
-</span><span class="line">public:
-</span><span class="line">    void operator() (const string&amp; str) const {
-</span><span class="line">        cout &lt;&lt; str &lt;&lt; endl;
-</span><span class="line">    }
-</span><span class="line">}
+</pre></td><td class="code"><pre><code class="c"><span class="line"><span class="n">class</span> <span class="n">MyFunctor</span> <span class="p">{</span>
+</span><span class="line"><span class="nl">public</span><span class="p">:</span>
+</span><span class="line">    <span class="kt">void</span> <span class="n">operator</span><span class="p">()</span> <span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+</span><span class="line">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line">// Using functor:
+</span><span class="line"><span class="c1">// Using functor:</span>
 </span><span class="line">
-</span><span class="line">MyFunctor functor; // create an instance of the functor class
-</span><span class="line">functor("This is a functor!"); // and "call" it
+</span><span class="line"><span class="n">MyFunctor</span> <span class="n">functor</span><span class="p">;</span> <span class="c1">// create an instance of the functor class</span>
+</span><span class="line"><span class="n">functor</span><span class="p">(</span><span class="s">&quot;This is a functor!&quot;</span><span class="p">);</span> <span class="c1">// and &quot;call&quot; it</span>
 </span><span class="line">
-</span><span class="line">// equivalence:
-</span><span class="line">cout &lt;&lt; functor.operator()(23) &lt;&lt; endl;
+</span><span class="line"><span class="c1">// equivalence:</span>
+</span><span class="line"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">functor</span><span class="p">.</span><span class="n">operator</span><span class="p">()(</span><span class="mi">23</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span><span class="line">
-</span><span class="line">// You'll see "This is a functor" printed out.
+</span><span class="line"><span class="c1">// You&#39;ll see &quot;This is a functor&quot; printed out.</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h2 id="example-create-a-functor-with-a-struct">Example: Create a functor with a Struct</h2>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -1272,27 +1275,25 @@
 <span class="line-number">17</span>
 <span class="line-number">18</span>
 <span class="line-number">19</span>
-<span class="line-number">20</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">struct add_x {
-</span><span class="line">  add_x(int x) : x(x) {}
-</span><span class="line">  int operator()(int y) { return x + y; }
-</span><span class="line">private:
-</span><span class="line">  int x;
-</span><span class="line">};
+</pre></td><td class="code"><pre><code class="c"><span class="line"><span class="k">struct</span> <span class="n">add_x</span> <span class="p">{</span>
+</span><span class="line">  <span class="n">add_x</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{}</span>
+</span><span class="line">  <span class="kt">int</span> <span class="n">operator</span><span class="p">()(</span><span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span>
+</span><span class="line"><span class="nl">private</span><span class="p">:</span>
+</span><span class="line">  <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+</span><span class="line"><span class="p">};</span>
 </span><span class="line">
-</span><span class="line">// Using functor:
+</span><span class="line"><span class="c1">// Using functor:</span>
 </span><span class="line">
-</span><span class="line">add_x add42(42); // create an instance of the functor class
-</span><span class="line">int i = add42(8); // and "call" it
-</span><span class="line">assert(i == 50); // and it added 42 to its argument
+</span><span class="line"><span class="n">add_x</span> <span class="nf">add42</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span> <span class="c1">// create an instance of the functor class</span>
+</span><span class="line"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">add42</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span> <span class="c1">// and &quot;call&quot; it</span>
+</span><span class="line"><span class="n">assert</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">50</span><span class="p">);</span> <span class="c1">// and it added 42 to its argument</span>
 </span><span class="line">
-</span><span class="line">std::vector&lt;int&gt; in;
-</span><span class="line">std::vector&lt;int&gt; out;
-</span><span class="line">// Pass a functor to std::transform, which calls the functor on every element 
-</span><span class="line">// in the input sequence, and stores the result to the output sequence
-</span><span class="line">std::transform(in.begin(), in.end(), out.begin(), add_x(1)); 
-</span><span class="line">assert(out[i] == in[i] + 1); // for all i
+</span><span class="line"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">in</span><span class="p">;</span>
+</span><span class="line"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">out</span><span class="p">;</span>
+</span><span class="line"><span class="c1">// Pass a functor to std::transform, which calls the functor on every element </span>
+</span><span class="line"><span class="c1">// in the input sequence, and stores the result to the output sequence</span>
+</span><span class="line"><span class="n">std</span><span class="o">::</span><span class="n">transform</span><span class="p">(</span><span class="n">in</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">in</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">out</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">add_x</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+</span><span class="line"><span class="n">assert</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">in</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// for all i</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h1 id="functors-access-class-data-members">Functors access class data members</h1>
@@ -1308,7 +1309,7 @@
 
 <p>If a functor’s <code>operator()</code> member function requires access to data beyond what can be communicated by its parameters, we can store that information as a data member inside the functor class. Since <code>operator()</code> is a member of the functor class, it can then access that data freely. The following example shows how a functor’s <code>operator()</code> function access the class’s private member <code>toAppend</code>.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -1327,34 +1328,32 @@
 <span class="line-number">17</span>
 <span class="line-number">18</span>
 <span class="line-number">19</span>
-<span class="line-number">20</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">class StringAppender {
-</span><span class="line">public:
-</span><span class="line">    // Constructor takes and stores a string.
-</span><span class="line">    explicit StringAppender(const string &amp;str) : toAppend(str) {}
-</span><span class="line">    
-</span><span class="line">    // Operator() prints out a string, plus the stored suffix.
-</span><span class="line">    void operator() (const string &amp;str) const {
-</span><span class="line">        cout &lt;&lt; str &lt;&lt; ' ' &lt;&lt; toAppend &lt;&lt; endl;
-</span><span class="line">    }
+</pre></td><td class="code"><pre><code class="c"><span class="line"><span class="n">class</span> <span class="n">StringAppender</span> <span class="p">{</span>
+</span><span class="line"><span class="nl">public</span><span class="p">:</span>
+</span><span class="line">    <span class="c1">// Constructor takes and stores a string.</span>
+</span><span class="line">    <span class="n">explicit</span> <span class="n">StringAppender</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span> <span class="o">&amp;</span><span class="n">str</span><span class="p">)</span> <span class="o">:</span> <span class="n">toAppend</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="p">{}</span>
 </span><span class="line">
-</span><span class="line">private:
-</span><span class="line">    const string toAppend;
-</span><span class="line">};
+</span><span class="line">    <span class="c1">// Operator() prints out a string, plus the stored suffix.</span>
+</span><span class="line">    <span class="kt">void</span> <span class="n">operator</span><span class="p">()</span> <span class="p">(</span><span class="k">const</span> <span class="n">string</span> <span class="o">&amp;</span><span class="n">str</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+</span><span class="line">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="n">toAppend</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span><span class="line">    <span class="p">}</span>
 </span><span class="line">
-</span><span class="line">// Usage:
-</span><span class="line">StringAppender myFunctor("is awesome");
-</span><span class="line">myFunctor("C++");
+</span><span class="line"><span class="nl">private</span><span class="p">:</span>
+</span><span class="line">    <span class="k">const</span> <span class="n">string</span> <span class="n">toAppend</span><span class="p">;</span>
+</span><span class="line"><span class="p">};</span>
 </span><span class="line">
-</span><span class="line">// You'll see "C++ is awesome" is printed out.
+</span><span class="line"><span class="c1">// Usage:</span>
+</span><span class="line"><span class="n">StringAppender</span> <span class="nf">myFunctor</span><span class="p">(</span><span class="s">&quot;is awesome&quot;</span><span class="p">);</span>
+</span><span class="line"><span class="n">myFunctor</span><span class="p">(</span><span class="s">&quot;C++&quot;</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">// You&#39;ll see &quot;C++ is awesome&quot; is printed out.</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h1 id="functors-are-useful-in-stl-algorithms">Functors are useful in STL algorithms</h1>
 
 <p>C++ STL algorithms use functors to increase the flexibility and efficiency. The most common uses for function objects are for generating data, for testing data, and for applying operations to data. here is an example of how STL <code>for_each</code> uses functors.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -1372,26 +1371,24 @@
 <span class="line-number">16</span>
 <span class="line-number">17</span>
 <span class="line-number">18</span>
-<span class="line-number">19</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">
-</span><span class="line">struct sum
-</span><span class="line">{
-</span><span class="line">    sum(int* t):total(t){};
-</span><span class="line">    int* total;
-</span><span class="line">    void operator()(int element)
-</span><span class="line">    {
-</span><span class="line">       *total += element;
-</span><span class="line">    }
-</span><span class="line">};
+</pre></td><td class="code"><pre><code class="c"><span class="line"><span class="k">struct</span> <span class="n">sum</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="n">sum</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">t</span><span class="p">)</span><span class="o">:</span><span class="n">total</span><span class="p">(</span><span class="n">t</span><span class="p">){};</span>
+</span><span class="line">    <span class="kt">int</span><span class="o">*</span> <span class="n">total</span><span class="p">;</span>
+</span><span class="line">    <span class="kt">void</span> <span class="nf">operator</span><span class="p">()(</span><span class="kt">int</span> <span class="n">element</span><span class="p">)</span>
+</span><span class="line">    <span class="p">{</span>
+</span><span class="line">       <span class="o">*</span><span class="n">total</span> <span class="o">+=</span> <span class="n">element</span><span class="p">;</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line"><span class="p">};</span>
 </span><span class="line">
-</span><span class="line">int main()
-</span><span class="line">{
-</span><span class="line">    int total = 0;
-</span><span class="line">    sum s(&amp;total);
-</span><span class="line">    int arr[] = {0, 1, 2, 3, 4, 5};
-</span><span class="line">    std::for_each(arr, arr+6, s);
-</span><span class="line">    cout &lt;&lt; total &lt;&lt; endl; // prints total = 15;
-</span><span class="line">}
+</span><span class="line"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line">    <span class="n">sum</span> <span class="n">s</span><span class="p">(</span><span class="o">&amp;</span><span class="n">total</span><span class="p">);</span>
+</span><span class="line">    <span class="kt">int</span> <span class="n">arr</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
+</span><span class="line">    <span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">arr</span><span class="o">+</span><span class="mi">6</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+</span><span class="line">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">total</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// prints total = 15;</span>
+</span><span class="line"><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><em>The reader of <a href="http://web.stanford.edu/class/cs106l/course-reader/Ch13_Functors.pdf">Stanford course CS106l</a> explains functors in detail.</em></p>

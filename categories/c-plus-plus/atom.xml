@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-27T00:50:05-08:00</updated>
+  <updated>2017-11-27T17:32:00-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -14,11 +14,11 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Effective Traditional C++ (3): String]]></title>
-    <link href="http://euccas.github.io/blog/20170227/effective-traditional-c-plus-plus-03-string.html"/>
+    <title type="html"><![CDATA[String in C++]]></title>
+    <link href="http://euccas.github.io/blog/20170227/string-in-c-plus-plus.html"/>
     <updated>2017-02-27T20:39:46-08:00</updated>
-    <id>http://euccas.github.io/blog/20170227/effective-traditional-c-plus-plus-03-string</id>
-    <content type="html"><![CDATA[<p>Recently I spent a whole lot of time on file compression and decompression with zlib. Thought I’d better write something about it. But before that, let me finish the series of “Effective Traditional C++”. Today I’ll write about Strings in C++.</p>
+    <id>http://euccas.github.io/blog/20170227/string-in-c-plus-plus</id>
+    <content type="html"><![CDATA[<p>Recently I spent a whole lot of time on file compression and decompression with zlib. Thought I’d better write something about it. But before that, let me finish the review of C++ fundamentals. Today I’ll write about Strings in C++.</p>
 
 <p>Two types of String are available in C++: C-Strings (C-style Strings), and STL Strings.</p>
 
@@ -30,7 +30,7 @@
 
 <p><strong>Example: print a C-String with %s</strong></p>
 
-<p><code>
+<p><code>cpp
 char s[] = {'s', 't', 'r', 'i', 'n', 'g', 0};
 printf("String is: %s\n", s);
 // output:  String is: string
@@ -38,7 +38,7 @@ printf("String is: %s\n", s);
 
 <p><strong>Example: access characters of a C-String</strong></p>
 
-<p><code>
+<p><code>cpp
 char s[] = {'s', 't', 'r', 'i', 'n', 'g', 0};
 for (int i = 0; s[i]; i++)
 {
@@ -55,7 +55,7 @@ for (int i = 0; s[i]; i++)
 
 <p><strong>Example: access characters of a C-String, using a pointer</strong></p>
 
-<p><code>
+<p><code>cpp
 char s[] = "string";
 for (char* cp = s; *cp; ++cp)
 {
@@ -72,7 +72,7 @@ for (char* cp = s; *cp; ++cp)
 
 <p>In C++ 11, a <em>range based loop</em> can be used to access arrays and also C-Strings.</p>
 
-<p><code>
+<p><code>cpp
 char s[] = "string";
 for (char c : s)
 {
@@ -88,7 +88,7 @@ for (char c : s)
 
 <p>You may have noticed that the <code>null</code> character in the end of the C-String was printed out in the above code snippet. This is because the <em>range based for loop</em> in C++ 11 looks at the entire array and doesn’t treat the <code>null</code> as the end of the C-String. To get rid of the ending <code>null</code> character in a C-String, we need add a condition checker inside the range based loop.</p>
 
-<p><code>
+<p><code>cpp
 char s[] = "string";
 for (char c : s)
 {
@@ -106,7 +106,7 @@ for (char c : s)
 
 <p>The STL String class is a special type of container designed to operate with sequence of characters. It’s designed with many <a href="http://www.cplusplus.com/reference/string/string/">features and available functions</a> to operate on strings efficiently and intuitively. To use STL String, you need include <code>string</code> header. The following example shows the basic usage of STL string including getting the length of a string, string concatenation, comparison, and accessing each character.</p>
 
-<p>```
+<p>```cpp
 include <iostream>
 include <string></string></iostream></p>
 
@@ -144,15 +144,14 @@ cout &lt;&lt; endl;
 // output:
 // Hello } ```
 </code></pre>
-
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Effective Traditional C++ (2): Pointer and Reference]]></title>
-    <link href="http://euccas.github.io/blog/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html"/>
+    <title type="html"><![CDATA[C++ Pointers and References]]></title>
+    <link href="http://euccas.github.io/blog/20170205/c-plus-plus-pointer-and-reference.html"/>
     <updated>2017-02-05T22:18:59-08:00</updated>
-    <id>http://euccas.github.io/blog/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference</id>
+    <id>http://euccas.github.io/blog/20170205/c-plus-plus-pointer-and-reference</id>
     <content type="html"><![CDATA[<p>Pointers and references are two fundamental data types in C++. They are useful, common and somewhat dangerous. Using them correctly, they could greatly improve the efficiency and performance of your program. On the other hand, using them incorrectly could lead to many problems such as memory leaks and buffer overflow.</p>
 
 <h1 id="pointers">Pointers</h1>
@@ -173,7 +172,7 @@ cout &lt;&lt; endl;
 
 <!--more-->
 
-<p><code>
+<p><code>cpp
 int * p = new int;
 *p = 1;
 int * q = p;
@@ -190,7 +189,7 @@ cout &lt;&lt; *q; // Outputs 2. * is the pointer dereferene operator
   </li>
 </ul>
 
-<p><code>
+<p><code>cpp
 int a = 1;
 int b = 2;
 int * pa = &amp;a;
@@ -202,7 +201,7 @@ int pdis = pa - pb;
   <li>Adding a pointer and a distance gets another meaningful pointer.</li>
 </ul>
 
-<p><code>
+<p><code>cpp
 int * p = new int[2];
 p[0] = 0;
 p[1] = 1;
@@ -222,7 +221,7 @@ cout &lt;&lt; *p; // Outputs 1
   <li>You cannot create a reference without specifying where in memory it refers to. A reference cannot be null.</li>
 </ul>
 
-<p><code>
+<p><code>cpp
 int x = 7;
 int &amp; y = x; // Makes y a reference, initialized with the address of x
 </code></p>
@@ -231,7 +230,7 @@ int &amp; y = x; // Makes y a reference, initialized with the address of x
   <li>You can create a free-standing reference as shown below:</li>
 </ul>
 
-<p><code>
+<p><code>cpp
 const int &amp; a = 12;
 </code></p>
 
@@ -244,7 +243,7 @@ const int &amp; a = 12;
   </li>
 </ul>
 
-<p>```
+<p>```cpp
 int &amp; f(int &amp;x) {
     ++x;
     return x;
@@ -263,7 +262,7 @@ int &amp; f(int &amp;x) {
 
 <p>The good way is always using <code>const</code> when using references:</p>
 
-<p>```
+<p>```cpp
 const int &amp; f(const int &amp; x) {
     static int y = x;
     ++y;
@@ -288,7 +287,7 @@ const int &amp; f(const int &amp; x) {
 
 <p>Example of a “call by reference”:</p>
 
-<p>```
+<p>```cpp
  void func(const string &amp; fs)
  {
     print(“string value is %s\n”, fs.c_str());
@@ -303,16 +302,15 @@ const int &amp; f(const int &amp; x) {
  }</p>
 
 <p>```</p>
-
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Effective Traditional C++ (1): Qualifiers]]></title>
-    <link href="http://euccas.github.io/blog/20170130/effective-traditional-c-plus-plus-01-qualifiers.html"/>
+    <title type="html"><![CDATA[C++ Qualifiers]]></title>
+    <link href="http://euccas.github.io/blog/20170130/c-plus-plus-qualifiers.html"/>
     <updated>2017-01-30T21:41:11-08:00</updated>
-    <id>http://euccas.github.io/blog/20170130/effective-traditional-c-plus-plus-01-qualifiers</id>
-    <content type="html"><![CDATA[<p>Recently I’m doing a review on C++ programming language. During the process, I found a few topics which are worth paying more attention to. I’ll write several posts about the related C++ tips and tactics. These topics are not specially for C++ 11 or 14, I therefore name this series of posts as “Effective Traditional C++”.</p>
+    <id>http://euccas.github.io/blog/20170130/c-plus-plus-qualifiers</id>
+    <content type="html"><![CDATA[<p>Recently I’m doing a review on C++ programming language. During the process, I found a few topics which are worth paying more attention to. I’ll write several posts about the related C++ tips and tactics.</p>
 
 <p>The first topic I’ll write about here is: <strong>Qualifiers</strong></p>
 
@@ -334,9 +332,8 @@ const int &amp; f(const int &amp; x) {
 
 <p><code>const</code> marks a variable or function as read-only or immutable. It’s value (or the return value of a function) cannot be changed once it’s been defined.</p>
 
-<p>```</p>
-
-<p>const int weekdays = 7;</p>
+<p>```cpp
+const int weekdays = 7;</p>
 
 <p>const int * myptr1; // declares myptr1 is a pointer to a constant integer
 int const * myptr2; // same as above, declares myptr2 is a pointer to a constant integer
@@ -355,9 +352,8 @@ int const * const myptr4; // declares myptr4 is constant pointer to a constant i
 
 <p><code>volatile</code> marks a variable that may be <strong>changed by another process</strong>. This is generally used for threaded code, or externally linked code. Often <code>volatile</code> is used to tell the compiler avoid aggressive optimization involving the qualified object because the value of the object might be changed by means that the compiler is not aware of.</p>
 
-<p>```</p>
-
-<p>volatile int maxcnt = 10;
+<p>```cpp
+volatile int maxcnt = 10;
 int cnt = 0;
 while (cnt &lt; maxcnt)
 {
@@ -370,9 +366,8 @@ while (cnt &lt; maxcnt)
 
 <p><code>mutable</code> is used on data member to make it writable from a <code>const</code> qualified member function.</p>
 
-<p>```</p>
-
-<p>class A {
+<p>```cpp
+class A {
    mutable int x;
    int y;</p>
 
@@ -433,7 +428,7 @@ while (cnt &lt; maxcnt)
 
 <h2 id="example-create-a-functor-with-a-class">Example: Create a functor with a Class</h2>
 
-<p>```</p>
+<p>```c</p>
 
 <p>class MyFunctor {
 public:
@@ -456,7 +451,7 @@ cout « functor.operator()(23) « endl;</p>
 
 <h2 id="example-create-a-functor-with-a-struct">Example: Create a functor with a Struct</h2>
 
-<p>```</p>
+<p>```c</p>
 
 <p>struct add_x {
   add_x(int x) : x(x) {}
@@ -493,7 +488,7 @@ assert(out[i] == in[i] + 1); // for all i</int></int></p>
 
 <p>If a functor’s <code>operator()</code> member function requires access to data beyond what can be communicated by its parameters, we can store that information as a data member inside the functor class. Since <code>operator()</code> is a member of the functor class, it can then access that data freely. The following example shows how a functor’s <code>operator()</code> function access the class’s private member <code>toAppend</code>.</p>
 
-<p>```</p>
+<p>```c</p>
 
 <p>class StringAppender {
 public:
@@ -522,7 +517,7 @@ myFunctor(“C++”);</p>
 
 <p>C++ STL algorithms use functors to increase the flexibility and efficiency. The most common uses for function objects are for generating data, for testing data, and for applying operations to data. here is an example of how STL <code>for_each</code> uses functors.</p>
 
-<p>```</p>
+<p>```c</p>
 
 <p>struct sum
 {

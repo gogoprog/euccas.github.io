@@ -21,7 +21,7 @@
 <lastmod>2017-04-22T23:24:14-07:00</lastmod>
 </url>
 <url>
-<loc>http://euccas.github.io/blog/20170227/effective-traditional-c-plus-plus-03-string.html</loc>
+<loc>http://euccas.github.io/blog/20170227/string-in-c-plus-plus.html</loc>
 <lastmod>2017-02-27T20:39:46-08:00</lastmod>
 </url>
 <url>
@@ -29,11 +29,11 @@
 <lastmod>2017-02-12T15:53:19-08:00</lastmod>
 </url>
 <url>
-<loc>http://euccas.github.io/blog/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html</loc>
+<loc>http://euccas.github.io/blog/20170205/c-plus-plus-pointer-and-reference.html</loc>
 <lastmod>2017-02-05T22:18:59-08:00</lastmod>
 </url>
 <url>
-<loc>http://euccas.github.io/blog/20170130/effective-traditional-c-plus-plus-01-qualifiers.html</loc>
+<loc>http://euccas.github.io/blog/20170130/c-plus-plus-qualifiers.html</loc>
 <lastmod>2017-01-30T21:41:11-08:00</lastmod>
 </url>
 <url>
@@ -189,6 +189,9 @@
 <loc>http://euccas.github.io/categories/infrastructure/</loc>
 </url>
 <url>
+<loc>http://euccas.github.io/categories/system-design/</loc>
+</url>
+<url>
 <loc>http://euccas.github.io/categories/octopress/</loc>
 </url>
 <url>
@@ -196,9 +199,6 @@
 </url>
 <url>
 <loc>http://euccas.github.io/categories/mongodb/</loc>
-</url>
-<url>
-<loc>http://euccas.github.io/categories/system-design/</loc>
 </url>
 <url>
 <loc>http://euccas.github.io/categories/machine-learning/</loc>

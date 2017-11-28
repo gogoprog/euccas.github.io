@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Effective Traditional C++ (2): Pointer and Reference - euccas.github.io</title>
+  <title>C++ Pointers and References - euccas.github.io</title>
   <meta name="author" content="euccas">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://euccas.github.io/blog/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html">
+  <link rel="canonical" href="http://euccas.github.io/blog/20170205/c-plus-plus-pointer-and-reference.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="euccas.github.io" type="application/atom+xml">
@@ -103,7 +103,7 @@
   <header>
     
       
-        <h1 class="entry-title">Effective Traditional C++ (2): Pointer and Reference</h1>
+        <h1 class="entry-title">C++ Pointers and References</h1>
       
     
     
@@ -143,16 +143,17 @@
 
 <!--more-->
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
 <span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">int * p = new int;
-</span><span class="line">*p = 1;
-</span><span class="line">int * q = p;
-</span><span class="line">*p = 2;
-</span><span class="line">cout &lt;&lt; *q; // Outputs 2. * is the pointer dereferene operator</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="kt">int</span> <span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">;</span>
+</span><span class="line"><span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class="line"><span class="kt">int</span> <span class="o">*</span> <span class="n">q</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+</span><span class="line"><span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span><span class="line"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">q</span><span class="p">;</span> <span class="c1">// Outputs 2. * is the pointer dereferene operator</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
   <li>
@@ -163,31 +164,33 @@
   </li>
 </ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
 <span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">int a = 1;
-</span><span class="line">int b = 2;
-</span><span class="line">int * pa = &a;
-</span><span class="line">int * pb = &b;
-</span><span class="line">int pdis = pa - pb;</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class="line"><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span><span class="line"><span class="kt">int</span> <span class="o">*</span> <span class="n">pa</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+</span><span class="line"><span class="kt">int</span> <span class="o">*</span> <span class="n">pb</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">;</span>
+</span><span class="line"><span class="kt">int</span> <span class="n">pdis</span> <span class="o">=</span> <span class="n">pa</span> <span class="o">-</span> <span class="n">pb</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
   <li>Adding a pointer and a distance gets another meaningful pointer.</li>
 </ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
 <span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">int * p = new int[2];
-</span><span class="line">p[0] = 0;
-</span><span class="line">p[1] = 1;
-</span><span class="line">p++;
-</span><span class="line">cout &lt;&lt; *p; // Outputs 1</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="kt">int</span> <span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</span><span class="line"><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class="line"><span class="n">p</span><span class="o">++</span><span class="p">;</span>
+</span><span class="line"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span> <span class="c1">// Outputs 1</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
   <li>But adding two pointers won’t give you a meaningful pointer. Don’t do it.</li>
@@ -201,17 +204,19 @@
   <li>You cannot create a reference without specifying where in memory it refers to. A reference cannot be null.</li>
 </ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">int x = 7;
-</span><span class="line">int &amp; y = x; // Makes y a reference, initialized with the address of x</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+</span><span class="line"><span class="kt">int</span> <span class="o">&amp;</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// Makes y a reference, initialized with the address of x</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
   <li>You can create a free-standing reference as shown below:</li>
 </ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">const int &amp; a = 12;</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
   <li>
@@ -222,7 +227,7 @@
   </li>
 </ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -235,24 +240,24 @@
 <span class="line-number">11</span>
 <span class="line-number">12</span>
 <span class="line-number">13</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">int &amp; f(int &amp;x) {
-</span><span class="line">    ++x;
-</span><span class="line">    return x;
-</span><span class="line">}
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="kt">int</span> <span class="o">&amp;</span> <span class="n">f</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="o">++</span><span class="n">x</span><span class="p">;</span>
+</span><span class="line">    <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line">int main(int argc, char** argv)
-</span><span class="line">{
-</span><span class="line">    int i = 5;
-</span><span class="line">    printf("the value is %d\n", i); // i is 5
-</span><span class="line">    printf("the value is %d\n", f(i)); // f(i) is 6
-</span><span class="line">    printf("the value is %d\n", i); // i is changed to 6 unindently
-</span><span class="line">    return 0;
-</span><span class="line">}
+</span><span class="line"><span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;the value is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> <span class="c1">// i is 5</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;the value is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">));</span> <span class="c1">// f(i) is 6</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;the value is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> <span class="c1">// i is changed to 6 unindently</span>
+</span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>The good way is always using <code>const</code> when using references:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -266,20 +271,21 @@
 <span class="line-number">12</span>
 <span class="line-number">13</span>
 <span class="line-number">14</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">const int &amp; f(const int &amp; x) {
-</span><span class="line">    static int y = x;
-</span><span class="line">    ++y;
-</span><span class="line">    return y;
-</span><span class="line">}
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span> <span class="n">f</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">static</span> <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span><span class="line">    <span class="o">++</span><span class="n">y</span><span class="p">;</span>
+</span><span class="line">    <span class="k">return</span> <span class="n">y</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
 </span><span class="line">
-</span><span class="line">int main(int argc, char** argv)
-</span><span class="line">{
-</span><span class="line">    int i = 5;
-</span><span class="line">    printf("the value is %d\n", i); // i is 5
-</span><span class="line">    printf("the value is %d\n", f(i)); // f(i) is 6
-</span><span class="line">    printf("the value is %d\n", i); // i is 5
-</span><span class="line">    return 0;
-</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line"><span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+</span><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;the value is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> <span class="c1">// i is 5</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;the value is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">i</span><span class="p">));</span> <span class="c1">// f(i) is 6</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;the value is %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span> <span class="c1">// i is 5</span>
+</span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h1 id="functions-call-by-reference">Functions: Call by Reference</h1>
 
@@ -289,7 +295,7 @@
 
 <p>Example of a “call by reference”:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -302,20 +308,20 @@
 <span class="line-number">11</span>
 <span class="line-number">12</span>
 <span class="line-number">13</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"> void func(const string &amp; fs)
-</span><span class="line"> {
-</span><span class="line">    print("string value is %s\n", fs.c_str());
-</span><span class="line"> }
-</span><span class="line"> 
-</span><span class="line"> int main(int argc, char ** argv)
-</span><span class="line"> {
-</span><span class="line">    string s = "I'm a string!";
-</span><span class="line">    func(s); // Outputs: string value is I'm a string
-</span><span class="line">    printf("string is %s\n", s.c_str()); // Outputs: string is I'm a string
-</span><span class="line">    return 0;
-</span><span class="line"> }
-</span><span class="line"> </span></code></pre></td></tr></table></div></figure></notextile></div>
-
+</pre></td><td class="code"><pre><code class="cpp"><span class="line"> <span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span> <span class="o">&amp;</span> <span class="n">fs</span><span class="p">)</span>
+</span><span class="line"> <span class="p">{</span>
+</span><span class="line">    <span class="n">print</span><span class="p">(</span><span class="s">&quot;string value is %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">fs</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+</span><span class="line"> <span class="p">}</span>
+</span><span class="line">
+</span><span class="line"> <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+</span><span class="line"> <span class="p">{</span>
+</span><span class="line">    <span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;I&#39;m a string!&quot;</span><span class="p">;</span>
+</span><span class="line">    <span class="n">func</span><span class="p">(</span><span class="n">s</span><span class="p">);</span> <span class="c1">// Outputs: string value is I&#39;m a string</span>
+</span><span class="line">    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;string is %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span> <span class="c1">// Outputs: string is I&#39;m a string</span>
+</span><span class="line">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line"> <span class="p">}</span>
+</span><span class="line">
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 </div>
 
 
@@ -353,7 +359,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://euccas.github.io/blog/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html" data-via="euccas" data-counturl="http://euccas.github.io/blog/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://euccas.github.io/blog/20170205/c-plus-plus-pointer-and-reference.html" data-via="euccas" data-counturl="http://euccas.github.io/blog/20170205/c-plus-plus-pointer-and-reference.html" >Tweet</a>
   
   
   
@@ -362,7 +368,7 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/20170130/effective-traditional-c-plus-plus-01-qualifiers.html" title="Previous Post: Effective Traditional C++ (1): Qualifiers">&laquo; Effective Traditional C++ (1): Qualifiers</a>
+        <a class="basic-alignment left" href="/blog/20170130/c-plus-plus-qualifiers.html" title="Previous Post: C++ Qualifiers">&laquo; C++ Qualifiers</a>
       
       
         <a class="basic-alignment right" href="/blog/20170212/a-list-of-soc-design-and-verification-infrastructure-needs.html" title="Next Post: A list of SoC Design and Verification Infrastructure Needs -  Tools/Automation Flows (2013)">A list of SoC Design and Verification Infrastructure Needs -  Tools/Automation Flows (2013) &raquo;</a>
@@ -395,8 +401,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://euccas.github.io/blog/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html';
-        var disqus_url = 'http://euccas.github.io/blog/20170205/effective-traditional-c-plus-plus-02-pointer-and-reference.html';
+        var disqus_identifier = 'http://euccas.github.io/blog/20170205/c-plus-plus-pointer-and-reference.html';
+        var disqus_url = 'http://euccas.github.io/blog/20170205/c-plus-plus-pointer-and-reference.html';
         var disqus_script = 'embed.js';
       
     (function () {
