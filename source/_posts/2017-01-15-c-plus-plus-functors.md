@@ -20,7 +20,7 @@ Let's look at two examples of creating and using a functor. In the first example
 
 ## Example: Create a functor with a Class
 
-```
+```c
 
 class MyFunctor {
 public:
@@ -43,7 +43,7 @@ cout << functor.operator()(23) << endl;
 
 ## Example: Create a functor with a Struct
 
-```
+```c
 
 struct add_x {
   add_x(int x) : x(x) {}
@@ -78,7 +78,7 @@ The key difference between a function and a functor is that a functor's function
 
 If a functor's ```operator()``` member function requires access to data beyond what can be communicated by its parameters, we can store that information as a data member inside the functor class. Since ```operator()``` is a member of the functor class, it can then access that data freely. The following example shows how a functor's ```operator()``` function access the class's private member ```toAppend```. 
 
-```
+```c
 
 class StringAppender {
 public:
@@ -106,7 +106,7 @@ myFunctor("C++");
 
 C++ STL algorithms use functors to increase the flexibility and efficiency. The most common uses for function objects are for generating data, for testing data, and for applying operations to data. here is an example of how STL ```for_each``` uses functors.
 
-```
+```c
 
 struct sum
 {

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Effective Traditional C++ (2): Pointer and Reference"
+title: "C++ Pointers and References"
 date: 2017-02-05 22:18:59 -0800
 comments: true
 categories: C++
@@ -22,7 +22,7 @@ A pointer holds the address of a variable and can be used to perform any operati
 
 <!--more--> 
 
-```
+```cpp
 int * p = new int;
 *p = 1;
 int * q = p;
@@ -34,7 +34,7 @@ cout << *q; // Outputs 2. * is the pointer dereferene operator
 
 * Pointer subtraction is allowed. The result of pointer subtraction is the distance of two pointers.
 
-```
+```cpp
 int a = 1;
 int b = 2;
 int * pa = &a;
@@ -44,7 +44,7 @@ int pdis = pa - pb;
 
 * Adding a pointer and a distance gets another meaningful pointer.
 
-```
+```cpp
 int * p = new int[2];
 p[0] = 0;
 p[1] = 1;
@@ -60,14 +60,14 @@ A reference is another name for a pre-existing object. It does not have memory o
 
 * You cannot create a reference without specifying where in memory it refers to. A reference cannot be null.
 
-```
+```cpp
 int x = 7;
 int & y = x; // Makes y a reference, initialized with the address of x
 ```
 
 * You can create a free-standing reference as shown below:
 
-```
+```cpp
 const int & a = 12;
 ```
 
@@ -75,7 +75,7 @@ const int & a = 12;
 
 * When you use references in function calls and class method calls, you always want to make them const. This helps to eliminate the side effects of using references (because using reference sometimes is not obvious as using pointers, and people may not notice the unintended side effects could happen). The following example shows the possible side effects when using references:
 
-```
+```cpp
 int & f(int &x) {
     ++x;
     return x;
@@ -94,7 +94,7 @@ int main(int argc, char** argv)
 
 The good way is always using ```const``` when using references:
 
-```
+```cpp
 const int & f(const int & x) {
     static int y = x;
     ++y;
@@ -119,7 +119,7 @@ By default, functions in C++ pass variables by value, which means that a copy of
  
  Example of a "call by reference":
  
-```
+```cpp
  void func(const string & fs)
  {
     print("string value is %s\n", fs.c_str());
@@ -134,9 +134,3 @@ By default, functions in C++ pass variables by value, which means that a copy of
  }
  
 ```
-
-
-
-
-
-

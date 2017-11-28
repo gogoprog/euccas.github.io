@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Effective Traditional C++ (1): Qualifiers"
+title: "C++ Qualifiers"
 date: 2017-01-30 21:41:11 -0800
 comments: true
 categories: C++
@@ -8,7 +8,7 @@ keywords: C++
 description: Tips and tactics for C++
 ---
 
-Recently I'm doing a review on C++ programming language. During the process, I found a few topics which are worth paying more attention to. I'll write several posts about the related C++ tips and tactics. These topics are not specially for C++ 11 or 14, I therefore name this series of posts as "Effective Traditional C++". 
+Recently I'm doing a review on C++ programming language. During the process, I found a few topics which are worth paying more attention to. I'll write several posts about the related C++ tips and tactics.
 
 The first topic I'll write about here is: **Qualifiers**
 
@@ -28,8 +28,7 @@ CV qualifiers stands for Const and Volatile Qualifier. There are three types of 
 
 <code>const</code> marks a variable or function as read-only or immutable. It's value (or the return value of a function) cannot be changed once it's been defined.
 
-```
-
+```cpp
 const int weekdays = 7;
 
 const int * myptr1; // declares myptr1 is a pointer to a constant integer
@@ -50,8 +49,7 @@ const char *Function1()
 
 <code>volatile</code> marks a variable that may be **changed by another process**. This is generally used for threaded code, or externally linked code. Often <code>volatile</code> is used to tell the compiler avoid aggressive optimization involving the qualified object because the value of the object might be changed by means that the compiler is not aware of.
 
-```
-
+```cpp
 volatile int maxcnt = 10;
 int cnt = 0;
 while (cnt < maxcnt)
@@ -65,8 +63,7 @@ while (cnt < maxcnt)
 
 <code>mutable</code> is used on data member to make it writable from a <code>const</code> qualified member function.
 
-```
-
+```cpp
 class A {
    mutable int x;
    int y;

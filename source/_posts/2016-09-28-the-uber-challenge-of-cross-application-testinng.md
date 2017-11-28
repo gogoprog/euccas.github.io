@@ -3,7 +3,7 @@ layout: post
 title: "GTAC: The Uber Challenge of Cross-Application Testing"
 date: 2016-09-28 23:17:30 -0700
 comments: true
-categories: Infrastructure
+categories: Infrastructure System-Design
 ---
 
 Inspired by Matt Cutts' TED talk: [Try something new for 30 days](https://www.ted.com/talks/matt_cutts_try_something_new_for_30_days?language=en), I'm starting a "30 Days of GTAC" project. Google's Test Automation Conference [GTAC](https://developers.google.com/google-test-automation-conference/) is an annual test automation conference which brings together engineers from industry and academia to discuss advances in test automation and related engineering tools. In my "30 Days of GTAC" project, I'll review the topics presented on GTAC. My goal is having a better and deeper understanding in modern testing technologies, methodologies, strategies, and practices.
