@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Infrastructure | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/infrastructure/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-29T00:26:52-08:00</updated>
+  <updated>2017-11-29T00:33:45-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -65,7 +65,7 @@
   <li>Overlapped upload and encoding process: While proprocessor, scheduler and works are working, the uploading process is still ongoing. Clients continues splitting videos into segments and uploading to the web server.</li>
 </ul>
 
-<p><img class="center" src="/images/post_images/2017/20170627-fb_00.png" width="600"></p>
+<p>{% img center /images/post_images/2017/20170627-fb_00.png 600px %}</p>
 
 <p>With this design, the process speedup reached 2.3x (small videos &lt; 3MB) ~ 9.3x (large videos &gt; 1G).</p>
 
@@ -77,7 +77,7 @@
   <li>SVE provides very simple API functions for the video pipeline (Ideally, you can add a video processing pipeline in your product in less than 10 lines of code).</li>
 </ul>
 
-<p><img class="center" src="/images/post_images/2017/20170627-fb_01.png" width="600"></p>
+<p>{% img center /images/post_images/2017/20170627-fb_01.png 600px %}</p>
 
 <h1 id="scalable">Scalable</h1>
 
@@ -117,7 +117,7 @@
   </li>
 </ul>
 
-<p><img class="center" src="/images/post_images/2017/20170627-fb_02.png" width="600"></p>
+<p>{% img center /images/post_images/2017/20170627-fb_02.png 600px %}</p>
 
 <p>SVE achieved 20% smaller video file sizes. This is a huge saving of user’s data plans.</p>
 
@@ -153,7 +153,7 @@
 
 <!--more-->
 
-<p><img class="center" src="/images/post_images/2017/20170616-instagram_python3_00.png" width="520"></p>
+<p>{% img center /images/post_images/2017/20170616-instagram_python3_00.png 520px %}</p>
 
 <ul>
   <li>First off, the migration was done directly on the Master Branch, which means the developers were adding new features to the code while migration was ongoing. So in the beginning of the Mirgration process, infrastructure added support of Python 3 on the Master Branch to make the code be able to run with both Python 2 and Python 3 environment.</li>
@@ -172,11 +172,11 @@
   <li>With Python 3, while CPU instructions per request decreased by 12%, max requests per second (capacity) had 0% increase! Found the root cause in the code of checking memory configuration, and the issue was memory optimization condition was never met in Python 3 as <code>True</code> because of unicode issue. Solved by adding a magical character <strong>“b”</strong>, just like this:</li>
 </ul>
 
-<p><img class="center" src="/images/post_images/2017/20170616-instagram_python3_01.png" width="520"></p>
+<p>{% img center /images/post_images/2017/20170616-instagram_python3_01.png 520px %}</p>
 
 <p>In Feb 2017, Instagram’s stack completely dropped Python 2 and moved to Python 3 (v3.6). So far they’ve got this from Python 3:</p>
 
-<p><img class="center" src="/images/post_images/2017/20170616-instagram_python3_02.png" width="520"></p>
+<p>{% img center /images/post_images/2017/20170616-instagram_python3_02.png 520px %}</p>
 
 <p>One more thing, in the talk Hui Ding also briefly discussed a few <strong>Python Efficiency Strategies</strong> that Instagram used to support the growing number of features and users:</p>
 
@@ -191,7 +191,7 @@
 
 <p>Nice work Instagram!</p>
 
-<p><img class="center" src="/images/post_images/2017/20170616-instagram_python3_03.png" width="520"></p>
+<p>{% img center /images/post_images/2017/20170616-instagram_python3_03.png 520px %}</p>
 ]]></content>
   </entry>
   

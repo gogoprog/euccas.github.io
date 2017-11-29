@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-29T00:26:52-08:00</updated>
+  <updated>2017-11-29T00:33:45-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -32,7 +32,7 @@
 
 <!--more-->
 
-<p><img class="center" src="/images/post_images/2017/20170616-instagram_python3_00.png" width="520"></p>
+<p>{% img center /images/post_images/2017/20170616-instagram_python3_00.png 520px %}</p>
 
 <ul>
   <li>First off, the migration was done directly on the Master Branch, which means the developers were adding new features to the code while migration was ongoing. So in the beginning of the Mirgration process, infrastructure added support of Python 3 on the Master Branch to make the code be able to run with both Python 2 and Python 3 environment.</li>
@@ -51,11 +51,11 @@
   <li>With Python 3, while CPU instructions per request decreased by 12%, max requests per second (capacity) had 0% increase! Found the root cause in the code of checking memory configuration, and the issue was memory optimization condition was never met in Python 3 as <code>True</code> because of unicode issue. Solved by adding a magical character <strong>“b”</strong>, just like this:</li>
 </ul>
 
-<p><img class="center" src="/images/post_images/2017/20170616-instagram_python3_01.png" width="520"></p>
+<p>{% img center /images/post_images/2017/20170616-instagram_python3_01.png 520px %}</p>
 
 <p>In Feb 2017, Instagram’s stack completely dropped Python 2 and moved to Python 3 (v3.6). So far they’ve got this from Python 3:</p>
 
-<p><img class="center" src="/images/post_images/2017/20170616-instagram_python3_02.png" width="520"></p>
+<p>{% img center /images/post_images/2017/20170616-instagram_python3_02.png 520px %}</p>
 
 <p>One more thing, in the talk Hui Ding also briefly discussed a few <strong>Python Efficiency Strategies</strong> that Instagram used to support the growing number of features and users:</p>
 
@@ -70,7 +70,7 @@
 
 <p>Nice work Instagram!</p>
 
-<p><img class="center" src="/images/post_images/2017/20170616-instagram_python3_03.png" width="520"></p>
+<p>{% img center /images/post_images/2017/20170616-instagram_python3_03.png 520px %}</p>
 ]]></content>
   </entry>
   
@@ -246,7 +246,7 @@ pool.join()
 
 <p>First we’ll implement it without using generators.</p>
 
-<p>```
+<p>```python
 def running_mean(numbers):
 	average = []
 	sum = 0
@@ -262,7 +262,7 @@ print(running_mean(numbers))</p>
 
 <p>Now we can refactor the above implementation to use a generator:</p>
 
-<p>```
+<p>```python
 def running_mean(numbers):
 	sum = 0
 	for i, num = enumerate(numbers):
@@ -331,238 +331,127 @@ C:\WinPython\Scripts
 
 <p>```</p>
 <WinPython Path="">\Scripts\pip install <package name="">
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>
-</span><span class='line'>If the installation successfully done, you will find the installed packages in WinPython's library path.
-</span></code></pre></td></tr></table></div></figure>
+```
+
+If the installation successfully done, you will find the installed packages in WinPython's library path.
+
+```
 <WinPython Path="">\Lib\site-packages\<package name="">
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-<span class='line-number'>104</span>
-<span class='line-number'>105</span>
-<span class='line-number'>106</span>
-<span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
-<span class='line-number'>110</span>
-<span class='line-number'>111</span>
-<span class='line-number'>112</span>
-<span class='line-number'>113</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>
-</span><span class='line'>That's it! Your Python package is ready to use!
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>&lt;/package&gt;&lt;/WinPython&gt;&lt;/package&gt;&lt;/WinPython&gt;
-</span><span class='line'>]]&gt;&lt;/content&gt;
-</span><span class='line'>  &lt;/entry&gt;
-</span><span class='line'>  
-</span><span class='line'>  &lt;entry&gt;
-</span><span class='line'>    &lt;title type="html"&gt;&lt;![CDATA[Dunder Methods in Python]]&gt;&lt;/title&gt;
-</span><span class='line'>    &lt;link href="http://euccas.github.io/blog/20160920/python-dunder-methods.html"/&gt;
-</span><span class='line'>    &lt;updated&gt;2016-09-20T21:28:51-07:00&lt;/updated&gt;
-</span><span class='line'>    &lt;id&gt;http://euccas.github.io/blog/20160920/python-dunder-methods&lt;/id&gt;
-</span><span class='line'>    &lt;content type="html"&gt;&lt;![CDATA[&lt;p&gt;In Python, we sometimes see method names with &lt;code&gt;__&lt;/code&gt; around, such as the &lt;code&gt;__init__&lt;/code&gt; method that every Class has. These methods are “dunder” methods (“dunder” stands for “double under” or “double underscore”). Dunder methods in Python are used for operator overloading and customizing behavior of other functions.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Sometimes dunder methods are also called “magic methods” because they are usually called by Python under the hood. But they are not really magical, you can define dunder methods to customize the behavior of your own classes.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1 id="examples-of-dunder-methods"&gt;Examples of Dunder Methods&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;!--more--&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;In the following example, we can see three dunder methods:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;__init__&lt;/code&gt; method: is called to initialize the class&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;__str__&lt;/code&gt; method: is called when converting the object to a human-readable string&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;__repr__&lt;/code&gt; method: is called when converting the object to a developer-readable string&lt;/li&gt;
-</span><span class='line'>&lt;/ul&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;```python
-</span><span class='line'>class Flower:
-</span><span class='line'>	def &lt;strong&gt;init&lt;/strong&gt;(self, color=’red’):
-</span><span class='line'>		self.color = color&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;def __str__(self):
-</span><span class='line'>	return "Flower in color {color}".format(color=self.color)
-</span><span class='line'>
-</span><span class='line'>def __repr__(self):
-</span><span class='line'>    return "Flower(color={})".format(self.color) ```
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;In Python, many dunder methods are implemented and used for operations such as arithmetic operators, comparison operators, truthiness, etc. The following are a few examples:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;strong&gt;Arithmetic Operators&lt;/strong&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;+&lt;/code&gt; : &lt;code&gt;__add__&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;-&lt;/code&gt; : &lt;code&gt;__sub__&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;*&lt;/code&gt; : &lt;code&gt;__mul__&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;/&lt;/code&gt; : &lt;code&gt;__div__&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;+=&lt;/code&gt; : &lt;code&gt;__iadd__&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;-=&lt;/code&gt; : &lt;code&gt;__isub__&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>&lt;/ul&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;strong&gt;Comparison Operators&lt;/strong&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x &lt; y&lt;/code&gt; : &lt;code&gt;x.__lt__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x &lt;= y&lt;/code&gt; : &lt;code&gt;x.__le__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x &gt; y&lt;/code&gt; : &lt;code&gt;x.__gt__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x &gt;= y&lt;/code&gt; : &lt;code&gt;x.__ge__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x == y&lt;/code&gt; : &lt;code&gt;x.__eq__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x != y&lt;/code&gt; : &lt;code&gt;x.__ge__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>&lt;/ul&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;If you know about Bash shell, you may notice the name of these dunder methods are very similar to the operators in Bash.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;strong&gt;Truthiness&lt;/strong&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;bool(x)&lt;/code&gt; : &lt;code&gt;x.__bool__()&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>&lt;/ul&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1 id="use-dunder-methods-to-customize-class-behaviors"&gt;Use Dunder Methods to Customize Class Behaviors&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Dunder methods provide a way for our class to &lt;strong&gt;customize operators&lt;/strong&gt; and other &lt;strong&gt;built-in Python behavior&lt;/strong&gt; for our objects. In the following two examples, I’ll use dunder methods to overload arithmetic operators, and implement a dictionary that can be used with both attribute and item syntax.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h2 id="example-1-overload-arithmetic-operators"&gt;Example 1: Overload Arithmetic Operators&lt;/h2&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Make an &lt;code&gt;is_callable&lt;/code&gt; function to check if an object type is callable.
-</span><span class='line'>This can be done by calling object’s &lt;code&gt;__call__&lt;/code&gt; method.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Example:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;code&gt;
-</span><span class='line'>&gt;&gt;&gt; is_callable(sorted)
-</span><span class='line'>True
-</span><span class='line'>&gt;&gt;&gt; is_callable(str)
-</span><span class='line'>True
-</span><span class='line'>&gt;&gt;&gt; is_callable(4)
-</span><span class='line'>False
-</span><span class='line'>&lt;/code&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Source Code:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;```python
-</span><span class='line'>def is_callable(obj):&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;try:
-</span><span class='line'>    obj.&lt;strong&gt;call&lt;/strong&gt;
-</span><span class='line'>    # hasattr(str, ‘&lt;strong&gt;call&lt;/strong&gt;’)
-</span><span class='line'>    # getattr(str, ‘&lt;strong&gt;call&lt;/strong&gt;’)
-</span><span class='line'>    except AttributeError:
-</span><span class='line'>    	return False
-</span><span class='line'>    else:
-</span><span class='line'>    	return True</span></code></pre></td></tr></table></div></figure></p>
+```
+
+That's it! Your Python package is ready to use!
+
+
+
+
+
+
+
+
+
+</package></WinPython></package></WinPython>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dunder Methods in Python]]></title>
+    <link href="http://euccas.github.io/blog/20160920/python-dunder-methods.html"/>
+    <updated>2016-09-20T21:28:51-07:00</updated>
+    <id>http://euccas.github.io/blog/20160920/python-dunder-methods</id>
+    <content type="html"><![CDATA[<p>In Python, we sometimes see method names with <code>__</code> around, such as the <code>__init__</code> method that every Class has. These methods are “dunder” methods (“dunder” stands for “double under” or “double underscore”). Dunder methods in Python are used for operator overloading and customizing behavior of other functions.</p>
+
+<p>Sometimes dunder methods are also called “magic methods” because they are usually called by Python under the hood. But they are not really magical, you can define dunder methods to customize the behavior of your own classes.</p>
+
+<h1 id="examples-of-dunder-methods">Examples of Dunder Methods</h1>
+
+<!--more-->
+
+<p>In the following example, we can see three dunder methods:</p>
+
+<ul>
+  <li><code>__init__</code> method: is called to initialize the class</li>
+  <li><code>__str__</code> method: is called when converting the object to a human-readable string</li>
+  <li><code>__repr__</code> method: is called when converting the object to a developer-readable string</li>
+</ul>
+
+<p>```python
+class Flower:
+	def <strong>init</strong>(self, color=’red’):
+		self.color = color</p>
+
+<pre><code>def __str__(self):
+	return "Flower in color {color}".format(color=self.color)
+
+def __repr__(self):
+    return "Flower(color={})".format(self.color) ```
+</code></pre>
+
+<p>In Python, many dunder methods are implemented and used for operations such as arithmetic operators, comparison operators, truthiness, etc. The following are a few examples:</p>
+
+<p><strong>Arithmetic Operators</strong></p>
+
+<ul>
+  <li><code>+</code> : <code>__add__</code></li>
+  <li><code>-</code> : <code>__sub__</code></li>
+  <li><code>*</code> : <code>__mul__</code></li>
+  <li><code>/</code> : <code>__div__</code></li>
+  <li><code>+=</code> : <code>__iadd__</code></li>
+  <li><code>-=</code> : <code>__isub__</code></li>
+</ul>
+
+<p><strong>Comparison Operators</strong></p>
+
+<ul>
+  <li><code>x &lt; y</code> : <code>x.__lt__(y)</code></li>
+  <li><code>x &lt;= y</code> : <code>x.__le__(y)</code></li>
+  <li><code>x &gt; y</code> : <code>x.__gt__(y)</code></li>
+  <li><code>x &gt;= y</code> : <code>x.__ge__(y)</code></li>
+  <li><code>x == y</code> : <code>x.__eq__(y)</code></li>
+  <li><code>x != y</code> : <code>x.__ge__(y)</code></li>
+</ul>
+
+<p>If you know about Bash shell, you may notice the name of these dunder methods are very similar to the operators in Bash.</p>
+
+<p><strong>Truthiness</strong></p>
+
+<ul>
+  <li><code>bool(x)</code> : <code>x.__bool__()</code></li>
+</ul>
+
+<h1 id="use-dunder-methods-to-customize-class-behaviors">Use Dunder Methods to Customize Class Behaviors</h1>
+
+<p>Dunder methods provide a way for our class to <strong>customize operators</strong> and other <strong>built-in Python behavior</strong> for our objects. In the following two examples, I’ll use dunder methods to overload arithmetic operators, and implement a dictionary that can be used with both attribute and item syntax.</p>
+
+<h2 id="example-1-overload-arithmetic-operators">Example 1: Overload Arithmetic Operators</h2>
+
+<p>Make an <code>is_callable</code> function to check if an object type is callable.
+This can be done by calling object’s <code>__call__</code> method.</p>
+
+<p>Example:</p>
+
+<p><code>
+&gt;&gt;&gt; is_callable(sorted)
+True
+&gt;&gt;&gt; is_callable(str)
+True
+&gt;&gt;&gt; is_callable(4)
+False
+</code></p>
+
+<p>Source Code:</p>
+
+<p>```python
+def is_callable(obj):</p>
+
+<p>try:
+    obj.<strong>call</strong>
+    # hasattr(str, ‘<strong>call</strong>’)
+    # getattr(str, ‘<strong>call</strong>’)
+    except AttributeError:
+    	return False
+    else:
+    	return True
+```</p>
 
 <h2 id="example-2-class-easydict">Example 2: Class EasyDict</h2>
 
