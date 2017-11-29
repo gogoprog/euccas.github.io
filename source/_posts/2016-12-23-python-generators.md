@@ -30,7 +30,7 @@ Let's see an example: implement a function that takes a list and return a list o
 
 First we'll implement it without using generators.
 
-```
+```python
 def running_mean(numbers):
 	average = []
 	sum = 0
@@ -46,7 +46,7 @@ print(running_mean(numbers))
 
 Now we can refactor the above implementation to use a generator:
 
-```
+```python
 def running_mean(numbers):
 	sum = 0
 	for i, num = enumerate(numbers):
