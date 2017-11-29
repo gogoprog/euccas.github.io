@@ -18,6 +18,6 @@ Hope you find some of them helpful.
 - [Ferry Boender - Electric Monk](https://www.electricmonk.nl/index.html)
 - [Eugene Wei - Remains of the Day](http://www.eugenewei.com/)
 - [Matt Deslauriers - Creative Developer](https://mattdesl.svbtle.com/)
-- [Ruan Yifeng (in Chinese)](http://www.ruanyifeng.com/blog/)
-- [Space Kid (in Chinese)](https://spacekid.me/)
+- [Ruan Yifeng (in Chinese 中文) - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/)
+- [Space Kid (in Chinese 中文) - 太空小孩](https://spacekid.me/)
 
