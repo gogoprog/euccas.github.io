@@ -20,7 +20,7 @@ In the following example, we can see three dunder methods:
 - ```__str__``` method: is called when converting the object to a human-readable string
 - ```__repr__``` method: is called when converting the object to a developer-readable string
 
-```
+```python
 class Flower:
 	def __init__(self, color='red'):
 		self.color = color
@@ -40,6 +40,8 @@ In Python, many dunder methods are implemented and used for operations such as a
 - ```-``` : ```__sub__```
 - ```*``` : ```__mul__```
 - ```/``` : ```__div__```
+- ```+=``` : ```__iadd__```
+- ```-=``` : ```__isub__```
 
 **Comparison Operators**
 
@@ -58,11 +60,12 @@ If you know about Bash shell, you may notice the name of these dunder methods ar
 
 # Use Dunder Methods to Customize Class Behaviors
 
-Dunder methods provide a way for our class to customize operators and other built-in Python behavior for our objects. In the following two examples, I'll use dunder methods to overload arithmetic operators, and implement a dictionary that can be used with both attribute and item syntax.
+Dunder methods provide a way for our class to **customize operators** and other **built-in Python behavior** for our objects. In the following two examples, I'll use dunder methods to overload arithmetic operators, and implement a dictionary that can be used with both attribute and item syntax.
 
 ## Example 1: Overload Arithmetic Operators
 
 Make an ```is_callable``` function to check if an object type is callable.
+This can be done by calling object's ```__call__``` method.
 
 Example:
 
@@ -77,7 +80,7 @@ False
 
 Source Code:
 
-```
+```python
 def is_callable(obj):
     
 try:
@@ -93,10 +96,11 @@ try:
 ## Example 2: Class EasyDict
 
 Make an ```EasyDict``` class that can be used with both attribute and item syntax.
+This can be done by implementing ```__getitem__``` and ```__setitem__``` methods.
 
 Example:
 
-```
+```python
 >>> a = EasyDict()
 >>> a['shoe'] = "blue"
 >>> a.shoe
@@ -112,7 +116,7 @@ Example:
 
 Source Code:
 
-```
+```python
 class EasyDict:
     def __init__(self):
         pass
@@ -125,3 +129,5 @@ class EasyDict:
 
 ```
 
+
+More dunder methods can be found in Python documents: [operator -- Standard operators as functions (Python 3.6.3)](https://docs.python.org/3.6/library/operator.html)
