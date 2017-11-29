@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-27T17:32:00-08:00</updated>
+  <updated>2017-11-29T00:21:01-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -447,6 +447,9 @@ C:\WinPython\Scripts
 <span class='line-number'>108</span>
 <span class='line-number'>109</span>
 <span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>
 </span><span class='line'>That's it! Your Python package is ready to use!
 </span><span class='line'>
@@ -483,7 +486,7 @@ C:\WinPython\Scripts
 </span><span class='line'>  &lt;li&gt;&lt;code&gt;__repr__&lt;/code&gt; method: is called when converting the object to a developer-readable string&lt;/li&gt;
 </span><span class='line'>&lt;/ul&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;```
+</span><span class='line'>&lt;p&gt;```python
 </span><span class='line'>class Flower:
 </span><span class='line'>	def &lt;strong&gt;init&lt;/strong&gt;(self, color=’red’):
 </span><span class='line'>		self.color = color&lt;/p&gt;
@@ -504,6 +507,8 @@ C:\WinPython\Scripts
 </span><span class='line'>  &lt;li&gt;&lt;code&gt;-&lt;/code&gt; : &lt;code&gt;__sub__&lt;/code&gt;&lt;/li&gt;
 </span><span class='line'>  &lt;li&gt;&lt;code&gt;*&lt;/code&gt; : &lt;code&gt;__mul__&lt;/code&gt;&lt;/li&gt;
 </span><span class='line'>  &lt;li&gt;&lt;code&gt;/&lt;/code&gt; : &lt;code&gt;__div__&lt;/code&gt;&lt;/li&gt;
+</span><span class='line'>  &lt;li&gt;&lt;code&gt;+=&lt;/code&gt; : &lt;code&gt;__iadd__&lt;/code&gt;&lt;/li&gt;
+</span><span class='line'>  &lt;li&gt;&lt;code&gt;-=&lt;/code&gt; : &lt;code&gt;__isub__&lt;/code&gt;&lt;/li&gt;
 </span><span class='line'>&lt;/ul&gt;
 </span><span class='line'>
 </span><span class='line'>&lt;p&gt;&lt;strong&gt;Comparison Operators&lt;/strong&gt;&lt;/p&gt;
@@ -527,11 +532,12 @@ C:\WinPython\Scripts
 </span><span class='line'>
 </span><span class='line'>&lt;h1 id="use-dunder-methods-to-customize-class-behaviors"&gt;Use Dunder Methods to Customize Class Behaviors&lt;/h1&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;Dunder methods provide a way for our class to customize operators and other built-in Python behavior for our objects. In the following two examples, I’ll use dunder methods to overload arithmetic operators, and implement a dictionary that can be used with both attribute and item syntax.&lt;/p&gt;
+</span><span class='line'>&lt;p&gt;Dunder methods provide a way for our class to &lt;strong&gt;customize operators&lt;/strong&gt; and other &lt;strong&gt;built-in Python behavior&lt;/strong&gt; for our objects. In the following two examples, I’ll use dunder methods to overload arithmetic operators, and implement a dictionary that can be used with both attribute and item syntax.&lt;/p&gt;
 </span><span class='line'>
 </span><span class='line'>&lt;h2 id="example-1-overload-arithmetic-operators"&gt;Example 1: Overload Arithmetic Operators&lt;/h2&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;Make an &lt;code&gt;is_callable&lt;/code&gt; function to check if an object type is callable.&lt;/p&gt;
+</span><span class='line'>&lt;p&gt;Make an &lt;code&gt;is_callable&lt;/code&gt; function to check if an object type is callable.
+</span><span class='line'>This can be done by calling object’s &lt;code&gt;__call__&lt;/code&gt; method.&lt;/p&gt;
 </span><span class='line'>
 </span><span class='line'>&lt;p&gt;Example:&lt;/p&gt;
 </span><span class='line'>
@@ -546,7 +552,7 @@ C:\WinPython\Scripts
 </span><span class='line'>
 </span><span class='line'>&lt;p&gt;Source Code:&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;```
+</span><span class='line'>&lt;p&gt;```python
 </span><span class='line'>def is_callable(obj):&lt;/p&gt;
 </span><span class='line'>
 </span><span class='line'>&lt;p&gt;try:
@@ -560,11 +566,12 @@ C:\WinPython\Scripts
 
 <h2 id="example-2-class-easydict">Example 2: Class EasyDict</h2>
 
-<p>Make an <code>EasyDict</code> class that can be used with both attribute and item syntax.</p>
+<p>Make an <code>EasyDict</code> class that can be used with both attribute and item syntax.
+This can be done by implementing <code>__getitem__</code> and <code>__setitem__</code> methods.</p>
 
 <p>Example:</p>
 
-<p>```
+<p>```python
 »&gt; a = EasyDict()
 »&gt; a[‘shoe’] = “blue”
 »&gt; a.shoe
@@ -592,7 +599,7 @@ a[‘car’]
 
 <p>Source Code:</p>
 
-<p>```
+<p>```python
 class EasyDict:
     def <strong>init</strong>(self):
         pass</p>
@@ -606,6 +613,7 @@ def __setitem__(self, key, value):
 
 <p>```</p>
 
+<p>More dunder methods can be found in Python documents: <a href="https://docs.python.org/3.6/library/operator.html">operator – Standard operators as functions (Python 3.6.3)</a></p>
 ]]></content>
   </entry>
   
