@@ -37,7 +37,7 @@
 <lastmod>2017-01-30T21:41:11-08:00</lastmod>
 </url>
 <url>
-<loc>http://euccas.github.io/blog/20170116/now-commenting-on-posts-is-enabled.html</loc>
+<loc>http://euccas.github.io/blog/20170116/enabled-blog-posts-commenting.html</loc>
 <lastmod>2017-01-16T23:39:06-08:00</lastmod>
 </url>
 <url>
@@ -147,6 +147,9 @@
 <loc>http://euccas.github.io/</loc>
 </url>
 <url>
+<loc>http://euccas.github.io/tags/</loc>
+</url>
+<url>
 <loc>http://euccas.github.io/about/</loc>
 </url>
 <url>
@@ -162,9 +165,6 @@
 <loc>http://euccas.github.io/categories/continuous-integration/</loc>
 </url>
 <url>
-<loc>http://euccas.github.io/categories/chinese/</loc>
-</url>
-<url>
 <loc>http://euccas.github.io/categories/zhong-wen/</loc>
 </url>
 <url>
@@ -172,6 +172,9 @@
 </url>
 <url>
 <loc>http://euccas.github.io/categories/ruby/</loc>
+</url>
+<url>
+<loc>http://euccas.github.io/categories/chinese/</loc>
 </url>
 <url>
 <loc>http://euccas.github.io/categories/rails/</loc>

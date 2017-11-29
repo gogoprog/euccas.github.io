@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-29T00:33:37-08:00</updated>
+  <updated>2017-11-29T00:52:16-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -1188,9 +1188,9 @@
   
   <entry>
     <title type="html"><![CDATA[Enabled Blog Posts Commenting]]></title>
-    <link href="http://euccas.github.io/blog/20170116/now-commenting-on-posts-is-enabled.html"/>
+    <link href="http://euccas.github.io/blog/20170116/enabled-blog-posts-commenting.html"/>
     <updated>2017-01-16T23:39:06-08:00</updated>
-    <id>http://euccas.github.io/blog/20170116/now-commenting-on-posts-is-enabled</id>
+    <id>http://euccas.github.io/blog/20170116/enabled-blog-posts-commenting</id>
     <content type="html"><![CDATA[<p>Hi there,</p>
 
 <p>I just enabled <strong>commenting</strong> on this blog with <a href="https://disqus.com/">Disqus</a>.</p>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Machine-learning | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/machine-learning/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-29T00:33:45-08:00</updated>
+  <updated>2017-11-29T00:52:16-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -39,7 +39,7 @@
 
 <p>Some people I know might think Machine Learning or AI is sort of irrelevant to what I’m working on. That’s not what I think though. Even if it is irrelevant today, it will become relevant sooner than expected. Machine Learning is not a fad. It’s the way how technology works tomorrow. If you can’t master it, at least you need have a good understanding of it.</p>
 
-<p>{% img center /images/post_images/2017/20170107-larrypage.jpg 640px %}</p>
+<p><img class="center" src="/images/post_images/2017/20170107-larrypage.jpg" width="640"></p>
 
 <p><em>Image source: Medium <a href="https://medium.com/the-mission/20-things-i-ve-learned-from-larry-page-4f83674a1a52#.elpww9snf">“20 things I’ve learned from Larry Page”</a></em></p>
 
