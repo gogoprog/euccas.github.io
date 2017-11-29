@@ -3,7 +3,7 @@ layout: post
 title: "谈谈微信小程序的入口设计 | On WeChat Design for Mini Programs"
 date: 2017-04-23 14:24:14 +0800
 comments: true
-categories: Product-Design Chinese 中文
+categories: Product-Design 中文
 keywords: ProductDesign 产品设计 微信 WeChat 微信小程序 MiniProgram 微信产品设计
 description: 谈谈微信小程序的入口设计, 微信，微信小程序, wechat, wechat mini programs, wechat design
 ---
