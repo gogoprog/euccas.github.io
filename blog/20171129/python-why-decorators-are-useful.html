@@ -124,7 +124,7 @@
   </header>
 
 
-<div class="entry-content"><p>In Python, by definition <strong>decorators</strong> are <em>functions</em> that <em>accept a function</em> as an argument, and <em>return a new function</em> as their return value. The reason why decorators exist in Python, but not in other similar language such as Ruby, is that <em>functions</em> are <em>objects</em> in Python. Functions can be assigned to variables and passed around the same as other object in Python. For example, a list can have functions as its elements, and functions can take other functions as arguments. Functions can be defined inside another function, and this forms closures.</p>
+<div class="entry-content"><p>In Python, by definition <em>decorators</em> are <em>functions</em> that <em>accept a function</em> as an argument, and <em>return a new function</em> as their return value. The reason why decorators exist in Python, but not in other similar language such as Ruby, is that <em>functions</em> are <em>objects</em> in Python. Functions can be assigned to variables and passed around the same as other object in Python. For example, a list can have functions as its elements, and functions can take other functions as arguments. Functions can be defined inside another function, and this forms closures.</p>
 
 <h1 id="when-to-use-decorators">When to use decorators?</h1>
 
@@ -151,13 +151,14 @@
 
 <p>You can use decorator functions to process exceptions. One example is supressing particular types of system exceptions raised by the target function. Another thing you can do is catching all exceptions raised by a function, prompt the user to ask what the program should act.</p>
 
-<h1 id="two-examples">Two examples</h1>
+<p><br />
+# Two examples</p>
 
 <p>Now let me use two examples to describe the <strong>syntax</strong> of decorators.</p>
 
 <h2 id="measure-timing">Measure timing</h2>
 
-<p>This example comes from a good answer on <a href="https://stackoverflow.com/a/490228/3109254">Stack Overflow user RSabet</a>.</p>
+<p>This example comes from a good answer on <a href="https://stackoverflow.com/a/490228/3109254">Stack Overflow, by user RSabet</a>.</p>
 
 <p>A decorator function <code>time_dec</code> tells you how long it takes to finish a function. 
 Python has a shortened syntax for using decorators which allows us to wrap a function in a decorator after we define it. This shortened syntax is syntactic sugar <code>@decorator_function</code>.</p>
@@ -233,7 +234,8 @@ The second time when you call function <code>is_prime</code> with the same input
 </span><span class="line">    <span class="k">return</span> <span class="bp">True</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h1 id="built-in-decorators">Built-in decorators</h1>
+<p><br />
+# Built-in decorators</p>
 
 <p>Python also has several built-in decorators, and you might see them before you know the term decorator. The built-in decorators are mainly used to annotate methods of a class: <code>@property</code>, <code>@classmethod</code>, <code>@staticmethod</code>.</p>
 
@@ -245,7 +247,8 @@ The second time when you call function <code>is_prime</code> with the same input
 
 <p>As decorators are just ordinary functions and the decorator syntax is just a syntactic sugar, you can easily turn any Python <a href="https://docs.python.org/3/library/functions.html">built-in function</a> to a decorator if it makes sense to use it that way.</p>
 
-<h1 id="one-more-thing">One more thing</h1>
+<p><br />
+# One more thing</p>
 
 <p>One more thing, you may want to take a look at <a href="https://wiki.python.org/moin/PythonDecoratorLibrary">this PythonDecoratorLibaray page</a>. It collects a number of decorator examples and code pieces.</p>
 </div>
