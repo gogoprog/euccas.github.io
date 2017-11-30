@@ -16,6 +16,8 @@ In this post I'll write a brief summary of two profiling methods: **Instrumentat
  
 Different profiling methods use different ways to measure the performance of an application when it is executed. **Instrumentation** and **Sampling** are the two categories that profiling methods fall into.
 
+<!--more--> 
+
 ## Instrumentation
  
 Instrumentation method inserts special code at the beginning and end of each routine to record when the routine starts and ends. The time spent on calling other routines within a routine may also be recorded. The profiling result shows the actual time taken by the routine on each call. 
