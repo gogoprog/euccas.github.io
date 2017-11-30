@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/linux/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-29T01:01:46-08:00</updated>
+  <updated>2017-11-30T00:15:12-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -25,6 +25,8 @@
 <h1 id="profiling-methods">Profiling Methods</h1>
 
 <p>Different profiling methods use different ways to measure the performance of an application when it is executed. <strong>Instrumentation</strong> and <strong>Sampling</strong> are the two categories that profiling methods fall into.</p>
+
+<!--more-->
 
 <h2 id="instrumentation">Instrumentation</h2>
 

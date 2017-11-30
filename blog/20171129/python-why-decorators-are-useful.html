@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>euccas.github.io</title>
+  <title>Python: Why Decorators Are Useful - euccas.github.io</title>
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="In Python, by definition decorators are functions that accept a function as an argument, and return a new function as their return value. The reason &hellip;">
-  
+  <meta name="description" content="An introduction to Python Decorators, why they are useful, and when you will need use decorators">
+  <meta name="keywords" content="Python Decorators">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://euccas.github.io/index.html">
+  <link rel="canonical" href="http://euccas.github.io/blog/20171129/python-why-decorators-are-useful.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="euccas.github.io" type="application/atom+xml">
@@ -98,15 +98,14 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/20171129/python-why-decorators-are-useful.html">Python: Why Decorators Are Useful</a></h1>
+      
+        <h1 class="entry-title">Python: Why Decorators Are Useful</h1>
+      
     
     
       <p class="meta">
@@ -117,7 +116,7 @@
 
 <time class='entry-date' datetime='2017-11-29T22:41:51-08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>10:41 pm</span></time>
         
-         | <a href="/blog/20171129/python-why-decorators-are-useful.html#disqus_thread">Comments</a>
+         | <a href="#disqus_thread">Comments</a>
         
         
       </p>
@@ -125,7 +124,7 @@
   </header>
 
 
-  <div class="entry-content"><p>In Python, by definition <strong>decorators</strong> are <em>functions</em> that <em>accept a function</em> as an argument, and <em>return a new function</em> as their return value. The reason why decorators exist in Python, but not in other similar language such as Ruby, is that <em>functions</em> are <em>objects</em> in Python. Functions can be assigned to variables and passed around the same as other object in Python. For example, a list can have functions as its elements, and functions can take other functions as arguments. Functions can be defined inside another function, and this forms closures.</p>
+<div class="entry-content"><p>In Python, by definition <strong>decorators</strong> are <em>functions</em> that <em>accept a function</em> as an argument, and <em>return a new function</em> as their return value. The reason why decorators exist in Python, but not in other similar language such as Ruby, is that <em>functions</em> are <em>objects</em> in Python. Functions can be assigned to variables and passed around the same as other object in Python. For example, a list can have functions as its elements, and functions can take other functions as arguments. Functions can be defined inside another function, and this forms closures.</p>
 
 <h1 id="when-to-use-decorators">When to use decorators?</h1>
 
@@ -250,228 +249,66 @@ The second time when you call function <code>is_prime</code> with the same input
 
 <p>One more thing, you may want to take a look at <a href="https://wiki.python.org/moin/PythonDecoratorLibrary">this PythonDecoratorLibaray page</a>. It collects a number of decorator examples and code pieces.</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20170827/cpu-profiling-tools-on-linux.html">CPU Profiling Tools on Linux</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-08-27T14:23:21-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>2:23 pm</span></time>
-        
-         | <a href="/blog/20170827/cpu-profiling-tools-on-linux.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Profiling is an effective method to provide measurements for the performance of software applications. With profiling, you get fine grained information for the components of an application, such as how often a function is called, how long a routine takes to execute and how much time are spent of different spots in the code. With these information, you could identify the performance bottlenecks and the poorly implemented parts in a software application, and find effective methods to improve them.</p>
-
-<p>In this post I’ll write a brief summary of two profiling methods: <strong>Instrumentation</strong> and <strong>Sampling</strong>, and four CPU profiling tools on Linux: <strong>perf</strong>, <strong>gprof</strong>, <strong>Valgrind</strong> and Google’s <strong>gperftools</strong>.</p>
-
-<h1 id="profiling-methods">Profiling Methods</h1>
-
-<p>Different profiling methods use different ways to measure the performance of an application when it is executed. <strong>Instrumentation</strong> and <strong>Sampling</strong> are the two categories that profiling methods fall into.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/20170827/cpu-profiling-tools-on-linux.html">Read on &rarr;</a>
-    </footer>
   
 
 
-    </article>
+
+  <span class="byline author vcard">Authored by <span class="fn">
   
+    euccas
   
-    <article>
+  </span></span>
+
+
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20170627/facebook-infrastructure-streaming-video-engine-sve.html">Facebook Infrastructure: Streaming Video Engine (SVE)</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
 
-<time class='entry-date' datetime='2017-06-27T22:16:02-07:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>10:16 pm</span></time>
-        
-         | <a href="/blog/20170627/facebook-infrastructure-streaming-video-engine-sve.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In last year’s <a href="https://developers.facebook.com/videos/?category=f8_2016"><strong>Facebook F8 conference</strong></a>, Sachin Kulkarni, who worked on Facebook’s Video Infrastructure, gave a talk (<a href="https://developers.facebook.com/videos/f8-2016/inside-look-at-facebook-media-infrastructure/">watch it here</a>) to introduce the design of Facebook’s <strong>Streaming Video Engine System (SVE)</strong>. I found this talk particularly interesting because it revealed, in a very well structured, concise yet informative way, how Facebook infrastructure team came up with a solution to build a video system solving user frustrations by reviewing the end-to-end process, and how such a design meet the goal of being <strong>fast</strong>, <strong>flexible</strong>, <strong>scalable</strong>, and <strong>efficient</strong>. After watching the presentation video for a few times, I thought it would be helpful to write down some notes here, for my own reviewing in the future, and for people who might be interested in Facebook’s media infrastructure.</p>
-
-<p>Sharing on Facebook started from largely text, and quickly changed to be largely photos. Since 2014, more videos started to be posted and shared among users. The challenge was, building a video processing system is much harder than building a text or image processing system. Videos are greedy, they will consume all your resources: CPU, memory, disk, network, and anything else.</p>
-
-<p>Before building the Streaming Video Engine system, the team started by reviewing Facebook’s existing video uploading and processing process, which was slow and not scalable. They found several problems need change or improvement:</p>
-
-<ul>
-  <li>No unified clients</li>
-  <li>Several disk reads and writes in the critical path</li>
-  <li>Was doing serial processing throughout</li>
-  <li>Read a video as one single big file, instead of splitting it up to chunks</li>
-</ul>
-
-<p>The new Streaming Video Engine (SVE) is expected to solve the aforementioned problems, and to meet the four design goals:</p>
-
-<ul>
-  <li>Fast: make users upload their videos super fast</li>
-  <li>Flexible: usable for different Facebook products</li>
-  <li>Scalable: everything at Facebook has to scale</li>
-  <li>Efficient: storage efficiency, processing efficiency, and more importantly consume less bytes of users’ data plan</li>
-</ul>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/20170627/facebook-infrastructure-streaming-video-engine-sve.html">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
+<time class='entry-date' datetime='2017-11-29T22:41:51-08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>10:41 pm</span></time>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20170616/how-instagram-moved-to-python-3.html">How Instagram Moved to Python 3</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-06-16T17:52:34-07:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>5:52 pm</span></time>
-        
-         | <a href="/blog/20170616/how-instagram-moved-to-python-3.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Instagram, the famous brunch sharing app, presented in <a href="https://us.pycon.org/2017/">PyCon 2017</a> and gave a talk in the keynote session on “How Instagram moves to Python 3”. If you have 15 minutes, read the interview with the speakers, Hui Ding and Lisa Guo from Instagram Infrastructure team, <a href="https://thenewstack.io/instagram-makes-smooth-move-python-3/]"><strong>here</strong></a>. If you have 45 minutes, watch their PyCon talk video, <a href="https://www.youtube.com/watch?v=66XoCk79kjM"><strong>here</strong></a>. If you have only 5 minutes, continue reading, <strong>right here</strong>.</p>
-
-<p>Instagram’s backend, which serves over 400 million active users every day, is built on Python/Django stack. The decision on whether moving from Python 2 to Python 3, was really a decision on whether investing in a version of the language that was mature, but wasn’t going anywhere (Python 2 is expected to retire in 2020) – or the language that was the next version and had great and growing community support. The major motivations behind Instagram’s migration to Python 3 are:</p>
-
-<ul>
-  <li><strong>Typing support</strong> for dev velocity</li>
-  <li>Better <strong>performance</strong> than Python 2</li>
-  <li><strong>Community</strong> continues to make Python 3 better and faster</li>
-</ul>
-
-<p>The whole migration process took about 10 months, in roughly 3 stages.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/20170616/how-instagram-moved-to-python-3.html">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
+
+<span class="categories">
+  
+    <a class='category' href='/categories/python/'>python</a>
+  
+</span>
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/20170529/cmake-linker-options.html">CMake: Use the Correct Options to Solve Linker Errors</a></h1>
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://euccas.github.io/blog/20171129/python-why-decorators-are-useful.html" data-via="euccas" data-counturl="http://euccas.github.io/blog/20171129/python-why-decorators-are-useful.html" >Tweet</a>
+  
+  
+  
+</div>
+
     
-    
-      <p class="meta">
-        
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/20170827/cpu-profiling-tools-on-linux.html" title="Previous Post: CPU Profiling Tools on Linux">&laquo; CPU Profiling Tools on Linux</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
-
-
-<time class='entry-date' datetime='2017-05-29T22:30:46-07:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>10:30 pm</span></time>
-        
-         | <a href="/blog/20170529/cmake-linker-options.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A few months ago when I worked on a project using <a href="https://www.zlib.net/">zlib</a> to compress and decompress files, I once met linker errors complaining about unable to resolve symbols of zlib functions:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">cannot resolve symbols _gzbuffer, _gzopen, ...</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>In the end I fixed these linker errors by using <code>TARGET_LINK_LIBRARIES</code> command in the project’s CMakefile to specify the linker package dependency, as the following:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">TARGET_LINK_LIBRARIES(myProject zlibstatic)</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>When I was looking for solutions to fix those linker errors, I found several related CMake commands which look quite similar and could be confusing in terms of their functions and when to use them. Here is a quick summary of these commands.</p>
-
-<p>Related CMake commands:</p>
-
-<ul>
-  <li>add_dependencies</li>
-  <li>link_directories</li>
-  <li>link_libraries</li>
-  <li>target_link_libraries</li>
-</ul>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/20170529/cmake-linker-options.html">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/posts/2">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    
-  
-</aside>
 
     </div>
   </div>
@@ -487,7 +324,10 @@ The second time when you call function <code>is_prime</code> with the same input
       var disqus_shortname = 'euccas-github-io';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://euccas.github.io/blog/20171129/python-why-decorators-are-useful.html';
+        var disqus_url = 'http://euccas.github.io/blog/20171129/python-why-decorators-are-useful.html';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

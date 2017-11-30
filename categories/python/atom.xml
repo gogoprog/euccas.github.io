@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-29T01:01:46-08:00</updated>
+  <updated>2017-11-30T00:15:12-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,116 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Python: Why Decorators Are Useful]]></title>
+    <link href="http://euccas.github.io/blog/20171129/python-why-decorators-are-useful.html"/>
+    <updated>2017-11-29T22:41:51-08:00</updated>
+    <id>http://euccas.github.io/blog/20171129/python-why-decorators-are-useful</id>
+    <content type="html"><![CDATA[<p>In Python, by definition <strong>decorators</strong> are <em>functions</em> that <em>accept a function</em> as an argument, and <em>return a new function</em> as their return value. The reason why decorators exist in Python, but not in other similar language such as Ruby, is that <em>functions</em> are <em>objects</em> in Python. Functions can be assigned to variables and passed around the same as other object in Python. For example, a list can have functions as its elements, and functions can take other functions as arguments. Functions can be defined inside another function, and this forms closures.</p>
+
+<h1 id="when-to-use-decorators">When to use decorators?</h1>
+
+<p>It’s easy to understand what decorators are, while the real question you may have is: Why decorators are useful? When shall I use decorators in my Python program?</p>
+
+<p>In some way, I see decorator functions are useful whenever you need process or extend the inputs or outputs of a given function (or more often, multiple functions) in some way you want. Here I list three usages of decorators that I can think of:</p>
+
+<h2 id="extend-the-functionality-of-your-functions">1. Extend the functionality of your functions</h2>
+
+<p>Usually the extended functionalities are for some kind of enhancement, format changing, or temporary usage. In other words, you are adding some functionalities without touching the core logic of the original functions. A few common use cases:</p>
+
+<ul>
+  <li>Convert the output of your functions to another format, like JSON, YAML, etc.</li>
+  <li>Add logging to your functions, or formatting the logging output</li>
+  <li>Measure timing of your functions</li>
+  <li>Count the time of function calls</li>
+</ul>
+
+<h2 id="add-caching-process-to-your-functions-to-make-them-faster">2. Add caching process to your functions, to make them faster</h2>
+
+<p>When you have some functions which are possibly called for many times with the same input, you can write a decorator function that stores a cache of inputs and outputs of a given function. In this way, the function doesn’t need to re-compute everything each time, and make it faster to run it multiple times. This is related to the <a href="https://en.wikipedia.org/wiki/Memoization"><strong>Memoization technique</strong></a>.</p>
+
+<h2 id="handle-exceptions">3. Handle exceptions</h2>
+
+<p>You can use decorator functions to process exceptions. One example is supressing particular types of system exceptions raised by the target function. Another thing you can do is catching all exceptions raised by a function, prompt the user to ask what the program should act.</p>
+
+<h1 id="two-examples">Two examples</h1>
+
+<p>Now let me use two examples to describe the <strong>syntax</strong> of decorators.</p>
+
+<h2 id="measure-timing">Measure timing</h2>
+
+<p>This example comes from a good answer on <a href="https://stackoverflow.com/a/490228/3109254">Stack Overflow user RSabet</a>.</p>
+
+<p>A decorator function <code>time_dec</code> tells you how long it takes to finish a function. 
+Python has a shortened syntax for using decorators which allows us to wrap a function in a decorator after we define it. This shortened syntax is syntactic sugar <code>@decorator_function</code>.</p>
+
+<p>```python
+def time_dec(func):
+    def wrapper(<em>arg):
+        t = time.clock()
+        res = func(</em>arg)
+        print(func.func_name, time.clock()-t)
+        return res</p>
+
+<pre><code>return wrapper
+</code></pre>
+
+<p>@time_dec
+def myFunction(n):
+    …</p>
+
+<p>```</p>
+
+<p>Note the syntactic sugar <code>@time_dec</code> was used. It causes Python to rebind the function name <code>myFunction</code> as:</p>
+
+<p>```python
+myFunction = time_dec(myFunction)</p>
+
+<p>```</p>
+
+<h2 id="memoization">Memoization</h2>
+
+<p>This example shows how we can add caching to the calculation of prime numbers.</p>
+
+<p>A decorator function <code>memoize</code> is used to store inputs and calculate outputs of the original function <code>is_prime</code>.
+The second time when you call function <code>is_prime</code> with the same input number, it runs much faster than the first time.</p>
+
+<p>```python
+def memoize(func):
+    cache = {}
+    def new_func(<em>args):
+        if args not in cache:
+            cache[args] = func(</em>args)
+        return cache[args]
+    return new_func</p>
+
+<p>@memoize
+def is_prime(number):
+    for n in range(2, number):
+        if number % n == 0:
+            return False
+    return True</p>
+
+<p>```</p>
+
+<h1 id="built-in-decorators">Built-in decorators</h1>
+
+<p>Python also has several built-in decorators, and you might see them before you know the term decorator. The built-in decorators are mainly used to annotate methods of a class: <code>@property</code>, <code>@classmethod</code>, <code>@staticmethod</code>.</p>
+
+<p><strong>@property</strong>: transforms a method function into a descriptor. When applied to a method, it creates extra properties objects: <code>getter</code>, <code>setter</code>, and <code>deleter</code>. By using <code>@property</code>, we can access a method as if it was an attribute.</p>
+
+<p><strong>@classmethod</strong>: transforms a method function into a class-level function.</p>
+
+<p><strong>@staticmethod</strong>: transforms a method function into a class-level function, and neither the object instance nor the class is implicitly passed as the first argument.</p>
+
+<p>As decorators are just ordinary functions and the decorator syntax is just a syntactic sugar, you can easily turn any Python <a href="https://docs.python.org/3/library/functions.html">built-in function</a> to a decorator if it makes sense to use it that way.</p>
+
+<h1 id="one-more-thing">One more thing</h1>
+
+<p>One more thing, you may want to take a look at <a href="https://wiki.python.org/moin/PythonDecoratorLibrary">this PythonDecoratorLibaray page</a>. It collects a number of decorator examples and code pieces.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How Instagram Moved to Python 3]]></title>
@@ -337,283 +447,19 @@ C:\WinPython\Scripts
 </span><span class='line'>If the installation successfully done, you will find the installed packages in WinPython's library path.
 </span></code></pre></td></tr></table></div></figure>
 <WinPython Path="">\Lib\site-packages\<package name="">
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-<span class='line-number'>104</span>
-<span class='line-number'>105</span>
-<span class='line-number'>106</span>
-<span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
-<span class='line-number'>110</span>
-<span class='line-number'>111</span>
-<span class='line-number'>112</span>
-<span class='line-number'>113</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>
-</span><span class='line'>That's it! Your Python package is ready to use!
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>&lt;/package&gt;&lt;/WinPython&gt;&lt;/package&gt;&lt;/WinPython&gt;
-</span><span class='line'>]]&gt;&lt;/content&gt;
-</span><span class='line'>  &lt;/entry&gt;
-</span><span class='line'>  
-</span><span class='line'>  &lt;entry&gt;
-</span><span class='line'>    &lt;title type="html"&gt;&lt;![CDATA[Dunder Methods in Python]]&gt;&lt;/title&gt;
-</span><span class='line'>    &lt;link href="http://euccas.github.io/blog/20160920/python-dunder-methods.html"/&gt;
-</span><span class='line'>    &lt;updated&gt;2016-09-20T21:28:51-07:00&lt;/updated&gt;
-</span><span class='line'>    &lt;id&gt;http://euccas.github.io/blog/20160920/python-dunder-methods&lt;/id&gt;
-</span><span class='line'>    &lt;content type="html"&gt;&lt;![CDATA[&lt;p&gt;In Python, we sometimes see method names with &lt;code&gt;__&lt;/code&gt; around, such as the &lt;code&gt;__init__&lt;/code&gt; method that every Class has. These methods are “dunder” methods (“dunder” stands for “double under” or “double underscore”). Dunder methods in Python are used for operator overloading and customizing behavior of other functions.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Sometimes dunder methods are also called “magic methods” because they are usually called by Python under the hood. But they are not really magical, you can define dunder methods to customize the behavior of your own classes.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1 id="examples-of-dunder-methods"&gt;Examples of Dunder Methods&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;!--more--&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;In the following example, we can see three dunder methods:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;__init__&lt;/code&gt; method: is called to initialize the class&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;__str__&lt;/code&gt; method: is called when converting the object to a human-readable string&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;__repr__&lt;/code&gt; method: is called when converting the object to a developer-readable string&lt;/li&gt;
-</span><span class='line'>&lt;/ul&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;```python
-</span><span class='line'>class Flower:
-</span><span class='line'>	def &lt;strong&gt;init&lt;/strong&gt;(self, color=’red’):
-</span><span class='line'>		self.color = color&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;def __str__(self):
-</span><span class='line'>	return "Flower in color {color}".format(color=self.color)
-</span><span class='line'>
-</span><span class='line'>def __repr__(self):
-</span><span class='line'>    return "Flower(color={})".format(self.color) ```
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;In Python, many dunder methods are implemented and used for operations such as arithmetic operators, comparison operators, truthiness, etc. The following are a few examples:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;strong&gt;Arithmetic Operators&lt;/strong&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;+&lt;/code&gt; : &lt;code&gt;__add__&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;-&lt;/code&gt; : &lt;code&gt;__sub__&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;*&lt;/code&gt; : &lt;code&gt;__mul__&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;/&lt;/code&gt; : &lt;code&gt;__div__&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;+=&lt;/code&gt; : &lt;code&gt;__iadd__&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;-=&lt;/code&gt; : &lt;code&gt;__isub__&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>&lt;/ul&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;strong&gt;Comparison Operators&lt;/strong&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x &lt; y&lt;/code&gt; : &lt;code&gt;x.__lt__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x &lt;= y&lt;/code&gt; : &lt;code&gt;x.__le__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x &gt; y&lt;/code&gt; : &lt;code&gt;x.__gt__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x &gt;= y&lt;/code&gt; : &lt;code&gt;x.__ge__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x == y&lt;/code&gt; : &lt;code&gt;x.__eq__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;x != y&lt;/code&gt; : &lt;code&gt;x.__ge__(y)&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>&lt;/ul&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;If you know about Bash shell, you may notice the name of these dunder methods are very similar to the operators in Bash.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;strong&gt;Truthiness&lt;/strong&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;ul&gt;
-</span><span class='line'>  &lt;li&gt;&lt;code&gt;bool(x)&lt;/code&gt; : &lt;code&gt;x.__bool__()&lt;/code&gt;&lt;/li&gt;
-</span><span class='line'>&lt;/ul&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1 id="use-dunder-methods-to-customize-class-behaviors"&gt;Use Dunder Methods to Customize Class Behaviors&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Dunder methods provide a way for our class to &lt;strong&gt;customize operators&lt;/strong&gt; and other &lt;strong&gt;built-in Python behavior&lt;/strong&gt; for our objects. In the following two examples, I’ll use dunder methods to overload arithmetic operators, and implement a dictionary that can be used with both attribute and item syntax.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h2 id="example-1-overload-arithmetic-operators"&gt;Example 1: Overload Arithmetic Operators&lt;/h2&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Make an &lt;code&gt;is_callable&lt;/code&gt; function to check if an object type is callable.
-</span><span class='line'>This can be done by calling object’s &lt;code&gt;__call__&lt;/code&gt; method.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Example:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;&lt;code&gt;
-</span><span class='line'>&gt;&gt;&gt; is_callable(sorted)
-</span><span class='line'>True
-</span><span class='line'>&gt;&gt;&gt; is_callable(str)
-</span><span class='line'>True
-</span><span class='line'>&gt;&gt;&gt; is_callable(4)
-</span><span class='line'>False
-</span><span class='line'>&lt;/code&gt;&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Source Code:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;```python
-</span><span class='line'>def is_callable(obj):&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;try:
-</span><span class='line'>    obj.&lt;strong&gt;call&lt;/strong&gt;
-</span><span class='line'>    # hasattr(str, ‘&lt;strong&gt;call&lt;/strong&gt;’)
-</span><span class='line'>    # getattr(str, ‘&lt;strong&gt;call&lt;/strong&gt;’)
-</span><span class='line'>    except AttributeError:
-</span><span class='line'>    	return False
-</span><span class='line'>    else:
-</span><span class='line'>    	return True</span></code></pre></td></tr></table></div></figure></p>
+```
 
-<h2 id="example-2-class-easydict">Example 2: Class EasyDict</h2>
+That's it! Your Python package is ready to use!
 
-<p>Make an <code>EasyDict</code> class that can be used with both attribute and item syntax.
-This can be done by implementing <code>__getitem__</code> and <code>__setitem__</code> methods.</p>
 
-<p>Example:</p>
 
-<p>```python
-»&gt; a = EasyDict()
-»&gt; a[‘shoe’] = “blue”
-»&gt; a.shoe
-“blue”</p>
 
-<blockquote>
-  <blockquote>
-    <blockquote>
-      <p>a[‘shoe’]
-“blue”</p>
-    </blockquote>
-  </blockquote>
-</blockquote>
 
-<blockquote>
-  <blockquote>
-    <blockquote>
-      <p>a.car = “green”
-a[‘car’]
-“green”
-```</p>
-    </blockquote>
-  </blockquote>
-</blockquote>
 
-<p>Source Code:</p>
 
-<p>```python
-class EasyDict:
-    def <strong>init</strong>(self):
-        pass</p>
 
-   	def <strong>getitem</strong>(self, item):
-<pre><code>    return self.__dict__[item]
 
-def __setitem__(self, key, value):
-    self.__dict__[key] = value
-</code></pre>
-
-<p>```</p>
-
-<p>More dunder methods can be found in Python documents: <a href="https://docs.python.org/3.6/library/operator.html">operator – Standard operators as functions (Python 3.6.3)</a></p>
+</package></WinPython></package></WinPython>
 ]]></content>
   </entry>
   

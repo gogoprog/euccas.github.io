@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-29T01:01:46-08:00</updated>
+  <updated>2017-11-30T00:15:12-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,138 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Python: Why Decorators Are Useful]]></title>
+    <link href="http://euccas.github.io/blog/20171129/python-why-decorators-are-useful.html"/>
+    <updated>2017-11-29T22:41:51-08:00</updated>
+    <id>http://euccas.github.io/blog/20171129/python-why-decorators-are-useful</id>
+    <content type="html"><![CDATA[<p>In Python, by definition <strong>decorators</strong> are <em>functions</em> that <em>accept a function</em> as an argument, and <em>return a new function</em> as their return value. The reason why decorators exist in Python, but not in other similar language such as Ruby, is that <em>functions</em> are <em>objects</em> in Python. Functions can be assigned to variables and passed around the same as other object in Python. For example, a list can have functions as its elements, and functions can take other functions as arguments. Functions can be defined inside another function, and this forms closures.</p>
+
+<h1 id="when-to-use-decorators">When to use decorators?</h1>
+
+<p>It’s easy to understand what decorators are, while the real question you may have is: Why decorators are useful? When shall I use decorators in my Python program?</p>
+
+<p>In some way, I see decorator functions are useful whenever you need process or extend the inputs or outputs of a given function (or more often, multiple functions) in some way you want. Here I list three usages of decorators that I can think of:</p>
+
+<h2 id="extend-the-functionality-of-your-functions">1. Extend the functionality of your functions</h2>
+
+<p>Usually the extended functionalities are for some kind of enhancement, format changing, or temporary usage. In other words, you are adding some functionalities without touching the core logic of the original functions. A few common use cases:</p>
+
+<ul>
+  <li>Convert the output of your functions to another format, like JSON, YAML, etc.</li>
+  <li>Add logging to your functions, or formatting the logging output</li>
+  <li>Measure timing of your functions</li>
+  <li>Count the time of function calls</li>
+</ul>
+
+<h2 id="add-caching-process-to-your-functions-to-make-them-faster">2. Add caching process to your functions, to make them faster</h2>
+
+<p>When you have some functions which are possibly called for many times with the same input, you can write a decorator function that stores a cache of inputs and outputs of a given function. In this way, the function doesn’t need to re-compute everything each time, and make it faster to run it multiple times. This is related to the <a href="https://en.wikipedia.org/wiki/Memoization"><strong>Memoization technique</strong></a>.</p>
+
+<h2 id="handle-exceptions">3. Handle exceptions</h2>
+
+<p>You can use decorator functions to process exceptions. One example is supressing particular types of system exceptions raised by the target function. Another thing you can do is catching all exceptions raised by a function, prompt the user to ask what the program should act.</p>
+
+<h1 id="two-examples">Two examples</h1>
+
+<p>Now let me use two examples to describe the <strong>syntax</strong> of decorators.</p>
+
+<h2 id="measure-timing">Measure timing</h2>
+
+<p>This example comes from a good answer on <a href="https://stackoverflow.com/a/490228/3109254">Stack Overflow user RSabet</a>.</p>
+
+<p>A decorator function <code>time_dec</code> tells you how long it takes to finish a function. 
+Python has a shortened syntax for using decorators which allows us to wrap a function in a decorator after we define it. This shortened syntax is syntactic sugar <code>@decorator_function</code>.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">def</span> <span class="nf">time_dec</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">):</span>
+</span><span class="line">        <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">clock</span><span class="p">()</span>
+</span><span class="line">        <span class="n">res</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">arg</span><span class="p">)</span>
+</span><span class="line">        <span class="k">print</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="n">func_name</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">clock</span><span class="p">()</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
+</span><span class="line">        <span class="k">return</span> <span class="n">res</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">return</span> <span class="n">wrapper</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="nd">@time_dec</span>
+</span><span class="line"><span class="k">def</span> <span class="nf">myFunction</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class="line">    <span class="o">...</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Note the syntactic sugar <code>@time_dec</code> was used. It causes Python to rebind the function name <code>myFunction</code> as:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">myFunction</span> <span class="o">=</span> <span class="n">time_dec</span><span class="p">(</span><span class="n">myFunction</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="memoization">Memoization</h2>
+
+<p>This example shows how we can add caching to the calculation of prime numbers.</p>
+
+<p>A decorator function <code>memoize</code> is used to store inputs and calculate outputs of the original function <code>is_prime</code>.
+The second time when you call function <code>is_prime</code> with the same input number, it runs much faster than the first time.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="k">def</span> <span class="nf">memoize</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span><span class="line">    <span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class="line">    <span class="k">def</span> <span class="nf">new_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">args</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cache</span><span class="p">:</span>
+</span><span class="line">            <span class="n">cache</span><span class="p">[</span><span class="n">args</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span><span class="line">        <span class="k">return</span> <span class="n">cache</span><span class="p">[</span><span class="n">args</span><span class="p">]</span>
+</span><span class="line">    <span class="k">return</span> <span class="n">new_func</span>
+</span><span class="line">
+</span><span class="line"><span class="nd">@memoize</span>
+</span><span class="line"><span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+</span><span class="line">    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+</span><span class="line">        <span class="k">if</span> <span class="n">number</span> <span class="o">%</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class="line">            <span class="k">return</span> <span class="bp">False</span>
+</span><span class="line">    <span class="k">return</span> <span class="bp">True</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="built-in-decorators">Built-in decorators</h1>
+
+<p>Python also has several built-in decorators, and you might see them before you know the term decorator. The built-in decorators are mainly used to annotate methods of a class: <code>@property</code>, <code>@classmethod</code>, <code>@staticmethod</code>.</p>
+
+<p><strong>@property</strong>: transforms a method function into a descriptor. When applied to a method, it creates extra properties objects: <code>getter</code>, <code>setter</code>, and <code>deleter</code>. By using <code>@property</code>, we can access a method as if it was an attribute.</p>
+
+<p><strong>@classmethod</strong>: transforms a method function into a class-level function.</p>
+
+<p><strong>@staticmethod</strong>: transforms a method function into a class-level function, and neither the object instance nor the class is implicitly passed as the first argument.</p>
+
+<p>As decorators are just ordinary functions and the decorator syntax is just a syntactic sugar, you can easily turn any Python <a href="https://docs.python.org/3/library/functions.html">built-in function</a> to a decorator if it makes sense to use it that way.</p>
+
+<h1 id="one-more-thing">One more thing</h1>
+
+<p>One more thing, you may want to take a look at <a href="https://wiki.python.org/moin/PythonDecoratorLibrary">this PythonDecoratorLibaray page</a>. It collects a number of decorator examples and code pieces.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[CPU Profiling Tools on Linux]]></title>
@@ -25,6 +157,8 @@
 <h1 id="profiling-methods">Profiling Methods</h1>
 
 <p>Different profiling methods use different ways to measure the performance of an application when it is executed. <strong>Instrumentation</strong> and <strong>Sampling</strong> are the two categories that profiling methods fall into.</p>
+
+<!--more-->
 
 <h2 id="instrumentation">Instrumentation</h2>
 
@@ -1944,63 +2078,6 @@ This probably means the server terminated abnormally before or while processing 
 <h1 id="tip-4-errors-in-gendeploy">Tip 4: Errors in gen_deploy</h1>
 
 <p><code>rake gen_deploy</code>的过程中，如果在<code>generate</code>步骤中出现错误（比如部分post的文本不符合markdown语法），一些情况下可能会造成generate目录中的文件被删除。而<code>gen_deploy</code>过程此时并不会结束，<code>deploy</code>会继续进行，这样最终的commit就会把原来已经发布的blog内容删除。防止出现这种问题的安全做法是分步执行<code>rake generate</code>和<code>rake deploy</code>。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Install Additional Packages in WinPython]]></title>
-    <link href="http://euccas.github.io/blog/20161011/install-additional-packages-in-winpython.html"/>
-    <updated>2016-10-11T17:11:51-07:00</updated>
-    <id>http://euccas.github.io/blog/20161011/install-additional-packages-in-winpython</id>
-    <content type="html"><![CDATA[<p>For people who need use portable Python on Windows, <a href="https://winpython.github.io/">WinPython</a> is a good choice. WinPython is a free open-source portable distribution of Python. The project is hosted on <a href="https://github.com/winpython">github</a>. It is also a good alternative to <a href="http://portablepython.com/">Portable Python</a>, which is not being developed anymore.</p>
-
-<p>In this post I’ll show you how could you install additional packages to WinPython.</p>
-
-<h1 id="install-winpython">Install WinPython</h1>
-
-<p>WinPython is portable. It means that you can download WinPython from the <a href="http://winpython.sourceforge.net/">WinPython download page</a>, add it to your system PATH, and start using it without any installation.</p>
-
-<!--more-->
-
-<ul>
-  <li>Unzip the downloaded WinPython Package to a local directory, eg. <code>C:\WinPython</code>.</li>
-  <li>Add the local directory path to your system’s <code>PATH</code> variable. You can use Windows command <code>set</code> or <code>setx</code>.</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">   set PATH=C:\WinPython\;%PATH%</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Now you can open a Windows cmd prompt, and test your installed python version.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">where python
-</span><span class="line">&gt;&gt;&gt; C:\WinPython\python.exe</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h1 id="install-a-package">Install a package</h1>
-
-<p>You can install a Python Package to WinPython using <code>pip</code>. If you have other versions of Python installed on your computer, you’ll need make sure the <code>pip</code> you use actually is the one WinPython provides.</p>
-
-<p>Where is the <code>pip</code>?</p>
-
-<p>It’s in the <code>Scripts</code> directory of the WinPython path.
-For example:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">C:\WinPython\Scripts</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Now you can use the WinPython <code>pip</code> to install additional Python packages.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">&lt;WinPython Path&gt;\Scripts\pip install &lt;package name&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>If the installation successfully done, you will find the installed packages in WinPython’s library path.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">&lt;WinPython Path&gt;\Lib\site-packages\&lt;package name&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>That’s it! Your Python package is ready to use!</p>
-
 ]]></content>
   </entry>
   
