@@ -8,7 +8,7 @@ keywords: Python Decorators
 description: An introduction to Python Decorators, why they are useful, and when you will need use decorators
 ---
 
-In Python, by definition **decorators** are *functions* that *accept a function* as an argument, and *return a new function* as their return value. The reason why decorators exist in Python, but not in other similar language such as Ruby, is that *functions* are *objects* in Python. Functions can be assigned to variables and passed around the same as other object in Python. For example, a list can have functions as its elements, and functions can take other functions as arguments. Functions can be defined inside another function, and this forms closures.
+In Python, by definition *decorators* are *functions* that *accept a function* as an argument, and *return a new function* as their return value. The reason why decorators exist in Python, but not in other similar language such as Ruby, is that *functions* are *objects* in Python. Functions can be assigned to variables and passed around the same as other object in Python. For example, a list can have functions as its elements, and functions can take other functions as arguments. Functions can be defined inside another function, and this forms closures.
 
 # When to use decorators?
 
@@ -33,14 +33,14 @@ When you have some functions which are possibly called for many times with the s
 
 You can use decorator functions to process exceptions. One example is supressing particular types of system exceptions raised by the target function. Another thing you can do is catching all exceptions raised by a function, prompt the user to ask what the program should act.
 
-
+<br>
 # Two examples
 
 Now let me use two examples to describe the **syntax** of decorators.
 
 ## Measure timing
 
-This example comes from a good answer on [Stack Overflow user RSabet](https://stackoverflow.com/a/490228/3109254).
+This example comes from a good answer on [Stack Overflow, by user RSabet](https://stackoverflow.com/a/490228/3109254).
 
 A decorator function ```time_dec``` tells you how long it takes to finish a function. 
 Python has a shortened syntax for using decorators which allows us to wrap a function in a decorator after we define it. This shortened syntax is syntactic sugar ```@decorator_function```.  
@@ -95,7 +95,7 @@ def is_prime(number):
 
 ```
 
-
+<br>
 # Built-in decorators
 
 Python also has several built-in decorators, and you might see them before you know the term decorator. The built-in decorators are mainly used to annotate methods of a class: ```@property```, ```@classmethod```, ```@staticmethod```. 
@@ -108,7 +108,7 @@ Python also has several built-in decorators, and you might see them before you k
 
 As decorators are just ordinary functions and the decorator syntax is just a syntactic sugar, you can easily turn any Python [built-in function](https://docs.python.org/3/library/functions.html) to a decorator if it makes sense to use it that way. 
 
-
+<br>
 # One more thing
 
 One more thing, you may want to take a look at [this PythonDecoratorLibaray page](https://wiki.python.org/moin/PythonDecoratorLibrary). It collects a number of decorator examples and code pieces.
