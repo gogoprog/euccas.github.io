@@ -20,7 +20,7 @@ In this post I'll briefly introduce ```multiprocess``` module and show how it ca
 
 In the following example, we use ```multiprocessing``` module to spawn a child process from a parent process using a ```Process``` object.
 
-```
+```python
 from multiprocessing import Process
 import os
 import time
@@ -35,9 +35,11 @@ def task(name):
 if __name__ == "__main__":
     print("In parent process, id: ".format(os.getpid())
     p = Process(target=task, args=('firstone'))
+
     p.start()
     print("In parent process, after child process start")
     print("parent process about to join child process")
+
     p.join()
     print("In parent process, after child process join")
     print("parent process exiting with id ".format(os.getpid()))
@@ -47,7 +49,7 @@ if __name__ == "__main__":
 
 The output of this program will be:
 
-```
+```python
 In parent process, id 5245
 In parent process, after child process start
 parent process about to join child process
@@ -80,7 +82,7 @@ Starts a server process. Whenever a new process is needed, the parent process co
 
 To select a start method, you can use ```set_start_method()```. This method should be used only once in the program.
 
-```
+```python
 mp.set_start_method('spawn')
 p = mp.Process(target=foo, args=())
 p.start()
@@ -100,7 +102,7 @@ If you need know more details, the Python document [here](https://docs.python.or
 
 The ```Pool``` class is a quite useful one in the ```multiprocessing``` module, as in real life you'll often need multiple workers to execute the tasks in your program in parallel. What the ```Pool``` class represents is a pool of workers. The following example shows how to create a pool with 4 processes as workers, and assign tasks to the workers.
 
-```
+```python
 from multiprocessing import Pool
 from time import sleep
 
@@ -130,7 +132,5 @@ Another useful method provided by ```multiprocessing``` module is ```cpu_count()
 
 
 *This post is my last post in 2016. Happy new year!*
-
-
 
 
