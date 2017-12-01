@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-11-30T11:17:11-08:00</updated>
+  <updated>2017-11-30T16:14:27-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -201,7 +201,7 @@ def is_prime(number):
 
 <p>In the following example, we use <code>multiprocessing</code> module to spawn a child process from a parent process using a <code>Process</code> object.</p>
 
-<p>```
+<p>```python
 from multiprocessing import Process
 import os
 import time</p>
@@ -215,20 +215,23 @@ import time</p>
 
 <p>if <strong>name</strong> == “<strong>main</strong>”:
     print(“In parent process, id: “.format(os.getpid())
-    p = Process(target=task, args=(‘firstone’))
-    p.start()
-    print(“In parent process, after child process start”)
-    print(“parent process about to join child process”)
-    p.join()
-    print(“In parent process, after child process join”)
-    print(“parent process exiting with id “.format(os.getpid()))
-    print(“the parent’s parent process: “.format(os.getppid()))</p>
+    p = Process(target=task, args=(‘firstone’))</p>
+
+<pre><code>p.start()
+print("In parent process, after child process start")
+print("parent process about to join child process")
+
+p.join()
+print("In parent process, after child process join")
+print("parent process exiting with id ".format(os.getpid()))
+print("the parent's parent process: ".format(os.getppid()))
+</code></pre>
 
 <p>```</p>
 
 <p>The output of this program will be:</p>
 
-<p><code>
+<p><code>python
 In parent process, id 5245
 In parent process, after child process start
 parent process about to join child process
@@ -267,7 +270,7 @@ the parent's parent process: 5231
 
 <p>To select a start method, you can use <code>set_start_method()</code>. This method should be used only once in the program.</p>
 
-<p><code>
+<p><code>python
 mp.set_start_method('spawn')
 p = mp.Process(target=foo, args=())
 p.start()
@@ -289,7 +292,7 @@ p.join()
 
 <p>The <code>Pool</code> class is a quite useful one in the <code>multiprocessing</code> module, as in real life you’ll often need multiple workers to execute the tasks in your program in parallel. What the <code>Pool</code> class represents is a pool of workers. The following example shows how to create a pool with 4 processes as workers, and assign tasks to the workers.</p>
 
-<p>```
+<p>```python
 from multiprocessing import Pool
 from time import sleep</p>
 
