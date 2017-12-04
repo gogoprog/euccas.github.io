@@ -16,6 +16,8 @@ It's easy to understand what decorators are, while the real question you may hav
 
 In some way, I see decorator functions are useful whenever you need process or extend the inputs or outputs of a given function (or more often, multiple functions) in some way you want. Here I list three usages of decorators that I can think of:
 
+<!--more--> 
+
 ## 1. Extend the functionality of your functions
 
 Usually the extended functionalities are for some kind of enhancement, format changing, or temporary usage. In other words, you are adding some functionalities without touching the core logic of the original functions. A few common use cases:
@@ -33,7 +35,6 @@ When you have some functions which are possibly called for many times with the s
 
 You can use decorator functions to process exceptions. One example is supressing particular types of system exceptions raised by the target function. Another thing you can do is catching all exceptions raised by a function, prompt the user to ask what the program should act.
 
-<br>
 
 # Two examples
 
@@ -70,7 +71,8 @@ Note the syntactic sugar ```@time_dec``` was used. It causes Python to rebind th
 myFunction = time_dec(myFunction)
 
 ```
- 
+
+
 ## Memoization
 
 This example shows how we can add caching to the calculation of prime numbers.
@@ -96,7 +98,6 @@ def is_prime(number):
 
 ```
 
-<br>
 
 # Built-in decorators
 
@@ -110,7 +111,6 @@ Python also has several built-in decorators, and you might see them before you k
 
 As decorators are just ordinary functions and the decorator syntax is just a syntactic sugar, you can easily turn any Python [built-in function](https://docs.python.org/3/library/functions.html) to a decorator if it makes sense to use it that way. 
 
-<br>
 
 # One more thing
 
