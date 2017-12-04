@@ -14,6 +14,8 @@ Sharing on Facebook started from largely text, and quickly changed to be largely
 
 Before building the Streaming Video Engine system, the team started by reviewing Facebook's existing video uploading and processing process, which was slow and not scalable. They found several problems need change or improvement:
 
+<!--more--> 
+
 - No unified clients
 - Several disk reads and writes in the critical path
 - Was doing serial processing throughout
@@ -25,8 +27,6 @@ The new Streaming Video Engine (SVE) is expected to solve the aforementioned pro
 - Flexible: usable for different Facebook products
 - Scalable: everything at Facebook has to scale
 - Efficient: storage efficiency, processing efficiency, and more importantly consume less bytes of users' data plan
-
-<!--more--> 
 
 These four design goals, in my opinion, are also the most common goals applicable to most engineering infrastructure systems.
 
