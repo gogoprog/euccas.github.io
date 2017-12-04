@@ -136,7 +136,7 @@
 
 <p>In the following example, we use <code>multiprocessing</code> module to spawn a child process from a parent process using a <code>Process</code> object.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -158,37 +158,32 @@
 <span class="line-number">20</span>
 <span class="line-number">21</span>
 <span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">os</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">time</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">from multiprocessing import Process
+</span><span class="line">import os
+</span><span class="line">import time
 </span><span class="line">
-</span><span class="line"><span class="k">def</span> <span class="nf">task</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-</span><span class="line">    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Starting child process with id: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">()))</span>
-</span><span class="line">    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Parent process: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getppid</span><span class="p">()))</span>
-</span><span class="line">    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Task start: just sleeps 5 seconds ...&quot;</span><span class="p">)</span>
-</span><span class="line">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</span><span class="line">    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Task done&quot;</span><span class="p">)</span>
-</span><span class="line">
-</span><span class="line"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span class="line">    <span class="k">print</span><span class="p">(</span><span class="s">&quot;In parent process, id: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">())</span>
-</span><span class="line">    <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">task</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;firstone&#39;</span><span class="p">))</span>
-</span><span class="line">
-</span><span class="line">    <span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-</span><span class="line">    <span class="k">print</span><span class="p">(</span><span class="s">&quot;In parent process, after child process start&quot;</span><span class="p">)</span>
-</span><span class="line">    <span class="k">print</span><span class="p">(</span><span class="s">&quot;parent process about to join child process&quot;</span><span class="p">)</span>
-</span><span class="line">
-</span><span class="line">    <span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-</span><span class="line">    <span class="k">print</span><span class="p">(</span><span class="s">&quot;In parent process, after child process join&quot;</span><span class="p">)</span>
-</span><span class="line">    <span class="k">print</span><span class="p">(</span><span class="s">&quot;parent process exiting with id &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">()))</span>
-</span><span class="line">    <span class="k">print</span><span class="p">(</span><span class="s">&quot;the parent&#39;s parent process: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getppid</span><span class="p">()))</span>
-</span><span class="line">
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line">def task(name):
+</span><span class="line">    print("Starting child process with id: ".format(os.getpid()))
+</span><span class="line">    print("Parent process: ".format(os.getppid()))
+</span><span class="line">    print("Task start: just sleeps 5 seconds ...")
+</span><span class="line">    time.sleep(5)
+</span><span class="line">    print("Task done")
+</span><span class="line">    
+</span><span class="line">if __name__ == "__main__":
+</span><span class="line">    print("In parent process, id: ".format(os.getpid())
+</span><span class="line">    p = Process(target=task, args=('firstone'))
+</span><span class="line">    p.start()
+</span><span class="line">    print("In parent process, after child process start")
+</span><span class="line">    print("parent process about to join child process")
+</span><span class="line">    p.join()
+</span><span class="line">    print("In parent process, after child process join")
+</span><span class="line">    print("parent process exiting with id ".format(os.getpid()))
+</span><span class="line">    print("the parent's parent process: ".format(os.getppid()))
+</span><span class="line">    </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>The output of this program will be:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -198,17 +193,16 @@
 <span class="line-number">8</span>
 <span class="line-number">9</span>
 <span class="line-number">10</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">In</span> <span class="n">parent</span> <span class="n">process</span><span class="p">,</span> <span class="nb">id</span> <span class="mi">5245</span>
-</span><span class="line"><span class="n">In</span> <span class="n">parent</span> <span class="n">process</span><span class="p">,</span> <span class="n">after</span> <span class="n">child</span> <span class="n">process</span> <span class="n">start</span>
-</span><span class="line"><span class="n">parent</span> <span class="n">process</span> <span class="n">about</span> <span class="n">to</span> <span class="n">join</span> <span class="n">child</span> <span class="n">process</span>
-</span><span class="line"><span class="n">Starting</span> <span class="n">child</span> <span class="n">process</span> <span class="k">with</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">5246</span>
-</span><span class="line"><span class="n">Parent</span> <span class="n">process</span><span class="p">:</span> <span class="mi">5245</span>
-</span><span class="line"><span class="n">Task</span> <span class="n">start</span><span class="p">:</span> <span class="n">just</span> <span class="n">sleeps</span> <span class="mi">5</span> <span class="n">seconds</span> <span class="o">...</span>
-</span><span class="line"><span class="n">Task</span> <span class="n">done</span>
-</span><span class="line"><span class="n">In</span> <span class="n">parent</span> <span class="n">process</span><span class="p">,</span> <span class="n">after</span> <span class="n">child</span> <span class="n">process</span> <span class="n">join</span>
-</span><span class="line"><span class="n">parent</span> <span class="n">process</span> <span class="n">exiting</span> <span class="k">with</span> <span class="nb">id</span> <span class="mi">5245</span>
-</span><span class="line"><span class="n">the</span> <span class="n">parent</span><span class="s">&#39;s parent process: 5231</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class=""><span class="line">In parent process, id 5245
+</span><span class="line">In parent process, after child process start
+</span><span class="line">parent process about to join child process
+</span><span class="line">Starting child process with id: 5246
+</span><span class="line">Parent process: 5245
+</span><span class="line">Task start: just sleeps 5 seconds ...
+</span><span class="line">Task done
+</span><span class="line">In parent process, after child process join
+</span><span class="line">parent process exiting with id 5245
+</span><span class="line">the parent's parent process: 5231</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>The program starts the subprocess using <code>p.start()</code></p>
 
@@ -236,15 +230,14 @@
 
 <p>To select a start method, you can use <code>set_start_method()</code>. This method should be used only once in the program.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">mp</span><span class="o">.</span><span class="n">set_start_method</span><span class="p">(</span><span class="s">&#39;spawn&#39;</span><span class="p">)</span>
-</span><span class="line"><span class="n">p</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">foo</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">())</span>
-</span><span class="line"><span class="n">p</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-</span><span class="line"><span class="n">p</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</pre></td><td class="code"><pre><code class=""><span class="line">mp.set_start_method('spawn')
+</span><span class="line">p = mp.Process(target=foo, args=())
+</span><span class="line">p.start()
+</span><span class="line">p.join()</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h1 id="two-ways-to-exchange-objects-between-processes">Two ways to exchange objects between processes</h1>
 
@@ -261,7 +254,7 @@
 
 <p>The <code>Pool</code> class is a quite useful one in the <code>multiprocessing</code> module, as in real life you’ll often need multiple workers to execute the tasks in your program in parallel. What the <code>Pool</code> class represents is a pool of workers. The following example shows how to create a pool with 4 processes as workers, and assign tasks to the workers.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -276,22 +269,21 @@
 <span class="line-number">13</span>
 <span class="line-number">14</span>
 <span class="line-number">15</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
-</span><span class="line"><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">from multiprocessing import Pool
+</span><span class="line">from time import sleep
 </span><span class="line">
-</span><span class="line"><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-</span><span class="line">    <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span>
+</span><span class="line">def f(x):
+</span><span class="line">    return x*x
 </span><span class="line">
-</span><span class="line"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span class="line">    <span class="c"># start 4 worker processes</span>
-</span><span class="line">    <span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
-</span><span class="line">        <span class="n">res</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="mi">10</span><span class="p">])</span>
-</span><span class="line">        <span class="k">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</span><span class="line">if __name__ == "__main__":
+</span><span class="line">    # start 4 worker processes
+</span><span class="line">    with Pool(processes=4) as pool:
+</span><span class="line">        res = pool.apply_async(f, [10])
+</span><span class="line">        print(res.get(timeout=1))
 </span><span class="line">
-</span><span class="line">    <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span class="line">    <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-</span><span class="line">
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line">    pool.close()
+</span><span class="line">    pool.join()
+</span><span class="line">    </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>The <code>apply_async(f, args, kwargs)</code> method calls a function for many times, or calls a number of different functions asynchronously with arguments arguments. Each process will NOT block other processes. The order of the multiple processes are not guaranteed.</p>
 
