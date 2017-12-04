@@ -72,7 +72,7 @@ This plugin extends the email notification functionality that Jenkins provides. 
 
 [*Disk-Usage Plugin*](https://plugins.jenkins.io/disk-usage)
 
-This plugin calculates disk usage of projects and builds, and shows the disk usage information on a page. It also displays a treend chart of display usage. It makes Jenkins job and workspace maintenance easier.
+This plugin calculates disk usage of projects and builds, and shows the disk usage information on a page. It also displays a trend chart of display usage. It makes Jenkins job and workspace maintenance easier.
 
 # ThinBackup
 
