@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jenkins | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/jenkins/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-12-03T17:09:59-08:00</updated>
+  <updated>2017-12-03T20:49:46-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -20,7 +20,7 @@
     <id>http://euccas.github.io/blog/20171203/effective-jenkins-plugins-1</id>
     <content type="html"><![CDATA[<p><a href="https://jenkins.io/">Jenkins</a>, originally founded in 2006 as “Hudson”, is one of the leading automation applications which support building, deploying and automating software projects. One great advantage of Jenkins is there are hundreds of plugins available which enable various kinds of extended features needed in the Continous Integration and Continuous Delivery process. As I just checked on the <a href="https://plugins.jenkins.io/">Jenkins Plugins page</a>, there are 873 plugins that fall into five categories: Platforms, User interface, Administration, Source code management and Build management.</p>
 
-<p>Effectively using Jenkins plugins makes your experience with Jenkins more productive. I’m going to write about Jenkins plugins that I used or learned about occasionally. The first post will start from some of the plugins I used when I worked on building a Continuous Delivery system last year (2015-2016).</p>
+<p>Effectively using Jenkins plugins makes your experience with Jenkins more productive. I’m going to occasionally write about Jenkins plugins that I used or learned about. The first post will start from some of the plugins I used when I worked on building a Continuous Delivery system last year (from 2015 to 2016).</p>
 
 <h1 id="job-configuration-history">Job Configuration History</h1>
 
