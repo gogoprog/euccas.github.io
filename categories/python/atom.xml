@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/python/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-12-03T16:58:38-08:00</updated>
+  <updated>2017-12-03T17:00:51-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -26,6 +26,8 @@
 
 <p>In some way, I see decorator functions are useful whenever you need process or extend the inputs or outputs of a given function (or more often, multiple functions) in some way you want. Here I list three usages of decorators that I can think of:</p>
 
+<!--more-->
+
 <h2 id="extend-the-functionality-of-your-functions">1. Extend the functionality of your functions</h2>
 
 <p>Usually the extended functionalities are for some kind of enhancement, format changing, or temporary usage. In other words, you are adding some functionalities without touching the core logic of the original functions. A few common use cases:</p>
@@ -44,8 +46,6 @@
 <h2 id="handle-exceptions">3. Handle exceptions</h2>
 
 <p>You can use decorator functions to process exceptions. One example is supressing particular types of system exceptions raised by the target function. Another thing you can do is catching all exceptions raised by a function, prompt the user to ask what the program should act.</p>
-
-<p><br /></p>
 
 <h1 id="two-examples">Two examples</h1>
 
@@ -107,8 +107,6 @@ def is_prime(number):
 
 <p>```</p>
 
-<p><br /></p>
-
 <h1 id="built-in-decorators">Built-in decorators</h1>
 
 <p>Python also has several built-in decorators, and you might see them before you know the term decorator. The built-in decorators are mainly used to annotate methods of a class: <code>@property</code>, <code>@classmethod</code>, <code>@staticmethod</code>.</p>
@@ -120,8 +118,6 @@ def is_prime(number):
 <p><strong>@staticmethod</strong>: transforms a method function into a class-level function, and neither the object instance nor the class is implicitly passed as the first argument.</p>
 
 <p>As decorators are just ordinary functions and the decorator syntax is just a syntactic sugar, you can easily turn any Python <a href="https://docs.python.org/3/library/functions.html">built-in function</a> to a decorator if it makes sense to use it that way.</p>
-
-<p><br /></p>
 
 <h1 id="one-more-thing">One more thing</h1>
 
@@ -207,7 +203,7 @@ def is_prime(number):
 
 <p>In the following example, we use <code>multiprocessing</code> module to spawn a child process from a parent process using a <code>Process</code> object.</p>
 
-<p>```
+<p>```python
 from multiprocessing import Process
 import os
 import time</p>
@@ -221,20 +217,23 @@ import time</p>
 
 <p>if <strong>name</strong> == “<strong>main</strong>”:
     print(“In parent process, id: “.format(os.getpid())
-    p = Process(target=task, args=(‘firstone’))
-    p.start()
-    print(“In parent process, after child process start”)
-    print(“parent process about to join child process”)
-    p.join()
-    print(“In parent process, after child process join”)
-    print(“parent process exiting with id “.format(os.getpid()))
-    print(“the parent’s parent process: “.format(os.getppid()))</p>
+    p = Process(target=task, args=(‘firstone’))</p>
+
+<pre><code>p.start()
+print("In parent process, after child process start")
+print("parent process about to join child process")
+
+p.join()
+print("In parent process, after child process join")
+print("parent process exiting with id ".format(os.getpid()))
+print("the parent's parent process: ".format(os.getppid()))
+</code></pre>
 
 <p>```</p>
 
 <p>The output of this program will be:</p>
 
-<p><code>
+<p><code>python
 In parent process, id 5245
 In parent process, after child process start
 parent process about to join child process
@@ -273,7 +272,7 @@ the parent's parent process: 5231
 
 <p>To select a start method, you can use <code>set_start_method()</code>. This method should be used only once in the program.</p>
 
-<p><code>
+<p><code>python
 mp.set_start_method('spawn')
 p = mp.Process(target=foo, args=())
 p.start()
@@ -295,7 +294,7 @@ p.join()
 
 <p>The <code>Pool</code> class is a quite useful one in the <code>multiprocessing</code> module, as in real life you’ll often need multiple workers to execute the tasks in your program in parallel. What the <code>Pool</code> class represents is a pool of workers. The following example shows how to create a pool with 4 processes as workers, and assign tasks to the workers.</p>
 
-<p>```
+<p>```python
 from multiprocessing import Pool
 from time import sleep</p>
 
