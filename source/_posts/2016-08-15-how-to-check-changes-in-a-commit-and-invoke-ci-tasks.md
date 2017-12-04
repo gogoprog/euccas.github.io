@@ -3,7 +3,7 @@ layout: post
 title: "How to check changes in a commit and invoke CI tasks"
 date: 2016-08-15 19:43:21 -0700
 comments: true
-categories: Continuous-Integration Infrastructure
+categories: Continuous-Delivery Infrastructure
 ---
 
 # Problem Description
