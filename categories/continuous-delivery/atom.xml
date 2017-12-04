@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Continuous-delivery | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/continuous-delivery/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-12-03T20:49:46-08:00</updated>
+  <updated>2017-12-03T20:53:39-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -82,7 +82,7 @@
 
 <p><a href="https://plugins.jenkins.io/disk-usage"><em>Disk-Usage Plugin</em></a></p>
 
-<p>This plugin calculates disk usage of projects and builds, and shows the disk usage information on a page. It also displays a treend chart of display usage. It makes Jenkins job and workspace maintenance easier.</p>
+<p>This plugin calculates disk usage of projects and builds, and shows the disk usage information on a page. It also displays a trend chart of display usage. It makes Jenkins job and workspace maintenance easier.</p>
 
 <h1 id="thinbackup">ThinBackup</h1>
 
