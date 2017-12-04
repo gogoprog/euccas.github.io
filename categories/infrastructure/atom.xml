@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Infrastructure | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/infrastructure/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2017-12-03T17:00:51-08:00</updated>
+  <updated>2017-12-03T17:02:42-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -24,6 +24,8 @@
 
 <p>Before building the Streaming Video Engine system, the team started by reviewing Facebook’s existing video uploading and processing process, which was slow and not scalable. They found several problems need change or improvement:</p>
 
+<!--more-->
+
 <ul>
   <li>No unified clients</li>
   <li>Several disk reads and writes in the critical path</li>
@@ -39,8 +41,6 @@
   <li>Scalable: everything at Facebook has to scale</li>
   <li>Efficient: storage efficiency, processing efficiency, and more importantly consume less bytes of users’ data plan</li>
 </ul>
-
-<!--more-->
 
 <p>These four design goals, in my opinion, are also the most common goals applicable to most engineering infrastructure systems.</p>
 

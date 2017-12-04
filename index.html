@@ -328,22 +328,6 @@
 
 <p>Before building the Streaming Video Engine system, the team started by reviewing Facebook’s existing video uploading and processing process, which was slow and not scalable. They found several problems need change or improvement:</p>
 
-<ul>
-  <li>No unified clients</li>
-  <li>Several disk reads and writes in the critical path</li>
-  <li>Was doing serial processing throughout</li>
-  <li>Read a video as one single big file, instead of splitting it up to chunks</li>
-</ul>
-
-<p>The new Streaming Video Engine (SVE) is expected to solve the aforementioned problems, and to meet the four design goals:</p>
-
-<ul>
-  <li>Fast: make users upload their videos super fast</li>
-  <li>Flexible: usable for different Facebook products</li>
-  <li>Scalable: everything at Facebook has to scale</li>
-  <li>Efficient: storage efficiency, processing efficiency, and more importantly consume less bytes of users’ data plan</li>
-</ul>
-
 </div>
   
   
