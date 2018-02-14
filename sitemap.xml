@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://euccas.github.io/blog/20180213/performance-profiling-tools-on-windows.html</loc>
+<lastmod>2018-02-13T17:21:11-08:00</lastmod>
+</url>
+<url>
 <loc>http://euccas.github.io/blog/20171203/effective-jenkins-plugins-1.html</loc>
 <lastmod>2017-12-03T16:18:31-08:00</lastmod>
 </url>

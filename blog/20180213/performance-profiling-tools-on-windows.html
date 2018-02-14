@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>euccas.github.io</title>
+  <title>Performance Profiling Tools on Windows - euccas.github.io</title>
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="Last year, I wrote a blog post about CPU Profiling and the tools on Linux. Today I’m going to write about a few Performance profiling tools on &hellip;">
-  
+  <meta name="description" content="system performance profiling on windows">
+  <meta name="keywords" content="performance profiling">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://euccas.github.io/index.html">
+  <link rel="canonical" href="http://euccas.github.io/blog/20180213/performance-profiling-tools-on-windows.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="euccas.github.io" type="application/atom+xml">
@@ -98,15 +98,14 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/20180213/performance-profiling-tools-on-windows.html">Performance Profiling Tools on Windows</a></h1>
+      
+        <h1 class="entry-title">Performance Profiling Tools on Windows</h1>
+      
     
     
       <p class="meta">
@@ -117,7 +116,7 @@
 
 <time class='entry-date' datetime='2018-02-13T17:21:11-08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>5:21 pm</span></time>
         
-         | <a href="/blog/20180213/performance-profiling-tools-on-windows.html#disqus_thread">Comments</a>
+         | <a href="#disqus_thread">Comments</a>
         
         
       </p>
@@ -125,7 +124,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Last year, I wrote a blog post about <a href="http://euccas.github.io/blog/20170827/cpu-profiling-tools-on-linux.html">CPU Profiling and the tools on Linux</a>. Today I’m going to write about a few Performance profiling tools on Windows platform. Last week I was working on profiling and analyzing the build process of a project on Windows, and during the process I experimented with a few different tools.</p>
+<div class="entry-content"><p>Last year, I wrote a blog post about <a href="http://euccas.github.io/blog/20170827/cpu-profiling-tools-on-linux.html">CPU Profiling and the tools on Linux</a>. Today I’m going to write about a few Performance profiling tools on Windows platform. Last week I was working on profiling and analyzing the build process of a project on Windows, and during the process I experimented with a few different tools.</p>
 
 <h1 id="performance-monitor-perfmon">Performance Monitor (perfmon)</h1>
 
@@ -205,263 +204,66 @@
 <p><img class="center" src="/images/post_images/2018/20180213-procexp_0.png" width="600" /></p>
 
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20171203/effective-jenkins-plugins-1.html">Effective Jenkins Plugins (1)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-12-03T16:18:31-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2017</span></span> <span class='time'>4:18 pm</span></time>
-        
-         | <a href="/blog/20171203/effective-jenkins-plugins-1.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://jenkins.io/">Jenkins</a>, originally founded in 2006 as “Hudson”, is one of the leading automation applications which support building, deploying and automating software projects. One great advantage of Jenkins is there are hundreds of plugins available which enable various kinds of extended features needed in the Continous Integration and Continuous Delivery process. As I just checked on the <a href="https://plugins.jenkins.io/">Jenkins Plugins page</a>, there are 873 plugins that fall into five categories: Platforms, User interface, Administration, Source code management and Build management.</p>
-
-<p>Effectively using Jenkins plugins makes your experience with Jenkins more productive. I’m going to occasionally write about Jenkins plugins that I used or learned about. The first post will start from some of the plugins I used when I worked on building a Continuous Delivery system last year (from 2015 to 2016).</p>
-
-<h1 id="job-configuration-history">Job Configuration History</h1>
-
-<p><a href="https://plugins.jenkins.io/jobConfigHistory"><em>JobConfigHistory Plugin</em></a></p>
-
-<p>This plugin saves every change made to a job. It allows you to see the history of job configurations, compare configuration differences, and restore a particular version of config. You can also see which user makes a particular change if you configured a security policy.</p>
-
-<p>The configuration changes are saved by means of saving copies of the configuration file of a job (config.xml in Jenkins Home directory).</p>
-
-<h1 id="dependency-graph-view">Dependency Graph View</h1>
-
-<p><a href="https://plugins.jenkins.io/depgraph-view"><em>Dependency Graph View Plugin</em></a></p>
-
-<p>This plugin visualize dependencies of multiple jobs by generating graphs via <a href="https://graphviz.gitlab.io/">graphviz</a>. You can choose to show the dependency of jobs in a view. To generate the graph, it is required to have graphviz installed on the Jenkins server.</p>
-
-<p>This plugin is very useful when you have many jobs which have dependency relationship. Visualizing the dependency helps you easily find possible mistakes in the setting of dependencies.</p>
-
-<h1 id="build-timeout">Build Timeout</h1>
-
-<p><a href="https://plugins.jenkins.io/build-timeout"><em>Build-timeout Plugin</em></a></p>
-
-<p>This plugin allows you to set runtime limit of jobs, and automatically abort a build if it’s taking longer than expected time. In my experience, this plugin was extremely useful as it solved the problem that some builds got stuck and didn’t release the Jenkins slave slots.</p>
-
-<p>Noted this plugin isn’t applicable to pipelines.</p>
-
-<h1 id="perforce">Perforce</h1>
-
-<p><a href="https://wiki.jenkins.io/display/JENKINS/P4+Plugin"><em>P4 Plugin</em></a></p>
-
-<p>This plugin manages Perforce workspaces, synchronising code and polling/triggering builds. It also supports a few common Perforce operations such as credential authentication, changelists browsing, and labeling builds.</p>
-
-<h1 id="jira">JIRA</h1>
-
-<p><a href="https://plugins.jenkins.io/jira"><em>JIRA Plugin</em></a></p>
-
-<p>This plugin integrates <a href="https://www.atlassian.com/software/jira">JIRA</a> to Jenkins. It uses JIRA REST API, and allows you to display Jenkins builds inside JIRA.</p>
-
-<h1 id="parameterized-trigger">Parameterized Trigger</h1>
-
-<p><a href="https://plugins.jenkins.io/parameterized-trigger"><em>Parameterized Trigger Plugin</em></a></p>
-
-<p>This plugin lets you trigger new builds with various ways of specifying parameters for the new builds. The parameters could be a set of predefined properties, or based on information/results of the upstream builds.</p>
-
-<p>As an example, you can tell a build job where to find packages it needs to install.</p>
-
-<h1 id="log-parser">Log Parser</h1>
-
-<p><a href="https://plugins.jenkins.io/log-parser"><em>Log Parser Plugin</em></a></p>
-
-<p>This plugin parses the console log generated by the Jenkins build. It could highlight lines of interest in log, like the lines with <code>errors</code>, <code>warnings</code>, <code>information</code>. It divides a log into sections, such as <em>errors section</em>, <em>warnings section</em>, etc. The number of errors or warnings are also displayed. Useful for triaging errors in long build logs.</p>
-
-<h1 id="email-extension">Email Extension</h1>
-
-<p><a href="https://plugins.jenkins.io/email-ext"><em>Email Extension Plugin</em></a></p>
-
-<p>This plugin extends the email notification functionality that Jenkins provides. You can customize when an email is sent, who should receive it, and the content of the email.</p>
-
-<h1 id="disk-usage">Disk Usage</h1>
-
-<p><a href="https://plugins.jenkins.io/disk-usage"><em>Disk-Usage Plugin</em></a></p>
-
-<p>This plugin calculates disk usage of projects and builds, and shows the disk usage information on a page. It also displays a trend chart of display usage. It makes Jenkins job and workspace maintenance easier.</p>
-
-<h1 id="thinbackup">ThinBackup</h1>
-
-<p><a href="https://plugins.jenkins.io/thinBackup"><em>ThinBackup Plugin</em></a></p>
-
-<p>This plugin backs up the global and job specific configurations. You can see the backup history, and choose to restore a particular backup. The backup provides setting options for the backup schedule, backup directory, maximum number of backup sets, etc.</p>
-
-<h1 id="scriptlermanaged-scripts">Scriptler/Managed Scripts</h1>
-
-<p><a href="https://wiki.jenkins.io/display/JENKINS/Scriptler+Plugin"><em>Scriptler Plugin</em></a></p>
-
-<p>This plugin allows you to edit, store, and resue groovy scripts, and execute the script on any of the slaves or nodes. But since 2016 the distribution of this plugin has been suspended due to security issues. <em>The current version of this plugin may not be safe to use</em>.</p>
-
-<p>An alternative choice is the <a href="hhttps://plugins.jenkins.io/managed-scripts"><em>Managed Scripts Plugin</em></a>.</p>
-
-</div>
-  
   
 
 
-    </article>
+
+  <span class="byline author vcard">Authored by <span class="fn">
   
+    euccas
   
-    <article>
+  </span></span>
+
+
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20171129/python-why-decorators-are-useful.html">Python: Why Decorators Are Useful</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
 
-<time class='entry-date' datetime='2017-11-29T22:41:51-08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>10:41 pm</span></time>
-        
-         | <a href="/blog/20171129/python-why-decorators-are-useful.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In Python, by definition <em>decorators</em> are <em>functions</em> that <em>accept a function</em> as an argument, and <em>return a new function</em> as their return value. The reason why decorators exist in Python, but not in other similar language such as Ruby, is that <em>functions</em> are <em>objects</em> in Python. Functions can be assigned to variables and passed around the same as other object in Python. For example, a list can have functions as its elements, and functions can take other functions as arguments. Functions can be defined inside another function, and this forms closures.</p>
-
-<h1 id="when-to-use-decorators">When to use decorators?</h1>
-
-<p>It’s easy to understand what decorators are, while the real question you may have is: Why decorators are useful? When shall I use decorators in my Python program?</p>
-
-<p>In some way, I see decorator functions are useful whenever you need process or extend the inputs or outputs of a given function (or more often, multiple functions) in some way you want. Here I list three usages of decorators that I can think of:</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/20171129/python-why-decorators-are-useful.html">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
+<time class='entry-date' datetime='2018-02-13T17:21:11-08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>5:21 pm</span></time>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20170827/cpu-profiling-tools-on-linux.html">CPU Profiling Tools on Linux</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-08-27T14:23:21-07:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>2:23 pm</span></time>
-        
-         | <a href="/blog/20170827/cpu-profiling-tools-on-linux.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Profiling is an effective method to provide measurements for the performance of software applications. With profiling, you get fine grained information for the components of an application, such as how often a function is called, how long a routine takes to execute and how much time are spent of different spots in the code. With these information, you could identify the performance bottlenecks and the poorly implemented parts in a software application, and find effective methods to improve them.</p>
-
-<p>In this post I’ll write a brief summary of two profiling methods: <strong>Instrumentation</strong> and <strong>Sampling</strong>, and four CPU profiling tools on Linux: <strong>perf</strong>, <strong>gprof</strong>, <strong>Valgrind</strong> and Google’s <strong>gperftools</strong>.</p>
-
-<h1 id="profiling-methods">Profiling Methods</h1>
-
-<p>Different profiling methods use different ways to measure the performance of an application when it is executed. <strong>Instrumentation</strong> and <strong>Sampling</strong> are the two categories that profiling methods fall into.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/20170827/cpu-profiling-tools-on-linux.html">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
+
+<span class="categories">
+  
+    <a class='category' href='/categories/performance/'>performance</a>
+  
+</span>
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/20170627/facebook-infrastructure-streaming-video-engine-sve.html">Facebook Infrastructure: Streaming Video Engine (SVE)</a></h1>
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://euccas.github.io/blog/20180213/performance-profiling-tools-on-windows.html" data-via="euccas" data-counturl="http://euccas.github.io/blog/20180213/performance-profiling-tools-on-windows.html" >Tweet</a>
+  
+  
+  
+</div>
+
     
-    
-      <p class="meta">
-        
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/20171203/effective-jenkins-plugins-1.html" title="Previous Post: Effective Jenkins Plugins (1)">&laquo; Effective Jenkins Plugins (1)</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
-
-
-<time class='entry-date' datetime='2017-06-27T22:16:02-07:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>10:16 pm</span></time>
-        
-         | <a href="/blog/20170627/facebook-infrastructure-streaming-video-engine-sve.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In last year’s <a href="https://developers.facebook.com/videos/?category=f8_2016"><strong>Facebook F8 conference</strong></a>, Sachin Kulkarni, who worked on Facebook’s Video Infrastructure, gave a talk (<a href="https://developers.facebook.com/videos/f8-2016/inside-look-at-facebook-media-infrastructure/">watch it here</a>) to introduce the design of Facebook’s <strong>Streaming Video Engine System (SVE)</strong>. I found this talk particularly interesting because it revealed, in a very well structured, concise yet informative way, how Facebook infrastructure team came up with a solution to build a video system solving user frustrations by reviewing the end-to-end process, and how such a design meet the goal of being <strong>fast</strong>, <strong>flexible</strong>, <strong>scalable</strong>, and <strong>efficient</strong>. After watching the presentation video for a few times, I thought it would be helpful to write down some notes here, for my own reviewing in the future, and for people who might be interested in Facebook’s media infrastructure.</p>
-
-<p>Sharing on Facebook started from largely text, and quickly changed to be largely photos. Since 2014, more videos started to be posted and shared among users. The challenge was, building a video processing system is much harder than building a text or image processing system. Videos are greedy, they will consume all your resources: CPU, memory, disk, network, and anything else.</p>
-
-<p>Before building the Streaming Video Engine system, the team started by reviewing Facebook’s existing video uploading and processing process, which was slow and not scalable. They found several problems need change or improvement:</p>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/20170627/facebook-infrastructure-streaming-video-engine-sve.html">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/posts/2">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    
-  
-</aside>
 
     </div>
   </div>
@@ -477,7 +279,10 @@
       var disqus_shortname = 'euccas-github-io';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://euccas.github.io/blog/20180213/performance-profiling-tools-on-windows.html';
+        var disqus_url = 'http://euccas.github.io/blog/20180213/performance-profiling-tools-on-windows.html';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

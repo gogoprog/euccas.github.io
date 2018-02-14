@@ -4,7 +4,7 @@
   <title><![CDATA[euccas.github.io]]></title>
   <link href="http://euccas.github.io/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2018-01-14T15:25:46-08:00</updated>
+  <updated>2018-02-13T17:21:56-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -12,6 +12,93 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Performance Profiling Tools on Windows]]></title>
+    <link href="http://euccas.github.io/blog/20180213/performance-profiling-tools-on-windows.html"/>
+    <updated>2018-02-13T17:21:11-08:00</updated>
+    <id>http://euccas.github.io/blog/20180213/performance-profiling-tools-on-windows</id>
+    <content type="html"><![CDATA[<p>Last year, I wrote a blog post about <a href="http://euccas.github.io/blog/20170827/cpu-profiling-tools-on-linux.html">CPU Profiling and the tools on Linux</a>. Today I’m going to write about a few Performance profiling tools on Windows platform. Last week I was working on profiling and analyzing the build process of a project on Windows, and during the process I experimented with a few different tools.</p>
+
+<h1 id="performance-monitor-perfmon">Performance Monitor (perfmon)</h1>
+
+<p><strong>Performance Monitor</strong> is a small utility provided by Windows OS, you can start it by running command <code>perfmon</code>. With perfmon, you can monitor real-time system performance, and record performance to files for post analysis. This tool provides some extremely useful interfaces in its GUI.</p>
+
+<h2 id="real-time-performance">Real-time Performance</h2>
+
+<p>To view current performance activity, you just need click on the <strong>Performance Monitor</strong> button in the left panel:</p>
+
+<p><img class="center" src="http://euccas.github.io/images/post_images/2018/20180213-perfmon_0.png" width="600" /></p>
+
+<p>By default, this view has only one performance counter: <code>% CPU Processor Time</code>. You can add more counters you need, such as Processor’s Idle Time, Cache Performance, Network Performance and a lot more.</p>
+
+<p><img class="center" src="http://euccas.github.io/images/post_images/2018/20180213-perfmon_1.png" width="600" /></p>
+
+<h2 id="performance-recording">Performance Recording</h2>
+
+<p>When analyzing an application’s performance, we often need record all the performance data and generate various reports to help analysis. We can do this in perfmon by adding <strong>User Defined Data Collector Sets</strong> (from Menu Action -&gt; New -&gt; Data Collector Sets).</p>
+
+<p>Perfmon allows you to choose a template to start with, and specify the location where the performance data will be saved. The process is quite straightforward as provided in the GUI. There is only one thing that you need pay attention to: the <strong>Stop Condition</strong>. By default, a newly created Data Collector Sets has “stop condition” as <strong>“Overall duration: 1 minute”</strong>. With this condition set, the performance recording will stop in 1 minute after starting. If the process you are monitoring takes longer than 1 minute to finish, you definitely want to increase this “Overall duration” to some longer time.</p>
+
+<p><img class="center" src="http://euccas.github.io/images/post_images/2018/20180213-perfmon_2.png" width="600" /></p>
+
+<p>With the added Data Collector Sets, you can start recording before running your application, and stop recording any time you want. The recorded data will be shown in the <strong>Reports</strong> session in the left panel. The report can also be viewed as graphs in the Performance Monitor.</p>
+
+<p>The following is one example of displaying performance report in <strong>Stacked Area Graph</strong>. The other graph types you can choose are: <strong>Line</strong>, <strong>Histogram bar</strong>, <strong>Area</strong>.</p>
+
+<p><img class="center" src="http://euccas.github.io/images/post_images/2018/20180213-perfmon_3.png" width="600" /></p>
+
+<h1 id="windows-performance-recorder-wpr">Windows Performance Recorder (WPR)</h1>
+
+<p><strong>Windows Performance Recorder (WPR)</strong> is a performance recording tool that is based on Event Tracing for Windows. It is available for Windows 8 or later. It records system events that you can then analyze by using Windows Performance Analyzer (WPA). This tool is included in the Windows Assessment and Deployment Kit (Windows ADK), and you can download it <a href="https://insider.windows.com/">here</a>.</p>
+
+<h2 id="recording-with-wpr">Recording with WPR</h2>
+
+<p>When WPR starts, it will guide you to choose a few configurations: <strong>profiles</strong>, <strong>scenario</strong>, <strong>details level</strong> and <strong>logging mode</strong>. You can follow the instructions <a href="https://docs.microsoft.com/en-us/windows-hardware/test/wpt/wpr-quick-start">here on Microsoft Docs</a> to decide how to choose for your need.</p>
+
+<p><img class="center" src="http://euccas.github.io/images/post_images/2018/20180213-wpr_0.png" width="600" /></p>
+
+<p>Then you can start recording performance by clicking the <strong>“Start”</strong> button. The recording will end when you click the <strong>“Save”</strong> button or <strong>“Cancel”</strong> button. If “Save” is clicked, the performance data will be stored to files, and Windows Performance Analyzer (WPA) will be automatically launched to show the performance reports.</p>
+
+<h2 id="reporting-in-wpa">Reporting in WPA</h2>
+
+<p>WPA provides detailed performance analysis data in its rich user interface. In the left <strong>“Graph Explorer”</strong>, you can choose to view performance graphs for <strong>System Activities</strong>, <strong>Computation</strong>, <strong>Storage</strong>, <strong>Memory</strong>, and <strong>Power</strong>. To see the graphs, just drag the graph to the <strong>“Analysis”</strong> tab on the right side.</p>
+
+<p><img class="center" src="http://euccas.github.io/images/post_images/2018/20180213-wpa_0.png" width="600" /></p>
+
+<p>Comparing to Performance Monitor (perfmon), WPA reports give you more details and flexibility to explore the data.</p>
+
+<p>This graph is a process lifetime graph generated by WPA.</p>
+
+<p><img class="center" src="http://euccas.github.io/images/post_images/2018/20180213-wpa_1.png" width="600" /></p>
+
+<h2 id="load-symbols-in-wpa">Load symbols in WPA</h2>
+
+<p>WPA supports <strong>loading symbols</strong> so you can see more details of each process or command. The paths of symbols can be added either from UI, or by setting environment variable <code>_NT_SYMBOL_PATH</code>. You can read <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-8.1-and-8/hh448137(v%3dwin.10)">this instruction</a> to understand how to load symbols or configure symbol paths in WPA.</p>
+
+<h1 id="xperf">Xperf</h1>
+
+<p><strong>Xperf</strong> is a command-line tool for performance recording on Windows. It is also included in the Windows Assessment and Deployment Kit (Windows ADK). Starting from Windows 8, WPR becomes the recommended tool for performance recording, the support is still maintained for Xperf though.</p>
+
+<p>Xperf works in a similarly way as WPR. It doesn’t have a GUI, but provides about ten command line options to process performance recording. The most commonly used ones probably are just <code>start</code> and <code>stop</code>.</p>
+
+<p>You can simply start Xperf performance recording using this command:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">xperf -on PROC_THREAD+LOADER+Base -BufferSize 1024</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>When recording is done, the generated “*.etl” file can be opened and viewed in WPA.</p>
+
+<h1 id="process-explorer">Process Explorer</h1>
+
+<p>Lastly, I’d like to introduce a light-weight tool <strong>Process Explorer</strong>, aka. procexp. Process Explorer is included in Windows’ <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/process-utilities"><strong>Sysinternals Process Utilities</strong></a>.</p>
+
+<p>Process Explorer provides a CPU performance monitor. Comparing to the CPU monitor in Task Manager, this one has enhanced features for you to monitor CPU utilization of each core and each thread. You can view a graph for each CPU.</p>
+
+<p><img class="center" src="http://euccas.github.io/images/post_images/2018/20180213-procexp_0.png" width="600" /></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Effective Jenkins Plugins (1)]]></title>
@@ -2050,70 +2137,6 @@ This probably means the server terminated abnormally before or while processing 
   <li><a href="http://euccas.github.io/blog/20161010/jenkins-user-habits-4.html">高效Jenkins用户的第4个习惯</a></li>
   <li><a href="http://euccas.github.io/blog/20161216/jenkins-user-habits-5.html">高效Jenkins用户的第5个习惯</a></li>
 </ul>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[MongoDB Training: MongoDB for Developers (Python)]]></title>
-    <link href="http://euccas.github.io/blog/20161205/mongodb-training-mongodb-for-developers-python.html"/>
-    <updated>2016-12-05T13:56:45-08:00</updated>
-    <id>http://euccas.github.io/blog/20161205/mongodb-training-mongodb-for-developers-python</id>
-    <content type="html"><![CDATA[<p>昨晚提交了MongoDB University的培训课程 <a href="https://university.mongodb.com/courses/M101P/about">M101P: MongoDB for Developers (Python)</a> 的最后一次测试，这历时七周的课程告一段落。这个课程虽然是属于入门级，但是它覆盖了MongoDB各个方面，有不错的课程结构。短时间内，可以让开发者掌握和MongoDB有关的日常开发中所需要掌握的大部分知识和技能。</p>
-
-<p>在学习其他数据库时，也不妨参照这个结构来全面掌握。</p>
-
-<!--more-->
-
-<ul>
-  <li>
-    <p><strong>Introduction and Overview</strong></p>
-  </li>
-  <li><strong>CRUD: Creating, Reading and Updating Data</strong>
-    <ul>
-      <li>Mongo shell</li>
-      <li>Find, Insert, Update, Delete</li>
-      <li>Query operators, update operators</li>
-    </ul>
-  </li>
-  <li><strong>Schema Design</strong>
-    <ul>
-      <li>Live without constraints or transactions</li>
-      <li>One to one relations, one to many relations, many to many relations</li>
-      <li>Embedding, handle blobs</li>
-    </ul>
-  </li>
-  <li><strong>Performance</strong>
-    <ul>
-      <li>Indexes</li>
-      <li>Explain and profiling</li>
-    </ul>
-  </li>
-  <li><strong>Aggregation Framework</strong>
-    <ul>
-      <li>Aggregation pipeline</li>
-      <li>Aggregation expressions: sum, avg, addToSet, push, max, min, group,  project, match, text, sort, limit, skip, unwind, etc.</li>
-    </ul>
-  </li>
-  <li><strong>Application Engineering</strong>
-    <ul>
-      <li>Write consistency</li>
-      <li>Replication, create a replica set</li>
-      <li>Failover and rollback</li>
-      <li>Sharding</li>
-    </ul>
-  </li>
-  <li><strong>Case Studies</strong>
-    <ul>
-      <li>Interview with MongoDB users from Facebook and Codecademy</li>
-      <li>Discuss MongoDB usages in real life projects</li>
-    </ul>
-  </li>
-</ul>
-
-<p>我在课程期间的笔记和练习都保存在GitHub Repository - <a href="https://github.com/euccas/mongodb-for-developers-M101P">euccas/MongoDB-for-Developers-M101P</a></p>
-
-<p>如果是偏重于Web开发，可以参加另一个培训课程:  <a href="https://university.mongodb.com/courses/M101JS/about">M101JS: MongoDB for Node.js Developers</a>. M101JS课程和M101P有类似的结构，区别在于开发语言从Python变为Node.js.</p>
-
 ]]></content>
   </entry>
   
