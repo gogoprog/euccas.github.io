@@ -18,6 +18,8 @@ Effectively using Jenkins plugins makes your experience with Jenkins more produc
 
 This plugin saves every change made to a job. It allows you to see the history of job configurations, compare configuration differences, and restore a particular version of config. You can also see which user makes a particular change if you configured a security policy.
 
+<!--more--> 
+
 The configuration changes are saved by means of saving copies of the configuration file of a job (config.xml in Jenkins Home directory). 
 
 # Dependency Graph View
