@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Performance | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/performance/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2018-02-13T17:21:56-08:00</updated>
+  <updated>2018-02-13T17:31:03-08:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -54,7 +54,7 @@
 
 <h2 id="recording-with-wpr">Recording with WPR</h2>
 
-<p>When WPR starts, it will guide you to choose a few configurations: <strong>profiles</strong>, <strong>scenario</strong>, <strong>details level</strong> and <strong>logging mode</strong>. You can follow the instructions <a href="https://docs.microsoft.com/en-us/windows-hardware/test/wpt/wpr-quick-start">here on Microsoft Docs</a> to decide how to choose for your need.</p>
+<p>When WPR starts, it will guide you to choose a few configurations: <strong>profiles</strong>, <strong>scenario</strong>, <strong>details level</strong> and <strong>logging mode</strong>. You can follow the instructions <a href="https://docs.microsoft.com/en-us/windows-hardware/test/wpt/wpr-quick-start">here on Microsoft Docs</a> to decide how to choose for your needs.</p>
 
 <p><img class="center" src="/images/post_images/2018/20180213-wpr_0.png" width="600"></p>
 
@@ -74,7 +74,7 @@
 
 <h2 id="load-symbols-in-wpa">Load symbols in WPA</h2>
 
-<p>WPA supports <strong>loading symbols</strong> so you can see more details of each process or command. The paths of symbols can be added either from UI, or by setting environment variable <code>_NT_SYMBOL_PATH</code>. You can read <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-8.1-and-8/hh448137(v%3dwin.10)">this instruction</a> to understand how to load symbols or configure symbol paths in WPA.</p>
+<p>WPA supports <strong>loading symbols</strong> so you can see more details of each process or command. The paths of symbols can be added either from UI, or by setting environment variable <code>_NT_SYMBOL_PATH</code>. Read <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-8.1-and-8/hh448137(v%3dwin.10)">this instruction</a> if you need understand how to load symbols or configure symbol paths in WPA.</p>
 
 <h1 id="xperf">Xperf</h1>
 
@@ -88,7 +88,7 @@
 xperf -on PROC_THREAD+LOADER+Base -BufferSize 1024
 </code></p>
 
-<p>When recording is done, the generated “*.etl” file can be opened and viewed in WPA.</p>
+<p>When recording is done, the generated <code>*.etl</code> file can be opened and viewed in WPA.</p>
 
 <h1 id="process-explorer">Process Explorer</h1>
 
