@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>euccas.github.io</title>
+  <title>Reading Notes - Designing Distributed Systems - euccas.github.io</title>
   <meta name="author" content="euccas">
 
   
-  <meta name="description" content="So here comes 2017, a year when you hear people talk about the words Machine Learning, Reinforcement Learning, and Artificial Intelligence everywhere &hellip;">
-  
+  <meta name="description" content="reading notes distributed systems design patterns">
+  <meta name="keywords" content="reading notes distributed systems design patterns">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://euccas.github.io/posts/4/index.html">
+  <link rel="canonical" href="http://euccas.github.io/blog/20180513/read-designing-distributed-systems.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="euccas.github.io" type="application/atom+xml">
@@ -98,15 +98,14 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/20170106/get-start-on-machine-learning.html">Get Start on Machine Learning</a></h1>
+      
+        <h1 class="entry-title">Reading Notes - Designing Distributed Systems</h1>
+      
     
     
       <p class="meta">
@@ -115,50 +114,9 @@
 
 
 
-<time class='entry-date' datetime='2017-01-06T23:17:40-08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2017</span></span> <span class='time'>11:17 pm</span></time>
+<time class='entry-date' datetime='2018-05-13T18:22:12-07:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>6:22 pm</span></time>
         
-         | <a href="/blog/20170106/get-start-on-machine-learning.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>So here comes 2017, a year when you hear people talk about the words <em>Machine Learning</em>, <em>Reinforcement Learning</em>, and <em>Artificial Intelligence</em> everywhere.</p>
-
-<p>Last year when Mark Zuckberg was working on building Jarvis, I didn’t spend much time on AI or Machine Learning. But I know the efforts I made last year get me ready to start on it right now.</p>
-
-<p>Tonight I just talked to a former colleague who is working at Nvidia, and he gave me a few helpful suggestions about getting started on machine learning according to his own experience. Here are some of his advices:</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/20170106/get-start-on-machine-learning.html">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20161231/python-multiprocessing.html">Python Multiprocessing</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-12-31T09:37:01-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2016</span></span> <span class='time'>9:37 am</span></time>
-        
-         | <a href="/blog/20161231/python-multiprocessing.html#disqus_thread">Comments</a>
+         | <a href="#disqus_thread">Comments</a>
         
         
       </p>
@@ -166,172 +124,106 @@
   </header>
 
 
-  <div class="entry-content"><p>Python’s GIL (Global Interpreter Lock) was designed to be a thread-safe mechanism, and it effectively prevents conflicts between multiple threads. GIL makes it easy to implemente multi-threading with Python. However, it also prevents Python multi-threading from utilizing the multiple cores of a computer to achieve improved execution speed. This is why using the <code>threading</code> module in Python won’t help your program run faster through parallelism.</p>
+<div class="entry-content"><p>Recently I read a book <a href="http://shop.oreilly.com/product/0636920072768.do">Designing Distributed Systems</a>, which is written by <a href="https://twitter.com/brendandburns">Brendan Burns</a>, and published by O’Reilly earlier this year. This book introduces the patterns and components used in the development of distributed systems.</p>
 
-<p>The good thing is Python provides a <a href="https://docs.python.org/3.4/library/multiprocessing.html"><code>multiprocessing</code> module</a> since Python 2.6. With the <code>multiprocessing</code> module we can spawn subprocesses and effectively avoid some of the limitations that GIL brings, on both Unix and Windows platforms.</p>
+<p>Before I started to read this book, I had three questions in my mind, and try to find the answers from the book. Those three questions are:</p>
 
-<p>In this post I’ll briefly introduce <code>multiprocess</code> module and show how it can be used for parallel programming.</p>
+<ol>
+  <li>What’s the most important difference between designing distributed systems and single machine systems?</li>
+  <li>Why container technology, such as docker, kubernates, is so popular? How could it be helpful?</li>
+  <li>What are the common patterns used in distributed systems design, and when shall I use them?</li>
+</ol>
 
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/20161231/python-multiprocessing.html">Read on &rarr;</a>
-    </footer>
-  
+<p>This book does give me the answers, at least partial ones. I put my reading notes into a Google Slides, and  <a href="https://docs.google.com/presentation/d/1srX9hRS9tbtrEx7T1abxbHiD1gASkvllf1_W2SjuadA/edit?usp=sharing">you can find it here to read the details</a>. A PDF version in light background color is <a href="https://github.com/euccas/euccas.github.io/blob/source/data/read-2018-design_distributed_systems_lightver.pdf">available here</a>.</p>
 
+<p>The short answers to my questions are as in the following:</p>
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20161224/levels-of-design.html">Levels of Design</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-12-24T09:52:07-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:52 am</span></time>
-        
-         | <a href="/blog/20161224/levels-of-design.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Recently I’m taking a course <a href="https://www.coursera.org/learn/algorithmic-toolbox/home/welcome">“Algorithm Toolbox”</a> on Coursera. This course provides me a good chance to review and enhance my knowledge in the fundamental algorithms, which usually would help on achieving better system design. This morning I came across one slide of this course and thought it could be very useful. Sharing it here.</p>
-
-<p><img class="center" src="/images/post_images/2016/20161224-levels-of-design-1.png" width="600" /></p>
-
-<p>It’s important to keep the <strong>levels of (algorithm) design</strong> in mind when solving a problem.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/20161224/levels-of-design.html">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/20161223/python-generators.html">Python Generators</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-12-23T08:48:45-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2016</span></span> <span class='time'>8:48 am</span></time>
-        
-         | <a href="/blog/20161223/python-generators.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Generators is a powerful weapon of Python. Generators help you write concise code, give you lazy evaluation, and improve the efficience for calculating large sets of results. Personally I think it’s a good habit to use generators in Python whenever you can, if you really want your code to be Pythonic.</p>
-
-<h1 id="how-to-create-a-generator">How to create a generator</h1>
-
-<p>There are mainly two ways to create a generator: using the <code>yield</code> keyword in the function, or using the <code>()</code> as a generator expression.</p>
+<h2 id="whats-the-most-important-difference-between-designing-distributed-systems-and-single-machine-systems">What’s the most important difference between designing distributed systems and single machine systems?</h2>
 
 <ul>
-  <li>The <code>yield</code> keyword makes the function yields control back to the calling function on every iteration</li>
-  <li>The <code>()</code> expression returns a generator object</li>
+  <li>Designing distributed systems can be significantly more complicated to design, build, and debug correctly.</li>
+  <li>Designing distributed systems need much more efforts in designing for scalability and reliability.</li>
+  <li>In a distributed system, tasks/data are spreaded to multiple workers. It requires techniques like containers and load balancing to utilize parallelisation</li>
 </ul>
 
+<h2 id="why-container-technology-docker-kubernetes-is-so-popular-how-could-they-be-helpful">Why container technology (docker, kubernetes) is so popular? How could they be helpful?</h2>
+
+<ul>
+  <li>Containers are not only useful for applications which have components running on multiple machines, but also for single machine applications.</li>
+  <li>The goal of containerization is to <strong>establish boundaries</strong> around specific resources, team ownership, separation of concerns.</li>
+  <li>The benefits include <strong>resource isolation</strong>, <strong>scaling teams</strong>, <strong>reuse components and modules</strong>, <strong>break big problems</strong> into smaller ones (Small, focused applications are easier to understand, be tested, updated and deployed)</li>
+</ul>
+
+<h2 id="what-are-the-common-patterns-used-in-distributed-systems-design-and-when-shall-i-use-them">What are the common patterns used in distributed systems design, and when shall I use them?</h2>
+
+<p>The book describes three types of patterns:
+- <strong>Single node</strong> patterns: sidecar, ambassadors, adapters
+- <strong>Serving</strong> patterns: sharded services, scatter/gather, FaaS, etc.
+- <strong>Batch computational</strong> patterns: Work queue, Event-driven batch processing, coordinated batch processsing, etc.</p>
+
+<p>You can find more detailed description of each design pattern in my reading notes.</p>
+
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/20161223/python-generators.html">Read on &rarr;</a>
-    </footer>
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
+  
+
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    euccas
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2018-05-13T18:22:12-07:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2018</span></span> <span class='time'>6:22 pm</span></time>
+      
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/reading/'>reading</a>
+  
+</span>
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/20161217/postgresql-understand-pg-errors.html">PostgreSQL: Understand PG Errors</a></h1>
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://euccas.github.io/blog/20180513/read-designing-distributed-systems.html" data-via="euccas" data-counturl="http://euccas.github.io/blog/20180513/read-designing-distributed-systems.html" >Tweet</a>
+  
+  
+  
+</div>
+
     
-    
-      <p class="meta">
-        
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/20180213/performance-profiling-tools-on-windows.html" title="Previous Post: Performance Profiling Tools on Windows">&laquo; Performance Profiling Tools on Windows</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
-
-
-<time class='entry-date' datetime='2016-12-17T09:06:21-08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:06 am</span></time>
-        
-         | <a href="/blog/20161217/postgresql-understand-pg-errors.html#disqus_thread">Comments</a>
-        
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When using Ruby Gem <code>pg</code> and establish database connections to a PostgreSQL database, you’ll see PG errors when the database connection becomes problematic. In my experience, two typical PG errors are <code>PG::AdminShutdown</code> and <code>PG::UnableToSend</code>.</p>
-
-<h1 id="error-pgadminshutdown">Error PG::AdminShutdown</h1>
-
-<p>The error message contains the following information:</p>
-
-<p><code>
-FATAL:  terminating connection due to administrator command (PG::AdminShutdown) server closed the connection unexpectedly
-      This probably means the server terminated abnormally
-      before or while processing the request.
-</code></p>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/20161217/postgresql-understand-pg-errors.html">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/posts/5">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-    <a class="next" href="/posts/3">Newer &rarr;</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    
-  
-</aside>
 
     </div>
   </div>
@@ -347,7 +239,10 @@ FATAL:  terminating connection due to administrator command (PG::AdminShutdown) 
       var disqus_shortname = 'euccas-github-io';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://euccas.github.io/blog/20180513/read-designing-distributed-systems.html';
+        var disqus_url = 'http://euccas.github.io/blog/20180513/read-designing-distributed-systems.html';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
