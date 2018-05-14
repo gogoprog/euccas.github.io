@@ -8,6 +8,8 @@ keywords: Jenkins plugins
 description: A list of recommended Jenkins plugins, for improve the productivity and continuous delivery, continuous integration
 ---
 
+(*Update 2018-05-13*: Here is a translation of this post in [Hindi](https://dealsdaddy.co.uk/translations/jenkinsplugins/), provided by Nikol @ DealsDaddy.)
+
 [Jenkins](https://jenkins.io/), originally founded in 2006 as “Hudson”, is one of the leading automation applications which support building, deploying and automating software projects. One great advantage of Jenkins is there are hundreds of plugins available which enable various kinds of extended features needed in the Continous Integration and Continuous Delivery process. As I just checked on the [Jenkins Plugins page](https://plugins.jenkins.io/), there are 873 plugins that fall into five categories: Platforms, User interface, Administration, Source code management and Build management.
 
 Effectively using Jenkins plugins makes your experience with Jenkins more productive. I'm going to occasionally write about Jenkins plugins that I used or learned about. The first post will start from some of the plugins I used when I worked on building a Continuous Delivery system last year (from 2015 to 2016).

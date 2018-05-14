@@ -21,6 +21,8 @@ To view current performance activity, you just need click on the __Performance M
 
 {% img center /images/post_images/2018/20180213-perfmon_0.png 600px %}
 
+<!--more--> 
+
 By default, this view has only one performance counter: ```% CPU Processor Time```. You can add more counters you need, such as Processor's Idle Time, Cache Performance, Network Performance and a lot more. 
 
 {% img center /images/post_images/2018/20180213-perfmon_1.png 600px %}
