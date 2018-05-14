@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Reading | euccas.github.io]]></title>
   <link href="http://euccas.github.io/categories/reading/atom.xml" rel="self"/>
   <link href="http://euccas.github.io/"/>
-  <updated>2018-05-13T21:04:25-07:00</updated>
+  <updated>2018-05-13T21:07:08-07:00</updated>
   <id>http://euccas.github.io/</id>
   <author>
     <name><![CDATA[euccas]]></name>
@@ -50,10 +50,13 @@
 
 <h2 id="what-are-the-common-patterns-used-in-distributed-systems-design-and-when-shall-i-use-them">What are the common patterns used in distributed systems design, and when shall I use them?</h2>
 
-<p>The book describes three types of patterns:
-- <strong>Single node</strong> patterns: sidecar, ambassadors, adapters
-- <strong>Serving</strong> patterns: sharded services, scatter/gather, FaaS, etc.
-- <strong>Batch computational</strong> patterns: Work queue, Event-driven batch processing, coordinated batch processsing, etc.</p>
+<p>The book describes three types of patterns.</p>
+
+<ul>
+  <li><strong>Single node</strong> patterns: sidecar, ambassadors, adapters</li>
+  <li><strong>Serving</strong> patterns: sharded services, scatter/gather, FaaS, etc.</li>
+  <li><strong>Batch computational</strong> patterns: Work queue, Event-driven batch processing, coordinated batch processsing, etc.</li>
+</ul>
 
 <p>You can find more detailed description of each design pattern in my reading notes.</p>
 
