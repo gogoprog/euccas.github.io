@@ -34,7 +34,8 @@ The short answers to my questions are as in the following:
 
 ## What are the common patterns used in distributed systems design, and when shall I use them?
 
-The book describes three types of patterns:
+The book describes three types of patterns.
+
 - **Single node** patterns: sidecar, ambassadors, adapters
 - **Serving** patterns: sharded services, scatter/gather, FaaS, etc.
 - **Batch computational** patterns: Work queue, Event-driven batch processing, coordinated batch processsing, etc.
